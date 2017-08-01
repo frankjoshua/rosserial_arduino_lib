@@ -4,12 +4,13 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "nav_msgs/OccupancyGrid.h"
 
 namespace nav_msgs
 {
 
-static const char GETMAP[] = "nav_msgs/GetMap";
+static const char GETMAP[] PROGMEM = "nav_msgs/GetMap";
 
   class GetMapRequest : public ros::Msg
   {
@@ -32,14 +33,15 @@ static const char GETMAP[] = "nav_msgs/GetMap";
     }
 
     const char * getType(){ return GETMAP; };
-    const char * getMD5(){ return "d41d8cd98f00b204e9800998ecf8427e"; };
+    const char * getMD5(){ return PSTR( "d41d8cd98f00b204e9800998ecf8427e" ); };
 
   };
 
   class GetMapResponse : public ros::Msg
   {
     public:
-      nav_msgs::OccupancyGrid map;
+      typedef nav_msgs::OccupancyGrid _map_type;
+      _map_type map;
 
     GetMapResponse():
       map()
@@ -61,7 +63,7 @@ static const char GETMAP[] = "nav_msgs/GetMap";
     }
 
     const char * getType(){ return GETMAP; };
-    const char * getMD5(){ return "6cdd0a18e0aff5b0a3ca2326a89b54ff"; };
+    const char * getMD5(){ return PSTR( "6cdd0a18e0aff5b0a3ca2326a89b54ff" ); };
 
   };
 

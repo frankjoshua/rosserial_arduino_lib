@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "std_msgs/Header.h"
 #include "sensor_msgs/PointCloud2.h"
 
@@ -14,9 +15,12 @@ namespace map_msgs
   class PointCloud2Update : public ros::Msg
   {
     public:
-      std_msgs::Header header;
-      uint32_t type;
-      sensor_msgs::PointCloud2 points;
+      typedef std_msgs::Header _header_type;
+      _header_type header;
+      typedef uint32_t _type_type;
+      _type_type type;
+      typedef sensor_msgs::PointCloud2 _points_type;
+      _points_type points;
       enum { ADD = 0 };
       enum { DELETE = 1 };
 
@@ -53,8 +57,8 @@ namespace map_msgs
      return offset;
     }
 
-    const char * getType(){ return "map_msgs/PointCloud2Update"; };
-    const char * getMD5(){ return "6c58e4f249ae9cd2b24fb1ee0f99195e"; };
+    const char * getType(){ return PSTR( "map_msgs/PointCloud2Update" ); };
+    const char * getMD5(){ return PSTR( "6c58e4f249ae9cd2b24fb1ee0f99195e" ); };
 
   };
 

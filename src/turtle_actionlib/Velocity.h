@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 
 namespace turtle_actionlib
 {
@@ -12,8 +13,10 @@ namespace turtle_actionlib
   class Velocity : public ros::Msg
   {
     public:
-      float linear;
-      float angular;
+      typedef float _linear_type;
+      _linear_type linear;
+      typedef float _angular_type;
+      _angular_type angular;
 
     Velocity():
       linear(0),
@@ -75,8 +78,8 @@ namespace turtle_actionlib
      return offset;
     }
 
-    const char * getType(){ return "turtle_actionlib/Velocity"; };
-    const char * getMD5(){ return "9d5c2dcd348ac8f76ce2a4307bd63a13"; };
+    const char * getType(){ return PSTR( "turtle_actionlib/Velocity" ); };
+    const char * getMD5(){ return PSTR( "9d5c2dcd348ac8f76ce2a4307bd63a13" ); };
 
   };
 

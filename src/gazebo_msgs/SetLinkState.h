@@ -4,17 +4,19 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "gazebo_msgs/LinkState.h"
 
 namespace gazebo_msgs
 {
 
-static const char SETLINKSTATE[] = "gazebo_msgs/SetLinkState";
+static const char SETLINKSTATE[] PROGMEM = "gazebo_msgs/SetLinkState";
 
   class SetLinkStateRequest : public ros::Msg
   {
     public:
-      gazebo_msgs::LinkState link_state;
+      typedef gazebo_msgs::LinkState _link_state_type;
+      _link_state_type link_state;
 
     SetLinkStateRequest():
       link_state()
@@ -36,15 +38,17 @@ static const char SETLINKSTATE[] = "gazebo_msgs/SetLinkState";
     }
 
     const char * getType(){ return SETLINKSTATE; };
-    const char * getMD5(){ return "22a2c757d56911b6f27868159e9a872d"; };
+    const char * getMD5(){ return PSTR( "22a2c757d56911b6f27868159e9a872d" ); };
 
   };
 
   class SetLinkStateResponse : public ros::Msg
   {
     public:
-      bool success;
-      const char* status_message;
+      typedef bool _success_type;
+      _success_type success;
+      typedef const char* _status_message_type;
+      _status_message_type status_message;
 
     SetLinkStateResponse():
       success(0),
@@ -63,7 +67,7 @@ static const char SETLINKSTATE[] = "gazebo_msgs/SetLinkState";
       *(outbuffer + offset + 0) = (u_success.base >> (8 * 0)) & 0xFF;
       offset += sizeof(this->success);
       uint32_t length_status_message = strlen(this->status_message);
-      memcpy(outbuffer + offset, &length_status_message, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_status_message);
       offset += 4;
       memcpy(outbuffer + offset, this->status_message, length_status_message);
       offset += length_status_message;
@@ -82,7 +86,7 @@ static const char SETLINKSTATE[] = "gazebo_msgs/SetLinkState";
       this->success = u_success.real;
       offset += sizeof(this->success);
       uint32_t length_status_message;
-      memcpy(&length_status_message, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_status_message, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_status_message; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -94,7 +98,7 @@ static const char SETLINKSTATE[] = "gazebo_msgs/SetLinkState";
     }
 
     const char * getType(){ return SETLINKSTATE; };
-    const char * getMD5(){ return "2ec6f3eff0161f4257b808b12bc830c2"; };
+    const char * getMD5(){ return PSTR( "2ec6f3eff0161f4257b808b12bc830c2" ); };
 
   };
 

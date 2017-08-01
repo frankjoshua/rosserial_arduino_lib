@@ -4,19 +4,24 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 
 namespace turtlesim
 {
 
-static const char SPAWN[] = "turtlesim/Spawn";
+static const char SPAWN[] PROGMEM = "turtlesim/Spawn";
 
   class SpawnRequest : public ros::Msg
   {
     public:
-      float x;
-      float y;
-      float theta;
-      const char* name;
+      typedef float _x_type;
+      _x_type x;
+      typedef float _y_type;
+      _y_type y;
+      typedef float _theta_type;
+      _theta_type theta;
+      typedef const char* _name_type;
+      _name_type name;
 
     SpawnRequest():
       x(0),
@@ -60,7 +65,7 @@ static const char SPAWN[] = "turtlesim/Spawn";
       *(outbuffer + offset + 3) = (u_theta.base >> (8 * 3)) & 0xFF;
       offset += sizeof(this->theta);
       uint32_t length_name = strlen(this->name);
-      memcpy(outbuffer + offset, &length_name, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_name);
       offset += 4;
       memcpy(outbuffer + offset, this->name, length_name);
       offset += length_name;
@@ -104,7 +109,7 @@ static const char SPAWN[] = "turtlesim/Spawn";
       this->theta = u_theta.real;
       offset += sizeof(this->theta);
       uint32_t length_name;
-      memcpy(&length_name, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_name, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_name; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -116,14 +121,15 @@ static const char SPAWN[] = "turtlesim/Spawn";
     }
 
     const char * getType(){ return SPAWN; };
-    const char * getMD5(){ return "57f001c49ab7b11d699f8606c1f4f7ff"; };
+    const char * getMD5(){ return PSTR( "57f001c49ab7b11d699f8606c1f4f7ff" ); };
 
   };
 
   class SpawnResponse : public ros::Msg
   {
     public:
-      const char* name;
+      typedef const char* _name_type;
+      _name_type name;
 
     SpawnResponse():
       name("")
@@ -134,7 +140,7 @@ static const char SPAWN[] = "turtlesim/Spawn";
     {
       int offset = 0;
       uint32_t length_name = strlen(this->name);
-      memcpy(outbuffer + offset, &length_name, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_name);
       offset += 4;
       memcpy(outbuffer + offset, this->name, length_name);
       offset += length_name;
@@ -145,7 +151,7 @@ static const char SPAWN[] = "turtlesim/Spawn";
     {
       int offset = 0;
       uint32_t length_name;
-      memcpy(&length_name, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_name, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_name; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -157,7 +163,7 @@ static const char SPAWN[] = "turtlesim/Spawn";
     }
 
     const char * getType(){ return SPAWN; };
-    const char * getMD5(){ return "c1f3d28f1b044c871e6eff2e9fc3c667"; };
+    const char * getMD5(){ return PSTR( "c1f3d28f1b044c871e6eff2e9fc3c667" ); };
 
   };
 

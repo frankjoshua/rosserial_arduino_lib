@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "ros/duration.h"
 
 namespace control_msgs
@@ -13,9 +14,12 @@ namespace control_msgs
   class SingleJointPositionGoal : public ros::Msg
   {
     public:
-      float position;
-      ros::Duration min_duration;
-      float max_velocity;
+      typedef float _position_type;
+      _position_type position;
+      typedef ros::Duration _min_duration_type;
+      _min_duration_type min_duration;
+      typedef float _max_velocity_type;
+      _max_velocity_type max_velocity;
 
     SingleJointPositionGoal():
       position(0),
@@ -60,8 +64,8 @@ namespace control_msgs
      return offset;
     }
 
-    const char * getType(){ return "control_msgs/SingleJointPositionGoal"; };
-    const char * getMD5(){ return "fbaaa562a23a013fd5053e5f72cbb35c"; };
+    const char * getType(){ return PSTR( "control_msgs/SingleJointPositionGoal" ); };
+    const char * getMD5(){ return PSTR( "fbaaa562a23a013fd5053e5f72cbb35c" ); };
 
   };
 

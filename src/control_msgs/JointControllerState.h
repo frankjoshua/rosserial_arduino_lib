@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "std_msgs/Header.h"
 
 namespace control_msgs
@@ -13,17 +14,30 @@ namespace control_msgs
   class JointControllerState : public ros::Msg
   {
     public:
-      std_msgs::Header header;
-      float set_point;
-      float process_value;
-      float process_value_dot;
-      float error;
-      float time_step;
-      float command;
-      float p;
-      float i;
-      float d;
-      float i_clamp;
+      typedef std_msgs::Header _header_type;
+      _header_type header;
+      typedef float _set_point_type;
+      _set_point_type set_point;
+      typedef float _process_value_type;
+      _process_value_type process_value;
+      typedef float _process_value_dot_type;
+      _process_value_dot_type process_value_dot;
+      typedef float _error_type;
+      _error_type error;
+      typedef float _time_step_type;
+      _time_step_type time_step;
+      typedef float _command_type;
+      _command_type command;
+      typedef float _p_type;
+      _p_type p;
+      typedef float _i_type;
+      _i_type i;
+      typedef float _d_type;
+      _d_type d;
+      typedef float _i_clamp_type;
+      _i_clamp_type i_clamp;
+      typedef bool _antiwindup_type;
+      _antiwindup_type antiwindup;
 
     JointControllerState():
       header(),
@@ -36,7 +50,8 @@ namespace control_msgs
       p(0),
       i(0),
       d(0),
-      i_clamp(0)
+      i_clamp(0),
+      antiwindup(0)
     {
     }
 
@@ -54,6 +69,13 @@ namespace control_msgs
       offset += serializeAvrFloat64(outbuffer + offset, this->i);
       offset += serializeAvrFloat64(outbuffer + offset, this->d);
       offset += serializeAvrFloat64(outbuffer + offset, this->i_clamp);
+      union {
+        bool real;
+        uint8_t base;
+      } u_antiwindup;
+      u_antiwindup.real = this->antiwindup;
+      *(outbuffer + offset + 0) = (u_antiwindup.base >> (8 * 0)) & 0xFF;
+      offset += sizeof(this->antiwindup);
       return offset;
     }
 
@@ -71,11 +93,19 @@ namespace control_msgs
       offset += deserializeAvrFloat64(inbuffer + offset, &(this->i));
       offset += deserializeAvrFloat64(inbuffer + offset, &(this->d));
       offset += deserializeAvrFloat64(inbuffer + offset, &(this->i_clamp));
+      union {
+        bool real;
+        uint8_t base;
+      } u_antiwindup;
+      u_antiwindup.base = 0;
+      u_antiwindup.base |= ((uint8_t) (*(inbuffer + offset + 0))) << (8 * 0);
+      this->antiwindup = u_antiwindup.real;
+      offset += sizeof(this->antiwindup);
      return offset;
     }
 
-    const char * getType(){ return "control_msgs/JointControllerState"; };
-    const char * getMD5(){ return "c0d034a7bf20aeb1c37f3eccb7992b69"; };
+    const char * getType(){ return PSTR( "control_msgs/JointControllerState" ); };
+    const char * getMD5(){ return PSTR( "987ad85e4756f3aef7f1e5e7fe0595d1" ); };
 
   };
 

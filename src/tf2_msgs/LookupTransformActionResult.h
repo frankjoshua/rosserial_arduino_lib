@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "std_msgs/Header.h"
 #include "actionlib_msgs/GoalStatus.h"
 #include "tf2_msgs/LookupTransformResult.h"
@@ -15,9 +16,12 @@ namespace tf2_msgs
   class LookupTransformActionResult : public ros::Msg
   {
     public:
-      std_msgs::Header header;
-      actionlib_msgs::GoalStatus status;
-      tf2_msgs::LookupTransformResult result;
+      typedef std_msgs::Header _header_type;
+      _header_type header;
+      typedef actionlib_msgs::GoalStatus _status_type;
+      _status_type status;
+      typedef tf2_msgs::LookupTransformResult _result_type;
+      _result_type result;
 
     LookupTransformActionResult():
       header(),
@@ -44,8 +48,8 @@ namespace tf2_msgs
      return offset;
     }
 
-    const char * getType(){ return "tf2_msgs/LookupTransformActionResult"; };
-    const char * getMD5(){ return "ac26ce75a41384fa8bb4dc10f491ab90"; };
+    const char * getType(){ return PSTR( "tf2_msgs/LookupTransformActionResult" ); };
+    const char * getMD5(){ return PSTR( "ac26ce75a41384fa8bb4dc10f491ab90" ); };
 
   };
 

@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "ros/time.h"
 
 namespace std_msgs
@@ -13,9 +14,12 @@ namespace std_msgs
   class Header : public ros::Msg
   {
     public:
-      uint32_t seq;
-      ros::Time stamp;
-      const char* frame_id;
+      typedef uint32_t _seq_type;
+      _seq_type seq;
+      typedef ros::Time _stamp_type;
+      _stamp_type stamp;
+      typedef const char* _frame_id_type;
+      _frame_id_type frame_id;
 
     Header():
       seq(0),
@@ -43,7 +47,7 @@ namespace std_msgs
       *(outbuffer + offset + 3) = (this->stamp.nsec >> (8 * 3)) & 0xFF;
       offset += sizeof(this->stamp.nsec);
       uint32_t length_frame_id = strlen(this->frame_id);
-      memcpy(outbuffer + offset, &length_frame_id, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_frame_id);
       offset += 4;
       memcpy(outbuffer + offset, this->frame_id, length_frame_id);
       offset += length_frame_id;
@@ -69,7 +73,7 @@ namespace std_msgs
       this->stamp.nsec |= ((uint32_t) (*(inbuffer + offset + 3))) << (8 * 3);
       offset += sizeof(this->stamp.nsec);
       uint32_t length_frame_id;
-      memcpy(&length_frame_id, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_frame_id, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_frame_id; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -80,8 +84,8 @@ namespace std_msgs
      return offset;
     }
 
-    const char * getType(){ return "std_msgs/Header"; };
-    const char * getMD5(){ return "2176decaecbce78abc3b96ef049fabed"; };
+    const char * getType(){ return PSTR( "std_msgs/Header" ); };
+    const char * getMD5(){ return PSTR( "2176decaecbce78abc3b96ef049fabed" ); };
 
   };
 

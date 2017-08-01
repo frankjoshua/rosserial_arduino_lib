@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "std_msgs/Header.h"
 #include "actionlib_msgs/GoalID.h"
 #include "nav_msgs/GetMapGoal.h"
@@ -15,9 +16,12 @@ namespace nav_msgs
   class GetMapActionGoal : public ros::Msg
   {
     public:
-      std_msgs::Header header;
-      actionlib_msgs::GoalID goal_id;
-      nav_msgs::GetMapGoal goal;
+      typedef std_msgs::Header _header_type;
+      _header_type header;
+      typedef actionlib_msgs::GoalID _goal_id_type;
+      _goal_id_type goal_id;
+      typedef nav_msgs::GetMapGoal _goal_type;
+      _goal_type goal;
 
     GetMapActionGoal():
       header(),
@@ -44,8 +48,8 @@ namespace nav_msgs
      return offset;
     }
 
-    const char * getType(){ return "nav_msgs/GetMapActionGoal"; };
-    const char * getMD5(){ return "4b30be6cd12b9e72826df56b481f40e0"; };
+    const char * getType(){ return PSTR( "nav_msgs/GetMapActionGoal" ); };
+    const char * getMD5(){ return PSTR( "4b30be6cd12b9e72826df56b481f40e0" ); };
 
   };
 

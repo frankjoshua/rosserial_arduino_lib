@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 
 namespace rosserial_msgs
 {
@@ -12,8 +13,10 @@ namespace rosserial_msgs
   class Log : public ros::Msg
   {
     public:
-      uint8_t level;
-      const char* msg;
+      typedef uint8_t _level_type;
+      _level_type level;
+      typedef const char* _msg_type;
+      _msg_type msg;
       enum { ROSDEBUG = 0 };
       enum { INFO = 1 };
       enum { WARN = 2 };
@@ -32,7 +35,7 @@ namespace rosserial_msgs
       *(outbuffer + offset + 0) = (this->level >> (8 * 0)) & 0xFF;
       offset += sizeof(this->level);
       uint32_t length_msg = strlen(this->msg);
-      memcpy(outbuffer + offset, &length_msg, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_msg);
       offset += 4;
       memcpy(outbuffer + offset, this->msg, length_msg);
       offset += length_msg;
@@ -45,7 +48,7 @@ namespace rosserial_msgs
       this->level =  ((uint8_t) (*(inbuffer + offset)));
       offset += sizeof(this->level);
       uint32_t length_msg;
-      memcpy(&length_msg, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_msg, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_msg; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -56,8 +59,8 @@ namespace rosserial_msgs
      return offset;
     }
 
-    const char * getType(){ return "rosserial_msgs/Log"; };
-    const char * getMD5(){ return "11abd731c25933261cd6183bd12d6295"; };
+    const char * getType(){ return PSTR( "rosserial_msgs/Log" ); };
+    const char * getMD5(){ return PSTR( "11abd731c25933261cd6183bd12d6295" ); };
 
   };
 

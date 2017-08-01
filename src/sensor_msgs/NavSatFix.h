@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "std_msgs/Header.h"
 #include "sensor_msgs/NavSatStatus.h"
 
@@ -14,13 +15,19 @@ namespace sensor_msgs
   class NavSatFix : public ros::Msg
   {
     public:
-      std_msgs::Header header;
-      sensor_msgs::NavSatStatus status;
-      float latitude;
-      float longitude;
-      float altitude;
+      typedef std_msgs::Header _header_type;
+      _header_type header;
+      typedef sensor_msgs::NavSatStatus _status_type;
+      _status_type status;
+      typedef float _latitude_type;
+      _latitude_type latitude;
+      typedef float _longitude_type;
+      _longitude_type longitude;
+      typedef float _altitude_type;
+      _altitude_type altitude;
       float position_covariance[9];
-      uint8_t position_covariance_type;
+      typedef uint8_t _position_covariance_type_type;
+      _position_covariance_type_type position_covariance_type;
       enum { COVARIANCE_TYPE_UNKNOWN =  0 };
       enum { COVARIANCE_TYPE_APPROXIMATED =  1 };
       enum { COVARIANCE_TYPE_DIAGONAL_KNOWN =  2 };
@@ -45,7 +52,7 @@ namespace sensor_msgs
       offset += serializeAvrFloat64(outbuffer + offset, this->latitude);
       offset += serializeAvrFloat64(outbuffer + offset, this->longitude);
       offset += serializeAvrFloat64(outbuffer + offset, this->altitude);
-      for( uint8_t i = 0; i < 9; i++){
+      for( uint32_t i = 0; i < 9; i++){
       offset += serializeAvrFloat64(outbuffer + offset, this->position_covariance[i]);
       }
       *(outbuffer + offset + 0) = (this->position_covariance_type >> (8 * 0)) & 0xFF;
@@ -61,7 +68,7 @@ namespace sensor_msgs
       offset += deserializeAvrFloat64(inbuffer + offset, &(this->latitude));
       offset += deserializeAvrFloat64(inbuffer + offset, &(this->longitude));
       offset += deserializeAvrFloat64(inbuffer + offset, &(this->altitude));
-      for( uint8_t i = 0; i < 9; i++){
+      for( uint32_t i = 0; i < 9; i++){
       offset += deserializeAvrFloat64(inbuffer + offset, &(this->position_covariance[i]));
       }
       this->position_covariance_type =  ((uint8_t) (*(inbuffer + offset)));
@@ -69,8 +76,8 @@ namespace sensor_msgs
      return offset;
     }
 
-    const char * getType(){ return "sensor_msgs/NavSatFix"; };
-    const char * getMD5(){ return "2d3a8cd499b9b4a0249fb98fd05cfa48"; };
+    const char * getType(){ return PSTR( "sensor_msgs/NavSatFix" ); };
+    const char * getMD5(){ return PSTR( "2d3a8cd499b9b4a0249fb98fd05cfa48" ); };
 
   };
 

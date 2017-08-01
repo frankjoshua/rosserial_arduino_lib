@@ -4,17 +4,20 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 
 namespace rospy_tutorials
 {
 
-static const char BADTWOINTS[] = "rospy_tutorials/BadTwoInts";
+static const char BADTWOINTS[] PROGMEM = "rospy_tutorials/BadTwoInts";
 
   class BadTwoIntsRequest : public ros::Msg
   {
     public:
-      int64_t a;
-      int32_t b;
+      typedef int64_t _a_type;
+      _a_type a;
+      typedef int32_t _b_type;
+      _b_type b;
 
     BadTwoIntsRequest():
       a(0),
@@ -85,14 +88,15 @@ static const char BADTWOINTS[] = "rospy_tutorials/BadTwoInts";
     }
 
     const char * getType(){ return BADTWOINTS; };
-    const char * getMD5(){ return "29bb5c7dea8bf822f53e94b0ee5a3a56"; };
+    const char * getMD5(){ return PSTR( "29bb5c7dea8bf822f53e94b0ee5a3a56" ); };
 
   };
 
   class BadTwoIntsResponse : public ros::Msg
   {
     public:
-      int32_t sum;
+      typedef int32_t _sum_type;
+      _sum_type sum;
 
     BadTwoIntsResponse():
       sum(0)
@@ -133,7 +137,7 @@ static const char BADTWOINTS[] = "rospy_tutorials/BadTwoInts";
     }
 
     const char * getType(){ return BADTWOINTS; };
-    const char * getMD5(){ return "0ba699c25c9418c0366f3595c0c8e8ec"; };
+    const char * getMD5(){ return PSTR( "0ba699c25c9418c0366f3595c0c8e8ec" ); };
 
   };
 

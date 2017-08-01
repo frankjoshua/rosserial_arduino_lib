@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 
 namespace turtle_actionlib
 {
@@ -29,8 +30,8 @@ namespace turtle_actionlib
      return offset;
     }
 
-    const char * getType(){ return "turtle_actionlib/ShapeFeedback"; };
-    const char * getMD5(){ return "d41d8cd98f00b204e9800998ecf8427e"; };
+    const char * getType(){ return PSTR( "turtle_actionlib/ShapeFeedback" ); };
+    const char * getMD5(){ return PSTR( "d41d8cd98f00b204e9800998ecf8427e" ); };
 
   };
 

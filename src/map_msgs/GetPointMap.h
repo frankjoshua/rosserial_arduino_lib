@@ -4,12 +4,13 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "sensor_msgs/PointCloud2.h"
 
 namespace map_msgs
 {
 
-static const char GETPOINTMAP[] = "map_msgs/GetPointMap";
+static const char GETPOINTMAP[] PROGMEM = "map_msgs/GetPointMap";
 
   class GetPointMapRequest : public ros::Msg
   {
@@ -32,14 +33,15 @@ static const char GETPOINTMAP[] = "map_msgs/GetPointMap";
     }
 
     const char * getType(){ return GETPOINTMAP; };
-    const char * getMD5(){ return "d41d8cd98f00b204e9800998ecf8427e"; };
+    const char * getMD5(){ return PSTR( "d41d8cd98f00b204e9800998ecf8427e" ); };
 
   };
 
   class GetPointMapResponse : public ros::Msg
   {
     public:
-      sensor_msgs::PointCloud2 map;
+      typedef sensor_msgs::PointCloud2 _map_type;
+      _map_type map;
 
     GetPointMapResponse():
       map()
@@ -61,7 +63,7 @@ static const char GETPOINTMAP[] = "map_msgs/GetPointMap";
     }
 
     const char * getType(){ return GETPOINTMAP; };
-    const char * getMD5(){ return "b84fbb39505086eb6a62d933c75cb7b4"; };
+    const char * getMD5(){ return PSTR( "b84fbb39505086eb6a62d933c75cb7b4" ); };
 
   };
 

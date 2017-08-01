@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "tf2_msgs/LookupTransformActionGoal.h"
 #include "tf2_msgs/LookupTransformActionResult.h"
 #include "tf2_msgs/LookupTransformActionFeedback.h"
@@ -15,9 +16,12 @@ namespace tf2_msgs
   class LookupTransformAction : public ros::Msg
   {
     public:
-      tf2_msgs::LookupTransformActionGoal action_goal;
-      tf2_msgs::LookupTransformActionResult action_result;
-      tf2_msgs::LookupTransformActionFeedback action_feedback;
+      typedef tf2_msgs::LookupTransformActionGoal _action_goal_type;
+      _action_goal_type action_goal;
+      typedef tf2_msgs::LookupTransformActionResult _action_result_type;
+      _action_result_type action_result;
+      typedef tf2_msgs::LookupTransformActionFeedback _action_feedback_type;
+      _action_feedback_type action_feedback;
 
     LookupTransformAction():
       action_goal(),
@@ -44,8 +48,8 @@ namespace tf2_msgs
      return offset;
     }
 
-    const char * getType(){ return "tf2_msgs/LookupTransformAction"; };
-    const char * getMD5(){ return "7ee01ba91a56c2245c610992dbaa3c37"; };
+    const char * getType(){ return PSTR( "tf2_msgs/LookupTransformAction" ); };
+    const char * getMD5(){ return PSTR( "7ee01ba91a56c2245c610992dbaa3c37" ); };
 
   };
 

@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 
 namespace map_msgs
 {
@@ -12,13 +13,20 @@ namespace map_msgs
   class ProjectedMapInfo : public ros::Msg
   {
     public:
-      const char* frame_id;
-      float x;
-      float y;
-      float width;
-      float height;
-      float min_z;
-      float max_z;
+      typedef const char* _frame_id_type;
+      _frame_id_type frame_id;
+      typedef float _x_type;
+      _x_type x;
+      typedef float _y_type;
+      _y_type y;
+      typedef float _width_type;
+      _width_type width;
+      typedef float _height_type;
+      _height_type height;
+      typedef float _min_z_type;
+      _min_z_type min_z;
+      typedef float _max_z_type;
+      _max_z_type max_z;
 
     ProjectedMapInfo():
       frame_id(""),
@@ -35,7 +43,7 @@ namespace map_msgs
     {
       int offset = 0;
       uint32_t length_frame_id = strlen(this->frame_id);
-      memcpy(outbuffer + offset, &length_frame_id, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_frame_id);
       offset += 4;
       memcpy(outbuffer + offset, this->frame_id, length_frame_id);
       offset += length_frame_id;
@@ -52,7 +60,7 @@ namespace map_msgs
     {
       int offset = 0;
       uint32_t length_frame_id;
-      memcpy(&length_frame_id, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_frame_id, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_frame_id; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -69,8 +77,8 @@ namespace map_msgs
      return offset;
     }
 
-    const char * getType(){ return "map_msgs/ProjectedMapInfo"; };
-    const char * getMD5(){ return "2dc10595ae94de23f22f8a6d2a0eef7a"; };
+    const char * getType(){ return PSTR( "map_msgs/ProjectedMapInfo" ); };
+    const char * getMD5(){ return PSTR( "2dc10595ae94de23f22f8a6d2a0eef7a" ); };
 
   };
 

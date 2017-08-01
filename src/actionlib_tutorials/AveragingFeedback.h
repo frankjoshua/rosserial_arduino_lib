@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 
 namespace actionlib_tutorials
 {
@@ -12,10 +13,14 @@ namespace actionlib_tutorials
   class AveragingFeedback : public ros::Msg
   {
     public:
-      int32_t sample;
-      float data;
-      float mean;
-      float std_dev;
+      typedef int32_t _sample_type;
+      _sample_type sample;
+      typedef float _data_type;
+      _data_type data;
+      typedef float _mean_type;
+      _mean_type mean;
+      typedef float _std_dev_type;
+      _std_dev_type std_dev;
 
     AveragingFeedback():
       sample(0),
@@ -121,8 +126,8 @@ namespace actionlib_tutorials
      return offset;
     }
 
-    const char * getType(){ return "actionlib_tutorials/AveragingFeedback"; };
-    const char * getMD5(){ return "9e8dfc53c2f2a032ca33fa80ec46fd4f"; };
+    const char * getType(){ return PSTR( "actionlib_tutorials/AveragingFeedback" ); };
+    const char * getMD5(){ return PSTR( "9e8dfc53c2f2a032ca33fa80ec46fd4f" ); };
 
   };
 

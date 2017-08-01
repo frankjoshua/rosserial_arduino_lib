@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "std_msgs/Header.h"
 #include "ros/time.h"
 
@@ -14,9 +15,12 @@ namespace sensor_msgs
   class TimeReference : public ros::Msg
   {
     public:
-      std_msgs::Header header;
-      ros::Time time_ref;
-      const char* source;
+      typedef std_msgs::Header _header_type;
+      _header_type header;
+      typedef ros::Time _time_ref_type;
+      _time_ref_type time_ref;
+      typedef const char* _source_type;
+      _source_type source;
 
     TimeReference():
       header(),
@@ -40,7 +44,7 @@ namespace sensor_msgs
       *(outbuffer + offset + 3) = (this->time_ref.nsec >> (8 * 3)) & 0xFF;
       offset += sizeof(this->time_ref.nsec);
       uint32_t length_source = strlen(this->source);
-      memcpy(outbuffer + offset, &length_source, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_source);
       offset += 4;
       memcpy(outbuffer + offset, this->source, length_source);
       offset += length_source;
@@ -62,7 +66,7 @@ namespace sensor_msgs
       this->time_ref.nsec |= ((uint32_t) (*(inbuffer + offset + 3))) << (8 * 3);
       offset += sizeof(this->time_ref.nsec);
       uint32_t length_source;
-      memcpy(&length_source, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_source, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_source; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -73,8 +77,8 @@ namespace sensor_msgs
      return offset;
     }
 
-    const char * getType(){ return "sensor_msgs/TimeReference"; };
-    const char * getMD5(){ return "fded64a0265108ba86c3d38fb11c0c16"; };
+    const char * getType(){ return PSTR( "sensor_msgs/TimeReference" ); };
+    const char * getMD5(){ return PSTR( "fded64a0265108ba86c3d38fb11c0c16" ); };
 
   };
 

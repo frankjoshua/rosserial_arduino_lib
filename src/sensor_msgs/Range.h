@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "std_msgs/Header.h"
 
 namespace sensor_msgs
@@ -13,12 +14,18 @@ namespace sensor_msgs
   class Range : public ros::Msg
   {
     public:
-      std_msgs::Header header;
-      uint8_t radiation_type;
-      float field_of_view;
-      float min_range;
-      float max_range;
-      float range;
+      typedef std_msgs::Header _header_type;
+      _header_type header;
+      typedef uint8_t _radiation_type_type;
+      _radiation_type_type radiation_type;
+      typedef float _field_of_view_type;
+      _field_of_view_type field_of_view;
+      typedef float _min_range_type;
+      _min_range_type min_range;
+      typedef float _max_range_type;
+      _max_range_type max_range;
+      typedef float _range_type;
+      _range_type range;
       enum { ULTRASOUND = 0 };
       enum { INFRARED = 1 };
 
@@ -134,8 +141,8 @@ namespace sensor_msgs
      return offset;
     }
 
-    const char * getType(){ return "sensor_msgs/Range"; };
-    const char * getMD5(){ return "c005c34273dc426c67a020a87bc24148"; };
+    const char * getType(){ return PSTR( "sensor_msgs/Range" ); };
+    const char * getMD5(){ return PSTR( "c005c34273dc426c67a020a87bc24148" ); };
 
   };
 

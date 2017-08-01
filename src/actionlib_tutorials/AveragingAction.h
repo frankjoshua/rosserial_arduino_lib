@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "actionlib_tutorials/AveragingActionGoal.h"
 #include "actionlib_tutorials/AveragingActionResult.h"
 #include "actionlib_tutorials/AveragingActionFeedback.h"
@@ -15,9 +16,12 @@ namespace actionlib_tutorials
   class AveragingAction : public ros::Msg
   {
     public:
-      actionlib_tutorials::AveragingActionGoal action_goal;
-      actionlib_tutorials::AveragingActionResult action_result;
-      actionlib_tutorials::AveragingActionFeedback action_feedback;
+      typedef actionlib_tutorials::AveragingActionGoal _action_goal_type;
+      _action_goal_type action_goal;
+      typedef actionlib_tutorials::AveragingActionResult _action_result_type;
+      _action_result_type action_result;
+      typedef actionlib_tutorials::AveragingActionFeedback _action_feedback_type;
+      _action_feedback_type action_feedback;
 
     AveragingAction():
       action_goal(),
@@ -44,8 +48,8 @@ namespace actionlib_tutorials
      return offset;
     }
 
-    const char * getType(){ return "actionlib_tutorials/AveragingAction"; };
-    const char * getMD5(){ return "628678f2b4fa6a5951746a4a2d39e716"; };
+    const char * getType(){ return PSTR( "actionlib_tutorials/AveragingAction" ); };
+    const char * getMD5(){ return PSTR( "628678f2b4fa6a5951746a4a2d39e716" ); };
 
   };
 

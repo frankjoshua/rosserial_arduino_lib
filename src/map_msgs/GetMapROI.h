@@ -4,20 +4,25 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "nav_msgs/OccupancyGrid.h"
 
 namespace map_msgs
 {
 
-static const char GETMAPROI[] = "map_msgs/GetMapROI";
+static const char GETMAPROI[] PROGMEM = "map_msgs/GetMapROI";
 
   class GetMapROIRequest : public ros::Msg
   {
     public:
-      float x;
-      float y;
-      float l_x;
-      float l_y;
+      typedef float _x_type;
+      _x_type x;
+      typedef float _y_type;
+      _y_type y;
+      typedef float _l_x_type;
+      _l_x_type l_x;
+      typedef float _l_y_type;
+      _l_y_type l_y;
 
     GetMapROIRequest():
       x(0),
@@ -48,14 +53,15 @@ static const char GETMAPROI[] = "map_msgs/GetMapROI";
     }
 
     const char * getType(){ return GETMAPROI; };
-    const char * getMD5(){ return "43c2ff8f45af555c0eaf070c401e9a47"; };
+    const char * getMD5(){ return PSTR( "43c2ff8f45af555c0eaf070c401e9a47" ); };
 
   };
 
   class GetMapROIResponse : public ros::Msg
   {
     public:
-      nav_msgs::OccupancyGrid sub_map;
+      typedef nav_msgs::OccupancyGrid _sub_map_type;
+      _sub_map_type sub_map;
 
     GetMapROIResponse():
       sub_map()
@@ -77,7 +83,7 @@ static const char GETMAPROI[] = "map_msgs/GetMapROI";
     }
 
     const char * getType(){ return GETMAPROI; };
-    const char * getMD5(){ return "4d1986519c00d81967d2891a606b234c"; };
+    const char * getMD5(){ return PSTR( "4d1986519c00d81967d2891a606b234c" ); };
 
   };
 

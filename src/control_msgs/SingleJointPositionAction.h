@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "control_msgs/SingleJointPositionActionGoal.h"
 #include "control_msgs/SingleJointPositionActionResult.h"
 #include "control_msgs/SingleJointPositionActionFeedback.h"
@@ -15,9 +16,12 @@ namespace control_msgs
   class SingleJointPositionAction : public ros::Msg
   {
     public:
-      control_msgs::SingleJointPositionActionGoal action_goal;
-      control_msgs::SingleJointPositionActionResult action_result;
-      control_msgs::SingleJointPositionActionFeedback action_feedback;
+      typedef control_msgs::SingleJointPositionActionGoal _action_goal_type;
+      _action_goal_type action_goal;
+      typedef control_msgs::SingleJointPositionActionResult _action_result_type;
+      _action_result_type action_result;
+      typedef control_msgs::SingleJointPositionActionFeedback _action_feedback_type;
+      _action_feedback_type action_feedback;
 
     SingleJointPositionAction():
       action_goal(),
@@ -44,8 +48,8 @@ namespace control_msgs
      return offset;
     }
 
-    const char * getType(){ return "control_msgs/SingleJointPositionAction"; };
-    const char * getMD5(){ return "c4a786b7d53e5d0983decf967a5a779e"; };
+    const char * getType(){ return PSTR( "control_msgs/SingleJointPositionAction" ); };
+    const char * getMD5(){ return PSTR( "c4a786b7d53e5d0983decf967a5a779e" ); };
 
   };
 

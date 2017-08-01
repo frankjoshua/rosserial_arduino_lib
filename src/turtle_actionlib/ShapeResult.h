@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 
 namespace turtle_actionlib
 {
@@ -12,8 +13,10 @@ namespace turtle_actionlib
   class ShapeResult : public ros::Msg
   {
     public:
-      float interior_angle;
-      float apothem;
+      typedef float _interior_angle_type;
+      _interior_angle_type interior_angle;
+      typedef float _apothem_type;
+      _apothem_type apothem;
 
     ShapeResult():
       interior_angle(0),
@@ -75,8 +78,8 @@ namespace turtle_actionlib
      return offset;
     }
 
-    const char * getType(){ return "turtle_actionlib/ShapeResult"; };
-    const char * getMD5(){ return "b06c6e2225f820dbc644270387cd1a7c"; };
+    const char * getType(){ return PSTR( "turtle_actionlib/ShapeResult" ); };
+    const char * getMD5(){ return PSTR( "b06c6e2225f820dbc644270387cd1a7c" ); };
 
   };
 

@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "std_msgs/Header.h"
 #include "actionlib_msgs/GoalStatus.h"
 #include "control_msgs/JointTrajectoryResult.h"
@@ -15,9 +16,12 @@ namespace control_msgs
   class JointTrajectoryActionResult : public ros::Msg
   {
     public:
-      std_msgs::Header header;
-      actionlib_msgs::GoalStatus status;
-      control_msgs::JointTrajectoryResult result;
+      typedef std_msgs::Header _header_type;
+      _header_type header;
+      typedef actionlib_msgs::GoalStatus _status_type;
+      _status_type status;
+      typedef control_msgs::JointTrajectoryResult _result_type;
+      _result_type result;
 
     JointTrajectoryActionResult():
       header(),
@@ -44,8 +48,8 @@ namespace control_msgs
      return offset;
     }
 
-    const char * getType(){ return "control_msgs/JointTrajectoryActionResult"; };
-    const char * getMD5(){ return "1eb06eeff08fa7ea874431638cb52332"; };
+    const char * getType(){ return PSTR( "control_msgs/JointTrajectoryActionResult" ); };
+    const char * getMD5(){ return PSTR( "1eb06eeff08fa7ea874431638cb52332" ); };
 
   };
 

@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "control_msgs/JointTrajectoryActionGoal.h"
 #include "control_msgs/JointTrajectoryActionResult.h"
 #include "control_msgs/JointTrajectoryActionFeedback.h"
@@ -15,9 +16,12 @@ namespace control_msgs
   class JointTrajectoryAction : public ros::Msg
   {
     public:
-      control_msgs::JointTrajectoryActionGoal action_goal;
-      control_msgs::JointTrajectoryActionResult action_result;
-      control_msgs::JointTrajectoryActionFeedback action_feedback;
+      typedef control_msgs::JointTrajectoryActionGoal _action_goal_type;
+      _action_goal_type action_goal;
+      typedef control_msgs::JointTrajectoryActionResult _action_result_type;
+      _action_result_type action_result;
+      typedef control_msgs::JointTrajectoryActionFeedback _action_feedback_type;
+      _action_feedback_type action_feedback;
 
     JointTrajectoryAction():
       action_goal(),
@@ -44,8 +48,8 @@ namespace control_msgs
      return offset;
     }
 
-    const char * getType(){ return "control_msgs/JointTrajectoryAction"; };
-    const char * getMD5(){ return "a04ba3ee8f6a2d0985a6aeaf23d9d7ad"; };
+    const char * getType(){ return PSTR( "control_msgs/JointTrajectoryAction" ); };
+    const char * getMD5(){ return PSTR( "a04ba3ee8f6a2d0985a6aeaf23d9d7ad" ); };
 
   };
 

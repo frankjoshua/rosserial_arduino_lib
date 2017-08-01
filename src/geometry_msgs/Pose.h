@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "geometry_msgs/Point.h"
 #include "geometry_msgs/Quaternion.h"
 
@@ -14,8 +15,10 @@ namespace geometry_msgs
   class Pose : public ros::Msg
   {
     public:
-      geometry_msgs::Point position;
-      geometry_msgs::Quaternion orientation;
+      typedef geometry_msgs::Point _position_type;
+      _position_type position;
+      typedef geometry_msgs::Quaternion _orientation_type;
+      _orientation_type orientation;
 
     Pose():
       position(),
@@ -39,8 +42,8 @@ namespace geometry_msgs
      return offset;
     }
 
-    const char * getType(){ return "geometry_msgs/Pose"; };
-    const char * getMD5(){ return "e45d45a5a1ce597b249e23fb30fc871f"; };
+    const char * getType(){ return PSTR( "geometry_msgs/Pose" ); };
+    const char * getMD5(){ return PSTR( "e45d45a5a1ce597b249e23fb30fc871f" ); };
 
   };
 

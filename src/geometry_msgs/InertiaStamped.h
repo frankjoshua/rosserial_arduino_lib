@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "std_msgs/Header.h"
 #include "geometry_msgs/Inertia.h"
 
@@ -14,8 +15,10 @@ namespace geometry_msgs
   class InertiaStamped : public ros::Msg
   {
     public:
-      std_msgs::Header header;
-      geometry_msgs::Inertia inertia;
+      typedef std_msgs::Header _header_type;
+      _header_type header;
+      typedef geometry_msgs::Inertia _inertia_type;
+      _inertia_type inertia;
 
     InertiaStamped():
       header(),
@@ -39,8 +42,8 @@ namespace geometry_msgs
      return offset;
     }
 
-    const char * getType(){ return "geometry_msgs/InertiaStamped"; };
-    const char * getMD5(){ return "ddee48caeab5a966c5e8d166654a9ac7"; };
+    const char * getType(){ return PSTR( "geometry_msgs/InertiaStamped" ); };
+    const char * getMD5(){ return PSTR( "ddee48caeab5a966c5e8d166654a9ac7" ); };
 
   };
 

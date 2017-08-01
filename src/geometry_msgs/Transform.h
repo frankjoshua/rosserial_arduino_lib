@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "geometry_msgs/Vector3.h"
 #include "geometry_msgs/Quaternion.h"
 
@@ -14,8 +15,10 @@ namespace geometry_msgs
   class Transform : public ros::Msg
   {
     public:
-      geometry_msgs::Vector3 translation;
-      geometry_msgs::Quaternion rotation;
+      typedef geometry_msgs::Vector3 _translation_type;
+      _translation_type translation;
+      typedef geometry_msgs::Quaternion _rotation_type;
+      _rotation_type rotation;
 
     Transform():
       translation(),
@@ -39,8 +42,8 @@ namespace geometry_msgs
      return offset;
     }
 
-    const char * getType(){ return "geometry_msgs/Transform"; };
-    const char * getMD5(){ return "ac9eff44abf714214112b05d54a3cf9b"; };
+    const char * getType(){ return PSTR( "geometry_msgs/Transform" ); };
+    const char * getMD5(){ return PSTR( "ac9eff44abf714214112b05d54a3cf9b" ); };
 
   };
 

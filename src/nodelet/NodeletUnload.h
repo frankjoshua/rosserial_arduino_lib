@@ -4,16 +4,18 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 
 namespace nodelet
 {
 
-static const char NODELETUNLOAD[] = "nodelet/NodeletUnload";
+static const char NODELETUNLOAD[] PROGMEM = "nodelet/NodeletUnload";
 
   class NodeletUnloadRequest : public ros::Msg
   {
     public:
-      const char* name;
+      typedef const char* _name_type;
+      _name_type name;
 
     NodeletUnloadRequest():
       name("")
@@ -24,7 +26,7 @@ static const char NODELETUNLOAD[] = "nodelet/NodeletUnload";
     {
       int offset = 0;
       uint32_t length_name = strlen(this->name);
-      memcpy(outbuffer + offset, &length_name, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_name);
       offset += 4;
       memcpy(outbuffer + offset, this->name, length_name);
       offset += length_name;
@@ -35,7 +37,7 @@ static const char NODELETUNLOAD[] = "nodelet/NodeletUnload";
     {
       int offset = 0;
       uint32_t length_name;
-      memcpy(&length_name, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_name, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_name; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -47,14 +49,15 @@ static const char NODELETUNLOAD[] = "nodelet/NodeletUnload";
     }
 
     const char * getType(){ return NODELETUNLOAD; };
-    const char * getMD5(){ return "c1f3d28f1b044c871e6eff2e9fc3c667"; };
+    const char * getMD5(){ return PSTR( "c1f3d28f1b044c871e6eff2e9fc3c667" ); };
 
   };
 
   class NodeletUnloadResponse : public ros::Msg
   {
     public:
-      bool success;
+      typedef bool _success_type;
+      _success_type success;
 
     NodeletUnloadResponse():
       success(0)
@@ -89,7 +92,7 @@ static const char NODELETUNLOAD[] = "nodelet/NodeletUnload";
     }
 
     const char * getType(){ return NODELETUNLOAD; };
-    const char * getMD5(){ return "358e233cde0c8a8bcfea4ce193f8fc15"; };
+    const char * getMD5(){ return PSTR( "358e233cde0c8a8bcfea4ce193f8fc15" ); };
 
   };
 

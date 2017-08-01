@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 
 namespace dynamic_reconfigure
 {
@@ -12,8 +13,10 @@ namespace dynamic_reconfigure
   class IntParameter : public ros::Msg
   {
     public:
-      const char* name;
-      int32_t value;
+      typedef const char* _name_type;
+      _name_type name;
+      typedef int32_t _value_type;
+      _value_type value;
 
     IntParameter():
       name(""),
@@ -25,7 +28,7 @@ namespace dynamic_reconfigure
     {
       int offset = 0;
       uint32_t length_name = strlen(this->name);
-      memcpy(outbuffer + offset, &length_name, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_name);
       offset += 4;
       memcpy(outbuffer + offset, this->name, length_name);
       offset += length_name;
@@ -46,7 +49,7 @@ namespace dynamic_reconfigure
     {
       int offset = 0;
       uint32_t length_name;
-      memcpy(&length_name, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_name, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_name; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -68,8 +71,8 @@ namespace dynamic_reconfigure
      return offset;
     }
 
-    const char * getType(){ return "dynamic_reconfigure/IntParameter"; };
-    const char * getMD5(){ return "65fedc7a0cbfb8db035e46194a350bf1"; };
+    const char * getType(){ return PSTR( "dynamic_reconfigure/IntParameter" ); };
+    const char * getMD5(){ return PSTR( "65fedc7a0cbfb8db035e46194a350bf1" ); };
 
   };
 

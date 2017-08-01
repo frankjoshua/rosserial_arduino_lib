@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "std_msgs/Header.h"
 #include "geometry_msgs/Point.h"
 
@@ -14,8 +15,10 @@ namespace geometry_msgs
   class PointStamped : public ros::Msg
   {
     public:
-      std_msgs::Header header;
-      geometry_msgs::Point point;
+      typedef std_msgs::Header _header_type;
+      _header_type header;
+      typedef geometry_msgs::Point _point_type;
+      _point_type point;
 
     PointStamped():
       header(),
@@ -39,8 +42,8 @@ namespace geometry_msgs
      return offset;
     }
 
-    const char * getType(){ return "geometry_msgs/PointStamped"; };
-    const char * getMD5(){ return "c63aecb41bfdfd6b7e1fac37c7cbe7bf"; };
+    const char * getType(){ return PSTR( "geometry_msgs/PointStamped" ); };
+    const char * getMD5(){ return PSTR( "c63aecb41bfdfd6b7e1fac37c7cbe7bf" ); };
 
   };
 

@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 
 namespace actionlib
 {
@@ -12,7 +13,8 @@ namespace actionlib
   class TwoIntsResult : public ros::Msg
   {
     public:
-      int64_t sum;
+      typedef int64_t _sum_type;
+      _sum_type sum;
 
     TwoIntsResult():
       sum(0)
@@ -60,8 +62,8 @@ namespace actionlib
      return offset;
     }
 
-    const char * getType(){ return "actionlib/TwoIntsResult"; };
-    const char * getMD5(){ return "b88405221c77b1878a3cbbfff53428d7"; };
+    const char * getType(){ return PSTR( "actionlib/TwoIntsResult" ); };
+    const char * getMD5(){ return PSTR( "b88405221c77b1878a3cbbfff53428d7" ); };
 
   };
 

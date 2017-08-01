@@ -4,17 +4,20 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 
 namespace rospy_tutorials
 {
 
-static const char ADDTWOINTS[] = "rospy_tutorials/AddTwoInts";
+static const char ADDTWOINTS[] PROGMEM = "rospy_tutorials/AddTwoInts";
 
   class AddTwoIntsRequest : public ros::Msg
   {
     public:
-      int64_t a;
-      int64_t b;
+      typedef int64_t _a_type;
+      _a_type a;
+      typedef int64_t _b_type;
+      _b_type b;
 
     AddTwoIntsRequest():
       a(0),
@@ -93,14 +96,15 @@ static const char ADDTWOINTS[] = "rospy_tutorials/AddTwoInts";
     }
 
     const char * getType(){ return ADDTWOINTS; };
-    const char * getMD5(){ return "36d09b846be0b371c5f190354dd3153e"; };
+    const char * getMD5(){ return PSTR( "36d09b846be0b371c5f190354dd3153e" ); };
 
   };
 
   class AddTwoIntsResponse : public ros::Msg
   {
     public:
-      int64_t sum;
+      typedef int64_t _sum_type;
+      _sum_type sum;
 
     AddTwoIntsResponse():
       sum(0)
@@ -149,7 +153,7 @@ static const char ADDTWOINTS[] = "rospy_tutorials/AddTwoInts";
     }
 
     const char * getType(){ return ADDTWOINTS; };
-    const char * getMD5(){ return "b88405221c77b1878a3cbbfff53428d7"; };
+    const char * getMD5(){ return PSTR( "b88405221c77b1878a3cbbfff53428d7" ); };
 
   };
 

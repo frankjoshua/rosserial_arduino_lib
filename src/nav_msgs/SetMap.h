@@ -4,19 +4,22 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "nav_msgs/OccupancyGrid.h"
 #include "geometry_msgs/PoseWithCovarianceStamped.h"
 
 namespace nav_msgs
 {
 
-static const char SETMAP[] = "nav_msgs/SetMap";
+static const char SETMAP[] PROGMEM = "nav_msgs/SetMap";
 
   class SetMapRequest : public ros::Msg
   {
     public:
-      nav_msgs::OccupancyGrid map;
-      geometry_msgs::PoseWithCovarianceStamped initial_pose;
+      typedef nav_msgs::OccupancyGrid _map_type;
+      _map_type map;
+      typedef geometry_msgs::PoseWithCovarianceStamped _initial_pose_type;
+      _initial_pose_type initial_pose;
 
     SetMapRequest():
       map(),
@@ -41,14 +44,15 @@ static const char SETMAP[] = "nav_msgs/SetMap";
     }
 
     const char * getType(){ return SETMAP; };
-    const char * getMD5(){ return "91149a20d7be299b87c340df8cc94fd4"; };
+    const char * getMD5(){ return PSTR( "91149a20d7be299b87c340df8cc94fd4" ); };
 
   };
 
   class SetMapResponse : public ros::Msg
   {
     public:
-      bool success;
+      typedef bool _success_type;
+      _success_type success;
 
     SetMapResponse():
       success(0)
@@ -83,7 +87,7 @@ static const char SETMAP[] = "nav_msgs/SetMap";
     }
 
     const char * getType(){ return SETMAP; };
-    const char * getMD5(){ return "358e233cde0c8a8bcfea4ce193f8fc15"; };
+    const char * getMD5(){ return PSTR( "358e233cde0c8a8bcfea4ce193f8fc15" ); };
 
   };
 

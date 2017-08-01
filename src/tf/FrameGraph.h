@@ -4,11 +4,12 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 
 namespace tf
 {
 
-static const char FRAMEGRAPH[] = "tf/FrameGraph";
+static const char FRAMEGRAPH[] PROGMEM = "tf/FrameGraph";
 
   class FrameGraphRequest : public ros::Msg
   {
@@ -31,14 +32,15 @@ static const char FRAMEGRAPH[] = "tf/FrameGraph";
     }
 
     const char * getType(){ return FRAMEGRAPH; };
-    const char * getMD5(){ return "d41d8cd98f00b204e9800998ecf8427e"; };
+    const char * getMD5(){ return PSTR( "d41d8cd98f00b204e9800998ecf8427e" ); };
 
   };
 
   class FrameGraphResponse : public ros::Msg
   {
     public:
-      const char* dot_graph;
+      typedef const char* _dot_graph_type;
+      _dot_graph_type dot_graph;
 
     FrameGraphResponse():
       dot_graph("")
@@ -49,7 +51,7 @@ static const char FRAMEGRAPH[] = "tf/FrameGraph";
     {
       int offset = 0;
       uint32_t length_dot_graph = strlen(this->dot_graph);
-      memcpy(outbuffer + offset, &length_dot_graph, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_dot_graph);
       offset += 4;
       memcpy(outbuffer + offset, this->dot_graph, length_dot_graph);
       offset += length_dot_graph;
@@ -60,7 +62,7 @@ static const char FRAMEGRAPH[] = "tf/FrameGraph";
     {
       int offset = 0;
       uint32_t length_dot_graph;
-      memcpy(&length_dot_graph, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_dot_graph, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_dot_graph; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -72,7 +74,7 @@ static const char FRAMEGRAPH[] = "tf/FrameGraph";
     }
 
     const char * getType(){ return FRAMEGRAPH; };
-    const char * getMD5(){ return "c4af9ac907e58e906eb0b6e3c58478c0"; };
+    const char * getMD5(){ return PSTR( "c4af9ac907e58e906eb0b6e3c58478c0" ); };
 
   };
 

@@ -4,16 +4,18 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 
 namespace topic_tools
 {
 
-static const char MUXDELETE[] = "topic_tools/MuxDelete";
+static const char MUXDELETE[] PROGMEM = "topic_tools/MuxDelete";
 
   class MuxDeleteRequest : public ros::Msg
   {
     public:
-      const char* topic;
+      typedef const char* _topic_type;
+      _topic_type topic;
 
     MuxDeleteRequest():
       topic("")
@@ -24,7 +26,7 @@ static const char MUXDELETE[] = "topic_tools/MuxDelete";
     {
       int offset = 0;
       uint32_t length_topic = strlen(this->topic);
-      memcpy(outbuffer + offset, &length_topic, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_topic);
       offset += 4;
       memcpy(outbuffer + offset, this->topic, length_topic);
       offset += length_topic;
@@ -35,7 +37,7 @@ static const char MUXDELETE[] = "topic_tools/MuxDelete";
     {
       int offset = 0;
       uint32_t length_topic;
-      memcpy(&length_topic, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_topic, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_topic; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -47,7 +49,7 @@ static const char MUXDELETE[] = "topic_tools/MuxDelete";
     }
 
     const char * getType(){ return MUXDELETE; };
-    const char * getMD5(){ return "d8f94bae31b356b24d0427f80426d0c3"; };
+    const char * getMD5(){ return PSTR( "d8f94bae31b356b24d0427f80426d0c3" ); };
 
   };
 
@@ -72,7 +74,7 @@ static const char MUXDELETE[] = "topic_tools/MuxDelete";
     }
 
     const char * getType(){ return MUXDELETE; };
-    const char * getMD5(){ return "d41d8cd98f00b204e9800998ecf8427e"; };
+    const char * getMD5(){ return PSTR( "d41d8cd98f00b204e9800998ecf8427e" ); };
 
   };
 

@@ -4,17 +4,20 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 
 namespace roscpp_tutorials
 {
 
-static const char TWOINTS[] = "roscpp_tutorials/TwoInts";
+static const char TWOINTS[] PROGMEM = "roscpp_tutorials/TwoInts";
 
   class TwoIntsRequest : public ros::Msg
   {
     public:
-      int64_t a;
-      int64_t b;
+      typedef int64_t _a_type;
+      _a_type a;
+      typedef int64_t _b_type;
+      _b_type b;
 
     TwoIntsRequest():
       a(0),
@@ -93,14 +96,15 @@ static const char TWOINTS[] = "roscpp_tutorials/TwoInts";
     }
 
     const char * getType(){ return TWOINTS; };
-    const char * getMD5(){ return "36d09b846be0b371c5f190354dd3153e"; };
+    const char * getMD5(){ return PSTR( "36d09b846be0b371c5f190354dd3153e" ); };
 
   };
 
   class TwoIntsResponse : public ros::Msg
   {
     public:
-      int64_t sum;
+      typedef int64_t _sum_type;
+      _sum_type sum;
 
     TwoIntsResponse():
       sum(0)
@@ -149,7 +153,7 @@ static const char TWOINTS[] = "roscpp_tutorials/TwoInts";
     }
 
     const char * getType(){ return TWOINTS; };
-    const char * getMD5(){ return "b88405221c77b1878a3cbbfff53428d7"; };
+    const char * getMD5(){ return PSTR( "b88405221c77b1878a3cbbfff53428d7" ); };
 
   };
 

@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 
 namespace std_msgs
 {
@@ -12,10 +13,14 @@ namespace std_msgs
   class ColorRGBA : public ros::Msg
   {
     public:
-      float r;
-      float g;
-      float b;
-      float a;
+      typedef float _r_type;
+      _r_type r;
+      typedef float _g_type;
+      _g_type g;
+      typedef float _b_type;
+      _b_type b;
+      typedef float _a_type;
+      _a_type a;
 
     ColorRGBA():
       r(0),
@@ -121,8 +126,8 @@ namespace std_msgs
      return offset;
     }
 
-    const char * getType(){ return "std_msgs/ColorRGBA"; };
-    const char * getMD5(){ return "a29a96539573343b1310c73607334b00"; };
+    const char * getType(){ return PSTR( "std_msgs/ColorRGBA" ); };
+    const char * getMD5(){ return PSTR( "a29a96539573343b1310c73607334b00" ); };
 
   };
 

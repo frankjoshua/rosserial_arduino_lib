@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 
 namespace turtle_actionlib
 {
@@ -12,8 +13,10 @@ namespace turtle_actionlib
   class ShapeGoal : public ros::Msg
   {
     public:
-      int32_t edges;
-      float radius;
+      typedef int32_t _edges_type;
+      _edges_type edges;
+      typedef float _radius_type;
+      _radius_type radius;
 
     ShapeGoal():
       edges(0),
@@ -75,8 +78,8 @@ namespace turtle_actionlib
      return offset;
     }
 
-    const char * getType(){ return "turtle_actionlib/ShapeGoal"; };
-    const char * getMD5(){ return "3b9202ab7292cebe5a95ab2bf6b9c091"; };
+    const char * getType(){ return PSTR( "turtle_actionlib/ShapeGoal" ); };
+    const char * getMD5(){ return PSTR( "3b9202ab7292cebe5a95ab2bf6b9c091" ); };
 
   };
 

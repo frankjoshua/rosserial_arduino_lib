@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 
 namespace dynamic_reconfigure
 {
@@ -32,8 +33,8 @@ namespace dynamic_reconfigure
      return offset;
     }
 
-    const char * getType(){ return "dynamic_reconfigure/SensorLevels"; };
-    const char * getMD5(){ return "6322637bee96d5489db6e2127c47602c"; };
+    const char * getType(){ return PSTR( "dynamic_reconfigure/SensorLevels" ); };
+    const char * getMD5(){ return PSTR( "6322637bee96d5489db6e2127c47602c" ); };
 
   };
 

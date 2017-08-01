@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 
 namespace actionlib
 {
@@ -12,8 +13,10 @@ namespace actionlib
   class TwoIntsGoal : public ros::Msg
   {
     public:
-      int64_t a;
-      int64_t b;
+      typedef int64_t _a_type;
+      _a_type a;
+      typedef int64_t _b_type;
+      _b_type b;
 
     TwoIntsGoal():
       a(0),
@@ -91,8 +94,8 @@ namespace actionlib
      return offset;
     }
 
-    const char * getType(){ return "actionlib/TwoIntsGoal"; };
-    const char * getMD5(){ return "36d09b846be0b371c5f190354dd3153e"; };
+    const char * getType(){ return PSTR( "actionlib/TwoIntsGoal" ); };
+    const char * getMD5(){ return PSTR( "36d09b846be0b371c5f190354dd3153e" ); };
 
   };
 

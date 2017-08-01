@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "ros/duration.h"
 
 namespace std_msgs
@@ -13,7 +14,8 @@ namespace std_msgs
   class Duration : public ros::Msg
   {
     public:
-      ros::Duration data;
+      typedef ros::Duration _data_type;
+      _data_type data;
 
     Duration():
       data()
@@ -52,8 +54,8 @@ namespace std_msgs
      return offset;
     }
 
-    const char * getType(){ return "std_msgs/Duration"; };
-    const char * getMD5(){ return "3e286caf4241d664e55f3ad380e2ae46"; };
+    const char * getType(){ return PSTR( "std_msgs/Duration" ); };
+    const char * getMD5(){ return PSTR( "3e286caf4241d664e55f3ad380e2ae46" ); };
 
   };
 

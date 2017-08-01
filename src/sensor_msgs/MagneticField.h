@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "std_msgs/Header.h"
 #include "geometry_msgs/Vector3.h"
 
@@ -14,8 +15,10 @@ namespace sensor_msgs
   class MagneticField : public ros::Msg
   {
     public:
-      std_msgs::Header header;
-      geometry_msgs::Vector3 magnetic_field;
+      typedef std_msgs::Header _header_type;
+      _header_type header;
+      typedef geometry_msgs::Vector3 _magnetic_field_type;
+      _magnetic_field_type magnetic_field;
       float magnetic_field_covariance[9];
 
     MagneticField():
@@ -30,7 +33,7 @@ namespace sensor_msgs
       int offset = 0;
       offset += this->header.serialize(outbuffer + offset);
       offset += this->magnetic_field.serialize(outbuffer + offset);
-      for( uint8_t i = 0; i < 9; i++){
+      for( uint32_t i = 0; i < 9; i++){
       offset += serializeAvrFloat64(outbuffer + offset, this->magnetic_field_covariance[i]);
       }
       return offset;
@@ -41,14 +44,14 @@ namespace sensor_msgs
       int offset = 0;
       offset += this->header.deserialize(inbuffer + offset);
       offset += this->magnetic_field.deserialize(inbuffer + offset);
-      for( uint8_t i = 0; i < 9; i++){
+      for( uint32_t i = 0; i < 9; i++){
       offset += deserializeAvrFloat64(inbuffer + offset, &(this->magnetic_field_covariance[i]));
       }
      return offset;
     }
 
-    const char * getType(){ return "sensor_msgs/MagneticField"; };
-    const char * getMD5(){ return "2f3b0b43eed0c9501de0fa3ff89a45aa"; };
+    const char * getType(){ return PSTR( "sensor_msgs/MagneticField" ); };
+    const char * getMD5(){ return PSTR( "2f3b0b43eed0c9501de0fa3ff89a45aa" ); };
 
   };
 

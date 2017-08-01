@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "geometry_msgs/Vector3.h"
 
 namespace geometry_msgs
@@ -13,8 +14,10 @@ namespace geometry_msgs
   class Wrench : public ros::Msg
   {
     public:
-      geometry_msgs::Vector3 force;
-      geometry_msgs::Vector3 torque;
+      typedef geometry_msgs::Vector3 _force_type;
+      _force_type force;
+      typedef geometry_msgs::Vector3 _torque_type;
+      _torque_type torque;
 
     Wrench():
       force(),
@@ -38,8 +41,8 @@ namespace geometry_msgs
      return offset;
     }
 
-    const char * getType(){ return "geometry_msgs/Wrench"; };
-    const char * getMD5(){ return "4f539cf138b23283b520fd271b567936"; };
+    const char * getType(){ return PSTR( "geometry_msgs/Wrench" ); };
+    const char * getMD5(){ return PSTR( "4f539cf138b23283b520fd271b567936" ); };
 
   };
 

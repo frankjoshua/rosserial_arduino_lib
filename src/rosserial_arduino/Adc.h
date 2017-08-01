@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 
 namespace rosserial_arduino
 {
@@ -12,12 +13,18 @@ namespace rosserial_arduino
   class Adc : public ros::Msg
   {
     public:
-      uint16_t adc0;
-      uint16_t adc1;
-      uint16_t adc2;
-      uint16_t adc3;
-      uint16_t adc4;
-      uint16_t adc5;
+      typedef uint16_t _adc0_type;
+      _adc0_type adc0;
+      typedef uint16_t _adc1_type;
+      _adc1_type adc1;
+      typedef uint16_t _adc2_type;
+      _adc2_type adc2;
+      typedef uint16_t _adc3_type;
+      _adc3_type adc3;
+      typedef uint16_t _adc4_type;
+      _adc4_type adc4;
+      typedef uint16_t _adc5_type;
+      _adc5_type adc5;
 
     Adc():
       adc0(0),
@@ -77,8 +84,8 @@ namespace rosserial_arduino
      return offset;
     }
 
-    const char * getType(){ return "rosserial_arduino/Adc"; };
-    const char * getMD5(){ return "6d7853a614e2e821319068311f2af25b"; };
+    const char * getType(){ return PSTR( "rosserial_arduino/Adc" ); };
+    const char * getMD5(){ return PSTR( "6d7853a614e2e821319068311f2af25b" ); };
 
   };
 

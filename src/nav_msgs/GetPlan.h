@@ -4,20 +4,24 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "geometry_msgs/PoseStamped.h"
 #include "nav_msgs/Path.h"
 
 namespace nav_msgs
 {
 
-static const char GETPLAN[] = "nav_msgs/GetPlan";
+static const char GETPLAN[] PROGMEM = "nav_msgs/GetPlan";
 
   class GetPlanRequest : public ros::Msg
   {
     public:
-      geometry_msgs::PoseStamped start;
-      geometry_msgs::PoseStamped goal;
-      float tolerance;
+      typedef geometry_msgs::PoseStamped _start_type;
+      _start_type start;
+      typedef geometry_msgs::PoseStamped _goal_type;
+      _goal_type goal;
+      typedef float _tolerance_type;
+      _tolerance_type tolerance;
 
     GetPlanRequest():
       start(),
@@ -64,14 +68,15 @@ static const char GETPLAN[] = "nav_msgs/GetPlan";
     }
 
     const char * getType(){ return GETPLAN; };
-    const char * getMD5(){ return "e25a43e0752bcca599a8c2eef8282df8"; };
+    const char * getMD5(){ return PSTR( "e25a43e0752bcca599a8c2eef8282df8" ); };
 
   };
 
   class GetPlanResponse : public ros::Msg
   {
     public:
-      nav_msgs::Path plan;
+      typedef nav_msgs::Path _plan_type;
+      _plan_type plan;
 
     GetPlanResponse():
       plan()
@@ -93,7 +98,7 @@ static const char GETPLAN[] = "nav_msgs/GetPlan";
     }
 
     const char * getType(){ return GETPLAN; };
-    const char * getMD5(){ return "0002bc113c0259d71f6cf8cbc9430e18"; };
+    const char * getMD5(){ return PSTR( "0002bc113c0259d71f6cf8cbc9430e18" ); };
 
   };
 

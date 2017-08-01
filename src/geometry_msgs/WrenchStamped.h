@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "std_msgs/Header.h"
 #include "geometry_msgs/Wrench.h"
 
@@ -14,8 +15,10 @@ namespace geometry_msgs
   class WrenchStamped : public ros::Msg
   {
     public:
-      std_msgs::Header header;
-      geometry_msgs::Wrench wrench;
+      typedef std_msgs::Header _header_type;
+      _header_type header;
+      typedef geometry_msgs::Wrench _wrench_type;
+      _wrench_type wrench;
 
     WrenchStamped():
       header(),
@@ -39,8 +42,8 @@ namespace geometry_msgs
      return offset;
     }
 
-    const char * getType(){ return "geometry_msgs/WrenchStamped"; };
-    const char * getMD5(){ return "d78d3cb249ce23087ade7e7d0c40cfa7"; };
+    const char * getType(){ return PSTR( "geometry_msgs/WrenchStamped" ); };
+    const char * getMD5(){ return PSTR( "d78d3cb249ce23087ade7e7d0c40cfa7" ); };
 
   };
 

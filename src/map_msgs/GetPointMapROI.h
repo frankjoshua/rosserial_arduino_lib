@@ -4,23 +4,31 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "sensor_msgs/PointCloud2.h"
 
 namespace map_msgs
 {
 
-static const char GETPOINTMAPROI[] = "map_msgs/GetPointMapROI";
+static const char GETPOINTMAPROI[] PROGMEM = "map_msgs/GetPointMapROI";
 
   class GetPointMapROIRequest : public ros::Msg
   {
     public:
-      float x;
-      float y;
-      float z;
-      float r;
-      float l_x;
-      float l_y;
-      float l_z;
+      typedef float _x_type;
+      _x_type x;
+      typedef float _y_type;
+      _y_type y;
+      typedef float _z_type;
+      _z_type z;
+      typedef float _r_type;
+      _r_type r;
+      typedef float _l_x_type;
+      _l_x_type l_x;
+      typedef float _l_y_type;
+      _l_y_type l_y;
+      typedef float _l_z_type;
+      _l_z_type l_z;
 
     GetPointMapROIRequest():
       x(0),
@@ -60,14 +68,15 @@ static const char GETPOINTMAPROI[] = "map_msgs/GetPointMapROI";
     }
 
     const char * getType(){ return GETPOINTMAPROI; };
-    const char * getMD5(){ return "895f7e437a9a6dd225316872b187a303"; };
+    const char * getMD5(){ return PSTR( "895f7e437a9a6dd225316872b187a303" ); };
 
   };
 
   class GetPointMapROIResponse : public ros::Msg
   {
     public:
-      sensor_msgs::PointCloud2 sub_map;
+      typedef sensor_msgs::PointCloud2 _sub_map_type;
+      _sub_map_type sub_map;
 
     GetPointMapROIResponse():
       sub_map()
@@ -89,7 +98,7 @@ static const char GETPOINTMAPROI[] = "map_msgs/GetPointMapROI";
     }
 
     const char * getType(){ return GETPOINTMAPROI; };
-    const char * getMD5(){ return "313769f8b0e724525c6463336cbccd63"; };
+    const char * getMD5(){ return PSTR( "313769f8b0e724525c6463336cbccd63" ); };
 
   };
 

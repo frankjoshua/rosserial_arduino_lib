@@ -4,17 +4,19 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "std_msgs/String.h"
 
 namespace map_msgs
 {
 
-static const char SAVEMAP[] = "map_msgs/SaveMap";
+static const char SAVEMAP[] PROGMEM = "map_msgs/SaveMap";
 
   class SaveMapRequest : public ros::Msg
   {
     public:
-      std_msgs::String filename;
+      typedef std_msgs::String _filename_type;
+      _filename_type filename;
 
     SaveMapRequest():
       filename()
@@ -36,7 +38,7 @@ static const char SAVEMAP[] = "map_msgs/SaveMap";
     }
 
     const char * getType(){ return SAVEMAP; };
-    const char * getMD5(){ return "716e25f9d9dc76ceba197f93cbf05dc7"; };
+    const char * getMD5(){ return PSTR( "716e25f9d9dc76ceba197f93cbf05dc7" ); };
 
   };
 
@@ -61,7 +63,7 @@ static const char SAVEMAP[] = "map_msgs/SaveMap";
     }
 
     const char * getType(){ return SAVEMAP; };
-    const char * getMD5(){ return "d41d8cd98f00b204e9800998ecf8427e"; };
+    const char * getMD5(){ return PSTR( "d41d8cd98f00b204e9800998ecf8427e" ); };
 
   };
 

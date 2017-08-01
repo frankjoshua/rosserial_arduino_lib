@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 
 namespace actionlib
 {
@@ -12,8 +13,10 @@ namespace actionlib
   class TestRequestResult : public ros::Msg
   {
     public:
-      int32_t the_result;
-      bool is_simple_server;
+      typedef int32_t _the_result_type;
+      _the_result_type the_result;
+      typedef bool _is_simple_server_type;
+      _is_simple_server_type is_simple_server;
 
     TestRequestResult():
       the_result(0),
@@ -69,8 +72,8 @@ namespace actionlib
      return offset;
     }
 
-    const char * getType(){ return "actionlib/TestRequestResult"; };
-    const char * getMD5(){ return "61c2364524499c7c5017e2f3fce7ba06"; };
+    const char * getType(){ return PSTR( "actionlib/TestRequestResult" ); };
+    const char * getMD5(){ return PSTR( "61c2364524499c7c5017e2f3fce7ba06" ); };
 
   };
 

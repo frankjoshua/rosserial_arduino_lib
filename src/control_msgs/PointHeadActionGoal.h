@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "std_msgs/Header.h"
 #include "actionlib_msgs/GoalID.h"
 #include "control_msgs/PointHeadGoal.h"
@@ -15,9 +16,12 @@ namespace control_msgs
   class PointHeadActionGoal : public ros::Msg
   {
     public:
-      std_msgs::Header header;
-      actionlib_msgs::GoalID goal_id;
-      control_msgs::PointHeadGoal goal;
+      typedef std_msgs::Header _header_type;
+      _header_type header;
+      typedef actionlib_msgs::GoalID _goal_id_type;
+      _goal_id_type goal_id;
+      typedef control_msgs::PointHeadGoal _goal_type;
+      _goal_type goal;
 
     PointHeadActionGoal():
       header(),
@@ -44,8 +48,8 @@ namespace control_msgs
      return offset;
     }
 
-    const char * getType(){ return "control_msgs/PointHeadActionGoal"; };
-    const char * getMD5(){ return "b53a8323d0ba7b310ba17a2d3a82a6b8"; };
+    const char * getType(){ return PSTR( "control_msgs/PointHeadActionGoal" ); };
+    const char * getMD5(){ return PSTR( "b53a8323d0ba7b310ba17a2d3a82a6b8" ); };
 
   };
 

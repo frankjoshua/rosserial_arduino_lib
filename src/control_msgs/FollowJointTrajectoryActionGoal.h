@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "std_msgs/Header.h"
 #include "actionlib_msgs/GoalID.h"
 #include "control_msgs/FollowJointTrajectoryGoal.h"
@@ -15,9 +16,12 @@ namespace control_msgs
   class FollowJointTrajectoryActionGoal : public ros::Msg
   {
     public:
-      std_msgs::Header header;
-      actionlib_msgs::GoalID goal_id;
-      control_msgs::FollowJointTrajectoryGoal goal;
+      typedef std_msgs::Header _header_type;
+      _header_type header;
+      typedef actionlib_msgs::GoalID _goal_id_type;
+      _goal_id_type goal_id;
+      typedef control_msgs::FollowJointTrajectoryGoal _goal_type;
+      _goal_type goal;
 
     FollowJointTrajectoryActionGoal():
       header(),
@@ -44,8 +48,8 @@ namespace control_msgs
      return offset;
     }
 
-    const char * getType(){ return "control_msgs/FollowJointTrajectoryActionGoal"; };
-    const char * getMD5(){ return "cff5c1d533bf2f82dd0138d57f4304bb"; };
+    const char * getType(){ return PSTR( "control_msgs/FollowJointTrajectoryActionGoal" ); };
+    const char * getMD5(){ return PSTR( "cff5c1d533bf2f82dd0138d57f4304bb" ); };
 
   };
 

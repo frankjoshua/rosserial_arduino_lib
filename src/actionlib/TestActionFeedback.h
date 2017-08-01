@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "std_msgs/Header.h"
 #include "actionlib_msgs/GoalStatus.h"
 #include "actionlib/TestFeedback.h"
@@ -15,9 +16,12 @@ namespace actionlib
   class TestActionFeedback : public ros::Msg
   {
     public:
-      std_msgs::Header header;
-      actionlib_msgs::GoalStatus status;
-      actionlib::TestFeedback feedback;
+      typedef std_msgs::Header _header_type;
+      _header_type header;
+      typedef actionlib_msgs::GoalStatus _status_type;
+      _status_type status;
+      typedef actionlib::TestFeedback _feedback_type;
+      _feedback_type feedback;
 
     TestActionFeedback():
       header(),
@@ -44,8 +48,8 @@ namespace actionlib
      return offset;
     }
 
-    const char * getType(){ return "actionlib/TestActionFeedback"; };
-    const char * getMD5(){ return "6d3d0bf7fb3dda24779c010a9f3eb7cb"; };
+    const char * getType(){ return PSTR( "actionlib/TestActionFeedback" ); };
+    const char * getMD5(){ return PSTR( "6d3d0bf7fb3dda24779c010a9f3eb7cb" ); };
 
   };
 

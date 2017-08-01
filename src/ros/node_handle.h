@@ -68,7 +68,7 @@
 
 #define MSG_TIMEOUT 20  //20 milliseconds to recieve all of message data
 
-#include "msg.h"
+#include "ros/msg.h"
 
 namespace ros {
 
@@ -80,21 +80,85 @@ namespace ros {
     };
 }
 
-#include "publisher.h"
-#include "subscriber.h"
-#include "service_server.h"
-#include "service_client.h"
+#include "ros/publisher.h"
+#include "ros/subscriber.h"
+#include "ros/service_server.h"
+#include "ros/service_client.h"
 
 namespace ros {
-
+  
   using rosserial_msgs::TopicInfo;
-
+  
+  class DefaultReadOutBuffer_
+  {
+  public:
+    
+    enum ReadoutError
+    {
+      NoError,
+      ReadoutFromFlashAttemptedButNotImplemented,
+      BufferOverflow
+    };
+    
+  protected:
+    ReadoutError read_out_error_;
+    
+    virtual const char * readTopic( const char * topic, bool from_flash )
+    {
+      if ( from_flash )
+      {
+	read_out_error_ = ReadoutFromFlashAttemptedButNotImplemented;
+	return "\0";
+      }
+      else
+      {
+	return topic;
+      }
+    }
+        
+  public:
+    DefaultReadOutBuffer_() :
+      read_out_error_( NoError )
+    {
+      
+    }
+    
+    virtual ~DefaultReadOutBuffer_() 
+    {
+      
+    }
+    
+    // for md5sum / msg type
+    virtual const char *  readMsgInfo( const char * msg_info )
+    {
+      return msg_info;
+    }
+    
+    // for topics
+    const char * readTopicName( const Publisher * pub )
+    {
+      return readTopic( pub->topic_, pub->has_flash_topic_ );
+    }
+    
+    // for topics
+    const char * readTopicName( const Subscriber_ * sub )
+    {
+      return readTopic( sub->topic_, sub->has_flash_topic_ );
+    }
+    
+    ReadoutError getError()
+    {
+      return read_out_error_;
+    }
+  };
+  
   /* Node Handle */
   template<class Hardware,
            int MAX_SUBSCRIBERS=25,
            int MAX_PUBLISHERS=25,
            int INPUT_SIZE=512,
-           int OUTPUT_SIZE=512>
+           int OUTPUT_SIZE=512,
+	   class ReadBuffer = DefaultReadOutBuffer_>
   class NodeHandle_ : public NodeHandleBase_
   {
     protected:
@@ -348,11 +412,11 @@ namespace ros {
       }
 
       /* Register a new subscriber */
-      template<typename MsgT>
-      bool subscribe(Subscriber< MsgT> & s){
+      template<typename SubscriberT>
+      bool subscribe(SubscriberT& s){
         for(int i = 0; i < MAX_SUBSCRIBERS; i++){
           if(subscribers[i] == 0){ // empty slot
-            subscribers[i] = (Subscriber_*) &s;
+            subscribers[i] = static_cast<Subscriber_*>(&s);
             s.id_ = i+100;
             return true;
           }
@@ -361,12 +425,12 @@ namespace ros {
       }
 
       /* Register a new Service Server */
-      template<typename MReq, typename MRes>
-      bool advertiseService(ServiceServer<MReq,MRes>& srv){
+      template<typename MReq, typename MRes, typename ObjT>
+      bool advertiseService(ServiceServer<MReq,MRes,ObjT>& srv){
         bool v = advertise(srv.pub);
         for(int i = 0; i < MAX_SUBSCRIBERS; i++){
           if(subscribers[i] == 0){ // empty slot
-            subscribers[i] = (Subscriber_*) &srv;
+            subscribers[i] = static_cast<Subscriber_*>(&srv);
             srv.id_ = i+100;
             return v;
           }
@@ -380,7 +444,7 @@ namespace ros {
         bool v = advertise(srv.pub);
         for(int i = 0; i < MAX_SUBSCRIBERS; i++){
           if(subscribers[i] == 0){ // empty slot
-            subscribers[i] = (Subscriber_*) &srv;
+            subscribers[i] = static_cast<Subscriber_*>(&srv);
             srv.id_ = i+100;
             return v;
           }
@@ -392,30 +456,61 @@ namespace ros {
       {
         rosserial_msgs::TopicInfo ti;
         int i;
+	
         for(i = 0; i < MAX_PUBLISHERS; i++)
         {
           if(publishers[i] != 0) // non-empty slot
           {
-            ti.topic_id = publishers[i]->id_;
-            ti.topic_name = (char *) publishers[i]->topic_;
-            ti.message_type = (char *) publishers[i]->msg_->getType();
-            ti.md5sum = (char *) publishers[i]->msg_->getMD5();
-            ti.buffer_size = OUTPUT_SIZE;
-            publish( publishers[i]->getEndpointType(), &ti );
+	    ReadBuffer buffer;
+	    
+	    ti.topic_id = publishers[i]->id_;
+	    ti.topic_name = (char *) buffer.readTopicName( publishers[i] );
+	    ti.message_type = (char *) buffer.readMsgInfo( publishers[i]->msg_->getType() );
+	    ti.md5sum = (char *) buffer.readMsgInfo( publishers[i]->msg_->getMD5() );
+	    ti.buffer_size = OUTPUT_SIZE;
+	    publish( publishers[i]->getEndpointType(), &ti );
+	    
+	    DefaultReadOutBuffer_::ReadoutError error = buffer.getError();
+	    
+	    // clean up buffer here before eventually going into log
+	    
+	    if ( DefaultReadOutBuffer_::ReadoutFromFlashAttemptedButNotImplemented == error )
+	    {
+	      logerror( "Flash read not impl" );
+	    }
+	    else if ( DefaultReadOutBuffer_::BufferOverflow == error )
+	    {
+	      logerror( "Buffer overflow pub" );
+	    }
           }
         }
+        
         for(i = 0; i < MAX_SUBSCRIBERS; i++)
         {
           if(subscribers[i] != 0) // non-empty slot
           {
-            ti.topic_id = subscribers[i]->id_;
-            ti.topic_name = (char *) subscribers[i]->topic_;
-            ti.message_type = (char *) subscribers[i]->getMsgType();
-            ti.md5sum = (char *) subscribers[i]->getMsgMD5();
-            ti.buffer_size = INPUT_SIZE;
-            publish( subscribers[i]->getEndpointType(), &ti );
-          }
+	    ReadBuffer buffer;
+	    
+	    ti.topic_id = subscribers[i]->id_;
+	    ti.topic_name = (char *) buffer.readTopicName( subscribers[i] );
+	    ti.message_type = (char *) buffer.readMsgInfo( subscribers[i]->getMsgType() );
+	    ti.md5sum = (char *) buffer.readMsgInfo( subscribers[i]->getMsgMD5() );
+	    ti.buffer_size = INPUT_SIZE;
+	    publish( subscribers[i]->getEndpointType(), &ti );
+	    
+	    DefaultReadOutBuffer_::ReadoutError error = buffer.getError();
+	    
+	    if ( DefaultReadOutBuffer_::ReadoutFromFlashAttemptedButNotImplemented == error )
+	    {
+	      logerror( "Flash read not impl" );
+	    }
+	    else if ( DefaultReadOutBuffer_::BufferOverflow == error )
+	    {
+	      logerror( "Buffer overflow pub" );
+	    }
+	  }
         }
+        
         configured_ = true;
       }
 
@@ -457,27 +552,59 @@ namespace ros {
        */
 
     private:
+      
       void log(char byte, const char * msg){
         rosserial_msgs::Log l;
         l.level= byte;
-        l.msg = (char*)msg;
+        l.msg = (char*) msg;
         publish(rosserial_msgs::TopicInfo::ID_LOG, &l);
+      }
+      
+      void log(char byte, char * msg){
+	log( byte, (const char *)msg );
+      }
+      
+      template<typename T_ConstStringType>   
+      void log(char byte, T_ConstStringType msg){
+	
+	  ReadBuffer buffer;
+	  
+	  log( byte, buffer.readLog( msg ) );
+	  
+	  if ( DefaultReadOutBuffer_::BufferOverflow == buffer.getError() )
+	  {
+	    logerror( "Overflow in log, truncated msg" );
+	  }
       }
 
     public:
-      void logdebug(const char* msg){
+      template<typename T_ConstStringType>   
+      void logdebug( T_ConstStringType msg)
+      {
         log(rosserial_msgs::Log::ROSDEBUG, msg);
       }
-      void loginfo(const char * msg){
+      
+      template<typename T_ConstStringType>   
+      void loginfo( T_ConstStringType msg)
+      {
         log(rosserial_msgs::Log::INFO, msg);
       }
-      void logwarn(const char *msg){
+      
+      template<typename T_ConstStringType>   
+      void logwarn( T_ConstStringType msg)
+      {
         log(rosserial_msgs::Log::WARN, msg);
       }
-      void logerror(const char*msg){
+      
+      template<typename T_ConstStringType>   
+      void logerror( T_ConstStringType msg)
+      {
         log(rosserial_msgs::Log::ERROR, msg);
       }
-      void logfatal(const char*msg){
+      
+      template<typename T_ConstStringType>   
+      void logfatal( T_ConstStringType msg)
+      {
         log(rosserial_msgs::Log::FATAL, msg);
       }
 
@@ -494,44 +621,53 @@ namespace ros {
         rosserial_msgs::RequestParamRequest req;
         req.name  = (char*)name;
         publish(TopicInfo::ID_PARAMETER_REQUEST, &req);
-        uint16_t end_time = hardware_.time() + time_out;
+        uint32_t end_time = hardware_.time() + time_out;
         while(!param_recieved ){
           spinOnce();
-          if (hardware_.time() > end_time) return false;
+          if (hardware_.time() > end_time) {
+            logwarn("Failed to get param: timeout expired");
+            return false;
+          }
         }
         return true;
       }
 
     public:
-      bool getParam(const char* name, int* param, int length =1){
-        if (requestParam(name) ){
+      bool getParam(const char* name, int* param, int length =1, int timeout = 1000){
+        if (requestParam(name, timeout) ){
           if (length == req_param_resp.ints_length){
             //copy it over
             for(int i=0; i<length; i++)
               param[i] = req_param_resp.ints[i];
             return true;
+          } else {
+            logwarn("Failed to get param: length mismatch");
           }
         }
         return false;
       }
-      bool getParam(const char* name, float* param, int length=1){
-        if (requestParam(name) ){
+      bool getParam(const char* name, float* param, int length=1, int timeout = 1000){
+        if (requestParam(name, timeout) ){
           if (length == req_param_resp.floats_length){
             //copy it over
             for(int i=0; i<length; i++)
               param[i] = req_param_resp.floats[i];
             return true;
+          } else {
+            logwarn("Failed to get param: length mismatch");
           }
         }
         return false;
       }
-      bool getParam(const char* name, char** param, int length=1){
-        if (requestParam(name) ){
+      bool getParam(const char* name, char** param, int length=1, int timeout = 1000){
+        if (requestParam(name, timeout) ){
           if (length == req_param_resp.strings_length){
             //copy it over
             for(int i=0; i<length; i++)
               strcpy(param[i],req_param_resp.strings[i]);
             return true;
+          } else {
+            logwarn("Failed to get param: length mismatch");
           }
         }
         return false;

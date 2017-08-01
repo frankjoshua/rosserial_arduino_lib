@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 
 namespace dynamic_reconfigure
 {
@@ -12,8 +13,10 @@ namespace dynamic_reconfigure
   class BoolParameter : public ros::Msg
   {
     public:
-      const char* name;
-      bool value;
+      typedef const char* _name_type;
+      _name_type name;
+      typedef bool _value_type;
+      _value_type value;
 
     BoolParameter():
       name(""),
@@ -25,7 +28,7 @@ namespace dynamic_reconfigure
     {
       int offset = 0;
       uint32_t length_name = strlen(this->name);
-      memcpy(outbuffer + offset, &length_name, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_name);
       offset += 4;
       memcpy(outbuffer + offset, this->name, length_name);
       offset += length_name;
@@ -43,7 +46,7 @@ namespace dynamic_reconfigure
     {
       int offset = 0;
       uint32_t length_name;
-      memcpy(&length_name, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_name, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_name; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -62,8 +65,8 @@ namespace dynamic_reconfigure
      return offset;
     }
 
-    const char * getType(){ return "dynamic_reconfigure/BoolParameter"; };
-    const char * getMD5(){ return "23f05028c1a699fb83e22401228c3a9e"; };
+    const char * getType(){ return PSTR( "dynamic_reconfigure/BoolParameter" ); };
+    const char * getMD5(){ return PSTR( "23f05028c1a699fb83e22401228c3a9e" ); };
 
   };
 

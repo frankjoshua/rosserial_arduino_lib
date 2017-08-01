@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 
 namespace geometry_msgs
 {
@@ -12,9 +13,12 @@ namespace geometry_msgs
   class Pose2D : public ros::Msg
   {
     public:
-      float x;
-      float y;
-      float theta;
+      typedef float _x_type;
+      _x_type x;
+      typedef float _y_type;
+      _y_type y;
+      typedef float _theta_type;
+      _theta_type theta;
 
     Pose2D():
       x(0),
@@ -41,8 +45,8 @@ namespace geometry_msgs
      return offset;
     }
 
-    const char * getType(){ return "geometry_msgs/Pose2D"; };
-    const char * getMD5(){ return "938fa65709584ad8e77d238529be13b8"; };
+    const char * getType(){ return PSTR( "geometry_msgs/Pose2D" ); };
+    const char * getMD5(){ return PSTR( "938fa65709584ad8e77d238529be13b8" ); };
 
   };
 

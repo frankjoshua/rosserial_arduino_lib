@@ -4,12 +4,13 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "diagnostic_msgs/DiagnosticStatus.h"
 
 namespace diagnostic_msgs
 {
 
-static const char SELFTEST[] = "diagnostic_msgs/SelfTest";
+static const char SELFTEST[] PROGMEM = "diagnostic_msgs/SelfTest";
 
   class SelfTestRequest : public ros::Msg
   {
@@ -32,18 +33,21 @@ static const char SELFTEST[] = "diagnostic_msgs/SelfTest";
     }
 
     const char * getType(){ return SELFTEST; };
-    const char * getMD5(){ return "d41d8cd98f00b204e9800998ecf8427e"; };
+    const char * getMD5(){ return PSTR( "d41d8cd98f00b204e9800998ecf8427e" ); };
 
   };
 
   class SelfTestResponse : public ros::Msg
   {
     public:
-      const char* id;
-      int8_t passed;
-      uint8_t status_length;
-      diagnostic_msgs::DiagnosticStatus st_status;
-      diagnostic_msgs::DiagnosticStatus * status;
+      typedef const char* _id_type;
+      _id_type id;
+      typedef int8_t _passed_type;
+      _passed_type passed;
+      uint32_t status_length;
+      typedef diagnostic_msgs::DiagnosticStatus _status_type;
+      _status_type st_status;
+      _status_type * status;
 
     SelfTestResponse():
       id(""),
@@ -56,7 +60,7 @@ static const char SELFTEST[] = "diagnostic_msgs/SelfTest";
     {
       int offset = 0;
       uint32_t length_id = strlen(this->id);
-      memcpy(outbuffer + offset, &length_id, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_id);
       offset += 4;
       memcpy(outbuffer + offset, this->id, length_id);
       offset += length_id;
@@ -67,11 +71,12 @@ static const char SELFTEST[] = "diagnostic_msgs/SelfTest";
       u_passed.real = this->passed;
       *(outbuffer + offset + 0) = (u_passed.base >> (8 * 0)) & 0xFF;
       offset += sizeof(this->passed);
-      *(outbuffer + offset++) = status_length;
-      *(outbuffer + offset++) = 0;
-      *(outbuffer + offset++) = 0;
-      *(outbuffer + offset++) = 0;
-      for( uint8_t i = 0; i < status_length; i++){
+      *(outbuffer + offset + 0) = (this->status_length >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (this->status_length >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (this->status_length >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (this->status_length >> (8 * 3)) & 0xFF;
+      offset += sizeof(this->status_length);
+      for( uint32_t i = 0; i < status_length; i++){
       offset += this->status[i].serialize(outbuffer + offset);
       }
       return offset;
@@ -81,7 +86,7 @@ static const char SELFTEST[] = "diagnostic_msgs/SelfTest";
     {
       int offset = 0;
       uint32_t length_id;
-      memcpy(&length_id, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_id, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_id; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -97,12 +102,15 @@ static const char SELFTEST[] = "diagnostic_msgs/SelfTest";
       u_passed.base |= ((uint8_t) (*(inbuffer + offset + 0))) << (8 * 0);
       this->passed = u_passed.real;
       offset += sizeof(this->passed);
-      uint8_t status_lengthT = *(inbuffer + offset++);
+      uint32_t status_lengthT = ((uint32_t) (*(inbuffer + offset))); 
+      status_lengthT |= ((uint32_t) (*(inbuffer + offset + 1))) << (8 * 1); 
+      status_lengthT |= ((uint32_t) (*(inbuffer + offset + 2))) << (8 * 2); 
+      status_lengthT |= ((uint32_t) (*(inbuffer + offset + 3))) << (8 * 3); 
+      offset += sizeof(this->status_length);
       if(status_lengthT > status_length)
         this->status = (diagnostic_msgs::DiagnosticStatus*)realloc(this->status, status_lengthT * sizeof(diagnostic_msgs::DiagnosticStatus));
-      offset += 3;
       status_length = status_lengthT;
-      for( uint8_t i = 0; i < status_length; i++){
+      for( uint32_t i = 0; i < status_length; i++){
       offset += this->st_status.deserialize(inbuffer + offset);
         memcpy( &(this->status[i]), &(this->st_status), sizeof(diagnostic_msgs::DiagnosticStatus));
       }
@@ -110,7 +118,7 @@ static const char SELFTEST[] = "diagnostic_msgs/SelfTest";
     }
 
     const char * getType(){ return SELFTEST; };
-    const char * getMD5(){ return "ac21b1bab7ab17546986536c22eb34e9"; };
+    const char * getMD5(){ return PSTR( "ac21b1bab7ab17546986536c22eb34e9" ); };
 
   };
 

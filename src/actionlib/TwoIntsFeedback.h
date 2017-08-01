@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 
 namespace actionlib
 {
@@ -29,8 +30,8 @@ namespace actionlib
      return offset;
     }
 
-    const char * getType(){ return "actionlib/TwoIntsFeedback"; };
-    const char * getMD5(){ return "d41d8cd98f00b204e9800998ecf8427e"; };
+    const char * getType(){ return PSTR( "actionlib/TwoIntsFeedback" ); };
+    const char * getMD5(){ return PSTR( "d41d8cd98f00b204e9800998ecf8427e" ); };
 
   };
 

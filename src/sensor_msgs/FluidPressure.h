@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "std_msgs/Header.h"
 
 namespace sensor_msgs
@@ -13,9 +14,12 @@ namespace sensor_msgs
   class FluidPressure : public ros::Msg
   {
     public:
-      std_msgs::Header header;
-      float fluid_pressure;
-      float variance;
+      typedef std_msgs::Header _header_type;
+      _header_type header;
+      typedef float _fluid_pressure_type;
+      _fluid_pressure_type fluid_pressure;
+      typedef float _variance_type;
+      _variance_type variance;
 
     FluidPressure():
       header(),
@@ -42,8 +46,8 @@ namespace sensor_msgs
      return offset;
     }
 
-    const char * getType(){ return "sensor_msgs/FluidPressure"; };
-    const char * getMD5(){ return "804dc5cea1c5306d6a2eb80b9833befe"; };
+    const char * getType(){ return PSTR( "sensor_msgs/FluidPressure" ); };
+    const char * getMD5(){ return PSTR( "804dc5cea1c5306d6a2eb80b9833befe" ); };
 
   };
 

@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "control_msgs/GripperCommand.h"
 
 namespace control_msgs
@@ -13,7 +14,8 @@ namespace control_msgs
   class GripperCommandGoal : public ros::Msg
   {
     public:
-      control_msgs::GripperCommand command;
+      typedef control_msgs::GripperCommand _command_type;
+      _command_type command;
 
     GripperCommandGoal():
       command()
@@ -34,8 +36,8 @@ namespace control_msgs
      return offset;
     }
 
-    const char * getType(){ return "control_msgs/GripperCommandGoal"; };
-    const char * getMD5(){ return "86fd82f4ddc48a4cb6856cfa69217e43"; };
+    const char * getType(){ return PSTR( "control_msgs/GripperCommandGoal" ); };
+    const char * getMD5(){ return PSTR( "86fd82f4ddc48a4cb6856cfa69217e43" ); };
 
   };
 

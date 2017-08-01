@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 
 namespace std_msgs
 {
@@ -12,7 +13,8 @@ namespace std_msgs
   class Int16 : public ros::Msg
   {
     public:
-      int16_t data;
+      typedef int16_t _data_type;
+      _data_type data;
 
     Int16():
       data(0)
@@ -48,8 +50,8 @@ namespace std_msgs
      return offset;
     }
 
-    const char * getType(){ return "std_msgs/Int16"; };
-    const char * getMD5(){ return "8524586e34fbd7cb1c08c5f5f1ca0e57"; };
+    const char * getType(){ return PSTR( "std_msgs/Int16" ); };
+    const char * getMD5(){ return PSTR( "8524586e34fbd7cb1c08c5f5f1ca0e57" ); };
 
   };
 

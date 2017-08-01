@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 
 namespace bond
 {
@@ -35,8 +36,8 @@ namespace bond
      return offset;
     }
 
-    const char * getType(){ return "bond/Constants"; };
-    const char * getMD5(){ return "6fc594dc1d7bd7919077042712f8c8b0"; };
+    const char * getType(){ return PSTR( "bond/Constants" ); };
+    const char * getMD5(){ return PSTR( "6fc594dc1d7bd7919077042712f8c8b0" ); };
 
   };
 

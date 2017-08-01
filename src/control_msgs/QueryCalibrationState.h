@@ -4,11 +4,12 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 
 namespace control_msgs
 {
 
-static const char QUERYCALIBRATIONSTATE[] = "control_msgs/QueryCalibrationState";
+static const char QUERYCALIBRATIONSTATE[] PROGMEM = "control_msgs/QueryCalibrationState";
 
   class QueryCalibrationStateRequest : public ros::Msg
   {
@@ -31,14 +32,15 @@ static const char QUERYCALIBRATIONSTATE[] = "control_msgs/QueryCalibrationState"
     }
 
     const char * getType(){ return QUERYCALIBRATIONSTATE; };
-    const char * getMD5(){ return "d41d8cd98f00b204e9800998ecf8427e"; };
+    const char * getMD5(){ return PSTR( "d41d8cd98f00b204e9800998ecf8427e" ); };
 
   };
 
   class QueryCalibrationStateResponse : public ros::Msg
   {
     public:
-      bool is_calibrated;
+      typedef bool _is_calibrated_type;
+      _is_calibrated_type is_calibrated;
 
     QueryCalibrationStateResponse():
       is_calibrated(0)
@@ -73,7 +75,7 @@ static const char QUERYCALIBRATIONSTATE[] = "control_msgs/QueryCalibrationState"
     }
 
     const char * getType(){ return QUERYCALIBRATIONSTATE; };
-    const char * getMD5(){ return "28af3beedcb84986b8e470dc5470507d"; };
+    const char * getMD5(){ return PSTR( "28af3beedcb84986b8e470dc5470507d" ); };
 
   };
 

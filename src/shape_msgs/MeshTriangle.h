@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 
 namespace shape_msgs
 {
@@ -22,7 +23,7 @@ namespace shape_msgs
     virtual int serialize(unsigned char *outbuffer) const
     {
       int offset = 0;
-      for( uint8_t i = 0; i < 3; i++){
+      for( uint32_t i = 0; i < 3; i++){
       *(outbuffer + offset + 0) = (this->vertex_indices[i] >> (8 * 0)) & 0xFF;
       *(outbuffer + offset + 1) = (this->vertex_indices[i] >> (8 * 1)) & 0xFF;
       *(outbuffer + offset + 2) = (this->vertex_indices[i] >> (8 * 2)) & 0xFF;
@@ -35,7 +36,7 @@ namespace shape_msgs
     virtual int deserialize(unsigned char *inbuffer)
     {
       int offset = 0;
-      for( uint8_t i = 0; i < 3; i++){
+      for( uint32_t i = 0; i < 3; i++){
       this->vertex_indices[i] =  ((uint32_t) (*(inbuffer + offset)));
       this->vertex_indices[i] |= ((uint32_t) (*(inbuffer + offset + 1))) << (8 * 1);
       this->vertex_indices[i] |= ((uint32_t) (*(inbuffer + offset + 2))) << (8 * 2);
@@ -45,8 +46,8 @@ namespace shape_msgs
      return offset;
     }
 
-    const char * getType(){ return "shape_msgs/MeshTriangle"; };
-    const char * getMD5(){ return "23688b2e6d2de3d32fe8af104a903253"; };
+    const char * getType(){ return PSTR( "shape_msgs/MeshTriangle" ); };
+    const char * getMD5(){ return PSTR( "23688b2e6d2de3d32fe8af104a903253" ); };
 
   };
 

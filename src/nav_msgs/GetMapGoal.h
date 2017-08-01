@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 
 namespace nav_msgs
 {
@@ -29,8 +30,8 @@ namespace nav_msgs
      return offset;
     }
 
-    const char * getType(){ return "nav_msgs/GetMapGoal"; };
-    const char * getMD5(){ return "d41d8cd98f00b204e9800998ecf8427e"; };
+    const char * getType(){ return PSTR( "nav_msgs/GetMapGoal" ); };
+    const char * getMD5(){ return PSTR( "d41d8cd98f00b204e9800998ecf8427e" ); };
 
   };
 

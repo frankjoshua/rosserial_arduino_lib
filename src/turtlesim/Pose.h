@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 
 namespace turtlesim
 {
@@ -12,11 +13,16 @@ namespace turtlesim
   class Pose : public ros::Msg
   {
     public:
-      float x;
-      float y;
-      float theta;
-      float linear_velocity;
-      float angular_velocity;
+      typedef float _x_type;
+      _x_type x;
+      typedef float _y_type;
+      _y_type y;
+      typedef float _theta_type;
+      _theta_type theta;
+      typedef float _linear_velocity_type;
+      _linear_velocity_type linear_velocity;
+      typedef float _angular_velocity_type;
+      _angular_velocity_type angular_velocity;
 
     Pose():
       x(0),
@@ -144,8 +150,8 @@ namespace turtlesim
      return offset;
     }
 
-    const char * getType(){ return "turtlesim/Pose"; };
-    const char * getMD5(){ return "863b248d5016ca62ea2e895ae5265cf9"; };
+    const char * getType(){ return PSTR( "turtlesim/Pose" ); };
+    const char * getMD5(){ return PSTR( "863b248d5016ca62ea2e895ae5265cf9" ); };
 
   };
 

@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 
 namespace actionlib_tutorials
 {
@@ -12,7 +13,8 @@ namespace actionlib_tutorials
   class FibonacciGoal : public ros::Msg
   {
     public:
-      int32_t order;
+      typedef int32_t _order_type;
+      _order_type order;
 
     FibonacciGoal():
       order(0)
@@ -52,8 +54,8 @@ namespace actionlib_tutorials
      return offset;
     }
 
-    const char * getType(){ return "actionlib_tutorials/FibonacciGoal"; };
-    const char * getMD5(){ return "6889063349a00b249bd1661df429d822"; };
+    const char * getType(){ return PSTR( "actionlib_tutorials/FibonacciGoal" ); };
+    const char * getMD5(){ return PSTR( "6889063349a00b249bd1661df429d822" ); };
 
   };
 

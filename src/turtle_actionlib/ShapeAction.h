@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "turtle_actionlib/ShapeActionGoal.h"
 #include "turtle_actionlib/ShapeActionResult.h"
 #include "turtle_actionlib/ShapeActionFeedback.h"
@@ -15,9 +16,12 @@ namespace turtle_actionlib
   class ShapeAction : public ros::Msg
   {
     public:
-      turtle_actionlib::ShapeActionGoal action_goal;
-      turtle_actionlib::ShapeActionResult action_result;
-      turtle_actionlib::ShapeActionFeedback action_feedback;
+      typedef turtle_actionlib::ShapeActionGoal _action_goal_type;
+      _action_goal_type action_goal;
+      typedef turtle_actionlib::ShapeActionResult _action_result_type;
+      _action_result_type action_result;
+      typedef turtle_actionlib::ShapeActionFeedback _action_feedback_type;
+      _action_feedback_type action_feedback;
 
     ShapeAction():
       action_goal(),
@@ -44,8 +48,8 @@ namespace turtle_actionlib
      return offset;
     }
 
-    const char * getType(){ return "turtle_actionlib/ShapeAction"; };
-    const char * getMD5(){ return "d73b17d6237a925511f5d7727a1dc903"; };
+    const char * getType(){ return PSTR( "turtle_actionlib/ShapeAction" ); };
+    const char * getMD5(){ return PSTR( "d73b17d6237a925511f5d7727a1dc903" ); };
 
   };
 

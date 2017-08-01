@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "std_msgs/Header.h"
 #include "actionlib_msgs/GoalStatus.h"
 #include "actionlib_tutorials/FibonacciFeedback.h"
@@ -15,9 +16,12 @@ namespace actionlib_tutorials
   class FibonacciActionFeedback : public ros::Msg
   {
     public:
-      std_msgs::Header header;
-      actionlib_msgs::GoalStatus status;
-      actionlib_tutorials::FibonacciFeedback feedback;
+      typedef std_msgs::Header _header_type;
+      _header_type header;
+      typedef actionlib_msgs::GoalStatus _status_type;
+      _status_type status;
+      typedef actionlib_tutorials::FibonacciFeedback _feedback_type;
+      _feedback_type feedback;
 
     FibonacciActionFeedback():
       header(),
@@ -44,8 +48,8 @@ namespace actionlib_tutorials
      return offset;
     }
 
-    const char * getType(){ return "actionlib_tutorials/FibonacciActionFeedback"; };
-    const char * getMD5(){ return "73b8497a9f629a31c0020900e4148f07"; };
+    const char * getType(){ return PSTR( "actionlib_tutorials/FibonacciActionFeedback" ); };
+    const char * getMD5(){ return PSTR( "73b8497a9f629a31c0020900e4148f07" ); };
 
   };
 

@@ -4,22 +4,28 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "trajectory_msgs/JointTrajectory.h"
 #include "geometry_msgs/Pose.h"
 
 namespace gazebo_msgs
 {
 
-static const char SETJOINTTRAJECTORY[] = "gazebo_msgs/SetJointTrajectory";
+static const char SETJOINTTRAJECTORY[] PROGMEM = "gazebo_msgs/SetJointTrajectory";
 
   class SetJointTrajectoryRequest : public ros::Msg
   {
     public:
-      const char* model_name;
-      trajectory_msgs::JointTrajectory joint_trajectory;
-      geometry_msgs::Pose model_pose;
-      bool set_model_pose;
-      bool disable_physics_updates;
+      typedef const char* _model_name_type;
+      _model_name_type model_name;
+      typedef trajectory_msgs::JointTrajectory _joint_trajectory_type;
+      _joint_trajectory_type joint_trajectory;
+      typedef geometry_msgs::Pose _model_pose_type;
+      _model_pose_type model_pose;
+      typedef bool _set_model_pose_type;
+      _set_model_pose_type set_model_pose;
+      typedef bool _disable_physics_updates_type;
+      _disable_physics_updates_type disable_physics_updates;
 
     SetJointTrajectoryRequest():
       model_name(""),
@@ -34,7 +40,7 @@ static const char SETJOINTTRAJECTORY[] = "gazebo_msgs/SetJointTrajectory";
     {
       int offset = 0;
       uint32_t length_model_name = strlen(this->model_name);
-      memcpy(outbuffer + offset, &length_model_name, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_model_name);
       offset += 4;
       memcpy(outbuffer + offset, this->model_name, length_model_name);
       offset += length_model_name;
@@ -61,7 +67,7 @@ static const char SETJOINTTRAJECTORY[] = "gazebo_msgs/SetJointTrajectory";
     {
       int offset = 0;
       uint32_t length_model_name;
-      memcpy(&length_model_name, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_model_name, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_model_name; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -91,15 +97,17 @@ static const char SETJOINTTRAJECTORY[] = "gazebo_msgs/SetJointTrajectory";
     }
 
     const char * getType(){ return SETJOINTTRAJECTORY; };
-    const char * getMD5(){ return "649dd2eba5ffd358069238825f9f85ab"; };
+    const char * getMD5(){ return PSTR( "649dd2eba5ffd358069238825f9f85ab" ); };
 
   };
 
   class SetJointTrajectoryResponse : public ros::Msg
   {
     public:
-      bool success;
-      const char* status_message;
+      typedef bool _success_type;
+      _success_type success;
+      typedef const char* _status_message_type;
+      _status_message_type status_message;
 
     SetJointTrajectoryResponse():
       success(0),
@@ -118,7 +126,7 @@ static const char SETJOINTTRAJECTORY[] = "gazebo_msgs/SetJointTrajectory";
       *(outbuffer + offset + 0) = (u_success.base >> (8 * 0)) & 0xFF;
       offset += sizeof(this->success);
       uint32_t length_status_message = strlen(this->status_message);
-      memcpy(outbuffer + offset, &length_status_message, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_status_message);
       offset += 4;
       memcpy(outbuffer + offset, this->status_message, length_status_message);
       offset += length_status_message;
@@ -137,7 +145,7 @@ static const char SETJOINTTRAJECTORY[] = "gazebo_msgs/SetJointTrajectory";
       this->success = u_success.real;
       offset += sizeof(this->success);
       uint32_t length_status_message;
-      memcpy(&length_status_message, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_status_message, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_status_message; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -149,7 +157,7 @@ static const char SETJOINTTRAJECTORY[] = "gazebo_msgs/SetJointTrajectory";
     }
 
     const char * getType(){ return SETJOINTTRAJECTORY; };
-    const char * getMD5(){ return "2ec6f3eff0161f4257b808b12bc830c2"; };
+    const char * getMD5(){ return PSTR( "2ec6f3eff0161f4257b808b12bc830c2" ); };
 
   };
 

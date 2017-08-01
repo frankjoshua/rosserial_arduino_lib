@@ -4,17 +4,19 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "dynamic_reconfigure/Config.h"
 
 namespace dynamic_reconfigure
 {
 
-static const char RECONFIGURE[] = "dynamic_reconfigure/Reconfigure";
+static const char RECONFIGURE[] PROGMEM = "dynamic_reconfigure/Reconfigure";
 
   class ReconfigureRequest : public ros::Msg
   {
     public:
-      dynamic_reconfigure::Config config;
+      typedef dynamic_reconfigure::Config _config_type;
+      _config_type config;
 
     ReconfigureRequest():
       config()
@@ -36,14 +38,15 @@ static const char RECONFIGURE[] = "dynamic_reconfigure/Reconfigure";
     }
 
     const char * getType(){ return RECONFIGURE; };
-    const char * getMD5(){ return "ac41a77620a4a0348b7001641796a8a1"; };
+    const char * getMD5(){ return PSTR( "ac41a77620a4a0348b7001641796a8a1" ); };
 
   };
 
   class ReconfigureResponse : public ros::Msg
   {
     public:
-      dynamic_reconfigure::Config config;
+      typedef dynamic_reconfigure::Config _config_type;
+      _config_type config;
 
     ReconfigureResponse():
       config()
@@ -65,7 +68,7 @@ static const char RECONFIGURE[] = "dynamic_reconfigure/Reconfigure";
     }
 
     const char * getType(){ return RECONFIGURE; };
-    const char * getMD5(){ return "ac41a77620a4a0348b7001641796a8a1"; };
+    const char * getMD5(){ return PSTR( "ac41a77620a4a0348b7001641796a8a1" ); };
 
   };
 

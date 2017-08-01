@@ -4,16 +4,18 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 
 namespace rosserial_msgs
 {
 
-static const char REQUESTSERVICEINFO[] = "rosserial_msgs/RequestServiceInfo";
+static const char REQUESTSERVICEINFO[] PROGMEM = "rosserial_msgs/RequestServiceInfo";
 
   class RequestServiceInfoRequest : public ros::Msg
   {
     public:
-      const char* service;
+      typedef const char* _service_type;
+      _service_type service;
 
     RequestServiceInfoRequest():
       service("")
@@ -24,7 +26,7 @@ static const char REQUESTSERVICEINFO[] = "rosserial_msgs/RequestServiceInfo";
     {
       int offset = 0;
       uint32_t length_service = strlen(this->service);
-      memcpy(outbuffer + offset, &length_service, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_service);
       offset += 4;
       memcpy(outbuffer + offset, this->service, length_service);
       offset += length_service;
@@ -35,7 +37,7 @@ static const char REQUESTSERVICEINFO[] = "rosserial_msgs/RequestServiceInfo";
     {
       int offset = 0;
       uint32_t length_service;
-      memcpy(&length_service, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_service, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_service; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -47,16 +49,19 @@ static const char REQUESTSERVICEINFO[] = "rosserial_msgs/RequestServiceInfo";
     }
 
     const char * getType(){ return REQUESTSERVICEINFO; };
-    const char * getMD5(){ return "1cbcfa13b08f6d36710b9af8741e6112"; };
+    const char * getMD5(){ return PSTR( "1cbcfa13b08f6d36710b9af8741e6112" ); };
 
   };
 
   class RequestServiceInfoResponse : public ros::Msg
   {
     public:
-      const char* service_md5;
-      const char* request_md5;
-      const char* response_md5;
+      typedef const char* _service_md5_type;
+      _service_md5_type service_md5;
+      typedef const char* _request_md5_type;
+      _request_md5_type request_md5;
+      typedef const char* _response_md5_type;
+      _response_md5_type response_md5;
 
     RequestServiceInfoResponse():
       service_md5(""),
@@ -69,17 +74,17 @@ static const char REQUESTSERVICEINFO[] = "rosserial_msgs/RequestServiceInfo";
     {
       int offset = 0;
       uint32_t length_service_md5 = strlen(this->service_md5);
-      memcpy(outbuffer + offset, &length_service_md5, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_service_md5);
       offset += 4;
       memcpy(outbuffer + offset, this->service_md5, length_service_md5);
       offset += length_service_md5;
       uint32_t length_request_md5 = strlen(this->request_md5);
-      memcpy(outbuffer + offset, &length_request_md5, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_request_md5);
       offset += 4;
       memcpy(outbuffer + offset, this->request_md5, length_request_md5);
       offset += length_request_md5;
       uint32_t length_response_md5 = strlen(this->response_md5);
-      memcpy(outbuffer + offset, &length_response_md5, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_response_md5);
       offset += 4;
       memcpy(outbuffer + offset, this->response_md5, length_response_md5);
       offset += length_response_md5;
@@ -90,7 +95,7 @@ static const char REQUESTSERVICEINFO[] = "rosserial_msgs/RequestServiceInfo";
     {
       int offset = 0;
       uint32_t length_service_md5;
-      memcpy(&length_service_md5, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_service_md5, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_service_md5; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -99,7 +104,7 @@ static const char REQUESTSERVICEINFO[] = "rosserial_msgs/RequestServiceInfo";
       this->service_md5 = (char *)(inbuffer + offset-1);
       offset += length_service_md5;
       uint32_t length_request_md5;
-      memcpy(&length_request_md5, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_request_md5, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_request_md5; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -108,7 +113,7 @@ static const char REQUESTSERVICEINFO[] = "rosserial_msgs/RequestServiceInfo";
       this->request_md5 = (char *)(inbuffer + offset-1);
       offset += length_request_md5;
       uint32_t length_response_md5;
-      memcpy(&length_response_md5, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_response_md5, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_response_md5; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -120,7 +125,7 @@ static const char REQUESTSERVICEINFO[] = "rosserial_msgs/RequestServiceInfo";
     }
 
     const char * getType(){ return REQUESTSERVICEINFO; };
-    const char * getMD5(){ return "c3d6dd25b909596479fbbc6559fa6874"; };
+    const char * getMD5(){ return PSTR( "c3d6dd25b909596479fbbc6559fa6874" ); };
 
   };
 

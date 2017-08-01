@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 
 namespace actionlib_tutorials
 {
@@ -12,7 +13,8 @@ namespace actionlib_tutorials
   class AveragingGoal : public ros::Msg
   {
     public:
-      int32_t samples;
+      typedef int32_t _samples_type;
+      _samples_type samples;
 
     AveragingGoal():
       samples(0)
@@ -52,8 +54,8 @@ namespace actionlib_tutorials
      return offset;
     }
 
-    const char * getType(){ return "actionlib_tutorials/AveragingGoal"; };
-    const char * getMD5(){ return "32c9b10ef9b253faa93b93f564762c8f"; };
+    const char * getType(){ return PSTR( "actionlib_tutorials/AveragingGoal" ); };
+    const char * getMD5(){ return PSTR( "32c9b10ef9b253faa93b93f564762c8f" ); };
 
   };
 

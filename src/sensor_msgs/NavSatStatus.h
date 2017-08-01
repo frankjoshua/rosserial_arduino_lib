@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 
 namespace sensor_msgs
 {
@@ -12,8 +13,10 @@ namespace sensor_msgs
   class NavSatStatus : public ros::Msg
   {
     public:
-      int8_t status;
-      uint16_t service;
+      typedef int8_t _status_type;
+      _status_type status;
+      typedef uint16_t _service_type;
+      _service_type service;
       enum { STATUS_NO_FIX =   -1         };
       enum { STATUS_FIX =       0         };
       enum { STATUS_SBAS_FIX =  1         };
@@ -62,8 +65,8 @@ namespace sensor_msgs
      return offset;
     }
 
-    const char * getType(){ return "sensor_msgs/NavSatStatus"; };
-    const char * getMD5(){ return "331cdbddfa4bc96ffc3b9ad98900a54c"; };
+    const char * getType(){ return PSTR( "sensor_msgs/NavSatStatus" ); };
+    const char * getMD5(){ return PSTR( "331cdbddfa4bc96ffc3b9ad98900a54c" ); };
 
   };
 

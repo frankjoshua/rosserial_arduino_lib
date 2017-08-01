@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "std_msgs/Header.h"
 #include "geometry_msgs/Vector3.h"
 
@@ -14,8 +15,10 @@ namespace geometry_msgs
   class Vector3Stamped : public ros::Msg
   {
     public:
-      std_msgs::Header header;
-      geometry_msgs::Vector3 vector;
+      typedef std_msgs::Header _header_type;
+      _header_type header;
+      typedef geometry_msgs::Vector3 _vector_type;
+      _vector_type vector;
 
     Vector3Stamped():
       header(),
@@ -39,8 +42,8 @@ namespace geometry_msgs
      return offset;
     }
 
-    const char * getType(){ return "geometry_msgs/Vector3Stamped"; };
-    const char * getMD5(){ return "7b324c7325e683bf02a9b14b01090ec7"; };
+    const char * getType(){ return PSTR( "geometry_msgs/Vector3Stamped" ); };
+    const char * getMD5(){ return PSTR( "7b324c7325e683bf02a9b14b01090ec7" ); };
 
   };
 

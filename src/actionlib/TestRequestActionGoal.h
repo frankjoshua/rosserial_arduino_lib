@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "std_msgs/Header.h"
 #include "actionlib_msgs/GoalID.h"
 #include "actionlib/TestRequestGoal.h"
@@ -15,9 +16,12 @@ namespace actionlib
   class TestRequestActionGoal : public ros::Msg
   {
     public:
-      std_msgs::Header header;
-      actionlib_msgs::GoalID goal_id;
-      actionlib::TestRequestGoal goal;
+      typedef std_msgs::Header _header_type;
+      _header_type header;
+      typedef actionlib_msgs::GoalID _goal_id_type;
+      _goal_id_type goal_id;
+      typedef actionlib::TestRequestGoal _goal_type;
+      _goal_type goal;
 
     TestRequestActionGoal():
       header(),
@@ -44,8 +48,8 @@ namespace actionlib
      return offset;
     }
 
-    const char * getType(){ return "actionlib/TestRequestActionGoal"; };
-    const char * getMD5(){ return "1889556d3fef88f821c7cb004e4251f3"; };
+    const char * getType(){ return PSTR( "actionlib/TestRequestActionGoal" ); };
+    const char * getMD5(){ return PSTR( "1889556d3fef88f821c7cb004e4251f3" ); };
 
   };
 

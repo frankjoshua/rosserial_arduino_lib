@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "nav_msgs/OccupancyGrid.h"
 
 namespace map_msgs
@@ -13,9 +14,12 @@ namespace map_msgs
   class ProjectedMap : public ros::Msg
   {
     public:
-      nav_msgs::OccupancyGrid map;
-      float min_z;
-      float max_z;
+      typedef nav_msgs::OccupancyGrid _map_type;
+      _map_type map;
+      typedef float _min_z_type;
+      _min_z_type min_z;
+      typedef float _max_z_type;
+      _max_z_type max_z;
 
     ProjectedMap():
       map(),
@@ -42,8 +46,8 @@ namespace map_msgs
      return offset;
     }
 
-    const char * getType(){ return "map_msgs/ProjectedMap"; };
-    const char * getMD5(){ return "7bbe8f96e45089681dc1ea7d023cbfca"; };
+    const char * getType(){ return PSTR( "map_msgs/ProjectedMap" ); };
+    const char * getMD5(){ return PSTR( "7bbe8f96e45089681dc1ea7d023cbfca" ); };
 
   };
 

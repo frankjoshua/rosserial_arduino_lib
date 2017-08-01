@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "std_msgs/Header.h"
 #include "geometry_msgs/Pose.h"
 
@@ -14,8 +15,10 @@ namespace geometry_msgs
   class PoseStamped : public ros::Msg
   {
     public:
-      std_msgs::Header header;
-      geometry_msgs::Pose pose;
+      typedef std_msgs::Header _header_type;
+      _header_type header;
+      typedef geometry_msgs::Pose _pose_type;
+      _pose_type pose;
 
     PoseStamped():
       header(),
@@ -39,8 +42,8 @@ namespace geometry_msgs
      return offset;
     }
 
-    const char * getType(){ return "geometry_msgs/PoseStamped"; };
-    const char * getMD5(){ return "d3812c3cbc69362b77dc0b19b345f8f5"; };
+    const char * getType(){ return PSTR( "geometry_msgs/PoseStamped" ); };
+    const char * getMD5(){ return PSTR( "d3812c3cbc69362b77dc0b19b345f8f5" ); };
 
   };
 

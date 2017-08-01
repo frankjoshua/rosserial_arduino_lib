@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "std_msgs/Header.h"
 
 namespace theora_image_transport
@@ -13,14 +14,20 @@ namespace theora_image_transport
   class Packet : public ros::Msg
   {
     public:
-      std_msgs::Header header;
-      uint8_t data_length;
-      uint8_t st_data;
-      uint8_t * data;
-      int32_t b_o_s;
-      int32_t e_o_s;
-      int64_t granulepos;
-      int64_t packetno;
+      typedef std_msgs::Header _header_type;
+      _header_type header;
+      uint32_t data_length;
+      typedef uint8_t _data_type;
+      _data_type st_data;
+      _data_type * data;
+      typedef int32_t _b_o_s_type;
+      _b_o_s_type b_o_s;
+      typedef int32_t _e_o_s_type;
+      _e_o_s_type e_o_s;
+      typedef int64_t _granulepos_type;
+      _granulepos_type granulepos;
+      typedef int64_t _packetno_type;
+      _packetno_type packetno;
 
     Packet():
       header(),
@@ -36,11 +43,12 @@ namespace theora_image_transport
     {
       int offset = 0;
       offset += this->header.serialize(outbuffer + offset);
-      *(outbuffer + offset++) = data_length;
-      *(outbuffer + offset++) = 0;
-      *(outbuffer + offset++) = 0;
-      *(outbuffer + offset++) = 0;
-      for( uint8_t i = 0; i < data_length; i++){
+      *(outbuffer + offset + 0) = (this->data_length >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (this->data_length >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (this->data_length >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (this->data_length >> (8 * 3)) & 0xFF;
+      offset += sizeof(this->data_length);
+      for( uint32_t i = 0; i < data_length; i++){
       *(outbuffer + offset + 0) = (this->data[i] >> (8 * 0)) & 0xFF;
       offset += sizeof(this->data[i]);
       }
@@ -99,12 +107,15 @@ namespace theora_image_transport
     {
       int offset = 0;
       offset += this->header.deserialize(inbuffer + offset);
-      uint8_t data_lengthT = *(inbuffer + offset++);
+      uint32_t data_lengthT = ((uint32_t) (*(inbuffer + offset))); 
+      data_lengthT |= ((uint32_t) (*(inbuffer + offset + 1))) << (8 * 1); 
+      data_lengthT |= ((uint32_t) (*(inbuffer + offset + 2))) << (8 * 2); 
+      data_lengthT |= ((uint32_t) (*(inbuffer + offset + 3))) << (8 * 3); 
+      offset += sizeof(this->data_length);
       if(data_lengthT > data_length)
         this->data = (uint8_t*)realloc(this->data, data_lengthT * sizeof(uint8_t));
-      offset += 3;
       data_length = data_lengthT;
-      for( uint8_t i = 0; i < data_length; i++){
+      for( uint32_t i = 0; i < data_length; i++){
       this->st_data =  ((uint8_t) (*(inbuffer + offset)));
       offset += sizeof(this->st_data);
         memcpy( &(this->data[i]), &(this->st_data), sizeof(uint8_t));
@@ -164,8 +175,8 @@ namespace theora_image_transport
      return offset;
     }
 
-    const char * getType(){ return "theora_image_transport/Packet"; };
-    const char * getMD5(){ return "33ac4e14a7cff32e7e0d65f18bb410f3"; };
+    const char * getType(){ return PSTR( "theora_image_transport/Packet" ); };
+    const char * getMD5(){ return PSTR( "33ac4e14a7cff32e7e0d65f18bb410f3" ); };
 
   };
 

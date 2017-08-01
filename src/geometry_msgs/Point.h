@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 
 namespace geometry_msgs
 {
@@ -12,9 +13,12 @@ namespace geometry_msgs
   class Point : public ros::Msg
   {
     public:
-      float x;
-      float y;
-      float z;
+      typedef float _x_type;
+      _x_type x;
+      typedef float _y_type;
+      _y_type y;
+      typedef float _z_type;
+      _z_type z;
 
     Point():
       x(0),
@@ -41,8 +45,8 @@ namespace geometry_msgs
      return offset;
     }
 
-    const char * getType(){ return "geometry_msgs/Point"; };
-    const char * getMD5(){ return "4a842b65f413084dc2b10fb484ea7f17"; };
+    const char * getType(){ return PSTR( "geometry_msgs/Point" ); };
+    const char * getMD5(){ return PSTR( "4a842b65f413084dc2b10fb484ea7f17" ); };
 
   };
 

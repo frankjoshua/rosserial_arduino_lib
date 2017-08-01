@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "control_msgs/FollowJointTrajectoryActionGoal.h"
 #include "control_msgs/FollowJointTrajectoryActionResult.h"
 #include "control_msgs/FollowJointTrajectoryActionFeedback.h"
@@ -15,9 +16,12 @@ namespace control_msgs
   class FollowJointTrajectoryAction : public ros::Msg
   {
     public:
-      control_msgs::FollowJointTrajectoryActionGoal action_goal;
-      control_msgs::FollowJointTrajectoryActionResult action_result;
-      control_msgs::FollowJointTrajectoryActionFeedback action_feedback;
+      typedef control_msgs::FollowJointTrajectoryActionGoal _action_goal_type;
+      _action_goal_type action_goal;
+      typedef control_msgs::FollowJointTrajectoryActionResult _action_result_type;
+      _action_result_type action_result;
+      typedef control_msgs::FollowJointTrajectoryActionFeedback _action_feedback_type;
+      _action_feedback_type action_feedback;
 
     FollowJointTrajectoryAction():
       action_goal(),
@@ -44,8 +48,8 @@ namespace control_msgs
      return offset;
     }
 
-    const char * getType(){ return "control_msgs/FollowJointTrajectoryAction"; };
-    const char * getMD5(){ return "bc4f9b743838566551c0390c65f1a248"; };
+    const char * getType(){ return PSTR( "control_msgs/FollowJointTrajectoryAction" ); };
+    const char * getMD5(){ return PSTR( "bc4f9b743838566551c0390c65f1a248" ); };
 
   };
 

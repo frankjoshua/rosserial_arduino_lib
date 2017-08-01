@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "ros/time.h"
 
 namespace rosgraph_msgs
@@ -13,7 +14,8 @@ namespace rosgraph_msgs
   class Clock : public ros::Msg
   {
     public:
-      ros::Time clock;
+      typedef ros::Time _clock_type;
+      _clock_type clock;
 
     Clock():
       clock()
@@ -52,8 +54,8 @@ namespace rosgraph_msgs
      return offset;
     }
 
-    const char * getType(){ return "rosgraph_msgs/Clock"; };
-    const char * getMD5(){ return "a9c97c1d230cfc112e270351a944ee47"; };
+    const char * getType(){ return PSTR( "rosgraph_msgs/Clock" ); };
+    const char * getMD5(){ return PSTR( "a9c97c1d230cfc112e270351a944ee47" ); };
 
   };
 

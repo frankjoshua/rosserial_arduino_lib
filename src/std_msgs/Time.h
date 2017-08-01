@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "ros/time.h"
 
 namespace std_msgs
@@ -13,7 +14,8 @@ namespace std_msgs
   class Time : public ros::Msg
   {
     public:
-      ros::Time data;
+      typedef ros::Time _data_type;
+      _data_type data;
 
     Time():
       data()
@@ -52,8 +54,8 @@ namespace std_msgs
      return offset;
     }
 
-    const char * getType(){ return "std_msgs/Time"; };
-    const char * getMD5(){ return "cd7166c74c552c311fbcc2fe5a7bc289"; };
+    const char * getType(){ return PSTR( "std_msgs/Time" ); };
+    const char * getMD5(){ return PSTR( "cd7166c74c552c311fbcc2fe5a7bc289" ); };
 
   };
 

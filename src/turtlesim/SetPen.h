@@ -4,20 +4,26 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 
 namespace turtlesim
 {
 
-static const char SETPEN[] = "turtlesim/SetPen";
+static const char SETPEN[] PROGMEM = "turtlesim/SetPen";
 
   class SetPenRequest : public ros::Msg
   {
     public:
-      uint8_t r;
-      uint8_t g;
-      uint8_t b;
-      uint8_t width;
-      uint8_t off;
+      typedef uint8_t _r_type;
+      _r_type r;
+      typedef uint8_t _g_type;
+      _g_type g;
+      typedef uint8_t _b_type;
+      _b_type b;
+      typedef uint8_t _width_type;
+      _width_type width;
+      typedef uint8_t _off_type;
+      _off_type off;
 
     SetPenRequest():
       r(0),
@@ -61,7 +67,7 @@ static const char SETPEN[] = "turtlesim/SetPen";
     }
 
     const char * getType(){ return SETPEN; };
-    const char * getMD5(){ return "9f452acce566bf0c0954594f69a8e41b"; };
+    const char * getMD5(){ return PSTR( "9f452acce566bf0c0954594f69a8e41b" ); };
 
   };
 
@@ -86,7 +92,7 @@ static const char SETPEN[] = "turtlesim/SetPen";
     }
 
     const char * getType(){ return SETPEN; };
-    const char * getMD5(){ return "d41d8cd98f00b204e9800998ecf8427e"; };
+    const char * getMD5(){ return PSTR( "d41d8cd98f00b204e9800998ecf8427e" ); };
 
   };
 

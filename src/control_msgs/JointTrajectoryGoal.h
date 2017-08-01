@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "trajectory_msgs/JointTrajectory.h"
 
 namespace control_msgs
@@ -13,7 +14,8 @@ namespace control_msgs
   class JointTrajectoryGoal : public ros::Msg
   {
     public:
-      trajectory_msgs::JointTrajectory trajectory;
+      typedef trajectory_msgs::JointTrajectory _trajectory_type;
+      _trajectory_type trajectory;
 
     JointTrajectoryGoal():
       trajectory()
@@ -34,8 +36,8 @@ namespace control_msgs
      return offset;
     }
 
-    const char * getType(){ return "control_msgs/JointTrajectoryGoal"; };
-    const char * getMD5(){ return "2a0eff76c870e8595636c2a562ca298e"; };
+    const char * getType(){ return PSTR( "control_msgs/JointTrajectoryGoal" ); };
+    const char * getMD5(){ return PSTR( "2a0eff76c870e8595636c2a562ca298e" ); };
 
   };
 

@@ -4,18 +4,22 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 
 namespace turtlesim
 {
 
-static const char TELEPORTABSOLUTE[] = "turtlesim/TeleportAbsolute";
+static const char TELEPORTABSOLUTE[] PROGMEM = "turtlesim/TeleportAbsolute";
 
   class TeleportAbsoluteRequest : public ros::Msg
   {
     public:
-      float x;
-      float y;
-      float theta;
+      typedef float _x_type;
+      _x_type x;
+      typedef float _y_type;
+      _y_type y;
+      typedef float _theta_type;
+      _theta_type theta;
 
     TeleportAbsoluteRequest():
       x(0),
@@ -100,7 +104,7 @@ static const char TELEPORTABSOLUTE[] = "turtlesim/TeleportAbsolute";
     }
 
     const char * getType(){ return TELEPORTABSOLUTE; };
-    const char * getMD5(){ return "a130bc60ee6513855dc62ea83fcc5b20"; };
+    const char * getMD5(){ return PSTR( "a130bc60ee6513855dc62ea83fcc5b20" ); };
 
   };
 
@@ -125,7 +129,7 @@ static const char TELEPORTABSOLUTE[] = "turtlesim/TeleportAbsolute";
     }
 
     const char * getType(){ return TELEPORTABSOLUTE; };
-    const char * getMD5(){ return "d41d8cd98f00b204e9800998ecf8427e"; };
+    const char * getMD5(){ return PSTR( "d41d8cd98f00b204e9800998ecf8427e" ); };
 
   };
 

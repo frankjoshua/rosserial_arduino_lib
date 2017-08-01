@@ -4,11 +4,12 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 
 namespace roscpp
 {
 
-static const char EMPTY[] = "roscpp/Empty";
+static const char EMPTY[] PROGMEM = "roscpp/Empty";
 
   class EmptyRequest : public ros::Msg
   {
@@ -31,7 +32,7 @@ static const char EMPTY[] = "roscpp/Empty";
     }
 
     const char * getType(){ return EMPTY; };
-    const char * getMD5(){ return "d41d8cd98f00b204e9800998ecf8427e"; };
+    const char * getMD5(){ return PSTR( "d41d8cd98f00b204e9800998ecf8427e" ); };
 
   };
 
@@ -56,7 +57,7 @@ static const char EMPTY[] = "roscpp/Empty";
     }
 
     const char * getType(){ return EMPTY; };
-    const char * getMD5(){ return "d41d8cd98f00b204e9800998ecf8427e"; };
+    const char * getMD5(){ return PSTR( "d41d8cd98f00b204e9800998ecf8427e" ); };
 
   };
 

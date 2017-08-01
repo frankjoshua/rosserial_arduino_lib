@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "std_msgs/Header.h"
 #include "geometry_msgs/Accel.h"
 
@@ -14,8 +15,10 @@ namespace geometry_msgs
   class AccelStamped : public ros::Msg
   {
     public:
-      std_msgs::Header header;
-      geometry_msgs::Accel accel;
+      typedef std_msgs::Header _header_type;
+      _header_type header;
+      typedef geometry_msgs::Accel _accel_type;
+      _accel_type accel;
 
     AccelStamped():
       header(),
@@ -39,8 +42,8 @@ namespace geometry_msgs
      return offset;
     }
 
-    const char * getType(){ return "geometry_msgs/AccelStamped"; };
-    const char * getMD5(){ return "d8a98a5d81351b6eb0578c78557e7659"; };
+    const char * getType(){ return PSTR( "geometry_msgs/AccelStamped" ); };
+    const char * getMD5(){ return PSTR( "d8a98a5d81351b6eb0578c78557e7659" ); };
 
   };
 

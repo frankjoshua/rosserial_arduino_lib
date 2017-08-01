@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "nav_msgs/GetMapActionGoal.h"
 #include "nav_msgs/GetMapActionResult.h"
 #include "nav_msgs/GetMapActionFeedback.h"
@@ -15,9 +16,12 @@ namespace nav_msgs
   class GetMapAction : public ros::Msg
   {
     public:
-      nav_msgs::GetMapActionGoal action_goal;
-      nav_msgs::GetMapActionResult action_result;
-      nav_msgs::GetMapActionFeedback action_feedback;
+      typedef nav_msgs::GetMapActionGoal _action_goal_type;
+      _action_goal_type action_goal;
+      typedef nav_msgs::GetMapActionResult _action_result_type;
+      _action_result_type action_result;
+      typedef nav_msgs::GetMapActionFeedback _action_feedback_type;
+      _action_feedback_type action_feedback;
 
     GetMapAction():
       action_goal(),
@@ -44,8 +48,8 @@ namespace nav_msgs
      return offset;
     }
 
-    const char * getType(){ return "nav_msgs/GetMapAction"; };
-    const char * getMD5(){ return "e611ad23fbf237c031b7536416dc7cd7"; };
+    const char * getType(){ return PSTR( "nav_msgs/GetMapAction" ); };
+    const char * getMD5(){ return PSTR( "e611ad23fbf237c031b7536416dc7cd7" ); };
 
   };
 

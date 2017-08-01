@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 
 namespace geometry_msgs
 {
@@ -12,10 +13,14 @@ namespace geometry_msgs
   class Quaternion : public ros::Msg
   {
     public:
-      float x;
-      float y;
-      float z;
-      float w;
+      typedef float _x_type;
+      _x_type x;
+      typedef float _y_type;
+      _y_type y;
+      typedef float _z_type;
+      _z_type z;
+      typedef float _w_type;
+      _w_type w;
 
     Quaternion():
       x(0),
@@ -45,8 +50,8 @@ namespace geometry_msgs
      return offset;
     }
 
-    const char * getType(){ return "geometry_msgs/Quaternion"; };
-    const char * getMD5(){ return "a779879fadf0160734f906b8c19c7004"; };
+    const char * getType(){ return PSTR( "geometry_msgs/Quaternion" ); };
+    const char * getMD5(){ return PSTR( "a779879fadf0160734f906b8c19c7004" ); };
 
   };
 

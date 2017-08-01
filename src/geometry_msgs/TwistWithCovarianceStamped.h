@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "std_msgs/Header.h"
 #include "geometry_msgs/TwistWithCovariance.h"
 
@@ -14,8 +15,10 @@ namespace geometry_msgs
   class TwistWithCovarianceStamped : public ros::Msg
   {
     public:
-      std_msgs::Header header;
-      geometry_msgs::TwistWithCovariance twist;
+      typedef std_msgs::Header _header_type;
+      _header_type header;
+      typedef geometry_msgs::TwistWithCovariance _twist_type;
+      _twist_type twist;
 
     TwistWithCovarianceStamped():
       header(),
@@ -39,8 +42,8 @@ namespace geometry_msgs
      return offset;
     }
 
-    const char * getType(){ return "geometry_msgs/TwistWithCovarianceStamped"; };
-    const char * getMD5(){ return "8927a1a12fb2607ceea095b2dc440a96"; };
+    const char * getType(){ return PSTR( "geometry_msgs/TwistWithCovarianceStamped" ); };
+    const char * getMD5(){ return PSTR( "8927a1a12fb2607ceea095b2dc440a96" ); };
 
   };
 

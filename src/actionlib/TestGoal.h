@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 
 namespace actionlib
 {
@@ -12,7 +13,8 @@ namespace actionlib
   class TestGoal : public ros::Msg
   {
     public:
-      int32_t goal;
+      typedef int32_t _goal_type;
+      _goal_type goal;
 
     TestGoal():
       goal(0)
@@ -52,8 +54,8 @@ namespace actionlib
      return offset;
     }
 
-    const char * getType(){ return "actionlib/TestGoal"; };
-    const char * getMD5(){ return "18df0149936b7aa95588e3862476ebde"; };
+    const char * getType(){ return PSTR( "actionlib/TestGoal" ); };
+    const char * getMD5(){ return PSTR( "18df0149936b7aa95588e3862476ebde" ); };
 
   };
 

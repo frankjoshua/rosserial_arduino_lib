@@ -4,19 +4,22 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "sensor_msgs/PointCloud2.h"
 #include "ros/time.h"
 
 namespace laser_assembler
 {
 
-static const char ASSEMBLESCANS2[] = "laser_assembler/AssembleScans2";
+static const char ASSEMBLESCANS2[] PROGMEM = "laser_assembler/AssembleScans2";
 
   class AssembleScans2Request : public ros::Msg
   {
     public:
-      ros::Time begin;
-      ros::Time end;
+      typedef ros::Time _begin_type;
+      _begin_type begin;
+      typedef ros::Time _end_type;
+      _end_type end;
 
     AssembleScans2Request():
       begin(),
@@ -77,14 +80,15 @@ static const char ASSEMBLESCANS2[] = "laser_assembler/AssembleScans2";
     }
 
     const char * getType(){ return ASSEMBLESCANS2; };
-    const char * getMD5(){ return "b341004f74e15bf5e1b2053a9183bdc7"; };
+    const char * getMD5(){ return PSTR( "b341004f74e15bf5e1b2053a9183bdc7" ); };
 
   };
 
   class AssembleScans2Response : public ros::Msg
   {
     public:
-      sensor_msgs::PointCloud2 cloud;
+      typedef sensor_msgs::PointCloud2 _cloud_type;
+      _cloud_type cloud;
 
     AssembleScans2Response():
       cloud()
@@ -106,7 +110,7 @@ static const char ASSEMBLESCANS2[] = "laser_assembler/AssembleScans2";
     }
 
     const char * getType(){ return ASSEMBLESCANS2; };
-    const char * getMD5(){ return "96cec5374164b3b3d1d7ef5d7628a7ed"; };
+    const char * getMD5(){ return PSTR( "96cec5374164b3b3d1d7ef5d7628a7ed" ); };
 
   };
 

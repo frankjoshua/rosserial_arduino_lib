@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "std_msgs/Header.h"
 #include "geometry_msgs/PoseWithCovariance.h"
 
@@ -14,8 +15,10 @@ namespace geometry_msgs
   class PoseWithCovarianceStamped : public ros::Msg
   {
     public:
-      std_msgs::Header header;
-      geometry_msgs::PoseWithCovariance pose;
+      typedef std_msgs::Header _header_type;
+      _header_type header;
+      typedef geometry_msgs::PoseWithCovariance _pose_type;
+      _pose_type pose;
 
     PoseWithCovarianceStamped():
       header(),
@@ -39,8 +42,8 @@ namespace geometry_msgs
      return offset;
     }
 
-    const char * getType(){ return "geometry_msgs/PoseWithCovarianceStamped"; };
-    const char * getMD5(){ return "953b798c0f514ff060a53a3498ce6246"; };
+    const char * getType(){ return PSTR( "geometry_msgs/PoseWithCovarianceStamped" ); };
+    const char * getMD5(){ return PSTR( "953b798c0f514ff060a53a3498ce6246" ); };
 
   };
 

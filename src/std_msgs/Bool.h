@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 
 namespace std_msgs
 {
@@ -12,7 +13,8 @@ namespace std_msgs
   class Bool : public ros::Msg
   {
     public:
-      bool data;
+      typedef bool _data_type;
+      _data_type data;
 
     Bool():
       data(0)
@@ -46,8 +48,8 @@ namespace std_msgs
      return offset;
     }
 
-    const char * getType(){ return "std_msgs/Bool"; };
-    const char * getMD5(){ return "8b94c1b53db61fb6aed406028ad6332a"; };
+    const char * getType(){ return PSTR( "std_msgs/Bool" ); };
+    const char * getMD5(){ return PSTR( "8b94c1b53db61fb6aed406028ad6332a" ); };
 
   };
 

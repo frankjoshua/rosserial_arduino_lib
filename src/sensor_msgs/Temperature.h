@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "std_msgs/Header.h"
 
 namespace sensor_msgs
@@ -13,9 +14,12 @@ namespace sensor_msgs
   class Temperature : public ros::Msg
   {
     public:
-      std_msgs::Header header;
-      float temperature;
-      float variance;
+      typedef std_msgs::Header _header_type;
+      _header_type header;
+      typedef float _temperature_type;
+      _temperature_type temperature;
+      typedef float _variance_type;
+      _variance_type variance;
 
     Temperature():
       header(),
@@ -42,8 +46,8 @@ namespace sensor_msgs
      return offset;
     }
 
-    const char * getType(){ return "sensor_msgs/Temperature"; };
-    const char * getMD5(){ return "ff71b307acdbe7c871a5a6d7ed359100"; };
+    const char * getType(){ return PSTR( "sensor_msgs/Temperature" ); };
+    const char * getMD5(){ return PSTR( "ff71b307acdbe7c871a5a6d7ed359100" ); };
 
   };
 

@@ -4,17 +4,20 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 
 namespace turtlesim
 {
 
-static const char TELEPORTRELATIVE[] = "turtlesim/TeleportRelative";
+static const char TELEPORTRELATIVE[] PROGMEM = "turtlesim/TeleportRelative";
 
   class TeleportRelativeRequest : public ros::Msg
   {
     public:
-      float linear;
-      float angular;
+      typedef float _linear_type;
+      _linear_type linear;
+      typedef float _angular_type;
+      _angular_type angular;
 
     TeleportRelativeRequest():
       linear(0),
@@ -77,7 +80,7 @@ static const char TELEPORTRELATIVE[] = "turtlesim/TeleportRelative";
     }
 
     const char * getType(){ return TELEPORTRELATIVE; };
-    const char * getMD5(){ return "9d5c2dcd348ac8f76ce2a4307bd63a13"; };
+    const char * getMD5(){ return PSTR( "9d5c2dcd348ac8f76ce2a4307bd63a13" ); };
 
   };
 
@@ -102,7 +105,7 @@ static const char TELEPORTRELATIVE[] = "turtlesim/TeleportRelative";
     }
 
     const char * getType(){ return TELEPORTRELATIVE; };
-    const char * getMD5(){ return "d41d8cd98f00b204e9800998ecf8427e"; };
+    const char * getMD5(){ return PSTR( "d41d8cd98f00b204e9800998ecf8427e" ); };
 
   };
 

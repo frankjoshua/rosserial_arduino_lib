@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "std_msgs/Header.h"
 
 namespace sensor_msgs
@@ -13,9 +14,12 @@ namespace sensor_msgs
   class RelativeHumidity : public ros::Msg
   {
     public:
-      std_msgs::Header header;
-      float relative_humidity;
-      float variance;
+      typedef std_msgs::Header _header_type;
+      _header_type header;
+      typedef float _relative_humidity_type;
+      _relative_humidity_type relative_humidity;
+      typedef float _variance_type;
+      _variance_type variance;
 
     RelativeHumidity():
       header(),
@@ -42,8 +46,8 @@ namespace sensor_msgs
      return offset;
     }
 
-    const char * getType(){ return "sensor_msgs/RelativeHumidity"; };
-    const char * getMD5(){ return "8730015b05955b7e992ce29a2678d90f"; };
+    const char * getType(){ return PSTR( "sensor_msgs/RelativeHumidity" ); };
+    const char * getMD5(){ return PSTR( "8730015b05955b7e992ce29a2678d90f" ); };
 
   };
 

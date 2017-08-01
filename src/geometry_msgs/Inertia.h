@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "geometry_msgs/Vector3.h"
 
 namespace geometry_msgs
@@ -13,14 +14,22 @@ namespace geometry_msgs
   class Inertia : public ros::Msg
   {
     public:
-      float m;
-      geometry_msgs::Vector3 com;
-      float ixx;
-      float ixy;
-      float ixz;
-      float iyy;
-      float iyz;
-      float izz;
+      typedef float _m_type;
+      _m_type m;
+      typedef geometry_msgs::Vector3 _com_type;
+      _com_type com;
+      typedef float _ixx_type;
+      _ixx_type ixx;
+      typedef float _ixy_type;
+      _ixy_type ixy;
+      typedef float _ixz_type;
+      _ixz_type ixz;
+      typedef float _iyy_type;
+      _iyy_type iyy;
+      typedef float _iyz_type;
+      _iyz_type iyz;
+      typedef float _izz_type;
+      _izz_type izz;
 
     Inertia():
       m(0),
@@ -62,8 +71,8 @@ namespace geometry_msgs
      return offset;
     }
 
-    const char * getType(){ return "geometry_msgs/Inertia"; };
-    const char * getMD5(){ return "1d26e4bb6c83ff141c5cf0d883c2b0fe"; };
+    const char * getType(){ return PSTR( "geometry_msgs/Inertia" ); };
+    const char * getMD5(){ return PSTR( "1d26e4bb6c83ff141c5cf0d883c2b0fe" ); };
 
   };
 

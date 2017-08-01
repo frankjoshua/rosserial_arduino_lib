@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "std_msgs/Header.h"
 #include "geometry_msgs/AccelWithCovariance.h"
 
@@ -14,8 +15,10 @@ namespace geometry_msgs
   class AccelWithCovarianceStamped : public ros::Msg
   {
     public:
-      std_msgs::Header header;
-      geometry_msgs::AccelWithCovariance accel;
+      typedef std_msgs::Header _header_type;
+      _header_type header;
+      typedef geometry_msgs::AccelWithCovariance _accel_type;
+      _accel_type accel;
 
     AccelWithCovarianceStamped():
       header(),
@@ -39,8 +42,8 @@ namespace geometry_msgs
      return offset;
     }
 
-    const char * getType(){ return "geometry_msgs/AccelWithCovarianceStamped"; };
-    const char * getMD5(){ return "96adb295225031ec8d57fb4251b0a886"; };
+    const char * getType(){ return PSTR( "geometry_msgs/AccelWithCovarianceStamped" ); };
+    const char * getMD5(){ return PSTR( "96adb295225031ec8d57fb4251b0a886" ); };
 
   };
 

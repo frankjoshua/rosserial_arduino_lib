@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "geometry_msgs/TransformStamped.h"
 #include "tf2_msgs/TF2Error.h"
 
@@ -14,8 +15,10 @@ namespace tf2_msgs
   class LookupTransformResult : public ros::Msg
   {
     public:
-      geometry_msgs::TransformStamped transform;
-      tf2_msgs::TF2Error error;
+      typedef geometry_msgs::TransformStamped _transform_type;
+      _transform_type transform;
+      typedef tf2_msgs::TF2Error _error_type;
+      _error_type error;
 
     LookupTransformResult():
       transform(),
@@ -39,8 +42,8 @@ namespace tf2_msgs
      return offset;
     }
 
-    const char * getType(){ return "tf2_msgs/LookupTransformResult"; };
-    const char * getMD5(){ return "3fe5db6a19ca9cfb675418c5ad875c36"; };
+    const char * getType(){ return PSTR( "tf2_msgs/LookupTransformResult" ); };
+    const char * getMD5(){ return PSTR( "3fe5db6a19ca9cfb675418c5ad875c36" ); };
 
   };
 

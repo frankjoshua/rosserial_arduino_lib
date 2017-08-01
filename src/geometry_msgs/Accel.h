@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "geometry_msgs/Vector3.h"
 
 namespace geometry_msgs
@@ -13,8 +14,10 @@ namespace geometry_msgs
   class Accel : public ros::Msg
   {
     public:
-      geometry_msgs::Vector3 linear;
-      geometry_msgs::Vector3 angular;
+      typedef geometry_msgs::Vector3 _linear_type;
+      _linear_type linear;
+      typedef geometry_msgs::Vector3 _angular_type;
+      _angular_type angular;
 
     Accel():
       linear(),
@@ -38,8 +41,8 @@ namespace geometry_msgs
      return offset;
     }
 
-    const char * getType(){ return "geometry_msgs/Accel"; };
-    const char * getMD5(){ return "9f195f881246fdfa2798d1d3eebca84a"; };
+    const char * getType(){ return PSTR( "geometry_msgs/Accel" ); };
+    const char * getMD5(){ return PSTR( "9f195f881246fdfa2798d1d3eebca84a" ); };
 
   };
 

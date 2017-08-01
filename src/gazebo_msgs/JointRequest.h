@@ -4,16 +4,18 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 
 namespace gazebo_msgs
 {
 
-static const char JOINTREQUEST[] = "gazebo_msgs/JointRequest";
+static const char JOINTREQUEST[] PROGMEM = "gazebo_msgs/JointRequest";
 
   class JointRequestRequest : public ros::Msg
   {
     public:
-      const char* joint_name;
+      typedef const char* _joint_name_type;
+      _joint_name_type joint_name;
 
     JointRequestRequest():
       joint_name("")
@@ -24,7 +26,7 @@ static const char JOINTREQUEST[] = "gazebo_msgs/JointRequest";
     {
       int offset = 0;
       uint32_t length_joint_name = strlen(this->joint_name);
-      memcpy(outbuffer + offset, &length_joint_name, sizeof(uint32_t));
+      varToArr(outbuffer + offset, length_joint_name);
       offset += 4;
       memcpy(outbuffer + offset, this->joint_name, length_joint_name);
       offset += length_joint_name;
@@ -35,7 +37,7 @@ static const char JOINTREQUEST[] = "gazebo_msgs/JointRequest";
     {
       int offset = 0;
       uint32_t length_joint_name;
-      memcpy(&length_joint_name, (inbuffer + offset), sizeof(uint32_t));
+      arrToVar(length_joint_name, (inbuffer + offset));
       offset += 4;
       for(unsigned int k= offset; k< offset+length_joint_name; ++k){
           inbuffer[k-1]=inbuffer[k];
@@ -47,7 +49,7 @@ static const char JOINTREQUEST[] = "gazebo_msgs/JointRequest";
     }
 
     const char * getType(){ return JOINTREQUEST; };
-    const char * getMD5(){ return "0be1351618e1dc030eb7959d9a4902de"; };
+    const char * getMD5(){ return PSTR( "0be1351618e1dc030eb7959d9a4902de" ); };
 
   };
 
@@ -72,7 +74,7 @@ static const char JOINTREQUEST[] = "gazebo_msgs/JointRequest";
     }
 
     const char * getType(){ return JOINTREQUEST; };
-    const char * getMD5(){ return "d41d8cd98f00b204e9800998ecf8427e"; };
+    const char * getMD5(){ return PSTR( "d41d8cd98f00b204e9800998ecf8427e" ); };
 
   };
 
