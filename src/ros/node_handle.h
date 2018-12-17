@@ -533,7 +533,7 @@ namespace ros {
 
         /* calculate checksum */
         int chk = 0;
-        for(int i =5; i<l+7; i++)
+        for(uint16_t i=5; i<l+7; i++)
           chk += message_out[i];
         l += 7;
         message_out[l++] = 255 - (chk%256);
