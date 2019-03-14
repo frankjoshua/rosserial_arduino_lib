@@ -41,7 +41,7 @@
   #include <WProgram.h>  // Arduino 0022
 #endif
 
-#if defined(__MK20DX128__) || defined(__MK20DX256__)
+#if defined(__MK20DX128__) || defined(__MK20DX256__) || defined(__MKL26Z64__) || defined(__MK64FX512__) || defined(__MK66FX1M0__)
   #include <usb_serial.h>  // Teensy 3.0 and 3.1
   #define SERIAL_CLASS usb_serial_class
 #elif defined(_SAM3XA_)
