@@ -46,9 +46,9 @@ class MKR1000Hardware {
       this->serverPort = port;
     }
 
-    // IPAddress getLocalIP() {
-    //   return tcp.localIP();
-    // }
+    IPAddress getLocalIP() {
+      return WiFi.localIP();
+    }
 
     void init() {
       this->tcp.connect(this->server, this->serverPort);
