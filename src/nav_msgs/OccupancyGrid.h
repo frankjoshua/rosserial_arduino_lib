@@ -80,8 +80,16 @@ namespace nav_msgs
      return offset;
     }
 
-    const char * getType(){ return PSTR( "nav_msgs/OccupancyGrid" ); };
-    const char * getMD5(){ return PSTR( "3381f2d731d4076ec5c71b0759edbe4e" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("nav_msgs/OccupancyGrid");};
+    #else
+        const char * getType() { return  PSTR("nav_msgs/OccupancyGrid");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("3381f2d731d4076ec5c71b0759edbe4e");};
+    #else
+        const char * getMD5() { return  PSTR("3381f2d731d4076ec5c71b0759edbe4e");};
+    #endif
 
   };
 

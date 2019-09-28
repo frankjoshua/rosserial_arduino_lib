@@ -36,8 +36,16 @@ namespace nav_msgs
      return offset;
     }
 
-    const char * getType(){ return PSTR( "nav_msgs/GetMapResult" ); };
-    const char * getMD5(){ return PSTR( "6cdd0a18e0aff5b0a3ca2326a89b54ff" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("nav_msgs/GetMapResult");};
+    #else
+        const char * getType() { return  PSTR("nav_msgs/GetMapResult");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("6cdd0a18e0aff5b0a3ca2326a89b54ff");};
+    #else
+        const char * getMD5() { return  PSTR("6cdd0a18e0aff5b0a3ca2326a89b54ff");};
+    #endif
 
   };
 

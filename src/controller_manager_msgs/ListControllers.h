@@ -10,7 +10,11 @@
 namespace controller_manager_msgs
 {
 
-static const char LISTCONTROLLERS[] PROGMEM = "controller_manager_msgs/ListControllers";
+#ifdef ESP8266
+    static const char LISTCONTROLLERS[] = "controller_manager_msgs/ListControllers";
+#else
+    static const char LISTCONTROLLERS[] PROGMEM = "controller_manager_msgs/ListControllers";
+#endif
 
   class ListControllersRequest : public ros::Msg
   {
@@ -33,7 +37,11 @@ static const char LISTCONTROLLERS[] PROGMEM = "controller_manager_msgs/ListContr
     }
 
     const char * getType(){ return LISTCONTROLLERS; };
-    const char * getMD5(){ return PSTR( "d41d8cd98f00b204e9800998ecf8427e" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("d41d8cd98f00b204e9800998ecf8427e");};
+    #else
+        const char * getMD5() { return  PSTR("d41d8cd98f00b204e9800998ecf8427e");};
+    #endif
 
   };
 
@@ -83,7 +91,11 @@ static const char LISTCONTROLLERS[] PROGMEM = "controller_manager_msgs/ListContr
     }
 
     const char * getType(){ return LISTCONTROLLERS; };
-    const char * getMD5(){ return PSTR( "1341feb2e63fa791f855565d0da950d8" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("1341feb2e63fa791f855565d0da950d8");};
+    #else
+        const char * getMD5() { return  PSTR("1341feb2e63fa791f855565d0da950d8");};
+    #endif
 
   };
 

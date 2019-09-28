@@ -57,8 +57,16 @@ namespace map_msgs
      return offset;
     }
 
-    const char * getType(){ return PSTR( "map_msgs/PointCloud2Update" ); };
-    const char * getMD5(){ return PSTR( "6c58e4f249ae9cd2b24fb1ee0f99195e" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("map_msgs/PointCloud2Update");};
+    #else
+        const char * getType() { return  PSTR("map_msgs/PointCloud2Update");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("6c58e4f249ae9cd2b24fb1ee0f99195e");};
+    #else
+        const char * getMD5() { return  PSTR("6c58e4f249ae9cd2b24fb1ee0f99195e");};
+    #endif
 
   };
 

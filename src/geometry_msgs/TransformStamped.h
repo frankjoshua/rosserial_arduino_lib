@@ -59,8 +59,16 @@ namespace geometry_msgs
      return offset;
     }
 
-    const char * getType(){ return PSTR( "geometry_msgs/TransformStamped" ); };
-    const char * getMD5(){ return PSTR( "b5764a33bfeb3588febc2682852579b0" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("geometry_msgs/TransformStamped");};
+    #else
+        const char * getType() { return  PSTR("geometry_msgs/TransformStamped");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("b5764a33bfeb3588febc2682852579b0");};
+    #else
+        const char * getMD5() { return  PSTR("b5764a33bfeb3588febc2682852579b0");};
+    #endif
 
   };
 

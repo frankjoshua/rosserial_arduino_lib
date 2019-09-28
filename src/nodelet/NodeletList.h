@@ -9,7 +9,11 @@
 namespace nodelet
 {
 
-static const char NODELETLIST[] PROGMEM = "nodelet/NodeletList";
+#ifdef ESP8266
+    static const char NODELETLIST[] = "nodelet/NodeletList";
+#else
+    static const char NODELETLIST[] PROGMEM = "nodelet/NodeletList";
+#endif
 
   class NodeletListRequest : public ros::Msg
   {
@@ -32,7 +36,11 @@ static const char NODELETLIST[] PROGMEM = "nodelet/NodeletList";
     }
 
     const char * getType(){ return NODELETLIST; };
-    const char * getMD5(){ return PSTR( "d41d8cd98f00b204e9800998ecf8427e" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("d41d8cd98f00b204e9800998ecf8427e");};
+    #else
+        const char * getMD5() { return  PSTR("d41d8cd98f00b204e9800998ecf8427e");};
+    #endif
 
   };
 
@@ -94,7 +102,11 @@ static const char NODELETLIST[] PROGMEM = "nodelet/NodeletList";
     }
 
     const char * getType(){ return NODELETLIST; };
-    const char * getMD5(){ return PSTR( "99c7b10e794f5600b8030e697e946ca7" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("99c7b10e794f5600b8030e697e946ca7");};
+    #else
+        const char * getMD5() { return  PSTR("99c7b10e794f5600b8030e697e946ca7");};
+    #endif
 
   };
 

@@ -48,8 +48,16 @@ namespace nav_msgs
      return offset;
     }
 
-    const char * getType(){ return PSTR( "nav_msgs/GetMapAction" ); };
-    const char * getMD5(){ return PSTR( "e611ad23fbf237c031b7536416dc7cd7" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("nav_msgs/GetMapAction");};
+    #else
+        const char * getType() { return  PSTR("nav_msgs/GetMapAction");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("e611ad23fbf237c031b7536416dc7cd7");};
+    #else
+        const char * getMD5() { return  PSTR("e611ad23fbf237c031b7536416dc7cd7");};
+    #endif
 
   };
 

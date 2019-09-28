@@ -56,8 +56,16 @@ namespace tf2_msgs
      return offset;
     }
 
-    const char * getType(){ return PSTR( "tf2_msgs/TFMessage" ); };
-    const char * getMD5(){ return PSTR( "94810edda583a504dfda3829e70d7eec" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("tf2_msgs/TFMessage");};
+    #else
+        const char * getType() { return  PSTR("tf2_msgs/TFMessage");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("94810edda583a504dfda3829e70d7eec");};
+    #else
+        const char * getMD5() { return  PSTR("94810edda583a504dfda3829e70d7eec");};
+    #endif
 
   };
 

@@ -77,8 +77,16 @@ namespace sensor_msgs
      return offset;
     }
 
-    const char * getType(){ return PSTR( "sensor_msgs/TimeReference" ); };
-    const char * getMD5(){ return PSTR( "fded64a0265108ba86c3d38fb11c0c16" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("sensor_msgs/TimeReference");};
+    #else
+        const char * getType() { return  PSTR("sensor_msgs/TimeReference");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("fded64a0265108ba86c3d38fb11c0c16");};
+    #else
+        const char * getMD5() { return  PSTR("fded64a0265108ba86c3d38fb11c0c16");};
+    #endif
 
   };
 

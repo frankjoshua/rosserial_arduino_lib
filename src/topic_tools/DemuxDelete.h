@@ -9,7 +9,11 @@
 namespace topic_tools
 {
 
-static const char DEMUXDELETE[] PROGMEM = "topic_tools/DemuxDelete";
+#ifdef ESP8266
+    static const char DEMUXDELETE[] = "topic_tools/DemuxDelete";
+#else
+    static const char DEMUXDELETE[] PROGMEM = "topic_tools/DemuxDelete";
+#endif
 
   class DemuxDeleteRequest : public ros::Msg
   {
@@ -49,7 +53,11 @@ static const char DEMUXDELETE[] PROGMEM = "topic_tools/DemuxDelete";
     }
 
     const char * getType(){ return DEMUXDELETE; };
-    const char * getMD5(){ return PSTR( "d8f94bae31b356b24d0427f80426d0c3" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("d8f94bae31b356b24d0427f80426d0c3");};
+    #else
+        const char * getMD5() { return  PSTR("d8f94bae31b356b24d0427f80426d0c3");};
+    #endif
 
   };
 
@@ -74,7 +82,11 @@ static const char DEMUXDELETE[] PROGMEM = "topic_tools/DemuxDelete";
     }
 
     const char * getType(){ return DEMUXDELETE; };
-    const char * getMD5(){ return PSTR( "d41d8cd98f00b204e9800998ecf8427e" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("d41d8cd98f00b204e9800998ecf8427e");};
+    #else
+        const char * getMD5() { return  PSTR("d41d8cd98f00b204e9800998ecf8427e");};
+    #endif
 
   };
 

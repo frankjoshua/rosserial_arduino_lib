@@ -186,8 +186,16 @@ namespace gps_common
      return offset;
     }
 
-    const char * getType(){ return PSTR( "gps_common/GPSFix" ); };
-    const char * getMD5(){ return PSTR( "3db3d0a7bc53054c67c528af84710b70" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("gps_common/GPSFix");};
+    #else
+        const char * getType() { return  PSTR("gps_common/GPSFix");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("3db3d0a7bc53054c67c528af84710b70");};
+    #else
+        const char * getMD5() { return  PSTR("3db3d0a7bc53054c67c528af84710b70");};
+    #endif
 
   };
 

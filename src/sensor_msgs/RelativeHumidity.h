@@ -46,8 +46,16 @@ namespace sensor_msgs
      return offset;
     }
 
-    const char * getType(){ return PSTR( "sensor_msgs/RelativeHumidity" ); };
-    const char * getMD5(){ return PSTR( "8730015b05955b7e992ce29a2678d90f" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("sensor_msgs/RelativeHumidity");};
+    #else
+        const char * getType() { return  PSTR("sensor_msgs/RelativeHumidity");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("8730015b05955b7e992ce29a2678d90f");};
+    #else
+        const char * getMD5() { return  PSTR("8730015b05955b7e992ce29a2678d90f");};
+    #endif
 
   };
 

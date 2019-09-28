@@ -68,8 +68,16 @@ namespace pcl_msgs
      return offset;
     }
 
-    const char * getType(){ return PSTR( "pcl_msgs/PolygonMesh" ); };
-    const char * getMD5(){ return PSTR( "45a5fc6ad2cde8489600a790acc9a38a" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("pcl_msgs/PolygonMesh");};
+    #else
+        const char * getType() { return  PSTR("pcl_msgs/PolygonMesh");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("45a5fc6ad2cde8489600a790acc9a38a");};
+    #else
+        const char * getMD5() { return  PSTR("45a5fc6ad2cde8489600a790acc9a38a");};
+    #endif
 
   };
 

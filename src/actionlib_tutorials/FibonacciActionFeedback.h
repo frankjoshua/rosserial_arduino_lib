@@ -48,8 +48,16 @@ namespace actionlib_tutorials
      return offset;
     }
 
-    const char * getType(){ return PSTR( "actionlib_tutorials/FibonacciActionFeedback" ); };
-    const char * getMD5(){ return PSTR( "73b8497a9f629a31c0020900e4148f07" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("actionlib_tutorials/FibonacciActionFeedback");};
+    #else
+        const char * getType() { return  PSTR("actionlib_tutorials/FibonacciActionFeedback");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("73b8497a9f629a31c0020900e4148f07");};
+    #else
+        const char * getMD5() { return  PSTR("73b8497a9f629a31c0020900e4148f07");};
+    #endif
 
   };
 

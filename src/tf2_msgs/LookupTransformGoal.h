@@ -170,8 +170,16 @@ namespace tf2_msgs
      return offset;
     }
 
-    const char * getType(){ return PSTR( "tf2_msgs/LookupTransformGoal" ); };
-    const char * getMD5(){ return PSTR( "35e3720468131d675a18bb6f3e5f22f8" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("tf2_msgs/LookupTransformGoal");};
+    #else
+        const char * getType() { return  PSTR("tf2_msgs/LookupTransformGoal");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("35e3720468131d675a18bb6f3e5f22f8");};
+    #else
+        const char * getMD5() { return  PSTR("35e3720468131d675a18bb6f3e5f22f8");};
+    #endif
 
   };
 

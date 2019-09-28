@@ -91,8 +91,16 @@ namespace sensor_msgs
      return offset;
     }
 
-    const char * getType(){ return PSTR( "sensor_msgs/ChannelFloat32" ); };
-    const char * getMD5(){ return PSTR( "3d40139cdd33dfedcb71ffeeeb42ae7f" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("sensor_msgs/ChannelFloat32");};
+    #else
+        const char * getType() { return  PSTR("sensor_msgs/ChannelFloat32");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("3d40139cdd33dfedcb71ffeeeb42ae7f");};
+    #else
+        const char * getMD5() { return  PSTR("3d40139cdd33dfedcb71ffeeeb42ae7f");};
+    #endif
 
   };
 

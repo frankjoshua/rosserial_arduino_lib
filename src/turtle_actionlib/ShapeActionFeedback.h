@@ -48,8 +48,16 @@ namespace turtle_actionlib
      return offset;
     }
 
-    const char * getType(){ return PSTR( "turtle_actionlib/ShapeActionFeedback" ); };
-    const char * getMD5(){ return PSTR( "aae20e09065c3809e8a8e87c4c8953fd" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("turtle_actionlib/ShapeActionFeedback");};
+    #else
+        const char * getType() { return  PSTR("turtle_actionlib/ShapeActionFeedback");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("aae20e09065c3809e8a8e87c4c8953fd");};
+    #else
+        const char * getMD5() { return  PSTR("aae20e09065c3809e8a8e87c4c8953fd");};
+    #endif
 
   };
 

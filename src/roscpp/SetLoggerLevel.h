@@ -9,7 +9,11 @@
 namespace roscpp
 {
 
-static const char SETLOGGERLEVEL[] PROGMEM = "roscpp/SetLoggerLevel";
+#ifdef ESP8266
+    static const char SETLOGGERLEVEL[] = "roscpp/SetLoggerLevel";
+#else
+    static const char SETLOGGERLEVEL[] PROGMEM = "roscpp/SetLoggerLevel";
+#endif
 
   class SetLoggerLevelRequest : public ros::Msg
   {
@@ -66,7 +70,11 @@ static const char SETLOGGERLEVEL[] PROGMEM = "roscpp/SetLoggerLevel";
     }
 
     const char * getType(){ return SETLOGGERLEVEL; };
-    const char * getMD5(){ return PSTR( "51da076440d78ca1684d36c868df61ea" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("51da076440d78ca1684d36c868df61ea");};
+    #else
+        const char * getMD5() { return  PSTR("51da076440d78ca1684d36c868df61ea");};
+    #endif
 
   };
 
@@ -91,7 +99,11 @@ static const char SETLOGGERLEVEL[] PROGMEM = "roscpp/SetLoggerLevel";
     }
 
     const char * getType(){ return SETLOGGERLEVEL; };
-    const char * getMD5(){ return PSTR( "d41d8cd98f00b204e9800998ecf8427e" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("d41d8cd98f00b204e9800998ecf8427e");};
+    #else
+        const char * getMD5() { return  PSTR("d41d8cd98f00b204e9800998ecf8427e");};
+    #endif
 
   };
 

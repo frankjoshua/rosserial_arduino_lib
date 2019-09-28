@@ -71,8 +71,16 @@ namespace geometry_msgs
      return offset;
     }
 
-    const char * getType(){ return PSTR( "geometry_msgs/Inertia" ); };
-    const char * getMD5(){ return PSTR( "1d26e4bb6c83ff141c5cf0d883c2b0fe" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("geometry_msgs/Inertia");};
+    #else
+        const char * getType() { return  PSTR("geometry_msgs/Inertia");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("1d26e4bb6c83ff141c5cf0d883c2b0fe");};
+    #else
+        const char * getMD5() { return  PSTR("1d26e4bb6c83ff141c5cf0d883c2b0fe");};
+    #endif
 
   };
 

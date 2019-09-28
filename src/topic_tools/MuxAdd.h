@@ -9,7 +9,11 @@
 namespace topic_tools
 {
 
-static const char MUXADD[] PROGMEM = "topic_tools/MuxAdd";
+#ifdef ESP8266
+    static const char MUXADD[] = "topic_tools/MuxAdd";
+#else
+    static const char MUXADD[] PROGMEM = "topic_tools/MuxAdd";
+#endif
 
   class MuxAddRequest : public ros::Msg
   {
@@ -49,7 +53,11 @@ static const char MUXADD[] PROGMEM = "topic_tools/MuxAdd";
     }
 
     const char * getType(){ return MUXADD; };
-    const char * getMD5(){ return PSTR( "d8f94bae31b356b24d0427f80426d0c3" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("d8f94bae31b356b24d0427f80426d0c3");};
+    #else
+        const char * getMD5() { return  PSTR("d8f94bae31b356b24d0427f80426d0c3");};
+    #endif
 
   };
 
@@ -74,7 +82,11 @@ static const char MUXADD[] PROGMEM = "topic_tools/MuxAdd";
     }
 
     const char * getType(){ return MUXADD; };
-    const char * getMD5(){ return PSTR( "d41d8cd98f00b204e9800998ecf8427e" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("d41d8cd98f00b204e9800998ecf8427e");};
+    #else
+        const char * getMD5() { return  PSTR("d41d8cd98f00b204e9800998ecf8427e");};
+    #endif
 
   };
 

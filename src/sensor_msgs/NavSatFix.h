@@ -76,8 +76,16 @@ namespace sensor_msgs
      return offset;
     }
 
-    const char * getType(){ return PSTR( "sensor_msgs/NavSatFix" ); };
-    const char * getMD5(){ return PSTR( "2d3a8cd499b9b4a0249fb98fd05cfa48" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("sensor_msgs/NavSatFix");};
+    #else
+        const char * getType() { return  PSTR("sensor_msgs/NavSatFix");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("2d3a8cd499b9b4a0249fb98fd05cfa48");};
+    #else
+        const char * getMD5() { return  PSTR("2d3a8cd499b9b4a0249fb98fd05cfa48");};
+    #endif
 
   };
 

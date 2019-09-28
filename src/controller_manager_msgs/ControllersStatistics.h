@@ -62,8 +62,16 @@ namespace controller_manager_msgs
      return offset;
     }
 
-    const char * getType(){ return PSTR( "controller_manager_msgs/ControllersStatistics" ); };
-    const char * getMD5(){ return PSTR( "a154c347736773e3700d1719105df29d" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("controller_manager_msgs/ControllersStatistics");};
+    #else
+        const char * getType() { return  PSTR("controller_manager_msgs/ControllersStatistics");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("a154c347736773e3700d1719105df29d");};
+    #else
+        const char * getMD5() { return  PSTR("a154c347736773e3700d1719105df29d");};
+    #endif
 
   };
 

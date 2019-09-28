@@ -71,8 +71,16 @@ namespace sensor_msgs
      return offset;
     }
 
-    const char * getType(){ return PSTR( "sensor_msgs/JoyFeedback" ); };
-    const char * getMD5(){ return PSTR( "f4dcd73460360d98f36e55ee7f2e46f1" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("sensor_msgs/JoyFeedback");};
+    #else
+        const char * getType() { return  PSTR("sensor_msgs/JoyFeedback");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("f4dcd73460360d98f36e55ee7f2e46f1");};
+    #else
+        const char * getMD5() { return  PSTR("f4dcd73460360d98f36e55ee7f2e46f1");};
+    #endif
 
   };
 

@@ -78,8 +78,16 @@ namespace turtle_actionlib
      return offset;
     }
 
-    const char * getType(){ return PSTR( "turtle_actionlib/ShapeResult" ); };
-    const char * getMD5(){ return PSTR( "b06c6e2225f820dbc644270387cd1a7c" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("turtle_actionlib/ShapeResult");};
+    #else
+        const char * getType() { return  PSTR("turtle_actionlib/ShapeResult");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("b06c6e2225f820dbc644270387cd1a7c");};
+    #else
+        const char * getMD5() { return  PSTR("b06c6e2225f820dbc644270387cd1a7c");};
+    #endif
 
   };
 

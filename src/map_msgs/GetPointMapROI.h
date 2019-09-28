@@ -10,7 +10,11 @@
 namespace map_msgs
 {
 
-static const char GETPOINTMAPROI[] PROGMEM = "map_msgs/GetPointMapROI";
+#ifdef ESP8266
+    static const char GETPOINTMAPROI[] = "map_msgs/GetPointMapROI";
+#else
+    static const char GETPOINTMAPROI[] PROGMEM = "map_msgs/GetPointMapROI";
+#endif
 
   class GetPointMapROIRequest : public ros::Msg
   {
@@ -68,7 +72,11 @@ static const char GETPOINTMAPROI[] PROGMEM = "map_msgs/GetPointMapROI";
     }
 
     const char * getType(){ return GETPOINTMAPROI; };
-    const char * getMD5(){ return PSTR( "895f7e437a9a6dd225316872b187a303" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("895f7e437a9a6dd225316872b187a303");};
+    #else
+        const char * getMD5() { return  PSTR("895f7e437a9a6dd225316872b187a303");};
+    #endif
 
   };
 
@@ -98,7 +106,11 @@ static const char GETPOINTMAPROI[] PROGMEM = "map_msgs/GetPointMapROI";
     }
 
     const char * getType(){ return GETPOINTMAPROI; };
-    const char * getMD5(){ return PSTR( "313769f8b0e724525c6463336cbccd63" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("313769f8b0e724525c6463336cbccd63");};
+    #else
+        const char * getMD5() { return  PSTR("313769f8b0e724525c6463336cbccd63");};
+    #endif
 
   };
 

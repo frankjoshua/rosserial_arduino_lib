@@ -46,8 +46,16 @@ namespace shape_msgs
      return offset;
     }
 
-    const char * getType(){ return PSTR( "shape_msgs/MeshTriangle" ); };
-    const char * getMD5(){ return PSTR( "23688b2e6d2de3d32fe8af104a903253" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("shape_msgs/MeshTriangle");};
+    #else
+        const char * getType() { return  PSTR("shape_msgs/MeshTriangle");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("23688b2e6d2de3d32fe8af104a903253");};
+    #else
+        const char * getMD5() { return  PSTR("23688b2e6d2de3d32fe8af104a903253");};
+    #endif
 
   };
 

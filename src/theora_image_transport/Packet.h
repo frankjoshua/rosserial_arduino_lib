@@ -175,8 +175,16 @@ namespace theora_image_transport
      return offset;
     }
 
-    const char * getType(){ return PSTR( "theora_image_transport/Packet" ); };
-    const char * getMD5(){ return PSTR( "33ac4e14a7cff32e7e0d65f18bb410f3" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("theora_image_transport/Packet");};
+    #else
+        const char * getType() { return  PSTR("theora_image_transport/Packet");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("33ac4e14a7cff32e7e0d65f18bb410f3");};
+    #else
+        const char * getMD5() { return  PSTR("33ac4e14a7cff32e7e0d65f18bb410f3");};
+    #endif
 
   };
 

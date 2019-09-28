@@ -54,8 +54,16 @@ namespace std_msgs
      return offset;
     }
 
-    const char * getType(){ return PSTR( "std_msgs/Float32" ); };
-    const char * getMD5(){ return PSTR( "73fcbf46b49191e672908e50842a83d4" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("std_msgs/Float32");};
+    #else
+        const char * getType() { return  PSTR("std_msgs/Float32");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("73fcbf46b49191e672908e50842a83d4");};
+    #else
+        const char * getMD5() { return  PSTR("73fcbf46b49191e672908e50842a83d4");};
+    #endif
 
   };
 

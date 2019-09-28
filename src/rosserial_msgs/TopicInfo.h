@@ -122,8 +122,16 @@ namespace rosserial_msgs
      return offset;
     }
 
-    const char * getType(){ return PSTR( "rosserial_msgs/TopicInfo" ); };
-    const char * getMD5(){ return PSTR( "0ad51f88fc44892f8c10684077646005" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("rosserial_msgs/TopicInfo");};
+    #else
+        const char * getType() { return  PSTR("rosserial_msgs/TopicInfo");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("0ad51f88fc44892f8c10684077646005");};
+    #else
+        const char * getMD5() { return  PSTR("0ad51f88fc44892f8c10684077646005");};
+    #endif
 
   };
 

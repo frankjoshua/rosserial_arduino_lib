@@ -9,7 +9,11 @@
 namespace gazebo_msgs
 {
 
-static const char GETWORLDPROPERTIES[] PROGMEM = "gazebo_msgs/GetWorldProperties";
+#ifdef ESP8266
+    static const char GETWORLDPROPERTIES[] = "gazebo_msgs/GetWorldProperties";
+#else
+    static const char GETWORLDPROPERTIES[] PROGMEM = "gazebo_msgs/GetWorldProperties";
+#endif
 
   class GetWorldPropertiesRequest : public ros::Msg
   {
@@ -32,7 +36,11 @@ static const char GETWORLDPROPERTIES[] PROGMEM = "gazebo_msgs/GetWorldProperties
     }
 
     const char * getType(){ return GETWORLDPROPERTIES; };
-    const char * getMD5(){ return PSTR( "d41d8cd98f00b204e9800998ecf8427e" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("d41d8cd98f00b204e9800998ecf8427e");};
+    #else
+        const char * getMD5() { return  PSTR("d41d8cd98f00b204e9800998ecf8427e");};
+    #endif
 
   };
 
@@ -152,7 +160,11 @@ static const char GETWORLDPROPERTIES[] PROGMEM = "gazebo_msgs/GetWorldProperties
     }
 
     const char * getType(){ return GETWORLDPROPERTIES; };
-    const char * getMD5(){ return PSTR( "36bb0f2eccf4d8be971410c22818ba3f" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("36bb0f2eccf4d8be971410c22818ba3f");};
+    #else
+        const char * getMD5() { return  PSTR("36bb0f2eccf4d8be971410c22818ba3f");};
+    #endif
 
   };
 

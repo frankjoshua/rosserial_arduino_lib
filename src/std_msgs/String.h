@@ -47,8 +47,16 @@ namespace std_msgs
      return offset;
     }
 
-    const char * getType(){ return PSTR( "std_msgs/String" ); };
-    const char * getMD5(){ return PSTR( "992ce8a1687cec8c8bd883ec73ca41d1" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("std_msgs/String");};
+    #else
+        const char * getType() { return  PSTR("std_msgs/String");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("992ce8a1687cec8c8bd883ec73ca41d1");};
+    #else
+        const char * getMD5() { return  PSTR("992ce8a1687cec8c8bd883ec73ca41d1");};
+    #endif
 
   };
 

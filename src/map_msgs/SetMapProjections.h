@@ -10,7 +10,11 @@
 namespace map_msgs
 {
 
-static const char SETMAPPROJECTIONS[] PROGMEM = "map_msgs/SetMapProjections";
+#ifdef ESP8266
+    static const char SETMAPPROJECTIONS[] = "map_msgs/SetMapProjections";
+#else
+    static const char SETMAPPROJECTIONS[] PROGMEM = "map_msgs/SetMapProjections";
+#endif
 
   class SetMapProjectionsRequest : public ros::Msg
   {
@@ -33,7 +37,11 @@ static const char SETMAPPROJECTIONS[] PROGMEM = "map_msgs/SetMapProjections";
     }
 
     const char * getType(){ return SETMAPPROJECTIONS; };
-    const char * getMD5(){ return PSTR( "d41d8cd98f00b204e9800998ecf8427e" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("d41d8cd98f00b204e9800998ecf8427e");};
+    #else
+        const char * getMD5() { return  PSTR("d41d8cd98f00b204e9800998ecf8427e");};
+    #endif
 
   };
 
@@ -83,7 +91,11 @@ static const char SETMAPPROJECTIONS[] PROGMEM = "map_msgs/SetMapProjections";
     }
 
     const char * getType(){ return SETMAPPROJECTIONS; };
-    const char * getMD5(){ return PSTR( "d7980a33202421c8cd74565e57a4d229" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("d7980a33202421c8cd74565e57a4d229");};
+    #else
+        const char * getMD5() { return  PSTR("d7980a33202421c8cd74565e57a4d229");};
+    #endif
 
   };
 

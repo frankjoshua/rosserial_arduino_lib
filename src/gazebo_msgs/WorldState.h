@@ -151,8 +151,16 @@ namespace gazebo_msgs
      return offset;
     }
 
-    const char * getType(){ return PSTR( "gazebo_msgs/WorldState" ); };
-    const char * getMD5(){ return PSTR( "de1a9de3ab7ba97ac0e9ec01a4eb481e" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("gazebo_msgs/WorldState");};
+    #else
+        const char * getType() { return  PSTR("gazebo_msgs/WorldState");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("de1a9de3ab7ba97ac0e9ec01a4eb481e");};
+    #else
+        const char * getMD5() { return  PSTR("de1a9de3ab7ba97ac0e9ec01a4eb481e");};
+    #endif
 
   };
 

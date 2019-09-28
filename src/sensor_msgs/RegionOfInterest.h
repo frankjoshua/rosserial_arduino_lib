@@ -100,8 +100,16 @@ namespace sensor_msgs
      return offset;
     }
 
-    const char * getType(){ return PSTR( "sensor_msgs/RegionOfInterest" ); };
-    const char * getMD5(){ return PSTR( "bdb633039d588fcccb441a4d43ccfe09" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("sensor_msgs/RegionOfInterest");};
+    #else
+        const char * getType() { return  PSTR("sensor_msgs/RegionOfInterest");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("bdb633039d588fcccb441a4d43ccfe09");};
+    #else
+        const char * getMD5() { return  PSTR("bdb633039d588fcccb441a4d43ccfe09");};
+    #endif
 
   };
 

@@ -9,7 +9,11 @@
 namespace rosserial_msgs
 {
 
-static const char REQUESTPARAM[] PROGMEM = "rosserial_msgs/RequestParam";
+#ifdef ESP8266
+    static const char REQUESTPARAM[] = "rosserial_msgs/RequestParam";
+#else
+    static const char REQUESTPARAM[] PROGMEM = "rosserial_msgs/RequestParam";
+#endif
 
   class RequestParamRequest : public ros::Msg
   {
@@ -49,7 +53,11 @@ static const char REQUESTPARAM[] PROGMEM = "rosserial_msgs/RequestParam";
     }
 
     const char * getType(){ return REQUESTPARAM; };
-    const char * getMD5(){ return PSTR( "c1f3d28f1b044c871e6eff2e9fc3c667" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("c1f3d28f1b044c871e6eff2e9fc3c667");};
+    #else
+        const char * getMD5() { return  PSTR("c1f3d28f1b044c871e6eff2e9fc3c667");};
+    #endif
 
   };
 
@@ -199,7 +207,11 @@ static const char REQUESTPARAM[] PROGMEM = "rosserial_msgs/RequestParam";
     }
 
     const char * getType(){ return REQUESTPARAM; };
-    const char * getMD5(){ return PSTR( "9f0e98bda65981986ddf53afa7a40e49" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("9f0e98bda65981986ddf53afa7a40e49");};
+    #else
+        const char * getMD5() { return  PSTR("9f0e98bda65981986ddf53afa7a40e49");};
+    #endif
 
   };
 

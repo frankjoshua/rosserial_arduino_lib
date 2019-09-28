@@ -46,8 +46,16 @@ namespace sensor_msgs
      return offset;
     }
 
-    const char * getType(){ return PSTR( "sensor_msgs/FluidPressure" ); };
-    const char * getMD5(){ return PSTR( "804dc5cea1c5306d6a2eb80b9833befe" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("sensor_msgs/FluidPressure");};
+    #else
+        const char * getType() { return  PSTR("sensor_msgs/FluidPressure");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("804dc5cea1c5306d6a2eb80b9833befe");};
+    #else
+        const char * getMD5() { return  PSTR("804dc5cea1c5306d6a2eb80b9833befe");};
+    #endif
 
   };
 

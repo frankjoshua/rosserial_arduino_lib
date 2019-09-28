@@ -38,8 +38,16 @@ namespace shape_msgs
      return offset;
     }
 
-    const char * getType(){ return PSTR( "shape_msgs/Plane" ); };
-    const char * getMD5(){ return PSTR( "2c1b92ed8f31492f8e73f6a4a44ca796" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("shape_msgs/Plane");};
+    #else
+        const char * getType() { return  PSTR("shape_msgs/Plane");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("2c1b92ed8f31492f8e73f6a4a44ca796");};
+    #else
+        const char * getMD5() { return  PSTR("2c1b92ed8f31492f8e73f6a4a44ca796");};
+    #endif
 
   };
 

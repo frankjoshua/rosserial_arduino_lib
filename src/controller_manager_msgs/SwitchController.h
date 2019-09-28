@@ -9,7 +9,11 @@
 namespace controller_manager_msgs
 {
 
-static const char SWITCHCONTROLLER[] PROGMEM = "controller_manager_msgs/SwitchController";
+#ifdef ESP8266
+    static const char SWITCHCONTROLLER[] = "controller_manager_msgs/SwitchController";
+#else
+    static const char SWITCHCONTROLLER[] PROGMEM = "controller_manager_msgs/SwitchController";
+#endif
 
   class SwitchControllerRequest : public ros::Msg
   {
@@ -132,7 +136,11 @@ static const char SWITCHCONTROLLER[] PROGMEM = "controller_manager_msgs/SwitchCo
     }
 
     const char * getType(){ return SWITCHCONTROLLER; };
-    const char * getMD5(){ return PSTR( "434da54adc434a5af5743ed711fd6ba1" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("434da54adc434a5af5743ed711fd6ba1");};
+    #else
+        const char * getMD5() { return  PSTR("434da54adc434a5af5743ed711fd6ba1");};
+    #endif
 
   };
 
@@ -175,7 +183,11 @@ static const char SWITCHCONTROLLER[] PROGMEM = "controller_manager_msgs/SwitchCo
     }
 
     const char * getType(){ return SWITCHCONTROLLER; };
-    const char * getMD5(){ return PSTR( "6f6da3883749771fac40d6deb24a8c02" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("6f6da3883749771fac40d6deb24a8c02");};
+    #else
+        const char * getMD5() { return  PSTR("6f6da3883749771fac40d6deb24a8c02");};
+    #endif
 
   };
 

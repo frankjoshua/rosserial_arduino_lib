@@ -99,8 +99,16 @@ namespace trajectory_msgs
      return offset;
     }
 
-    const char * getType(){ return PSTR( "trajectory_msgs/MultiDOFJointTrajectory" ); };
-    const char * getMD5(){ return PSTR( "ef145a45a5f47b77b7f5cdde4b16c942" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("trajectory_msgs/MultiDOFJointTrajectory");};
+    #else
+        const char * getType() { return  PSTR("trajectory_msgs/MultiDOFJointTrajectory");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("ef145a45a5f47b77b7f5cdde4b16c942");};
+    #else
+        const char * getMD5() { return  PSTR("ef145a45a5f47b77b7f5cdde4b16c942");};
+    #endif
 
   };
 

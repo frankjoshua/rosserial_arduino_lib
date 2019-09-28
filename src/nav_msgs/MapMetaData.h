@@ -110,8 +110,16 @@ namespace nav_msgs
      return offset;
     }
 
-    const char * getType(){ return PSTR( "nav_msgs/MapMetaData" ); };
-    const char * getMD5(){ return PSTR( "10cfc8a2818024d3248802c00c95f11b" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("nav_msgs/MapMetaData");};
+    #else
+        const char * getType() { return  PSTR("nav_msgs/MapMetaData");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("10cfc8a2818024d3248802c00c95f11b");};
+    #else
+        const char * getMD5() { return  PSTR("10cfc8a2818024d3248802c00c95f11b");};
+    #endif
 
   };
 

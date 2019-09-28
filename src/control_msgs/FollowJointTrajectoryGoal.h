@@ -111,8 +111,16 @@ namespace control_msgs
      return offset;
     }
 
-    const char * getType(){ return PSTR( "control_msgs/FollowJointTrajectoryGoal" ); };
-    const char * getMD5(){ return PSTR( "69636787b6ecbde4d61d711979bc7ecb" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("control_msgs/FollowJointTrajectoryGoal");};
+    #else
+        const char * getType() { return  PSTR("control_msgs/FollowJointTrajectoryGoal");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("69636787b6ecbde4d61d711979bc7ecb");};
+    #else
+        const char * getMD5() { return  PSTR("69636787b6ecbde4d61d711979bc7ecb");};
+    #endif
 
   };
 

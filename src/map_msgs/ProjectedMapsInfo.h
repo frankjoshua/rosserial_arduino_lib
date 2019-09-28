@@ -10,7 +10,11 @@
 namespace map_msgs
 {
 
-static const char PROJECTEDMAPSINFO[] PROGMEM = "map_msgs/ProjectedMapsInfo";
+#ifdef ESP8266
+    static const char PROJECTEDMAPSINFO[] = "map_msgs/ProjectedMapsInfo";
+#else
+    static const char PROJECTEDMAPSINFO[] PROGMEM = "map_msgs/ProjectedMapsInfo";
+#endif
 
   class ProjectedMapsInfoRequest : public ros::Msg
   {
@@ -58,7 +62,11 @@ static const char PROJECTEDMAPSINFO[] PROGMEM = "map_msgs/ProjectedMapsInfo";
     }
 
     const char * getType(){ return PROJECTEDMAPSINFO; };
-    const char * getMD5(){ return PSTR( "d7980a33202421c8cd74565e57a4d229" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("d7980a33202421c8cd74565e57a4d229");};
+    #else
+        const char * getMD5() { return  PSTR("d7980a33202421c8cd74565e57a4d229");};
+    #endif
 
   };
 
@@ -83,7 +91,11 @@ static const char PROJECTEDMAPSINFO[] PROGMEM = "map_msgs/ProjectedMapsInfo";
     }
 
     const char * getType(){ return PROJECTEDMAPSINFO; };
-    const char * getMD5(){ return PSTR( "d41d8cd98f00b204e9800998ecf8427e" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("d41d8cd98f00b204e9800998ecf8427e");};
+    #else
+        const char * getMD5() { return  PSTR("d41d8cd98f00b204e9800998ecf8427e");};
+    #endif
 
   };
 

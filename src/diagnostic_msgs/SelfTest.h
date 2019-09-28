@@ -10,7 +10,11 @@
 namespace diagnostic_msgs
 {
 
-static const char SELFTEST[] PROGMEM = "diagnostic_msgs/SelfTest";
+#ifdef ESP8266
+    static const char SELFTEST[] = "diagnostic_msgs/SelfTest";
+#else
+    static const char SELFTEST[] PROGMEM = "diagnostic_msgs/SelfTest";
+#endif
 
   class SelfTestRequest : public ros::Msg
   {
@@ -33,7 +37,11 @@ static const char SELFTEST[] PROGMEM = "diagnostic_msgs/SelfTest";
     }
 
     const char * getType(){ return SELFTEST; };
-    const char * getMD5(){ return PSTR( "d41d8cd98f00b204e9800998ecf8427e" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("d41d8cd98f00b204e9800998ecf8427e");};
+    #else
+        const char * getMD5() { return  PSTR("d41d8cd98f00b204e9800998ecf8427e");};
+    #endif
 
   };
 
@@ -118,7 +126,11 @@ static const char SELFTEST[] PROGMEM = "diagnostic_msgs/SelfTest";
     }
 
     const char * getType(){ return SELFTEST; };
-    const char * getMD5(){ return PSTR( "ac21b1bab7ab17546986536c22eb34e9" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("ac21b1bab7ab17546986536c22eb34e9");};
+    #else
+        const char * getMD5() { return  PSTR("ac21b1bab7ab17546986536c22eb34e9");};
+    #endif
 
   };
 
