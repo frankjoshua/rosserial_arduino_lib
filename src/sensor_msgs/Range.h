@@ -141,8 +141,16 @@ namespace sensor_msgs
      return offset;
     }
 
-    const char * getType(){ return PSTR( "sensor_msgs/Range" ); };
-    const char * getMD5(){ return PSTR( "c005c34273dc426c67a020a87bc24148" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("sensor_msgs/Range");};
+    #else
+        const char * getType() { return  PSTR("sensor_msgs/Range");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("c005c34273dc426c67a020a87bc24148");};
+    #else
+        const char * getMD5() { return  PSTR("c005c34273dc426c67a020a87bc24148");};
+    #endif
 
   };
 

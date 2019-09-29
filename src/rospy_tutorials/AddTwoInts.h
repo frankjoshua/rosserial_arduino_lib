@@ -9,7 +9,11 @@
 namespace rospy_tutorials
 {
 
-static const char ADDTWOINTS[] PROGMEM = "rospy_tutorials/AddTwoInts";
+#ifdef ESP8266
+    static const char ADDTWOINTS[] = "rospy_tutorials/AddTwoInts";
+#else
+    static const char ADDTWOINTS[] PROGMEM = "rospy_tutorials/AddTwoInts";
+#endif
 
   class AddTwoIntsRequest : public ros::Msg
   {
@@ -96,7 +100,11 @@ static const char ADDTWOINTS[] PROGMEM = "rospy_tutorials/AddTwoInts";
     }
 
     const char * getType(){ return ADDTWOINTS; };
-    const char * getMD5(){ return PSTR( "36d09b846be0b371c5f190354dd3153e" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("36d09b846be0b371c5f190354dd3153e");};
+    #else
+        const char * getMD5() { return  PSTR("36d09b846be0b371c5f190354dd3153e");};
+    #endif
 
   };
 
@@ -153,7 +161,11 @@ static const char ADDTWOINTS[] PROGMEM = "rospy_tutorials/AddTwoInts";
     }
 
     const char * getType(){ return ADDTWOINTS; };
-    const char * getMD5(){ return PSTR( "b88405221c77b1878a3cbbfff53428d7" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("b88405221c77b1878a3cbbfff53428d7");};
+    #else
+        const char * getMD5() { return  PSTR("b88405221c77b1878a3cbbfff53428d7");};
+    #endif
 
   };
 

@@ -119,8 +119,16 @@ namespace gazebo_msgs
      return offset;
     }
 
-    const char * getType(){ return PSTR( "gazebo_msgs/ModelStates" ); };
-    const char * getMD5(){ return PSTR( "48c080191eb15c41858319b4d8a609c2" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("gazebo_msgs/ModelStates");};
+    #else
+        const char * getType() { return  PSTR("gazebo_msgs/ModelStates");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("48c080191eb15c41858319b4d8a609c2");};
+    #else
+        const char * getMD5() { return  PSTR("48c080191eb15c41858319b4d8a609c2");};
+    #endif
 
   };
 

@@ -80,8 +80,16 @@ namespace pcl_msgs
      return offset;
     }
 
-    const char * getType(){ return PSTR( "pcl_msgs/ModelCoefficients" ); };
-    const char * getMD5(){ return PSTR( "ca27dea75e72cb894cd36f9e5005e93e" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("pcl_msgs/ModelCoefficients");};
+    #else
+        const char * getType() { return  PSTR("pcl_msgs/ModelCoefficients");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("ca27dea75e72cb894cd36f9e5005e93e");};
+    #else
+        const char * getMD5() { return  PSTR("ca27dea75e72cb894cd36f9e5005e93e");};
+    #endif
 
   };
 

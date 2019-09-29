@@ -42,8 +42,16 @@ namespace geometry_msgs
      return offset;
     }
 
-    const char * getType(){ return PSTR( "geometry_msgs/QuaternionStamped" ); };
-    const char * getMD5(){ return PSTR( "e57f1e547e0e1fd13504588ffc8334e2" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("geometry_msgs/QuaternionStamped");};
+    #else
+        const char * getType() { return  PSTR("geometry_msgs/QuaternionStamped");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("e57f1e547e0e1fd13504588ffc8334e2");};
+    #else
+        const char * getMD5() { return  PSTR("e57f1e547e0e1fd13504588ffc8334e2");};
+    #endif
 
   };
 

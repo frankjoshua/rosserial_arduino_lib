@@ -9,7 +9,11 @@
 namespace roscpp_tutorials
 {
 
-static const char TWOINTS[] PROGMEM = "roscpp_tutorials/TwoInts";
+#ifdef ESP8266
+    static const char TWOINTS[] = "roscpp_tutorials/TwoInts";
+#else
+    static const char TWOINTS[] PROGMEM = "roscpp_tutorials/TwoInts";
+#endif
 
   class TwoIntsRequest : public ros::Msg
   {
@@ -96,7 +100,11 @@ static const char TWOINTS[] PROGMEM = "roscpp_tutorials/TwoInts";
     }
 
     const char * getType(){ return TWOINTS; };
-    const char * getMD5(){ return PSTR( "36d09b846be0b371c5f190354dd3153e" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("36d09b846be0b371c5f190354dd3153e");};
+    #else
+        const char * getMD5() { return  PSTR("36d09b846be0b371c5f190354dd3153e");};
+    #endif
 
   };
 
@@ -153,7 +161,11 @@ static const char TWOINTS[] PROGMEM = "roscpp_tutorials/TwoInts";
     }
 
     const char * getType(){ return TWOINTS; };
-    const char * getMD5(){ return PSTR( "b88405221c77b1878a3cbbfff53428d7" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("b88405221c77b1878a3cbbfff53428d7");};
+    #else
+        const char * getMD5() { return  PSTR("b88405221c77b1878a3cbbfff53428d7");};
+    #endif
 
   };
 

@@ -10,7 +10,11 @@
 namespace gazebo_msgs
 {
 
-static const char SETJOINTPROPERTIES[] PROGMEM = "gazebo_msgs/SetJointProperties";
+#ifdef ESP8266
+    static const char SETJOINTPROPERTIES[] = "gazebo_msgs/SetJointProperties";
+#else
+    static const char SETJOINTPROPERTIES[] PROGMEM = "gazebo_msgs/SetJointProperties";
+#endif
 
   class SetJointPropertiesRequest : public ros::Msg
   {
@@ -55,7 +59,11 @@ static const char SETJOINTPROPERTIES[] PROGMEM = "gazebo_msgs/SetJointProperties
     }
 
     const char * getType(){ return SETJOINTPROPERTIES; };
-    const char * getMD5(){ return PSTR( "331fd8f35fd27e3c1421175590258e26" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("331fd8f35fd27e3c1421175590258e26");};
+    #else
+        const char * getMD5() { return  PSTR("331fd8f35fd27e3c1421175590258e26");};
+    #endif
 
   };
 
@@ -115,7 +123,11 @@ static const char SETJOINTPROPERTIES[] PROGMEM = "gazebo_msgs/SetJointProperties
     }
 
     const char * getType(){ return SETJOINTPROPERTIES; };
-    const char * getMD5(){ return PSTR( "2ec6f3eff0161f4257b808b12bc830c2" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("2ec6f3eff0161f4257b808b12bc830c2");};
+    #else
+        const char * getMD5() { return  PSTR("2ec6f3eff0161f4257b808b12bc830c2");};
+    #endif
 
   };
 

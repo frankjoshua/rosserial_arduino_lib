@@ -148,8 +148,16 @@ namespace sensor_msgs
      return offset;
     }
 
-    const char * getType(){ return PSTR( "sensor_msgs/JointState" ); };
-    const char * getMD5(){ return PSTR( "3066dcd76a6cfaef579bd0f34173e9fd" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("sensor_msgs/JointState");};
+    #else
+        const char * getType() { return  PSTR("sensor_msgs/JointState");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("3066dcd76a6cfaef579bd0f34173e9fd");};
+    #else
+        const char * getMD5() { return  PSTR("3066dcd76a6cfaef579bd0f34173e9fd");};
+    #endif
 
   };
 

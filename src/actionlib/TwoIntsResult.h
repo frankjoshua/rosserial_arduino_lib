@@ -62,8 +62,16 @@ namespace actionlib
      return offset;
     }
 
-    const char * getType(){ return PSTR( "actionlib/TwoIntsResult" ); };
-    const char * getMD5(){ return PSTR( "b88405221c77b1878a3cbbfff53428d7" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("actionlib/TwoIntsResult");};
+    #else
+        const char * getType() { return  PSTR("actionlib/TwoIntsResult");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("b88405221c77b1878a3cbbfff53428d7");};
+    #else
+        const char * getMD5() { return  PSTR("b88405221c77b1878a3cbbfff53428d7");};
+    #endif
 
   };
 

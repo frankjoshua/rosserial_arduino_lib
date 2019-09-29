@@ -100,8 +100,16 @@ namespace visualization_msgs
      return offset;
     }
 
-    const char * getType(){ return PSTR( "visualization_msgs/MenuEntry" ); };
-    const char * getMD5(){ return PSTR( "b90ec63024573de83b57aa93eb39be2d" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("visualization_msgs/MenuEntry");};
+    #else
+        const char * getType() { return  PSTR("visualization_msgs/MenuEntry");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("b90ec63024573de83b57aa93eb39be2d");};
+    #else
+        const char * getMD5() { return  PSTR("b90ec63024573de83b57aa93eb39be2d");};
+    #endif
 
   };
 

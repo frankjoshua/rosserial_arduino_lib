@@ -65,8 +65,16 @@ namespace nav_msgs
      return offset;
     }
 
-    const char * getType(){ return PSTR( "nav_msgs/Odometry" ); };
-    const char * getMD5(){ return PSTR( "cd5e73d190d741a2f92e81eda573aca7" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("nav_msgs/Odometry");};
+    #else
+        const char * getType() { return  PSTR("nav_msgs/Odometry");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("cd5e73d190d741a2f92e81eda573aca7");};
+    #else
+        const char * getMD5() { return  PSTR("cd5e73d190d741a2f92e81eda573aca7");};
+    #endif
 
   };
 

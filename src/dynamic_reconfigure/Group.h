@@ -138,8 +138,16 @@ namespace dynamic_reconfigure
      return offset;
     }
 
-    const char * getType(){ return PSTR( "dynamic_reconfigure/Group" ); };
-    const char * getMD5(){ return PSTR( "9e8cd9e9423c94823db3614dd8b1cf7a" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("dynamic_reconfigure/Group");};
+    #else
+        const char * getType() { return  PSTR("dynamic_reconfigure/Group");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("9e8cd9e9423c94823db3614dd8b1cf7a");};
+    #else
+        const char * getMD5() { return  PSTR("9e8cd9e9423c94823db3614dd8b1cf7a");};
+    #endif
 
   };
 

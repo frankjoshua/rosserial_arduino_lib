@@ -10,7 +10,11 @@
 namespace map_msgs
 {
 
-static const char SAVEMAP[] PROGMEM = "map_msgs/SaveMap";
+#ifdef ESP8266
+    static const char SAVEMAP[] = "map_msgs/SaveMap";
+#else
+    static const char SAVEMAP[] PROGMEM = "map_msgs/SaveMap";
+#endif
 
   class SaveMapRequest : public ros::Msg
   {
@@ -38,7 +42,11 @@ static const char SAVEMAP[] PROGMEM = "map_msgs/SaveMap";
     }
 
     const char * getType(){ return SAVEMAP; };
-    const char * getMD5(){ return PSTR( "716e25f9d9dc76ceba197f93cbf05dc7" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("716e25f9d9dc76ceba197f93cbf05dc7");};
+    #else
+        const char * getMD5() { return  PSTR("716e25f9d9dc76ceba197f93cbf05dc7");};
+    #endif
 
   };
 
@@ -63,7 +71,11 @@ static const char SAVEMAP[] PROGMEM = "map_msgs/SaveMap";
     }
 
     const char * getType(){ return SAVEMAP; };
-    const char * getMD5(){ return PSTR( "d41d8cd98f00b204e9800998ecf8427e" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("d41d8cd98f00b204e9800998ecf8427e");};
+    #else
+        const char * getMD5() { return  PSTR("d41d8cd98f00b204e9800998ecf8427e");};
+    #endif
 
   };
 

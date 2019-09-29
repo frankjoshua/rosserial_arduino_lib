@@ -48,8 +48,16 @@ namespace control_msgs
      return offset;
     }
 
-    const char * getType(){ return PSTR( "control_msgs/SingleJointPositionActionFeedback" ); };
-    const char * getMD5(){ return PSTR( "3503b7cf8972f90d245850a5d8796cfa" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("control_msgs/SingleJointPositionActionFeedback");};
+    #else
+        const char * getType() { return  PSTR("control_msgs/SingleJointPositionActionFeedback");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("3503b7cf8972f90d245850a5d8796cfa");};
+    #else
+        const char * getMD5() { return  PSTR("3503b7cf8972f90d245850a5d8796cfa");};
+    #endif
 
   };
 

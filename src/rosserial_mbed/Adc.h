@@ -84,8 +84,16 @@ namespace rosserial_mbed
      return offset;
     }
 
-    const char * getType(){ return PSTR( "rosserial_mbed/Adc" ); };
-    const char * getMD5(){ return PSTR( "6d7853a614e2e821319068311f2af25b" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("rosserial_mbed/Adc");};
+    #else
+        const char * getType() { return  PSTR("rosserial_mbed/Adc");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("6d7853a614e2e821319068311f2af25b");};
+    #else
+        const char * getMD5() { return  PSTR("6d7853a614e2e821319068311f2af25b");};
+    #endif
 
   };
 

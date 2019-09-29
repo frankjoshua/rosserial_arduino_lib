@@ -99,8 +99,16 @@ namespace trajectory_msgs
      return offset;
     }
 
-    const char * getType(){ return PSTR( "trajectory_msgs/JointTrajectory" ); };
-    const char * getMD5(){ return PSTR( "65b4f94a94d1ed67169da35a02f33d3f" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("trajectory_msgs/JointTrajectory");};
+    #else
+        const char * getType() { return  PSTR("trajectory_msgs/JointTrajectory");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("65b4f94a94d1ed67169da35a02f33d3f");};
+    #else
+        const char * getMD5() { return  PSTR("65b4f94a94d1ed67169da35a02f33d3f");};
+    #endif
 
   };
 

@@ -56,8 +56,16 @@ namespace tf
      return offset;
     }
 
-    const char * getType(){ return PSTR( "tf/tfMessage" ); };
-    const char * getMD5(){ return PSTR( "94810edda583a504dfda3829e70d7eec" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("tf/tfMessage");};
+    #else
+        const char * getType() { return  PSTR("tf/tfMessage");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("94810edda583a504dfda3829e70d7eec");};
+    #else
+        const char * getMD5() { return  PSTR("94810edda583a504dfda3829e70d7eec");};
+    #endif
 
   };
 

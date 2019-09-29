@@ -168,8 +168,16 @@ namespace stereo_msgs
      return offset;
     }
 
-    const char * getType(){ return PSTR( "stereo_msgs/DisparityImage" ); };
-    const char * getMD5(){ return PSTR( "04a177815f75271039fa21f16acad8c9" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("stereo_msgs/DisparityImage");};
+    #else
+        const char * getType() { return  PSTR("stereo_msgs/DisparityImage");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("04a177815f75271039fa21f16acad8c9");};
+    #else
+        const char * getMD5() { return  PSTR("04a177815f75271039fa21f16acad8c9");};
+    #endif
 
   };
 

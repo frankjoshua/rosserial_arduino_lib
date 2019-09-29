@@ -151,8 +151,16 @@ namespace sensor_msgs
      return offset;
     }
 
-    const char * getType(){ return PSTR( "sensor_msgs/MultiDOFJointState" ); };
-    const char * getMD5(){ return PSTR( "690f272f0640d2631c305eeb8301e59d" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("sensor_msgs/MultiDOFJointState");};
+    #else
+        const char * getType() { return  PSTR("sensor_msgs/MultiDOFJointState");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("690f272f0640d2631c305eeb8301e59d");};
+    #else
+        const char * getMD5() { return  PSTR("690f272f0640d2631c305eeb8301e59d");};
+    #endif
 
   };
 

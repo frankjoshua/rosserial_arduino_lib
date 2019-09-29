@@ -10,7 +10,11 @@
 namespace dynamic_reconfigure
 {
 
-static const char RECONFIGURE[] PROGMEM = "dynamic_reconfigure/Reconfigure";
+#ifdef ESP8266
+    static const char RECONFIGURE[] = "dynamic_reconfigure/Reconfigure";
+#else
+    static const char RECONFIGURE[] PROGMEM = "dynamic_reconfigure/Reconfigure";
+#endif
 
   class ReconfigureRequest : public ros::Msg
   {
@@ -38,7 +42,11 @@ static const char RECONFIGURE[] PROGMEM = "dynamic_reconfigure/Reconfigure";
     }
 
     const char * getType(){ return RECONFIGURE; };
-    const char * getMD5(){ return PSTR( "ac41a77620a4a0348b7001641796a8a1" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("ac41a77620a4a0348b7001641796a8a1");};
+    #else
+        const char * getMD5() { return  PSTR("ac41a77620a4a0348b7001641796a8a1");};
+    #endif
 
   };
 
@@ -68,7 +76,11 @@ static const char RECONFIGURE[] PROGMEM = "dynamic_reconfigure/Reconfigure";
     }
 
     const char * getType(){ return RECONFIGURE; };
-    const char * getMD5(){ return PSTR( "ac41a77620a4a0348b7001641796a8a1" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("ac41a77620a4a0348b7001641796a8a1");};
+    #else
+        const char * getMD5() { return  PSTR("ac41a77620a4a0348b7001641796a8a1");};
+    #endif
 
   };
 

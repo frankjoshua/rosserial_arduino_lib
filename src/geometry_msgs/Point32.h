@@ -102,8 +102,16 @@ namespace geometry_msgs
      return offset;
     }
 
-    const char * getType(){ return PSTR( "geometry_msgs/Point32" ); };
-    const char * getMD5(){ return PSTR( "cc153912f1453b708d221682bc23d9ac" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("geometry_msgs/Point32");};
+    #else
+        const char * getType() { return  PSTR("geometry_msgs/Point32");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("cc153912f1453b708d221682bc23d9ac");};
+    #else
+        const char * getMD5() { return  PSTR("cc153912f1453b708d221682bc23d9ac");};
+    #endif
 
   };
 

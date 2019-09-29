@@ -33,8 +33,16 @@ namespace dynamic_reconfigure
      return offset;
     }
 
-    const char * getType(){ return PSTR( "dynamic_reconfigure/SensorLevels" ); };
-    const char * getMD5(){ return PSTR( "6322637bee96d5489db6e2127c47602c" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("dynamic_reconfigure/SensorLevels");};
+    #else
+        const char * getType() { return  PSTR("dynamic_reconfigure/SensorLevels");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("6322637bee96d5489db6e2127c47602c");};
+    #else
+        const char * getMD5() { return  PSTR("6322637bee96d5489db6e2127c47602c");};
+    #endif
 
   };
 

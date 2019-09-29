@@ -9,7 +9,11 @@
 namespace turtlesim
 {
 
-static const char TELEPORTRELATIVE[] PROGMEM = "turtlesim/TeleportRelative";
+#ifdef ESP8266
+    static const char TELEPORTRELATIVE[] = "turtlesim/TeleportRelative";
+#else
+    static const char TELEPORTRELATIVE[] PROGMEM = "turtlesim/TeleportRelative";
+#endif
 
   class TeleportRelativeRequest : public ros::Msg
   {
@@ -80,7 +84,11 @@ static const char TELEPORTRELATIVE[] PROGMEM = "turtlesim/TeleportRelative";
     }
 
     const char * getType(){ return TELEPORTRELATIVE; };
-    const char * getMD5(){ return PSTR( "9d5c2dcd348ac8f76ce2a4307bd63a13" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("9d5c2dcd348ac8f76ce2a4307bd63a13");};
+    #else
+        const char * getMD5() { return  PSTR("9d5c2dcd348ac8f76ce2a4307bd63a13");};
+    #endif
 
   };
 
@@ -105,7 +113,11 @@ static const char TELEPORTRELATIVE[] PROGMEM = "turtlesim/TeleportRelative";
     }
 
     const char * getType(){ return TELEPORTRELATIVE; };
-    const char * getMD5(){ return PSTR( "d41d8cd98f00b204e9800998ecf8427e" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("d41d8cd98f00b204e9800998ecf8427e");};
+    #else
+        const char * getMD5() { return  PSTR("d41d8cd98f00b204e9800998ecf8427e");};
+    #endif
 
   };
 

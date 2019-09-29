@@ -65,8 +65,16 @@ namespace std_msgs
      return offset;
     }
 
-    const char * getType(){ return PSTR( "std_msgs/UInt16MultiArray" ); };
-    const char * getMD5(){ return PSTR( "52f264f1c973c4b73790d384c6cb4484" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("std_msgs/UInt16MultiArray");};
+    #else
+        const char * getType() { return  PSTR("std_msgs/UInt16MultiArray");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("52f264f1c973c4b73790d384c6cb4484");};
+    #else
+        const char * getMD5() { return  PSTR("52f264f1c973c4b73790d384c6cb4484");};
+    #endif
 
   };
 

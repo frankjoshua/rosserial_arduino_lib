@@ -80,8 +80,16 @@ namespace pcl_msgs
      return offset;
     }
 
-    const char * getType(){ return PSTR( "pcl_msgs/PointIndices" ); };
-    const char * getMD5(){ return PSTR( "458c7998b7eaf99908256472e273b3d4" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("pcl_msgs/PointIndices");};
+    #else
+        const char * getType() { return  PSTR("pcl_msgs/PointIndices");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("458c7998b7eaf99908256472e273b3d4");};
+    #else
+        const char * getMD5() { return  PSTR("458c7998b7eaf99908256472e273b3d4");};
+    #endif
 
   };
 

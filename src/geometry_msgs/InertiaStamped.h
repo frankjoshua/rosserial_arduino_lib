@@ -42,8 +42,16 @@ namespace geometry_msgs
      return offset;
     }
 
-    const char * getType(){ return PSTR( "geometry_msgs/InertiaStamped" ); };
-    const char * getMD5(){ return PSTR( "ddee48caeab5a966c5e8d166654a9ac7" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("geometry_msgs/InertiaStamped");};
+    #else
+        const char * getType() { return  PSTR("geometry_msgs/InertiaStamped");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("ddee48caeab5a966c5e8d166654a9ac7");};
+    #else
+        const char * getMD5() { return  PSTR("ddee48caeab5a966c5e8d166654a9ac7");};
+    #endif
 
   };
 

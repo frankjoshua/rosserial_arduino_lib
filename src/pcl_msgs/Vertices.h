@@ -63,8 +63,16 @@ namespace pcl_msgs
      return offset;
     }
 
-    const char * getType(){ return PSTR( "pcl_msgs/Vertices" ); };
-    const char * getMD5(){ return PSTR( "39bd7b1c23763ddd1b882b97cb7cfe11" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("pcl_msgs/Vertices");};
+    #else
+        const char * getType() { return  PSTR("pcl_msgs/Vertices");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("39bd7b1c23763ddd1b882b97cb7cfe11");};
+    #else
+        const char * getMD5() { return  PSTR("39bd7b1c23763ddd1b882b97cb7cfe11");};
+    #endif
 
   };
 

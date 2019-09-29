@@ -9,7 +9,11 @@
 namespace std_srvs
 {
 
-static const char SETBOOL[] PROGMEM = "std_srvs/SetBool";
+#ifdef ESP8266
+    static const char SETBOOL[] = "std_srvs/SetBool";
+#else
+    static const char SETBOOL[] PROGMEM = "std_srvs/SetBool";
+#endif
 
   class SetBoolRequest : public ros::Msg
   {
@@ -50,7 +54,11 @@ static const char SETBOOL[] PROGMEM = "std_srvs/SetBool";
     }
 
     const char * getType(){ return SETBOOL; };
-    const char * getMD5(){ return PSTR( "8b94c1b53db61fb6aed406028ad6332a" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("8b94c1b53db61fb6aed406028ad6332a");};
+    #else
+        const char * getMD5() { return  PSTR("8b94c1b53db61fb6aed406028ad6332a");};
+    #endif
 
   };
 
@@ -110,7 +118,11 @@ static const char SETBOOL[] PROGMEM = "std_srvs/SetBool";
     }
 
     const char * getType(){ return SETBOOL; };
-    const char * getMD5(){ return PSTR( "937c9679a518e3a18d831e57125ea522" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("937c9679a518e3a18d831e57125ea522");};
+    #else
+        const char * getMD5() { return  PSTR("937c9679a518e3a18d831e57125ea522");};
+    #endif
 
   };
 

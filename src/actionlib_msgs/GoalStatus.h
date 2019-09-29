@@ -70,8 +70,16 @@ namespace actionlib_msgs
      return offset;
     }
 
-    const char * getType(){ return PSTR( "actionlib_msgs/GoalStatus" ); };
-    const char * getMD5(){ return PSTR( "d388f9b87b3c471f784434d671988d4a" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("actionlib_msgs/GoalStatus");};
+    #else
+        const char * getType() { return  PSTR("actionlib_msgs/GoalStatus");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("d388f9b87b3c471f784434d671988d4a");};
+    #else
+        const char * getMD5() { return  PSTR("d388f9b87b3c471f784434d671988d4a");};
+    #endif
 
   };
 

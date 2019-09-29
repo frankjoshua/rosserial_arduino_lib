@@ -238,8 +238,16 @@ namespace smach_msgs
      return offset;
     }
 
-    const char * getType(){ return PSTR( "smach_msgs/SmachContainerStructure" ); };
-    const char * getMD5(){ return PSTR( "3d3d1e0d0f99779ee9e58101a5dcf7ea" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("smach_msgs/SmachContainerStructure");};
+    #else
+        const char * getType() { return  PSTR("smach_msgs/SmachContainerStructure");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("3d3d1e0d0f99779ee9e58101a5dcf7ea");};
+    #else
+        const char * getMD5() { return  PSTR("3d3d1e0d0f99779ee9e58101a5dcf7ea");};
+    #endif
 
   };
 

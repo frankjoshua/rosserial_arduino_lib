@@ -88,8 +88,16 @@ namespace std_msgs
      return offset;
     }
 
-    const char * getType(){ return PSTR( "std_msgs/Int64MultiArray" ); };
-    const char * getMD5(){ return PSTR( "54865aa6c65be0448113a2afc6a49270" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("std_msgs/Int64MultiArray");};
+    #else
+        const char * getType() { return  PSTR("std_msgs/Int64MultiArray");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("54865aa6c65be0448113a2afc6a49270");};
+    #else
+        const char * getMD5() { return  PSTR("54865aa6c65be0448113a2afc6a49270");};
+    #endif
 
   };
 

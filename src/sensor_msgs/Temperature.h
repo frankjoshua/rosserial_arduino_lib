@@ -46,8 +46,16 @@ namespace sensor_msgs
      return offset;
     }
 
-    const char * getType(){ return PSTR( "sensor_msgs/Temperature" ); };
-    const char * getMD5(){ return PSTR( "ff71b307acdbe7c871a5a6d7ed359100" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("sensor_msgs/Temperature");};
+    #else
+        const char * getType() { return  PSTR("sensor_msgs/Temperature");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("ff71b307acdbe7c871a5a6d7ed359100");};
+    #else
+        const char * getMD5() { return  PSTR("ff71b307acdbe7c871a5a6d7ed359100");};
+    #endif
 
   };
 

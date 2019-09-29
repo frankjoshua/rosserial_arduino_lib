@@ -9,7 +9,11 @@
 namespace nodelet
 {
 
-static const char NODELETUNLOAD[] PROGMEM = "nodelet/NodeletUnload";
+#ifdef ESP8266
+    static const char NODELETUNLOAD[] = "nodelet/NodeletUnload";
+#else
+    static const char NODELETUNLOAD[] PROGMEM = "nodelet/NodeletUnload";
+#endif
 
   class NodeletUnloadRequest : public ros::Msg
   {
@@ -49,7 +53,11 @@ static const char NODELETUNLOAD[] PROGMEM = "nodelet/NodeletUnload";
     }
 
     const char * getType(){ return NODELETUNLOAD; };
-    const char * getMD5(){ return PSTR( "c1f3d28f1b044c871e6eff2e9fc3c667" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("c1f3d28f1b044c871e6eff2e9fc3c667");};
+    #else
+        const char * getMD5() { return  PSTR("c1f3d28f1b044c871e6eff2e9fc3c667");};
+    #endif
 
   };
 
@@ -92,7 +100,11 @@ static const char NODELETUNLOAD[] PROGMEM = "nodelet/NodeletUnload";
     }
 
     const char * getType(){ return NODELETUNLOAD; };
-    const char * getMD5(){ return PSTR( "358e233cde0c8a8bcfea4ce193f8fc15" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("358e233cde0c8a8bcfea4ce193f8fc15");};
+    #else
+        const char * getMD5() { return  PSTR("358e233cde0c8a8bcfea4ce193f8fc15");};
+    #endif
 
   };
 

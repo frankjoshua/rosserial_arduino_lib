@@ -9,7 +9,11 @@
 namespace gazebo_msgs
 {
 
-static const char DELETEMODEL[] PROGMEM = "gazebo_msgs/DeleteModel";
+#ifdef ESP8266
+    static const char DELETEMODEL[] = "gazebo_msgs/DeleteModel";
+#else
+    static const char DELETEMODEL[] PROGMEM = "gazebo_msgs/DeleteModel";
+#endif
 
   class DeleteModelRequest : public ros::Msg
   {
@@ -49,7 +53,11 @@ static const char DELETEMODEL[] PROGMEM = "gazebo_msgs/DeleteModel";
     }
 
     const char * getType(){ return DELETEMODEL; };
-    const char * getMD5(){ return PSTR( "ea31c8eab6fc401383cf528a7c0984ba" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("ea31c8eab6fc401383cf528a7c0984ba");};
+    #else
+        const char * getMD5() { return  PSTR("ea31c8eab6fc401383cf528a7c0984ba");};
+    #endif
 
   };
 
@@ -109,7 +117,11 @@ static const char DELETEMODEL[] PROGMEM = "gazebo_msgs/DeleteModel";
     }
 
     const char * getType(){ return DELETEMODEL; };
-    const char * getMD5(){ return PSTR( "2ec6f3eff0161f4257b808b12bc830c2" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("2ec6f3eff0161f4257b808b12bc830c2");};
+    #else
+        const char * getMD5() { return  PSTR("2ec6f3eff0161f4257b808b12bc830c2");};
+    #endif
 
   };
 

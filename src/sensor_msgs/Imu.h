@@ -77,8 +77,16 @@ namespace sensor_msgs
      return offset;
     }
 
-    const char * getType(){ return PSTR( "sensor_msgs/Imu" ); };
-    const char * getMD5(){ return PSTR( "6a62c6daae103f4ff57a132d6f95cec2" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("sensor_msgs/Imu");};
+    #else
+        const char * getType() { return  PSTR("sensor_msgs/Imu");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("6a62c6daae103f4ff57a132d6f95cec2");};
+    #else
+        const char * getMD5() { return  PSTR("6a62c6daae103f4ff57a132d6f95cec2");};
+    #endif
 
   };
 

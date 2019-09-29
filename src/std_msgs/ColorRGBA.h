@@ -126,8 +126,16 @@ namespace std_msgs
      return offset;
     }
 
-    const char * getType(){ return PSTR( "std_msgs/ColorRGBA" ); };
-    const char * getMD5(){ return PSTR( "a29a96539573343b1310c73607334b00" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("std_msgs/ColorRGBA");};
+    #else
+        const char * getType() { return  PSTR("std_msgs/ColorRGBA");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("a29a96539573343b1310c73607334b00");};
+    #else
+        const char * getMD5() { return  PSTR("a29a96539573343b1310c73607334b00");};
+    #endif
 
   };
 

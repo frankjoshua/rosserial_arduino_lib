@@ -53,8 +53,16 @@ namespace rospy_tutorials
      return offset;
     }
 
-    const char * getType(){ return PSTR( "rospy_tutorials/HeaderString" ); };
-    const char * getMD5(){ return PSTR( "c99a9440709e4d4a9716d55b8270d5e7" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("rospy_tutorials/HeaderString");};
+    #else
+        const char * getType() { return  PSTR("rospy_tutorials/HeaderString");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("c99a9440709e4d4a9716d55b8270d5e7");};
+    #else
+        const char * getMD5() { return  PSTR("c99a9440709e4d4a9716d55b8270d5e7");};
+    #endif
 
   };
 

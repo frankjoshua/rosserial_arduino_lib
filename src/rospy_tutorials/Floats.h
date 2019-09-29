@@ -74,8 +74,16 @@ namespace rospy_tutorials
      return offset;
     }
 
-    const char * getType(){ return PSTR( "rospy_tutorials/Floats" ); };
-    const char * getMD5(){ return PSTR( "420cd38b6b071cd49f2970c3e2cee511" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("rospy_tutorials/Floats");};
+    #else
+        const char * getType() { return  PSTR("rospy_tutorials/Floats");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("420cd38b6b071cd49f2970c3e2cee511");};
+    #else
+        const char * getMD5() { return  PSTR("420cd38b6b071cd49f2970c3e2cee511");};
+    #endif
 
   };
 

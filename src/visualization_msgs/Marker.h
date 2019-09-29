@@ -304,8 +304,16 @@ namespace visualization_msgs
      return offset;
     }
 
-    const char * getType(){ return PSTR( "visualization_msgs/Marker" ); };
-    const char * getMD5(){ return PSTR( "4048c9de2a16f4ae8e0538085ebf1b97" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("visualization_msgs/Marker");};
+    #else
+        const char * getType() { return  PSTR("visualization_msgs/Marker");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("4048c9de2a16f4ae8e0538085ebf1b97");};
+    #else
+        const char * getMD5() { return  PSTR("4048c9de2a16f4ae8e0538085ebf1b97");};
+    #endif
 
   };
 

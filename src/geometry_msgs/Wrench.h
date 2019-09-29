@@ -41,8 +41,16 @@ namespace geometry_msgs
      return offset;
     }
 
-    const char * getType(){ return PSTR( "geometry_msgs/Wrench" ); };
-    const char * getMD5(){ return PSTR( "4f539cf138b23283b520fd271b567936" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("geometry_msgs/Wrench");};
+    #else
+        const char * getType() { return  PSTR("geometry_msgs/Wrench");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("4f539cf138b23283b520fd271b567936");};
+    #else
+        const char * getMD5() { return  PSTR("4f539cf138b23283b520fd271b567936");};
+    #endif
 
   };
 

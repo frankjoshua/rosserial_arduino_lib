@@ -48,8 +48,16 @@ namespace actionlib_tutorials
      return offset;
     }
 
-    const char * getType(){ return PSTR( "actionlib_tutorials/AveragingAction" ); };
-    const char * getMD5(){ return PSTR( "628678f2b4fa6a5951746a4a2d39e716" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("actionlib_tutorials/AveragingAction");};
+    #else
+        const char * getType() { return  PSTR("actionlib_tutorials/AveragingAction");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("628678f2b4fa6a5951746a4a2d39e716");};
+    #else
+        const char * getMD5() { return  PSTR("628678f2b4fa6a5951746a4a2d39e716");};
+    #endif
 
   };
 

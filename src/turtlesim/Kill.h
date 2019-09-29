@@ -9,7 +9,11 @@
 namespace turtlesim
 {
 
-static const char KILL[] PROGMEM = "turtlesim/Kill";
+#ifdef ESP8266
+    static const char KILL[] = "turtlesim/Kill";
+#else
+    static const char KILL[] PROGMEM = "turtlesim/Kill";
+#endif
 
   class KillRequest : public ros::Msg
   {
@@ -49,7 +53,11 @@ static const char KILL[] PROGMEM = "turtlesim/Kill";
     }
 
     const char * getType(){ return KILL; };
-    const char * getMD5(){ return PSTR( "c1f3d28f1b044c871e6eff2e9fc3c667" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("c1f3d28f1b044c871e6eff2e9fc3c667");};
+    #else
+        const char * getMD5() { return  PSTR("c1f3d28f1b044c871e6eff2e9fc3c667");};
+    #endif
 
   };
 
@@ -74,7 +82,11 @@ static const char KILL[] PROGMEM = "turtlesim/Kill";
     }
 
     const char * getType(){ return KILL; };
-    const char * getMD5(){ return PSTR( "d41d8cd98f00b204e9800998ecf8427e" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("d41d8cd98f00b204e9800998ecf8427e");};
+    #else
+        const char * getMD5() { return  PSTR("d41d8cd98f00b204e9800998ecf8427e");};
+    #endif
 
   };
 

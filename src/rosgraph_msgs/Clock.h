@@ -54,8 +54,16 @@ namespace rosgraph_msgs
      return offset;
     }
 
-    const char * getType(){ return PSTR( "rosgraph_msgs/Clock" ); };
-    const char * getMD5(){ return PSTR( "a9c97c1d230cfc112e270351a944ee47" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("rosgraph_msgs/Clock");};
+    #else
+        const char * getType() { return  PSTR("rosgraph_msgs/Clock");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("a9c97c1d230cfc112e270351a944ee47");};
+    #else
+        const char * getMD5() { return  PSTR("a9c97c1d230cfc112e270351a944ee47");};
+    #endif
 
   };
 

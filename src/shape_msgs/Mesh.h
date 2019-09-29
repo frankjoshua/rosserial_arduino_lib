@@ -82,8 +82,16 @@ namespace shape_msgs
      return offset;
     }
 
-    const char * getType(){ return PSTR( "shape_msgs/Mesh" ); };
-    const char * getMD5(){ return PSTR( "1ffdae9486cd3316a121c578b47a85cc" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("shape_msgs/Mesh");};
+    #else
+        const char * getType() { return  PSTR("shape_msgs/Mesh");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("1ffdae9486cd3316a121c578b47a85cc");};
+    #else
+        const char * getMD5() { return  PSTR("1ffdae9486cd3316a121c578b47a85cc");};
+    #endif
 
   };
 

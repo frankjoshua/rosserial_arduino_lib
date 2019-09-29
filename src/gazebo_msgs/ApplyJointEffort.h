@@ -11,7 +11,11 @@
 namespace gazebo_msgs
 {
 
-static const char APPLYJOINTEFFORT[] PROGMEM = "gazebo_msgs/ApplyJointEffort";
+#ifdef ESP8266
+    static const char APPLYJOINTEFFORT[] = "gazebo_msgs/ApplyJointEffort";
+#else
+    static const char APPLYJOINTEFFORT[] PROGMEM = "gazebo_msgs/ApplyJointEffort";
+#endif
 
   class ApplyJointEffortRequest : public ros::Msg
   {
@@ -102,7 +106,11 @@ static const char APPLYJOINTEFFORT[] PROGMEM = "gazebo_msgs/ApplyJointEffort";
     }
 
     const char * getType(){ return APPLYJOINTEFFORT; };
-    const char * getMD5(){ return PSTR( "2c3396ab9af67a509ecd2167a8fe41a2" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("2c3396ab9af67a509ecd2167a8fe41a2");};
+    #else
+        const char * getMD5() { return  PSTR("2c3396ab9af67a509ecd2167a8fe41a2");};
+    #endif
 
   };
 
@@ -162,7 +170,11 @@ static const char APPLYJOINTEFFORT[] PROGMEM = "gazebo_msgs/ApplyJointEffort";
     }
 
     const char * getType(){ return APPLYJOINTEFFORT; };
-    const char * getMD5(){ return PSTR( "2ec6f3eff0161f4257b808b12bc830c2" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("2ec6f3eff0161f4257b808b12bc830c2");};
+    #else
+        const char * getMD5() { return  PSTR("2ec6f3eff0161f4257b808b12bc830c2");};
+    #endif
 
   };
 

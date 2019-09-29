@@ -9,7 +9,11 @@
 namespace tf2_msgs
 {
 
-static const char FRAMEGRAPH[] PROGMEM = "tf2_msgs/FrameGraph";
+#ifdef ESP8266
+    static const char FRAMEGRAPH[] = "tf2_msgs/FrameGraph";
+#else
+    static const char FRAMEGRAPH[] PROGMEM = "tf2_msgs/FrameGraph";
+#endif
 
   class FrameGraphRequest : public ros::Msg
   {
@@ -32,7 +36,11 @@ static const char FRAMEGRAPH[] PROGMEM = "tf2_msgs/FrameGraph";
     }
 
     const char * getType(){ return FRAMEGRAPH; };
-    const char * getMD5(){ return PSTR( "d41d8cd98f00b204e9800998ecf8427e" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("d41d8cd98f00b204e9800998ecf8427e");};
+    #else
+        const char * getMD5() { return  PSTR("d41d8cd98f00b204e9800998ecf8427e");};
+    #endif
 
   };
 
@@ -74,7 +82,11 @@ static const char FRAMEGRAPH[] PROGMEM = "tf2_msgs/FrameGraph";
     }
 
     const char * getType(){ return FRAMEGRAPH; };
-    const char * getMD5(){ return PSTR( "437ea58e9463815a0d511c7326b686b0" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("437ea58e9463815a0d511c7326b686b0");};
+    #else
+        const char * getMD5() { return  PSTR("437ea58e9463815a0d511c7326b686b0");};
+    #endif
 
   };
 
