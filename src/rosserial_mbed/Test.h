@@ -9,7 +9,11 @@
 namespace rosserial_mbed
 {
 
-static const char TEST[] PROGMEM = "rosserial_mbed/Test";
+#ifdef ESP8266
+    static const char TEST[] = "rosserial_mbed/Test";
+#else
+    static const char TEST[] PROGMEM = "rosserial_mbed/Test";
+#endif
 
   class TestRequest : public ros::Msg
   {
@@ -49,7 +53,11 @@ static const char TEST[] PROGMEM = "rosserial_mbed/Test";
     }
 
     const char * getType(){ return TEST; };
-    const char * getMD5(){ return PSTR( "39e92f1778057359c64c7b8a7d7b19de" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("39e92f1778057359c64c7b8a7d7b19de");};
+    #else
+        const char * getMD5() { return  PSTR("39e92f1778057359c64c7b8a7d7b19de");};
+    #endif
 
   };
 
@@ -91,7 +99,11 @@ static const char TEST[] PROGMEM = "rosserial_mbed/Test";
     }
 
     const char * getType(){ return TEST; };
-    const char * getMD5(){ return PSTR( "0825d95fdfa2c8f4bbb4e9c74bccd3fd" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("0825d95fdfa2c8f4bbb4e9c74bccd3fd");};
+    #else
+        const char * getMD5() { return  PSTR("0825d95fdfa2c8f4bbb4e9c74bccd3fd");};
+    #endif
 
   };
 

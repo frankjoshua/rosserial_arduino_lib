@@ -292,8 +292,16 @@ namespace sensor_msgs
      return offset;
     }
 
-    const char * getType(){ return PSTR( "sensor_msgs/LaserScan" ); };
-    const char * getMD5(){ return PSTR( "90c7ef2dc6895d81024acba2ac42f369" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("sensor_msgs/LaserScan");};
+    #else
+        const char * getType() { return  PSTR("sensor_msgs/LaserScan");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("90c7ef2dc6895d81024acba2ac42f369");};
+    #else
+        const char * getMD5() { return  PSTR("90c7ef2dc6895d81024acba2ac42f369");};
+    #endif
 
   };
 

@@ -13,7 +13,11 @@
 namespace gazebo_msgs
 {
 
-static const char APPLYBODYWRENCH[] PROGMEM = "gazebo_msgs/ApplyBodyWrench";
+#ifdef ESP8266
+    static const char APPLYBODYWRENCH[] = "gazebo_msgs/ApplyBodyWrench";
+#else
+    static const char APPLYBODYWRENCH[] PROGMEM = "gazebo_msgs/ApplyBodyWrench";
+#endif
 
   class ApplyBodyWrenchRequest : public ros::Msg
   {
@@ -126,7 +130,11 @@ static const char APPLYBODYWRENCH[] PROGMEM = "gazebo_msgs/ApplyBodyWrench";
     }
 
     const char * getType(){ return APPLYBODYWRENCH; };
-    const char * getMD5(){ return PSTR( "e37e6adf97eba5095baa77dffb71e5bd" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("e37e6adf97eba5095baa77dffb71e5bd");};
+    #else
+        const char * getMD5() { return  PSTR("e37e6adf97eba5095baa77dffb71e5bd");};
+    #endif
 
   };
 
@@ -186,7 +194,11 @@ static const char APPLYBODYWRENCH[] PROGMEM = "gazebo_msgs/ApplyBodyWrench";
     }
 
     const char * getType(){ return APPLYBODYWRENCH; };
-    const char * getMD5(){ return PSTR( "2ec6f3eff0161f4257b808b12bc830c2" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("2ec6f3eff0161f4257b808b12bc830c2");};
+    #else
+        const char * getMD5() { return  PSTR("2ec6f3eff0161f4257b808b12bc830c2");};
+    #endif
 
   };
 

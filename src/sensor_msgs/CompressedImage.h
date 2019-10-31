@@ -80,8 +80,16 @@ namespace sensor_msgs
      return offset;
     }
 
-    const char * getType(){ return PSTR( "sensor_msgs/CompressedImage" ); };
-    const char * getMD5(){ return PSTR( "8f7a12909da2c9d3332d540a0977563f" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("sensor_msgs/CompressedImage");};
+    #else
+        const char * getType() { return  PSTR("sensor_msgs/CompressedImage");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("8f7a12909da2c9d3332d540a0977563f");};
+    #else
+        const char * getMD5() { return  PSTR("8f7a12909da2c9d3332d540a0977563f");};
+    #endif
 
   };
 

@@ -80,8 +80,16 @@ namespace std_msgs
      return offset;
     }
 
-    const char * getType(){ return PSTR( "std_msgs/Float32MultiArray" ); };
-    const char * getMD5(){ return PSTR( "6a40e0ffa6a17a503ac3f8616991b1f6" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("std_msgs/Float32MultiArray");};
+    #else
+        const char * getType() { return  PSTR("std_msgs/Float32MultiArray");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("6a40e0ffa6a17a503ac3f8616991b1f6");};
+    #else
+        const char * getMD5() { return  PSTR("6a40e0ffa6a17a503ac3f8616991b1f6");};
+    #endif
 
   };
 

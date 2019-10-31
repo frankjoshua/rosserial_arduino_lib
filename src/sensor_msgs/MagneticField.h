@@ -50,8 +50,16 @@ namespace sensor_msgs
      return offset;
     }
 
-    const char * getType(){ return PSTR( "sensor_msgs/MagneticField" ); };
-    const char * getMD5(){ return PSTR( "2f3b0b43eed0c9501de0fa3ff89a45aa" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("sensor_msgs/MagneticField");};
+    #else
+        const char * getType() { return  PSTR("sensor_msgs/MagneticField");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("2f3b0b43eed0c9501de0fa3ff89a45aa");};
+    #else
+        const char * getMD5() { return  PSTR("2f3b0b43eed0c9501de0fa3ff89a45aa");};
+    #endif
 
   };
 

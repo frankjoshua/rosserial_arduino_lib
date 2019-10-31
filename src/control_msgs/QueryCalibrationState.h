@@ -9,7 +9,11 @@
 namespace control_msgs
 {
 
-static const char QUERYCALIBRATIONSTATE[] PROGMEM = "control_msgs/QueryCalibrationState";
+#ifdef ESP8266
+    static const char QUERYCALIBRATIONSTATE[] = "control_msgs/QueryCalibrationState";
+#else
+    static const char QUERYCALIBRATIONSTATE[] PROGMEM = "control_msgs/QueryCalibrationState";
+#endif
 
   class QueryCalibrationStateRequest : public ros::Msg
   {
@@ -32,7 +36,11 @@ static const char QUERYCALIBRATIONSTATE[] PROGMEM = "control_msgs/QueryCalibrati
     }
 
     const char * getType(){ return QUERYCALIBRATIONSTATE; };
-    const char * getMD5(){ return PSTR( "d41d8cd98f00b204e9800998ecf8427e" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("d41d8cd98f00b204e9800998ecf8427e");};
+    #else
+        const char * getMD5() { return  PSTR("d41d8cd98f00b204e9800998ecf8427e");};
+    #endif
 
   };
 
@@ -75,7 +83,11 @@ static const char QUERYCALIBRATIONSTATE[] PROGMEM = "control_msgs/QueryCalibrati
     }
 
     const char * getType(){ return QUERYCALIBRATIONSTATE; };
-    const char * getMD5(){ return PSTR( "28af3beedcb84986b8e470dc5470507d" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("28af3beedcb84986b8e470dc5470507d");};
+    #else
+        const char * getMD5() { return  PSTR("28af3beedcb84986b8e470dc5470507d");};
+    #endif
 
   };
 

@@ -54,8 +54,16 @@ namespace std_msgs
      return offset;
     }
 
-    const char * getType(){ return PSTR( "std_msgs/UInt64" ); };
-    const char * getMD5(){ return PSTR( "1b2a79973e8bf53d7b53acb71299cb57" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("std_msgs/UInt64");};
+    #else
+        const char * getType() { return  PSTR("std_msgs/UInt64");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("1b2a79973e8bf53d7b53acb71299cb57");};
+    #else
+        const char * getMD5() { return  PSTR("1b2a79973e8bf53d7b53acb71299cb57");};
+    #endif
 
   };
 

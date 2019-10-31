@@ -9,7 +9,11 @@
 namespace diagnostic_msgs
 {
 
-static const char ADDDIAGNOSTICS[] PROGMEM = "diagnostic_msgs/AddDiagnostics";
+#ifdef ESP8266
+    static const char ADDDIAGNOSTICS[] = "diagnostic_msgs/AddDiagnostics";
+#else
+    static const char ADDDIAGNOSTICS[] PROGMEM = "diagnostic_msgs/AddDiagnostics";
+#endif
 
   class AddDiagnosticsRequest : public ros::Msg
   {
@@ -49,7 +53,11 @@ static const char ADDDIAGNOSTICS[] PROGMEM = "diagnostic_msgs/AddDiagnostics";
     }
 
     const char * getType(){ return ADDDIAGNOSTICS; };
-    const char * getMD5(){ return PSTR( "c26cf6e164288fbc6050d74f838bcdf0" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("c26cf6e164288fbc6050d74f838bcdf0");};
+    #else
+        const char * getMD5() { return  PSTR("c26cf6e164288fbc6050d74f838bcdf0");};
+    #endif
 
   };
 
@@ -109,7 +117,11 @@ static const char ADDDIAGNOSTICS[] PROGMEM = "diagnostic_msgs/AddDiagnostics";
     }
 
     const char * getType(){ return ADDDIAGNOSTICS; };
-    const char * getMD5(){ return PSTR( "937c9679a518e3a18d831e57125ea522" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("937c9679a518e3a18d831e57125ea522");};
+    #else
+        const char * getMD5() { return  PSTR("937c9679a518e3a18d831e57125ea522");};
+    #endif
 
   };
 

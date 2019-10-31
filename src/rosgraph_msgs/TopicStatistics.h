@@ -339,8 +339,16 @@ namespace rosgraph_msgs
      return offset;
     }
 
-    const char * getType(){ return PSTR( "rosgraph_msgs/TopicStatistics" ); };
-    const char * getMD5(){ return PSTR( "10152ed868c5097a5e2e4a89d7daa710" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("rosgraph_msgs/TopicStatistics");};
+    #else
+        const char * getType() { return  PSTR("rosgraph_msgs/TopicStatistics");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("10152ed868c5097a5e2e4a89d7daa710");};
+    #else
+        const char * getMD5() { return  PSTR("10152ed868c5097a5e2e4a89d7daa710");};
+    #endif
 
   };
 

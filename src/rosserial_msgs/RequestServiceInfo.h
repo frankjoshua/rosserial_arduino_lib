@@ -9,7 +9,11 @@
 namespace rosserial_msgs
 {
 
-static const char REQUESTSERVICEINFO[] PROGMEM = "rosserial_msgs/RequestServiceInfo";
+#ifdef ESP8266
+    static const char REQUESTSERVICEINFO[] = "rosserial_msgs/RequestServiceInfo";
+#else
+    static const char REQUESTSERVICEINFO[] PROGMEM = "rosserial_msgs/RequestServiceInfo";
+#endif
 
   class RequestServiceInfoRequest : public ros::Msg
   {
@@ -49,7 +53,11 @@ static const char REQUESTSERVICEINFO[] PROGMEM = "rosserial_msgs/RequestServiceI
     }
 
     const char * getType(){ return REQUESTSERVICEINFO; };
-    const char * getMD5(){ return PSTR( "1cbcfa13b08f6d36710b9af8741e6112" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("1cbcfa13b08f6d36710b9af8741e6112");};
+    #else
+        const char * getMD5() { return  PSTR("1cbcfa13b08f6d36710b9af8741e6112");};
+    #endif
 
   };
 
@@ -125,7 +133,11 @@ static const char REQUESTSERVICEINFO[] PROGMEM = "rosserial_msgs/RequestServiceI
     }
 
     const char * getType(){ return REQUESTSERVICEINFO; };
-    const char * getMD5(){ return PSTR( "c3d6dd25b909596479fbbc6559fa6874" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("c3d6dd25b909596479fbbc6559fa6874");};
+    #else
+        const char * getMD5() { return  PSTR("c3d6dd25b909596479fbbc6559fa6874");};
+    #endif
 
   };
 

@@ -11,7 +11,11 @@
 namespace laser_assembler
 {
 
-static const char ASSEMBLESCANS[] PROGMEM = "laser_assembler/AssembleScans";
+#ifdef ESP8266
+    static const char ASSEMBLESCANS[] = "laser_assembler/AssembleScans";
+#else
+    static const char ASSEMBLESCANS[] PROGMEM = "laser_assembler/AssembleScans";
+#endif
 
   class AssembleScansRequest : public ros::Msg
   {
@@ -80,7 +84,11 @@ static const char ASSEMBLESCANS[] PROGMEM = "laser_assembler/AssembleScans";
     }
 
     const char * getType(){ return ASSEMBLESCANS; };
-    const char * getMD5(){ return PSTR( "b341004f74e15bf5e1b2053a9183bdc7" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("b341004f74e15bf5e1b2053a9183bdc7");};
+    #else
+        const char * getMD5() { return  PSTR("b341004f74e15bf5e1b2053a9183bdc7");};
+    #endif
 
   };
 
@@ -110,7 +118,11 @@ static const char ASSEMBLESCANS[] PROGMEM = "laser_assembler/AssembleScans";
     }
 
     const char * getType(){ return ASSEMBLESCANS; };
-    const char * getMD5(){ return PSTR( "4217b28a903e4ad7869a83b3653110ff" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("4217b28a903e4ad7869a83b3653110ff");};
+    #else
+        const char * getMD5() { return  PSTR("4217b28a903e4ad7869a83b3653110ff");};
+    #endif
 
   };
 

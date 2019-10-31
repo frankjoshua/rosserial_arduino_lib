@@ -12,7 +12,11 @@
 namespace polled_camera
 {
 
-static const char GETPOLLEDIMAGE[] PROGMEM = "polled_camera/GetPolledImage";
+#ifdef ESP8266
+    static const char GETPOLLEDIMAGE[] = "polled_camera/GetPolledImage";
+#else
+    static const char GETPOLLEDIMAGE[] PROGMEM = "polled_camera/GetPolledImage";
+#endif
 
   class GetPolledImageRequest : public ros::Msg
   {
@@ -106,7 +110,11 @@ static const char GETPOLLEDIMAGE[] PROGMEM = "polled_camera/GetPolledImage";
     }
 
     const char * getType(){ return GETPOLLEDIMAGE; };
-    const char * getMD5(){ return PSTR( "c77ed43e530fd48e9e7a2a93845e154c" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("c77ed43e530fd48e9e7a2a93845e154c");};
+    #else
+        const char * getMD5() { return  PSTR("c77ed43e530fd48e9e7a2a93845e154c");};
+    #endif
 
   };
 
@@ -189,7 +197,11 @@ static const char GETPOLLEDIMAGE[] PROGMEM = "polled_camera/GetPolledImage";
     }
 
     const char * getType(){ return GETPOLLEDIMAGE; };
-    const char * getMD5(){ return PSTR( "dbf1f851bc511800e6129ccd5a3542ab" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("dbf1f851bc511800e6129ccd5a3542ab");};
+    #else
+        const char * getMD5() { return  PSTR("dbf1f851bc511800e6129ccd5a3542ab");};
+    #endif
 
   };
 

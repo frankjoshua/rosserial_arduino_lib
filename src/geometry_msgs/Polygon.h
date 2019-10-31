@@ -56,8 +56,16 @@ namespace geometry_msgs
      return offset;
     }
 
-    const char * getType(){ return PSTR( "geometry_msgs/Polygon" ); };
-    const char * getMD5(){ return PSTR( "cd60a26494a087f577976f0329fa120e" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("geometry_msgs/Polygon");};
+    #else
+        const char * getType() { return  PSTR("geometry_msgs/Polygon");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("cd60a26494a087f577976f0329fa120e");};
+    #else
+        const char * getMD5() { return  PSTR("cd60a26494a087f577976f0329fa120e");};
+    #endif
 
   };
 

@@ -110,8 +110,16 @@ namespace nav_msgs
      return offset;
     }
 
-    const char * getType(){ return PSTR( "nav_msgs/GridCells" ); };
-    const char * getMD5(){ return PSTR( "b9e4f5df6d28e272ebde00a3994830f5" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("nav_msgs/GridCells");};
+    #else
+        const char * getType() { return  PSTR("nav_msgs/GridCells");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("b9e4f5df6d28e272ebde00a3994830f5");};
+    #else
+        const char * getMD5() { return  PSTR("b9e4f5df6d28e272ebde00a3994830f5");};
+    #endif
 
   };
 

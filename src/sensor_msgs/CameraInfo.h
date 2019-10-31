@@ -160,8 +160,16 @@ namespace sensor_msgs
      return offset;
     }
 
-    const char * getType(){ return PSTR( "sensor_msgs/CameraInfo" ); };
-    const char * getMD5(){ return PSTR( "c9a58c1b0b154e0e6da7578cb991d214" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("sensor_msgs/CameraInfo");};
+    #else
+        const char * getType() { return  PSTR("sensor_msgs/CameraInfo");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("c9a58c1b0b154e0e6da7578cb991d214");};
+    #else
+        const char * getMD5() { return  PSTR("c9a58c1b0b154e0e6da7578cb991d214");};
+    #endif
 
   };
 

@@ -42,8 +42,16 @@ namespace geometry_msgs
      return offset;
     }
 
-    const char * getType(){ return PSTR( "geometry_msgs/PoseStamped" ); };
-    const char * getMD5(){ return PSTR( "d3812c3cbc69362b77dc0b19b345f8f5" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("geometry_msgs/PoseStamped");};
+    #else
+        const char * getType() { return  PSTR("geometry_msgs/PoseStamped");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("d3812c3cbc69362b77dc0b19b345f8f5");};
+    #else
+        const char * getMD5() { return  PSTR("d3812c3cbc69362b77dc0b19b345f8f5");};
+    #endif
 
   };
 

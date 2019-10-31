@@ -56,8 +56,16 @@ namespace visualization_msgs
      return offset;
     }
 
-    const char * getType(){ return PSTR( "visualization_msgs/MarkerArray" ); };
-    const char * getMD5(){ return PSTR( "d155b9ce5188fbaf89745847fd5882d7" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("visualization_msgs/MarkerArray");};
+    #else
+        const char * getType() { return  PSTR("visualization_msgs/MarkerArray");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("d155b9ce5188fbaf89745847fd5882d7");};
+    #else
+        const char * getMD5() { return  PSTR("d155b9ce5188fbaf89745847fd5882d7");};
+    #endif
 
   };
 

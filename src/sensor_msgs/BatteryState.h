@@ -318,8 +318,16 @@ namespace sensor_msgs
      return offset;
     }
 
-    const char * getType(){ return PSTR( "sensor_msgs/BatteryState" ); };
-    const char * getMD5(){ return PSTR( "476f837fa6771f6e16e3bf4ef96f8770" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("sensor_msgs/BatteryState");};
+    #else
+        const char * getType() { return  PSTR("sensor_msgs/BatteryState");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("476f837fa6771f6e16e3bf4ef96f8770");};
+    #else
+        const char * getMD5() { return  PSTR("476f837fa6771f6e16e3bf4ef96f8770");};
+    #endif
 
   };
 

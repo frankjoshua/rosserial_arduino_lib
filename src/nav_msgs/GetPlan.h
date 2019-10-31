@@ -11,7 +11,11 @@
 namespace nav_msgs
 {
 
-static const char GETPLAN[] PROGMEM = "nav_msgs/GetPlan";
+#ifdef ESP8266
+    static const char GETPLAN[] = "nav_msgs/GetPlan";
+#else
+    static const char GETPLAN[] PROGMEM = "nav_msgs/GetPlan";
+#endif
 
   class GetPlanRequest : public ros::Msg
   {
@@ -68,7 +72,11 @@ static const char GETPLAN[] PROGMEM = "nav_msgs/GetPlan";
     }
 
     const char * getType(){ return GETPLAN; };
-    const char * getMD5(){ return PSTR( "e25a43e0752bcca599a8c2eef8282df8" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("e25a43e0752bcca599a8c2eef8282df8");};
+    #else
+        const char * getMD5() { return  PSTR("e25a43e0752bcca599a8c2eef8282df8");};
+    #endif
 
   };
 
@@ -98,7 +106,11 @@ static const char GETPLAN[] PROGMEM = "nav_msgs/GetPlan";
     }
 
     const char * getType(){ return GETPLAN; };
-    const char * getMD5(){ return PSTR( "0002bc113c0259d71f6cf8cbc9430e18" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("0002bc113c0259d71f6cf8cbc9430e18");};
+    #else
+        const char * getMD5() { return  PSTR("0002bc113c0259d71f6cf8cbc9430e18");};
+    #endif
 
   };
 

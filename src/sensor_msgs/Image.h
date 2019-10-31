@@ -126,8 +126,16 @@ namespace sensor_msgs
      return offset;
     }
 
-    const char * getType(){ return PSTR( "sensor_msgs/Image" ); };
-    const char * getMD5(){ return PSTR( "060021388200f6f0f447d0fcd9c64743" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("sensor_msgs/Image");};
+    #else
+        const char * getType() { return  PSTR("sensor_msgs/Image");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("060021388200f6f0f447d0fcd9c64743");};
+    #else
+        const char * getMD5() { return  PSTR("060021388200f6f0f447d0fcd9c64743");};
+    #endif
 
   };
 

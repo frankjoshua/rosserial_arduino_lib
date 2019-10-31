@@ -335,8 +335,16 @@ namespace gps_common
      return offset;
     }
 
-    const char * getType(){ return PSTR( "gps_common/GPSStatus" ); };
-    const char * getMD5(){ return PSTR( "313baa8951fdd056c78bf61b1b07d249" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("gps_common/GPSStatus");};
+    #else
+        const char * getType() { return  PSTR("gps_common/GPSStatus");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("313baa8951fdd056c78bf61b1b07d249");};
+    #else
+        const char * getMD5() { return  PSTR("313baa8951fdd056c78bf61b1b07d249");};
+    #endif
 
   };
 

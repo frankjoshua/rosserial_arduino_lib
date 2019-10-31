@@ -9,7 +9,11 @@
 namespace std_srvs
 {
 
-static const char TRIGGER[] PROGMEM = "std_srvs/Trigger";
+#ifdef ESP8266
+    static const char TRIGGER[] = "std_srvs/Trigger";
+#else
+    static const char TRIGGER[] PROGMEM = "std_srvs/Trigger";
+#endif
 
   class TriggerRequest : public ros::Msg
   {
@@ -32,7 +36,11 @@ static const char TRIGGER[] PROGMEM = "std_srvs/Trigger";
     }
 
     const char * getType(){ return TRIGGER; };
-    const char * getMD5(){ return PSTR( "d41d8cd98f00b204e9800998ecf8427e" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("d41d8cd98f00b204e9800998ecf8427e");};
+    #else
+        const char * getMD5() { return  PSTR("d41d8cd98f00b204e9800998ecf8427e");};
+    #endif
 
   };
 
@@ -92,7 +100,11 @@ static const char TRIGGER[] PROGMEM = "std_srvs/Trigger";
     }
 
     const char * getType(){ return TRIGGER; };
-    const char * getMD5(){ return PSTR( "937c9679a518e3a18d831e57125ea522" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("937c9679a518e3a18d831e57125ea522");};
+    #else
+        const char * getMD5() { return  PSTR("937c9679a518e3a18d831e57125ea522");};
+    #endif
 
   };
 

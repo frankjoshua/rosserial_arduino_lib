@@ -40,8 +40,16 @@ namespace control_msgs
      return offset;
     }
 
-    const char * getType(){ return PSTR( "control_msgs/GripperCommand" ); };
-    const char * getMD5(){ return PSTR( "680acaff79486f017132a7f198d40f08" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("control_msgs/GripperCommand");};
+    #else
+        const char * getType() { return  PSTR("control_msgs/GripperCommand");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("680acaff79486f017132a7f198d40f08");};
+    #else
+        const char * getMD5() { return  PSTR("680acaff79486f017132a7f198d40f08");};
+    #endif
 
   };
 

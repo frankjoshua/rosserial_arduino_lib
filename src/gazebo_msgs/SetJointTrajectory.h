@@ -11,7 +11,11 @@
 namespace gazebo_msgs
 {
 
-static const char SETJOINTTRAJECTORY[] PROGMEM = "gazebo_msgs/SetJointTrajectory";
+#ifdef ESP8266
+    static const char SETJOINTTRAJECTORY[] = "gazebo_msgs/SetJointTrajectory";
+#else
+    static const char SETJOINTTRAJECTORY[] PROGMEM = "gazebo_msgs/SetJointTrajectory";
+#endif
 
   class SetJointTrajectoryRequest : public ros::Msg
   {
@@ -97,7 +101,11 @@ static const char SETJOINTTRAJECTORY[] PROGMEM = "gazebo_msgs/SetJointTrajectory
     }
 
     const char * getType(){ return SETJOINTTRAJECTORY; };
-    const char * getMD5(){ return PSTR( "649dd2eba5ffd358069238825f9f85ab" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("649dd2eba5ffd358069238825f9f85ab");};
+    #else
+        const char * getMD5() { return  PSTR("649dd2eba5ffd358069238825f9f85ab");};
+    #endif
 
   };
 
@@ -157,7 +165,11 @@ static const char SETJOINTTRAJECTORY[] PROGMEM = "gazebo_msgs/SetJointTrajectory
     }
 
     const char * getType(){ return SETJOINTTRAJECTORY; };
-    const char * getMD5(){ return PSTR( "2ec6f3eff0161f4257b808b12bc830c2" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("2ec6f3eff0161f4257b808b12bc830c2");};
+    #else
+        const char * getMD5() { return  PSTR("2ec6f3eff0161f4257b808b12bc830c2");};
+    #endif
 
   };
 

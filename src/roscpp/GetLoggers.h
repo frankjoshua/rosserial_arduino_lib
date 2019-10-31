@@ -10,7 +10,11 @@
 namespace roscpp
 {
 
-static const char GETLOGGERS[] PROGMEM = "roscpp/GetLoggers";
+#ifdef ESP8266
+    static const char GETLOGGERS[] = "roscpp/GetLoggers";
+#else
+    static const char GETLOGGERS[] PROGMEM = "roscpp/GetLoggers";
+#endif
 
   class GetLoggersRequest : public ros::Msg
   {
@@ -33,7 +37,11 @@ static const char GETLOGGERS[] PROGMEM = "roscpp/GetLoggers";
     }
 
     const char * getType(){ return GETLOGGERS; };
-    const char * getMD5(){ return PSTR( "d41d8cd98f00b204e9800998ecf8427e" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("d41d8cd98f00b204e9800998ecf8427e");};
+    #else
+        const char * getMD5() { return  PSTR("d41d8cd98f00b204e9800998ecf8427e");};
+    #endif
 
   };
 
@@ -83,7 +91,11 @@ static const char GETLOGGERS[] PROGMEM = "roscpp/GetLoggers";
     }
 
     const char * getType(){ return GETLOGGERS; };
-    const char * getMD5(){ return PSTR( "32e97e85527d4678a8f9279894bb64b0" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("32e97e85527d4678a8f9279894bb64b0");};
+    #else
+        const char * getMD5() { return  PSTR("32e97e85527d4678a8f9279894bb64b0");};
+    #endif
 
   };
 

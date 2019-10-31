@@ -10,7 +10,11 @@
 namespace gazebo_msgs
 {
 
-static const char GETLIGHTPROPERTIES[] PROGMEM = "gazebo_msgs/GetLightProperties";
+#ifdef ESP8266
+    static const char GETLIGHTPROPERTIES[] = "gazebo_msgs/GetLightProperties";
+#else
+    static const char GETLIGHTPROPERTIES[] PROGMEM = "gazebo_msgs/GetLightProperties";
+#endif
 
   class GetLightPropertiesRequest : public ros::Msg
   {
@@ -50,7 +54,11 @@ static const char GETLIGHTPROPERTIES[] PROGMEM = "gazebo_msgs/GetLightProperties
     }
 
     const char * getType(){ return GETLIGHTPROPERTIES; };
-    const char * getMD5(){ return PSTR( "4fb676dfb4741fc866365702a859441c" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("4fb676dfb4741fc866365702a859441c");};
+    #else
+        const char * getMD5() { return  PSTR("4fb676dfb4741fc866365702a859441c");};
+    #endif
 
   };
 
@@ -130,7 +138,11 @@ static const char GETLIGHTPROPERTIES[] PROGMEM = "gazebo_msgs/GetLightProperties
     }
 
     const char * getType(){ return GETLIGHTPROPERTIES; };
-    const char * getMD5(){ return PSTR( "9a19ddd5aab4c13b7643d1722c709f1f" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("9a19ddd5aab4c13b7643d1722c709f1f");};
+    #else
+        const char * getMD5() { return  PSTR("9a19ddd5aab4c13b7643d1722c709f1f");};
+    #endif
 
   };
 

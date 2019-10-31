@@ -64,8 +64,16 @@ namespace roscpp
      return offset;
     }
 
-    const char * getType(){ return PSTR( "roscpp/Logger" ); };
-    const char * getMD5(){ return PSTR( "a6069a2ff40db7bd32143dd66e1f408e" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("roscpp/Logger");};
+    #else
+        const char * getType() { return  PSTR("roscpp/Logger");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("a6069a2ff40db7bd32143dd66e1f408e");};
+    #else
+        const char * getMD5() { return  PSTR("a6069a2ff40db7bd32143dd66e1f408e");};
+    #endif
 
   };
 

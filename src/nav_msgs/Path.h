@@ -62,8 +62,16 @@ namespace nav_msgs
      return offset;
     }
 
-    const char * getType(){ return PSTR( "nav_msgs/Path" ); };
-    const char * getMD5(){ return PSTR( "6227e2b7e9cce15051f669a5e197bbf7" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("nav_msgs/Path");};
+    #else
+        const char * getType() { return  PSTR("nav_msgs/Path");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("6227e2b7e9cce15051f669a5e197bbf7");};
+    #else
+        const char * getMD5() { return  PSTR("6227e2b7e9cce15051f669a5e197bbf7");};
+    #endif
 
   };
 

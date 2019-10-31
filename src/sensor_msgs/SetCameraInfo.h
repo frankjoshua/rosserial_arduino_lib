@@ -10,7 +10,11 @@
 namespace sensor_msgs
 {
 
-static const char SETCAMERAINFO[] PROGMEM = "sensor_msgs/SetCameraInfo";
+#ifdef ESP8266
+    static const char SETCAMERAINFO[] = "sensor_msgs/SetCameraInfo";
+#else
+    static const char SETCAMERAINFO[] PROGMEM = "sensor_msgs/SetCameraInfo";
+#endif
 
   class SetCameraInfoRequest : public ros::Msg
   {
@@ -38,7 +42,11 @@ static const char SETCAMERAINFO[] PROGMEM = "sensor_msgs/SetCameraInfo";
     }
 
     const char * getType(){ return SETCAMERAINFO; };
-    const char * getMD5(){ return PSTR( "ee34be01fdeee563d0d99cd594d5581d" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("ee34be01fdeee563d0d99cd594d5581d");};
+    #else
+        const char * getMD5() { return  PSTR("ee34be01fdeee563d0d99cd594d5581d");};
+    #endif
 
   };
 
@@ -98,7 +106,11 @@ static const char SETCAMERAINFO[] PROGMEM = "sensor_msgs/SetCameraInfo";
     }
 
     const char * getType(){ return SETCAMERAINFO; };
-    const char * getMD5(){ return PSTR( "2ec6f3eff0161f4257b808b12bc830c2" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("2ec6f3eff0161f4257b808b12bc830c2");};
+    #else
+        const char * getMD5() { return  PSTR("2ec6f3eff0161f4257b808b12bc830c2");};
+    #endif
 
   };
 

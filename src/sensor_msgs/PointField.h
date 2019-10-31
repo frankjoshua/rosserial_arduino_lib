@@ -88,8 +88,16 @@ namespace sensor_msgs
      return offset;
     }
 
-    const char * getType(){ return PSTR( "sensor_msgs/PointField" ); };
-    const char * getMD5(){ return PSTR( "268eacb2962780ceac86cbd17e328150" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("sensor_msgs/PointField");};
+    #else
+        const char * getType() { return  PSTR("sensor_msgs/PointField");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("268eacb2962780ceac86cbd17e328150");};
+    #else
+        const char * getMD5() { return  PSTR("268eacb2962780ceac86cbd17e328150");};
+    #endif
 
   };
 

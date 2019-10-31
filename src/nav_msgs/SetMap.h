@@ -11,7 +11,11 @@
 namespace nav_msgs
 {
 
-static const char SETMAP[] PROGMEM = "nav_msgs/SetMap";
+#ifdef ESP8266
+    static const char SETMAP[] = "nav_msgs/SetMap";
+#else
+    static const char SETMAP[] PROGMEM = "nav_msgs/SetMap";
+#endif
 
   class SetMapRequest : public ros::Msg
   {
@@ -44,7 +48,11 @@ static const char SETMAP[] PROGMEM = "nav_msgs/SetMap";
     }
 
     const char * getType(){ return SETMAP; };
-    const char * getMD5(){ return PSTR( "91149a20d7be299b87c340df8cc94fd4" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("91149a20d7be299b87c340df8cc94fd4");};
+    #else
+        const char * getMD5() { return  PSTR("91149a20d7be299b87c340df8cc94fd4");};
+    #endif
 
   };
 
@@ -87,7 +95,11 @@ static const char SETMAP[] PROGMEM = "nav_msgs/SetMap";
     }
 
     const char * getType(){ return SETMAP; };
-    const char * getMD5(){ return PSTR( "358e233cde0c8a8bcfea4ce193f8fc15" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("358e233cde0c8a8bcfea4ce193f8fc15");};
+    #else
+        const char * getMD5() { return  PSTR("358e233cde0c8a8bcfea4ce193f8fc15");};
+    #endif
 
   };
 

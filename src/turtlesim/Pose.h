@@ -150,8 +150,16 @@ namespace turtlesim
      return offset;
     }
 
-    const char * getType(){ return PSTR( "turtlesim/Pose" ); };
-    const char * getMD5(){ return PSTR( "863b248d5016ca62ea2e895ae5265cf9" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("turtlesim/Pose");};
+    #else
+        const char * getType() { return  PSTR("turtlesim/Pose");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("863b248d5016ca62ea2e895ae5265cf9");};
+    #else
+        const char * getMD5() { return  PSTR("863b248d5016ca62ea2e895ae5265cf9");};
+    #endif
 
   };
 

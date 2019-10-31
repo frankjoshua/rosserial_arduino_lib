@@ -62,8 +62,16 @@ namespace diagnostic_msgs
      return offset;
     }
 
-    const char * getType(){ return PSTR( "diagnostic_msgs/DiagnosticArray" ); };
-    const char * getMD5(){ return PSTR( "60810da900de1dd6ddd437c3503511da" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("diagnostic_msgs/DiagnosticArray");};
+    #else
+        const char * getType() { return  PSTR("diagnostic_msgs/DiagnosticArray");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("60810da900de1dd6ddd437c3503511da");};
+    #else
+        const char * getMD5() { return  PSTR("60810da900de1dd6ddd437c3503511da");};
+    #endif
 
   };
 

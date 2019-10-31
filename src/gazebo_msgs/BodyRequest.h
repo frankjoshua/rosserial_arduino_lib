@@ -9,7 +9,11 @@
 namespace gazebo_msgs
 {
 
-static const char BODYREQUEST[] PROGMEM = "gazebo_msgs/BodyRequest";
+#ifdef ESP8266
+    static const char BODYREQUEST[] = "gazebo_msgs/BodyRequest";
+#else
+    static const char BODYREQUEST[] PROGMEM = "gazebo_msgs/BodyRequest";
+#endif
 
   class BodyRequestRequest : public ros::Msg
   {
@@ -49,7 +53,11 @@ static const char BODYREQUEST[] PROGMEM = "gazebo_msgs/BodyRequest";
     }
 
     const char * getType(){ return BODYREQUEST; };
-    const char * getMD5(){ return PSTR( "5eade9afe7f232d78005bd0cafeab755" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("5eade9afe7f232d78005bd0cafeab755");};
+    #else
+        const char * getMD5() { return  PSTR("5eade9afe7f232d78005bd0cafeab755");};
+    #endif
 
   };
 
@@ -74,7 +82,11 @@ static const char BODYREQUEST[] PROGMEM = "gazebo_msgs/BodyRequest";
     }
 
     const char * getType(){ return BODYREQUEST; };
-    const char * getMD5(){ return PSTR( "d41d8cd98f00b204e9800998ecf8427e" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("d41d8cd98f00b204e9800998ecf8427e");};
+    #else
+        const char * getMD5() { return  PSTR("d41d8cd98f00b204e9800998ecf8427e");};
+    #endif
 
   };
 

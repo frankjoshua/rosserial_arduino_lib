@@ -10,7 +10,11 @@
 namespace gazebo_msgs
 {
 
-static const char GETLINKSTATE[] PROGMEM = "gazebo_msgs/GetLinkState";
+#ifdef ESP8266
+    static const char GETLINKSTATE[] = "gazebo_msgs/GetLinkState";
+#else
+    static const char GETLINKSTATE[] PROGMEM = "gazebo_msgs/GetLinkState";
+#endif
 
   class GetLinkStateRequest : public ros::Msg
   {
@@ -67,7 +71,11 @@ static const char GETLINKSTATE[] PROGMEM = "gazebo_msgs/GetLinkState";
     }
 
     const char * getType(){ return GETLINKSTATE; };
-    const char * getMD5(){ return PSTR( "7551675c30aaa71f7c288d4864552001" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("7551675c30aaa71f7c288d4864552001");};
+    #else
+        const char * getMD5() { return  PSTR("7551675c30aaa71f7c288d4864552001");};
+    #endif
 
   };
 
@@ -132,7 +140,11 @@ static const char GETLINKSTATE[] PROGMEM = "gazebo_msgs/GetLinkState";
     }
 
     const char * getType(){ return GETLINKSTATE; };
-    const char * getMD5(){ return PSTR( "8ba55ad34f9c072e75c0de57b089753b" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("8ba55ad34f9c072e75c0de57b089753b");};
+    #else
+        const char * getMD5() { return  PSTR("8ba55ad34f9c072e75c0de57b089753b");};
+    #endif
 
   };
 

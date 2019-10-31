@@ -136,8 +136,16 @@ namespace bond
      return offset;
     }
 
-    const char * getType(){ return PSTR( "bond/Status" ); };
-    const char * getMD5(){ return PSTR( "eacc84bf5d65b6777d4c50f463dfb9c8" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("bond/Status");};
+    #else
+        const char * getType() { return  PSTR("bond/Status");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("eacc84bf5d65b6777d4c50f463dfb9c8");};
+    #else
+        const char * getMD5() { return  PSTR("eacc84bf5d65b6777d4c50f463dfb9c8");};
+    #endif
 
   };
 

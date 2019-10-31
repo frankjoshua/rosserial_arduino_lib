@@ -9,7 +9,11 @@
 namespace control_toolbox
 {
 
-static const char SETPIDGAINS[] PROGMEM = "control_toolbox/SetPidGains";
+#ifdef ESP8266
+    static const char SETPIDGAINS[] = "control_toolbox/SetPidGains";
+#else
+    static const char SETPIDGAINS[] PROGMEM = "control_toolbox/SetPidGains";
+#endif
 
   class SetPidGainsRequest : public ros::Msg
   {
@@ -70,7 +74,11 @@ static const char SETPIDGAINS[] PROGMEM = "control_toolbox/SetPidGains";
     }
 
     const char * getType(){ return SETPIDGAINS; };
-    const char * getMD5(){ return PSTR( "4a43159879643e60937bf2893b633607" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("4a43159879643e60937bf2893b633607");};
+    #else
+        const char * getMD5() { return  PSTR("4a43159879643e60937bf2893b633607");};
+    #endif
 
   };
 
@@ -95,7 +103,11 @@ static const char SETPIDGAINS[] PROGMEM = "control_toolbox/SetPidGains";
     }
 
     const char * getType(){ return SETPIDGAINS; };
-    const char * getMD5(){ return PSTR( "d41d8cd98f00b204e9800998ecf8427e" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("d41d8cd98f00b204e9800998ecf8427e");};
+    #else
+        const char * getMD5() { return  PSTR("d41d8cd98f00b204e9800998ecf8427e");};
+    #endif
 
   };
 

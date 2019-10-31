@@ -48,8 +48,16 @@ namespace tf2_msgs
      return offset;
     }
 
-    const char * getType(){ return PSTR( "tf2_msgs/LookupTransformAction" ); };
-    const char * getMD5(){ return PSTR( "7ee01ba91a56c2245c610992dbaa3c37" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("tf2_msgs/LookupTransformAction");};
+    #else
+        const char * getType() { return  PSTR("tf2_msgs/LookupTransformAction");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("7ee01ba91a56c2245c610992dbaa3c37");};
+    #else
+        const char * getMD5() { return  PSTR("7ee01ba91a56c2245c610992dbaa3c37");};
+    #endif
 
   };
 

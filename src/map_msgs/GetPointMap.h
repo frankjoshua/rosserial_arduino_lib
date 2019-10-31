@@ -10,7 +10,11 @@
 namespace map_msgs
 {
 
-static const char GETPOINTMAP[] PROGMEM = "map_msgs/GetPointMap";
+#ifdef ESP8266
+    static const char GETPOINTMAP[] = "map_msgs/GetPointMap";
+#else
+    static const char GETPOINTMAP[] PROGMEM = "map_msgs/GetPointMap";
+#endif
 
   class GetPointMapRequest : public ros::Msg
   {
@@ -33,7 +37,11 @@ static const char GETPOINTMAP[] PROGMEM = "map_msgs/GetPointMap";
     }
 
     const char * getType(){ return GETPOINTMAP; };
-    const char * getMD5(){ return PSTR( "d41d8cd98f00b204e9800998ecf8427e" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("d41d8cd98f00b204e9800998ecf8427e");};
+    #else
+        const char * getMD5() { return  PSTR("d41d8cd98f00b204e9800998ecf8427e");};
+    #endif
 
   };
 
@@ -63,7 +71,11 @@ static const char GETPOINTMAP[] PROGMEM = "map_msgs/GetPointMap";
     }
 
     const char * getType(){ return GETPOINTMAP; };
-    const char * getMD5(){ return PSTR( "b84fbb39505086eb6a62d933c75cb7b4" ); };
+    #ifdef ESP8266
+        const char * getMD5() { return  ("b84fbb39505086eb6a62d933c75cb7b4");};
+    #else
+        const char * getMD5() { return  PSTR("b84fbb39505086eb6a62d933c75cb7b4");};
+    #endif
 
   };
 

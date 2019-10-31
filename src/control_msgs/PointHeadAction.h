@@ -48,8 +48,16 @@ namespace control_msgs
      return offset;
     }
 
-    const char * getType(){ return PSTR( "control_msgs/PointHeadAction" ); };
-    const char * getMD5(){ return PSTR( "7252920f1243de1b741f14f214125371" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("control_msgs/PointHeadAction");};
+    #else
+        const char * getType() { return  PSTR("control_msgs/PointHeadAction");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("7252920f1243de1b741f14f214125371");};
+    #else
+        const char * getMD5() { return  PSTR("7252920f1243de1b741f14f214125371");};
+    #endif
 
   };
 

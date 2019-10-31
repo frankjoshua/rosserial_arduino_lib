@@ -44,8 +44,16 @@ namespace geometry_msgs
      return offset;
     }
 
-    const char * getType(){ return PSTR( "geometry_msgs/AccelWithCovariance" ); };
-    const char * getMD5(){ return PSTR( "ad5a718d699c6be72a02b8d6a139f334" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("geometry_msgs/AccelWithCovariance");};
+    #else
+        const char * getType() { return  PSTR("geometry_msgs/AccelWithCovariance");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("ad5a718d699c6be72a02b8d6a139f334");};
+    #else
+        const char * getMD5() { return  PSTR("ad5a718d699c6be72a02b8d6a139f334");};
+    #endif
 
   };
 

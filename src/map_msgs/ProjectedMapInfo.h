@@ -77,8 +77,16 @@ namespace map_msgs
      return offset;
     }
 
-    const char * getType(){ return PSTR( "map_msgs/ProjectedMapInfo" ); };
-    const char * getMD5(){ return PSTR( "2dc10595ae94de23f22f8a6d2a0eef7a" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("map_msgs/ProjectedMapInfo");};
+    #else
+        const char * getType() { return  PSTR("map_msgs/ProjectedMapInfo");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("2dc10595ae94de23f22f8a6d2a0eef7a");};
+    #else
+        const char * getMD5() { return  PSTR("2dc10595ae94de23f22f8a6d2a0eef7a");};
+    #endif
 
   };
 

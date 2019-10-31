@@ -35,8 +35,16 @@ namespace control_msgs
      return offset;
     }
 
-    const char * getType(){ return PSTR( "control_msgs/PointHeadFeedback" ); };
-    const char * getMD5(){ return PSTR( "cce80d27fd763682da8805a73316cab4" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("control_msgs/PointHeadFeedback");};
+    #else
+        const char * getType() { return  PSTR("control_msgs/PointHeadFeedback");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("cce80d27fd763682da8805a73316cab4");};
+    #else
+        const char * getMD5() { return  PSTR("cce80d27fd763682da8805a73316cab4");};
+    #endif
 
   };
 

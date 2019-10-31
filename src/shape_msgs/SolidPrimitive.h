@@ -74,8 +74,16 @@ namespace shape_msgs
      return offset;
     }
 
-    const char * getType(){ return PSTR( "shape_msgs/SolidPrimitive" ); };
-    const char * getMD5(){ return PSTR( "d8f8cbc74c5ff283fca29569ccefb45d" ); };
+    #ifdef ESP8266
+        const char * getType() { return  ("shape_msgs/SolidPrimitive");};
+    #else
+        const char * getType() { return  PSTR("shape_msgs/SolidPrimitive");};
+    #endif
+    #ifdef ESP8266
+        const char * getMD5() { return  ("d8f8cbc74c5ff283fca29569ccefb45d");};
+    #else
+        const char * getMD5() { return  PSTR("d8f8cbc74c5ff283fca29569ccefb45d");};
+    #endif
 
   };
 
