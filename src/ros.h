@@ -37,9 +37,12 @@
 
 #include "ros/node_handle.h"
 #include "ArduinoHardware.h"
-#include <avr/pgmspace.h>
+//#include <avr/pgmspace.h>
 #if defined(ESP8266)
   #include "Esp8266Hardware.h"
+#endif
+#if defined(ESP32)
+  #include "Esp32Hardware.h"
 #endif
 #if defined(MKR1000)
   #include "MKR1000Hardware.h"
