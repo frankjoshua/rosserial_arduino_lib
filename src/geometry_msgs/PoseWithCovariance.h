@@ -5,7 +5,6 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
-#include "ArduinoIncludes.h"
 #include "geometry_msgs/Pose.h"
 
 namespace geometry_msgs
@@ -24,7 +23,7 @@ namespace geometry_msgs
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       offset += this->pose.serialize(outbuffer + offset);
@@ -34,7 +33,7 @@ namespace geometry_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       offset += this->pose.deserialize(inbuffer + offset);
@@ -44,16 +43,8 @@ namespace geometry_msgs
      return offset;
     }
 
-    #ifdef ESP8266
-        const char * getType() { return  ("geometry_msgs/PoseWithCovariance");};
-    #else
-        const char * getType() { return  PSTR("geometry_msgs/PoseWithCovariance");};
-    #endif
-    #ifdef ESP8266
-        const char * getMD5() { return  ("c23e848cf1b7533a8d7c259073a97e6f");};
-    #else
-        const char * getMD5() { return  PSTR("c23e848cf1b7533a8d7c259073a97e6f");};
-    #endif
+    virtual const char * getType() override { return "geometry_msgs/PoseWithCovariance"; };
+    virtual const char * getMD5() override { return "c23e848cf1b7533a8d7c259073a97e6f"; };
 
   };
 

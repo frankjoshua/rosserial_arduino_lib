@@ -5,7 +5,6 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
-#include "ArduinoIncludes.h"
 
 namespace std_msgs
 {
@@ -27,7 +26,7 @@ namespace std_msgs
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       uint32_t length_label = strlen(this->label);
@@ -48,7 +47,7 @@ namespace std_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       uint32_t length_label;
@@ -73,16 +72,8 @@ namespace std_msgs
      return offset;
     }
 
-    #ifdef ESP8266
-        const char * getType() { return  ("std_msgs/MultiArrayDimension");};
-    #else
-        const char * getType() { return  PSTR("std_msgs/MultiArrayDimension");};
-    #endif
-    #ifdef ESP8266
-        const char * getMD5() { return  ("4cd0c83a8683deae40ecdac60e53bfa8");};
-    #else
-        const char * getMD5() { return  PSTR("4cd0c83a8683deae40ecdac60e53bfa8");};
-    #endif
+    virtual const char * getType() override { return "std_msgs/MultiArrayDimension"; };
+    virtual const char * getMD5() override { return "4cd0c83a8683deae40ecdac60e53bfa8"; };
 
   };
 

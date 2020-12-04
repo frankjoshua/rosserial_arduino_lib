@@ -4,16 +4,11 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
-#include "ArduinoIncludes.h"
 
 namespace std_srvs
 {
 
-#ifdef ESP8266
-    static const char TRIGGER[] = "std_srvs/Trigger";
-#else
-    static const char TRIGGER[] PROGMEM = "std_srvs/Trigger";
-#endif
+static const char TRIGGER[] = "std_srvs/Trigger";
 
   class TriggerRequest : public ros::Msg
   {
@@ -23,24 +18,20 @@ namespace std_srvs
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
      return offset;
     }
 
-    const char * getType(){ return TRIGGER; };
-    #ifdef ESP8266
-        const char * getMD5() { return  ("d41d8cd98f00b204e9800998ecf8427e");};
-    #else
-        const char * getMD5() { return  PSTR("d41d8cd98f00b204e9800998ecf8427e");};
-    #endif
+    virtual const char * getType() override { return TRIGGER; };
+    virtual const char * getMD5() override { return "d41d8cd98f00b204e9800998ecf8427e"; };
 
   };
 
@@ -58,7 +49,7 @@ namespace std_srvs
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       union {
@@ -76,7 +67,7 @@ namespace std_srvs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       union {
@@ -99,12 +90,8 @@ namespace std_srvs
      return offset;
     }
 
-    const char * getType(){ return TRIGGER; };
-    #ifdef ESP8266
-        const char * getMD5() { return  ("937c9679a518e3a18d831e57125ea522");};
-    #else
-        const char * getMD5() { return  PSTR("937c9679a518e3a18d831e57125ea522");};
-    #endif
+    virtual const char * getType() override { return TRIGGER; };
+    virtual const char * getMD5() override { return "937c9679a518e3a18d831e57125ea522"; };
 
   };
 

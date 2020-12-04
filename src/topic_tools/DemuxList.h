@@ -4,16 +4,11 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
-#include "ArduinoIncludes.h"
 
 namespace topic_tools
 {
 
-#ifdef ESP8266
-    static const char DEMUXLIST[] = "topic_tools/DemuxList";
-#else
-    static const char DEMUXLIST[] PROGMEM = "topic_tools/DemuxList";
-#endif
+static const char DEMUXLIST[] = "topic_tools/DemuxList";
 
   class DemuxListRequest : public ros::Msg
   {
@@ -23,24 +18,20 @@ namespace topic_tools
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
      return offset;
     }
 
-    const char * getType(){ return DEMUXLIST; };
-    #ifdef ESP8266
-        const char * getMD5() { return  ("d41d8cd98f00b204e9800998ecf8427e");};
-    #else
-        const char * getMD5() { return  PSTR("d41d8cd98f00b204e9800998ecf8427e");};
-    #endif
+    virtual const char * getType() override { return DEMUXLIST; };
+    virtual const char * getMD5() override { return "d41d8cd98f00b204e9800998ecf8427e"; };
 
   };
 
@@ -53,11 +44,11 @@ namespace topic_tools
       _topics_type * topics;
 
     DemuxListResponse():
-      topics_length(0), topics(NULL)
+      topics_length(0), st_topics(), topics(nullptr)
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       *(outbuffer + offset + 0) = (this->topics_length >> (8 * 0)) & 0xFF;
@@ -75,7 +66,7 @@ namespace topic_tools
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       uint32_t topics_lengthT = ((uint32_t) (*(inbuffer + offset))); 
@@ -101,12 +92,8 @@ namespace topic_tools
      return offset;
     }
 
-    const char * getType(){ return DEMUXLIST; };
-    #ifdef ESP8266
-        const char * getMD5() { return  ("b0eef9a05d4e829092fc2f2c3c2aad3d");};
-    #else
-        const char * getMD5() { return  PSTR("b0eef9a05d4e829092fc2f2c3c2aad3d");};
-    #endif
+    virtual const char * getType() override { return DEMUXLIST; };
+    virtual const char * getMD5() override { return "b0eef9a05d4e829092fc2f2c3c2aad3d"; };
 
   };
 

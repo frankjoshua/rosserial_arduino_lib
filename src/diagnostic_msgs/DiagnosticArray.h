@@ -5,7 +5,6 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
-#include "ArduinoIncludes.h"
 #include "std_msgs/Header.h"
 #include "diagnostic_msgs/DiagnosticStatus.h"
 
@@ -24,11 +23,11 @@ namespace diagnostic_msgs
 
     DiagnosticArray():
       header(),
-      status_length(0), status(NULL)
+      status_length(0), st_status(), status(nullptr)
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       offset += this->header.serialize(outbuffer + offset);
@@ -43,7 +42,7 @@ namespace diagnostic_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       offset += this->header.deserialize(inbuffer + offset);
@@ -62,16 +61,8 @@ namespace diagnostic_msgs
      return offset;
     }
 
-    #ifdef ESP8266
-        const char * getType() { return  ("diagnostic_msgs/DiagnosticArray");};
-    #else
-        const char * getType() { return  PSTR("diagnostic_msgs/DiagnosticArray");};
-    #endif
-    #ifdef ESP8266
-        const char * getMD5() { return  ("60810da900de1dd6ddd437c3503511da");};
-    #else
-        const char * getMD5() { return  PSTR("60810da900de1dd6ddd437c3503511da");};
-    #endif
+    virtual const char * getType() override { return "diagnostic_msgs/DiagnosticArray"; };
+    virtual const char * getMD5() override { return "60810da900de1dd6ddd437c3503511da"; };
 
   };
 

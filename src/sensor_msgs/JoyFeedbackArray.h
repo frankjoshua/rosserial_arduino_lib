@@ -5,7 +5,6 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
-#include "ArduinoIncludes.h"
 #include "sensor_msgs/JoyFeedback.h"
 
 namespace sensor_msgs
@@ -20,11 +19,11 @@ namespace sensor_msgs
       _array_type * array;
 
     JoyFeedbackArray():
-      array_length(0), array(NULL)
+      array_length(0), st_array(), array(nullptr)
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       *(outbuffer + offset + 0) = (this->array_length >> (8 * 0)) & 0xFF;
@@ -38,7 +37,7 @@ namespace sensor_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       uint32_t array_lengthT = ((uint32_t) (*(inbuffer + offset))); 
@@ -56,16 +55,8 @@ namespace sensor_msgs
      return offset;
     }
 
-    #ifdef ESP8266
-        const char * getType() { return  ("sensor_msgs/JoyFeedbackArray");};
-    #else
-        const char * getType() { return  PSTR("sensor_msgs/JoyFeedbackArray");};
-    #endif
-    #ifdef ESP8266
-        const char * getMD5() { return  ("cde5730a895b1fc4dee6f91b754b213d");};
-    #else
-        const char * getMD5() { return  PSTR("cde5730a895b1fc4dee6f91b754b213d");};
-    #endif
+    virtual const char * getType() override { return "sensor_msgs/JoyFeedbackArray"; };
+    virtual const char * getMD5() override { return "cde5730a895b1fc4dee6f91b754b213d"; };
 
   };
 

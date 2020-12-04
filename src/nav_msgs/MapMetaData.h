@@ -5,7 +5,6 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
-#include "ArduinoIncludes.h"
 #include "ros/time.h"
 #include "geometry_msgs/Pose.h"
 
@@ -35,7 +34,7 @@ namespace nav_msgs
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       *(outbuffer + offset + 0) = (this->map_load_time.sec >> (8 * 0)) & 0xFF;
@@ -72,7 +71,7 @@ namespace nav_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       this->map_load_time.sec =  ((uint32_t) (*(inbuffer + offset)));
@@ -110,16 +109,8 @@ namespace nav_msgs
      return offset;
     }
 
-    #ifdef ESP8266
-        const char * getType() { return  ("nav_msgs/MapMetaData");};
-    #else
-        const char * getType() { return  PSTR("nav_msgs/MapMetaData");};
-    #endif
-    #ifdef ESP8266
-        const char * getMD5() { return  ("10cfc8a2818024d3248802c00c95f11b");};
-    #else
-        const char * getMD5() { return  PSTR("10cfc8a2818024d3248802c00c95f11b");};
-    #endif
+    virtual const char * getType() override { return "nav_msgs/MapMetaData"; };
+    virtual const char * getMD5() override { return "10cfc8a2818024d3248802c00c95f11b"; };
 
   };
 

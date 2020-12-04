@@ -5,7 +5,6 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
-#include "ArduinoIncludes.h"
 #include "std_msgs/Header.h"
 
 namespace rosgraph_msgs
@@ -46,11 +45,11 @@ namespace rosgraph_msgs
       file(""),
       function(""),
       line(0),
-      topics_length(0), topics(NULL)
+      topics_length(0), st_topics(), topics(nullptr)
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       offset += this->header.serialize(outbuffer + offset);
@@ -101,7 +100,7 @@ namespace rosgraph_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       offset += this->header.deserialize(inbuffer + offset);
@@ -177,16 +176,8 @@ namespace rosgraph_msgs
      return offset;
     }
 
-    #ifdef ESP8266
-        const char * getType() { return  ("rosgraph_msgs/Log");};
-    #else
-        const char * getType() { return  PSTR("rosgraph_msgs/Log");};
-    #endif
-    #ifdef ESP8266
-        const char * getMD5() { return  ("acffd30cd6b6de30f120938c17c593fb");};
-    #else
-        const char * getMD5() { return  PSTR("acffd30cd6b6de30f120938c17c593fb");};
-    #endif
+    virtual const char * getType() override { return "rosgraph_msgs/Log"; };
+    virtual const char * getMD5() override { return "acffd30cd6b6de30f120938c17c593fb"; };
 
   };
 

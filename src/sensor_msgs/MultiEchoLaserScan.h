@@ -5,7 +5,6 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
-#include "ArduinoIncludes.h"
 #include "std_msgs/Header.h"
 #include "sensor_msgs/LaserEcho.h"
 
@@ -49,12 +48,12 @@ namespace sensor_msgs
       scan_time(0),
       range_min(0),
       range_max(0),
-      ranges_length(0), ranges(NULL),
-      intensities_length(0), intensities(NULL)
+      ranges_length(0), st_ranges(), ranges(nullptr),
+      intensities_length(0), st_intensities(), intensities(nullptr)
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       offset += this->header.serialize(outbuffer + offset);
@@ -147,7 +146,7 @@ namespace sensor_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       offset += this->header.deserialize(inbuffer + offset);
@@ -255,16 +254,8 @@ namespace sensor_msgs
      return offset;
     }
 
-    #ifdef ESP8266
-        const char * getType() { return  ("sensor_msgs/MultiEchoLaserScan");};
-    #else
-        const char * getType() { return  PSTR("sensor_msgs/MultiEchoLaserScan");};
-    #endif
-    #ifdef ESP8266
-        const char * getMD5() { return  ("6fefb0c6da89d7c8abe4b339f5c2f8fb");};
-    #else
-        const char * getMD5() { return  PSTR("6fefb0c6da89d7c8abe4b339f5c2f8fb");};
-    #endif
+    virtual const char * getType() override { return "sensor_msgs/MultiEchoLaserScan"; };
+    virtual const char * getMD5() override { return "6fefb0c6da89d7c8abe4b339f5c2f8fb"; };
 
   };
 

@@ -5,7 +5,6 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
-#include "ArduinoIncludes.h"
 
 namespace std_msgs
 {
@@ -21,7 +20,7 @@ namespace std_msgs
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       *(outbuffer + offset + 0) = (this->data >> (8 * 0)) & 0xFF;
@@ -29,7 +28,7 @@ namespace std_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       this->data =  ((uint8_t) (*(inbuffer + offset)));
@@ -37,16 +36,8 @@ namespace std_msgs
      return offset;
     }
 
-    #ifdef ESP8266
-        const char * getType() { return  ("std_msgs/UInt8");};
-    #else
-        const char * getType() { return  PSTR("std_msgs/UInt8");};
-    #endif
-    #ifdef ESP8266
-        const char * getMD5() { return  ("7c8164229e7d2c17eb95e9231617fdee");};
-    #else
-        const char * getMD5() { return  PSTR("7c8164229e7d2c17eb95e9231617fdee");};
-    #endif
+    virtual const char * getType() override { return "std_msgs/UInt8"; };
+    virtual const char * getMD5() override { return "7c8164229e7d2c17eb95e9231617fdee"; };
 
   };
 

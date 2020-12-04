@@ -5,7 +5,6 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
-#include "ArduinoIncludes.h"
 #include "std_msgs/MultiArrayDimension.h"
 
 namespace std_msgs
@@ -22,12 +21,12 @@ namespace std_msgs
       _data_offset_type data_offset;
 
     MultiArrayLayout():
-      dim_length(0), dim(NULL),
+      dim_length(0), st_dim(), dim(nullptr),
       data_offset(0)
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       *(outbuffer + offset + 0) = (this->dim_length >> (8 * 0)) & 0xFF;
@@ -46,7 +45,7 @@ namespace std_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       uint32_t dim_lengthT = ((uint32_t) (*(inbuffer + offset))); 
@@ -69,16 +68,8 @@ namespace std_msgs
      return offset;
     }
 
-    #ifdef ESP8266
-        const char * getType() { return  ("std_msgs/MultiArrayLayout");};
-    #else
-        const char * getType() { return  PSTR("std_msgs/MultiArrayLayout");};
-    #endif
-    #ifdef ESP8266
-        const char * getMD5() { return  ("0fed2a11c13e11c5571b4e2a995a91a3");};
-    #else
-        const char * getMD5() { return  PSTR("0fed2a11c13e11c5571b4e2a995a91a3");};
-    #endif
+    virtual const char * getType() override { return "std_msgs/MultiArrayLayout"; };
+    virtual const char * getMD5() override { return "0fed2a11c13e11c5571b4e2a995a91a3"; };
 
   };
 

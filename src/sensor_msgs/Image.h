@@ -5,7 +5,6 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
-#include "ArduinoIncludes.h"
 #include "std_msgs/Header.h"
 
 namespace sensor_msgs
@@ -38,11 +37,11 @@ namespace sensor_msgs
       encoding(""),
       is_bigendian(0),
       step(0),
-      data_length(0), data(NULL)
+      data_length(0), st_data(), data(nullptr)
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       offset += this->header.serialize(outbuffer + offset);
@@ -80,7 +79,7 @@ namespace sensor_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       offset += this->header.deserialize(inbuffer + offset);
@@ -126,16 +125,8 @@ namespace sensor_msgs
      return offset;
     }
 
-    #ifdef ESP8266
-        const char * getType() { return  ("sensor_msgs/Image");};
-    #else
-        const char * getType() { return  PSTR("sensor_msgs/Image");};
-    #endif
-    #ifdef ESP8266
-        const char * getMD5() { return  ("060021388200f6f0f447d0fcd9c64743");};
-    #else
-        const char * getMD5() { return  PSTR("060021388200f6f0f447d0fcd9c64743");};
-    #endif
+    virtual const char * getType() override { return "sensor_msgs/Image"; };
+    virtual const char * getMD5() override { return "060021388200f6f0f447d0fcd9c64743"; };
 
   };
 

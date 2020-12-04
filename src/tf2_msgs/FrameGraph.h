@@ -4,16 +4,11 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
-#include "ArduinoIncludes.h"
 
 namespace tf2_msgs
 {
 
-#ifdef ESP8266
-    static const char FRAMEGRAPH[] = "tf2_msgs/FrameGraph";
-#else
-    static const char FRAMEGRAPH[] PROGMEM = "tf2_msgs/FrameGraph";
-#endif
+static const char FRAMEGRAPH[] = "tf2_msgs/FrameGraph";
 
   class FrameGraphRequest : public ros::Msg
   {
@@ -23,24 +18,20 @@ namespace tf2_msgs
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
      return offset;
     }
 
-    const char * getType(){ return FRAMEGRAPH; };
-    #ifdef ESP8266
-        const char * getMD5() { return  ("d41d8cd98f00b204e9800998ecf8427e");};
-    #else
-        const char * getMD5() { return  PSTR("d41d8cd98f00b204e9800998ecf8427e");};
-    #endif
+    virtual const char * getType() override { return FRAMEGRAPH; };
+    virtual const char * getMD5() override { return "d41d8cd98f00b204e9800998ecf8427e"; };
 
   };
 
@@ -55,7 +46,7 @@ namespace tf2_msgs
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       uint32_t length_frame_yaml = strlen(this->frame_yaml);
@@ -66,7 +57,7 @@ namespace tf2_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       uint32_t length_frame_yaml;
@@ -81,12 +72,8 @@ namespace tf2_msgs
      return offset;
     }
 
-    const char * getType(){ return FRAMEGRAPH; };
-    #ifdef ESP8266
-        const char * getMD5() { return  ("437ea58e9463815a0d511c7326b686b0");};
-    #else
-        const char * getMD5() { return  PSTR("437ea58e9463815a0d511c7326b686b0");};
-    #endif
+    virtual const char * getType() override { return FRAMEGRAPH; };
+    virtual const char * getMD5() override { return "437ea58e9463815a0d511c7326b686b0"; };
 
   };
 

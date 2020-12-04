@@ -5,7 +5,6 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
-#include "ArduinoIncludes.h"
 
 namespace geometry_msgs
 {
@@ -30,7 +29,7 @@ namespace geometry_msgs
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       offset += serializeAvrFloat64(outbuffer + offset, this->x);
@@ -40,7 +39,7 @@ namespace geometry_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       offset += deserializeAvrFloat64(inbuffer + offset, &(this->x));
@@ -50,16 +49,8 @@ namespace geometry_msgs
      return offset;
     }
 
-    #ifdef ESP8266
-        const char * getType() { return  ("geometry_msgs/Quaternion");};
-    #else
-        const char * getType() { return  PSTR("geometry_msgs/Quaternion");};
-    #endif
-    #ifdef ESP8266
-        const char * getMD5() { return  ("a779879fadf0160734f906b8c19c7004");};
-    #else
-        const char * getMD5() { return  PSTR("a779879fadf0160734f906b8c19c7004");};
-    #endif
+    virtual const char * getType() override { return "geometry_msgs/Quaternion"; };
+    virtual const char * getMD5() override { return "a779879fadf0160734f906b8c19c7004"; };
 
   };
 

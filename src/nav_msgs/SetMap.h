@@ -4,18 +4,13 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
-#include "ArduinoIncludes.h"
 #include "nav_msgs/OccupancyGrid.h"
 #include "geometry_msgs/PoseWithCovarianceStamped.h"
 
 namespace nav_msgs
 {
 
-#ifdef ESP8266
-    static const char SETMAP[] = "nav_msgs/SetMap";
-#else
-    static const char SETMAP[] PROGMEM = "nav_msgs/SetMap";
-#endif
+static const char SETMAP[] = "nav_msgs/SetMap";
 
   class SetMapRequest : public ros::Msg
   {
@@ -31,7 +26,7 @@ namespace nav_msgs
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       offset += this->map.serialize(outbuffer + offset);
@@ -39,7 +34,7 @@ namespace nav_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       offset += this->map.deserialize(inbuffer + offset);
@@ -47,12 +42,8 @@ namespace nav_msgs
      return offset;
     }
 
-    const char * getType(){ return SETMAP; };
-    #ifdef ESP8266
-        const char * getMD5() { return  ("91149a20d7be299b87c340df8cc94fd4");};
-    #else
-        const char * getMD5() { return  PSTR("91149a20d7be299b87c340df8cc94fd4");};
-    #endif
+    virtual const char * getType() override { return SETMAP; };
+    virtual const char * getMD5() override { return "91149a20d7be299b87c340df8cc94fd4"; };
 
   };
 
@@ -67,7 +58,7 @@ namespace nav_msgs
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       union {
@@ -80,7 +71,7 @@ namespace nav_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       union {
@@ -94,12 +85,8 @@ namespace nav_msgs
      return offset;
     }
 
-    const char * getType(){ return SETMAP; };
-    #ifdef ESP8266
-        const char * getMD5() { return  ("358e233cde0c8a8bcfea4ce193f8fc15");};
-    #else
-        const char * getMD5() { return  PSTR("358e233cde0c8a8bcfea4ce193f8fc15");};
-    #endif
+    virtual const char * getType() override { return SETMAP; };
+    virtual const char * getMD5() override { return "358e233cde0c8a8bcfea4ce193f8fc15"; };
 
   };
 

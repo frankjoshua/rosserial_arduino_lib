@@ -5,7 +5,6 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
-#include "ArduinoIncludes.h"
 
 namespace dynamic_reconfigure
 {
@@ -21,28 +20,20 @@ namespace dynamic_reconfigure
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
      return offset;
     }
 
-    #ifdef ESP8266
-        const char * getType() { return  ("dynamic_reconfigure/SensorLevels");};
-    #else
-        const char * getType() { return  PSTR("dynamic_reconfigure/SensorLevels");};
-    #endif
-    #ifdef ESP8266
-        const char * getMD5() { return  ("6322637bee96d5489db6e2127c47602c");};
-    #else
-        const char * getMD5() { return  PSTR("6322637bee96d5489db6e2127c47602c");};
-    #endif
+    virtual const char * getType() override { return "dynamic_reconfigure/SensorLevels"; };
+    virtual const char * getMD5() override { return "6322637bee96d5489db6e2127c47602c"; };
 
   };
 

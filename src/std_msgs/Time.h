@@ -5,7 +5,6 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
-#include "ArduinoIncludes.h"
 #include "ros/time.h"
 
 namespace std_msgs
@@ -22,7 +21,7 @@ namespace std_msgs
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       *(outbuffer + offset + 0) = (this->data.sec >> (8 * 0)) & 0xFF;
@@ -38,7 +37,7 @@ namespace std_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       this->data.sec =  ((uint32_t) (*(inbuffer + offset)));
@@ -54,16 +53,8 @@ namespace std_msgs
      return offset;
     }
 
-    #ifdef ESP8266
-        const char * getType() { return  ("std_msgs/Time");};
-    #else
-        const char * getType() { return  PSTR("std_msgs/Time");};
-    #endif
-    #ifdef ESP8266
-        const char * getMD5() { return  ("cd7166c74c552c311fbcc2fe5a7bc289");};
-    #else
-        const char * getMD5() { return  PSTR("cd7166c74c552c311fbcc2fe5a7bc289");};
-    #endif
+    virtual const char * getType() override { return "std_msgs/Time"; };
+    virtual const char * getMD5() override { return "cd7166c74c552c311fbcc2fe5a7bc289"; };
 
   };
 

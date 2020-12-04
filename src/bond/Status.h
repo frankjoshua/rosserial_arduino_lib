@@ -5,7 +5,6 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
-#include "ArduinoIncludes.h"
 #include "std_msgs/Header.h"
 
 namespace bond
@@ -37,7 +36,7 @@ namespace bond
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       offset += this->header.serialize(outbuffer + offset);
@@ -81,7 +80,7 @@ namespace bond
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       offset += this->header.deserialize(inbuffer + offset);
@@ -136,16 +135,8 @@ namespace bond
      return offset;
     }
 
-    #ifdef ESP8266
-        const char * getType() { return  ("bond/Status");};
-    #else
-        const char * getType() { return  PSTR("bond/Status");};
-    #endif
-    #ifdef ESP8266
-        const char * getMD5() { return  ("eacc84bf5d65b6777d4c50f463dfb9c8");};
-    #else
-        const char * getMD5() { return  PSTR("eacc84bf5d65b6777d4c50f463dfb9c8");};
-    #endif
+    virtual const char * getType() override { return "bond/Status"; };
+    virtual const char * getMD5() override { return "eacc84bf5d65b6777d4c50f463dfb9c8"; };
 
   };
 

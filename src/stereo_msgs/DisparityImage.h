@@ -5,7 +5,6 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
-#include "ArduinoIncludes.h"
 #include "std_msgs/Header.h"
 #include "sensor_msgs/Image.h"
 #include "sensor_msgs/RegionOfInterest.h"
@@ -45,7 +44,7 @@ namespace stereo_msgs
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       offset += this->header.serialize(outbuffer + offset);
@@ -104,7 +103,7 @@ namespace stereo_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       offset += this->header.deserialize(inbuffer + offset);
@@ -168,16 +167,8 @@ namespace stereo_msgs
      return offset;
     }
 
-    #ifdef ESP8266
-        const char * getType() { return  ("stereo_msgs/DisparityImage");};
-    #else
-        const char * getType() { return  PSTR("stereo_msgs/DisparityImage");};
-    #endif
-    #ifdef ESP8266
-        const char * getMD5() { return  ("04a177815f75271039fa21f16acad8c9");};
-    #else
-        const char * getMD5() { return  PSTR("04a177815f75271039fa21f16acad8c9");};
-    #endif
+    virtual const char * getType() override { return "stereo_msgs/DisparityImage"; };
+    virtual const char * getMD5() override { return "04a177815f75271039fa21f16acad8c9"; };
 
   };
 

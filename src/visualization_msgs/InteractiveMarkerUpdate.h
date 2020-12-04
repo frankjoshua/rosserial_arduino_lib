@@ -5,7 +5,6 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
-#include "ArduinoIncludes.h"
 #include "visualization_msgs/InteractiveMarker.h"
 #include "visualization_msgs/InteractiveMarkerPose.h"
 
@@ -40,13 +39,13 @@ namespace visualization_msgs
       server_id(""),
       seq_num(0),
       type(0),
-      markers_length(0), markers(NULL),
-      poses_length(0), poses(NULL),
-      erases_length(0), erases(NULL)
+      markers_length(0), st_markers(), markers(nullptr),
+      poses_length(0), st_poses(), poses(nullptr),
+      erases_length(0), st_erases(), erases(nullptr)
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       uint32_t length_server_id = strlen(this->server_id);
@@ -54,15 +53,14 @@ namespace visualization_msgs
       offset += 4;
       memcpy(outbuffer + offset, this->server_id, length_server_id);
       offset += length_server_id;
-      union {
-        uint64_t real;
-        uint32_t base;
-      } u_seq_num;
-      u_seq_num.real = this->seq_num;
-      *(outbuffer + offset + 0) = (u_seq_num.base >> (8 * 0)) & 0xFF;
-      *(outbuffer + offset + 1) = (u_seq_num.base >> (8 * 1)) & 0xFF;
-      *(outbuffer + offset + 2) = (u_seq_num.base >> (8 * 2)) & 0xFF;
-      *(outbuffer + offset + 3) = (u_seq_num.base >> (8 * 3)) & 0xFF;
+      *(outbuffer + offset + 0) = (this->seq_num >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (this->seq_num >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (this->seq_num >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (this->seq_num >> (8 * 3)) & 0xFF;
+      *(outbuffer + offset + 4) = (this->seq_num >> (8 * 4)) & 0xFF;
+      *(outbuffer + offset + 5) = (this->seq_num >> (8 * 5)) & 0xFF;
+      *(outbuffer + offset + 6) = (this->seq_num >> (8 * 6)) & 0xFF;
+      *(outbuffer + offset + 7) = (this->seq_num >> (8 * 7)) & 0xFF;
       offset += sizeof(this->seq_num);
       *(outbuffer + offset + 0) = (this->type >> (8 * 0)) & 0xFF;
       offset += sizeof(this->type);
@@ -97,7 +95,7 @@ namespace visualization_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       uint32_t length_server_id;
@@ -109,16 +107,14 @@ namespace visualization_msgs
       inbuffer[offset+length_server_id-1]=0;
       this->server_id = (char *)(inbuffer + offset-1);
       offset += length_server_id;
-      union {
-        uint64_t real;
-        uint32_t base;
-      } u_seq_num;
-      u_seq_num.base = 0;
-      u_seq_num.base |= ((uint32_t) (*(inbuffer + offset + 0))) << (8 * 0);
-      u_seq_num.base |= ((uint32_t) (*(inbuffer + offset + 1))) << (8 * 1);
-      u_seq_num.base |= ((uint32_t) (*(inbuffer + offset + 2))) << (8 * 2);
-      u_seq_num.base |= ((uint32_t) (*(inbuffer + offset + 3))) << (8 * 3);
-      this->seq_num = u_seq_num.real;
+      this->seq_num =  ((uint64_t) (*(inbuffer + offset)));
+      this->seq_num |= ((uint64_t) (*(inbuffer + offset + 1))) << (8 * 1);
+      this->seq_num |= ((uint64_t) (*(inbuffer + offset + 2))) << (8 * 2);
+      this->seq_num |= ((uint64_t) (*(inbuffer + offset + 3))) << (8 * 3);
+      this->seq_num |= ((uint64_t) (*(inbuffer + offset + 4))) << (8 * 4);
+      this->seq_num |= ((uint64_t) (*(inbuffer + offset + 5))) << (8 * 5);
+      this->seq_num |= ((uint64_t) (*(inbuffer + offset + 6))) << (8 * 6);
+      this->seq_num |= ((uint64_t) (*(inbuffer + offset + 7))) << (8 * 7);
       offset += sizeof(this->seq_num);
       this->type =  ((uint8_t) (*(inbuffer + offset)));
       offset += sizeof(this->type);
@@ -169,16 +165,8 @@ namespace visualization_msgs
      return offset;
     }
 
-    #ifdef ESP8266
-        const char * getType() { return  ("visualization_msgs/InteractiveMarkerUpdate");};
-    #else
-        const char * getType() { return  PSTR("visualization_msgs/InteractiveMarkerUpdate");};
-    #endif
-    #ifdef ESP8266
-        const char * getMD5() { return  ("710d308d0a9276d65945e92dd30b3946");};
-    #else
-        const char * getMD5() { return  PSTR("710d308d0a9276d65945e92dd30b3946");};
-    #endif
+    virtual const char * getType() override { return "visualization_msgs/InteractiveMarkerUpdate"; };
+    virtual const char * getMD5() override { return "710d308d0a9276d65945e92dd30b3946"; };
 
   };
 

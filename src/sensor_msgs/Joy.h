@@ -5,7 +5,6 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
-#include "ArduinoIncludes.h"
 #include "std_msgs/Header.h"
 
 namespace sensor_msgs
@@ -27,12 +26,12 @@ namespace sensor_msgs
 
     Joy():
       header(),
-      axes_length(0), axes(NULL),
-      buttons_length(0), buttons(NULL)
+      axes_length(0), st_axes(), axes(nullptr),
+      buttons_length(0), st_buttons(), buttons(nullptr)
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       offset += this->header.serialize(outbuffer + offset);
@@ -73,7 +72,7 @@ namespace sensor_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       offset += this->header.deserialize(inbuffer + offset);
@@ -124,16 +123,8 @@ namespace sensor_msgs
      return offset;
     }
 
-    #ifdef ESP8266
-        const char * getType() { return  ("sensor_msgs/Joy");};
-    #else
-        const char * getType() { return  PSTR("sensor_msgs/Joy");};
-    #endif
-    #ifdef ESP8266
-        const char * getMD5() { return  ("5a9ea5f83505693b71e785041e67a8bb");};
-    #else
-        const char * getMD5() { return  PSTR("5a9ea5f83505693b71e785041e67a8bb");};
-    #endif
+    virtual const char * getType() override { return "sensor_msgs/Joy"; };
+    virtual const char * getMD5() override { return "5a9ea5f83505693b71e785041e67a8bb"; };
 
   };
 

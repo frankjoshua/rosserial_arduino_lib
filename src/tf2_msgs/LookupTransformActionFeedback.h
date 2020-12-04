@@ -5,7 +5,6 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
-#include "ArduinoIncludes.h"
 #include "std_msgs/Header.h"
 #include "actionlib_msgs/GoalStatus.h"
 #include "tf2_msgs/LookupTransformFeedback.h"
@@ -30,7 +29,7 @@ namespace tf2_msgs
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       offset += this->header.serialize(outbuffer + offset);
@@ -39,7 +38,7 @@ namespace tf2_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       offset += this->header.deserialize(inbuffer + offset);
@@ -48,16 +47,8 @@ namespace tf2_msgs
      return offset;
     }
 
-    #ifdef ESP8266
-        const char * getType() { return  ("tf2_msgs/LookupTransformActionFeedback");};
-    #else
-        const char * getType() { return  PSTR("tf2_msgs/LookupTransformActionFeedback");};
-    #endif
-    #ifdef ESP8266
-        const char * getMD5() { return  ("aae20e09065c3809e8a8e87c4c8953fd");};
-    #else
-        const char * getMD5() { return  PSTR("aae20e09065c3809e8a8e87c4c8953fd");};
-    #endif
+    virtual const char * getType() override { return "tf2_msgs/LookupTransformActionFeedback"; };
+    virtual const char * getMD5() override { return "aae20e09065c3809e8a8e87c4c8953fd"; };
 
   };
 

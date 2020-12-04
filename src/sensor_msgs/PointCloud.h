@@ -5,7 +5,6 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
-#include "ArduinoIncludes.h"
 #include "std_msgs/Header.h"
 #include "geometry_msgs/Point32.h"
 #include "sensor_msgs/ChannelFloat32.h"
@@ -29,12 +28,12 @@ namespace sensor_msgs
 
     PointCloud():
       header(),
-      points_length(0), points(NULL),
-      channels_length(0), channels(NULL)
+      points_length(0), st_points(), points(nullptr),
+      channels_length(0), st_channels(), channels(nullptr)
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       offset += this->header.serialize(outbuffer + offset);
@@ -57,7 +56,7 @@ namespace sensor_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       offset += this->header.deserialize(inbuffer + offset);
@@ -88,16 +87,8 @@ namespace sensor_msgs
      return offset;
     }
 
-    #ifdef ESP8266
-        const char * getType() { return  ("sensor_msgs/PointCloud");};
-    #else
-        const char * getType() { return  PSTR("sensor_msgs/PointCloud");};
-    #endif
-    #ifdef ESP8266
-        const char * getMD5() { return  ("d8e9c3f5afbdd8a130fd1d2763945fca");};
-    #else
-        const char * getMD5() { return  PSTR("d8e9c3f5afbdd8a130fd1d2763945fca");};
-    #endif
+    virtual const char * getType() override { return "sensor_msgs/PointCloud"; };
+    virtual const char * getMD5() override { return "d8e9c3f5afbdd8a130fd1d2763945fca"; };
 
   };
 

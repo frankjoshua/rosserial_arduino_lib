@@ -5,7 +5,6 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
-#include "ArduinoIncludes.h"
 #include "diagnostic_msgs/KeyValue.h"
 
 namespace diagnostic_msgs
@@ -36,11 +35,11 @@ namespace diagnostic_msgs
       name(""),
       message(""),
       hardware_id(""),
-      values_length(0), values(NULL)
+      values_length(0), st_values(), values(nullptr)
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       union {
@@ -76,7 +75,7 @@ namespace diagnostic_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       union {
@@ -129,16 +128,8 @@ namespace diagnostic_msgs
      return offset;
     }
 
-    #ifdef ESP8266
-        const char * getType() { return  ("diagnostic_msgs/DiagnosticStatus");};
-    #else
-        const char * getType() { return  PSTR("diagnostic_msgs/DiagnosticStatus");};
-    #endif
-    #ifdef ESP8266
-        const char * getMD5() { return  ("d0ce08bc6e5ba34c7754f563a9cabaf1");};
-    #else
-        const char * getMD5() { return  PSTR("d0ce08bc6e5ba34c7754f563a9cabaf1");};
-    #endif
+    virtual const char * getType() override { return "diagnostic_msgs/DiagnosticStatus"; };
+    virtual const char * getMD5() override { return "d0ce08bc6e5ba34c7754f563a9cabaf1"; };
 
   };
 

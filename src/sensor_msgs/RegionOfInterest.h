@@ -5,7 +5,6 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
-#include "ArduinoIncludes.h"
 
 namespace sensor_msgs
 {
@@ -33,7 +32,7 @@ namespace sensor_msgs
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       *(outbuffer + offset + 0) = (this->x_offset >> (8 * 0)) & 0xFF;
@@ -66,7 +65,7 @@ namespace sensor_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       this->x_offset =  ((uint32_t) (*(inbuffer + offset)));
@@ -100,16 +99,8 @@ namespace sensor_msgs
      return offset;
     }
 
-    #ifdef ESP8266
-        const char * getType() { return  ("sensor_msgs/RegionOfInterest");};
-    #else
-        const char * getType() { return  PSTR("sensor_msgs/RegionOfInterest");};
-    #endif
-    #ifdef ESP8266
-        const char * getMD5() { return  ("bdb633039d588fcccb441a4d43ccfe09");};
-    #else
-        const char * getMD5() { return  PSTR("bdb633039d588fcccb441a4d43ccfe09");};
-    #endif
+    virtual const char * getType() override { return "sensor_msgs/RegionOfInterest"; };
+    virtual const char * getMD5() override { return "bdb633039d588fcccb441a4d43ccfe09"; };
 
   };
 

@@ -5,7 +5,6 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
-#include "ArduinoIncludes.h"
 #include "ros/time.h"
 #include "ros/duration.h"
 
@@ -62,7 +61,7 @@ namespace rosgraph_msgs
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       uint32_t length_topic = strlen(this->topic);
@@ -193,7 +192,7 @@ namespace rosgraph_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       uint32_t length_topic;
@@ -339,16 +338,8 @@ namespace rosgraph_msgs
      return offset;
     }
 
-    #ifdef ESP8266
-        const char * getType() { return  ("rosgraph_msgs/TopicStatistics");};
-    #else
-        const char * getType() { return  PSTR("rosgraph_msgs/TopicStatistics");};
-    #endif
-    #ifdef ESP8266
-        const char * getMD5() { return  ("10152ed868c5097a5e2e4a89d7daa710");};
-    #else
-        const char * getMD5() { return  PSTR("10152ed868c5097a5e2e4a89d7daa710");};
-    #endif
+    virtual const char * getType() override { return "rosgraph_msgs/TopicStatistics"; };
+    virtual const char * getMD5() override { return "10152ed868c5097a5e2e4a89d7daa710"; };
 
   };
 

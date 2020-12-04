@@ -5,7 +5,6 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
-#include "ArduinoIncludes.h"
 #include "std_msgs/Header.h"
 #include "geometry_msgs/PoseWithCovariance.h"
 #include "geometry_msgs/TwistWithCovariance.h"
@@ -33,7 +32,7 @@ namespace nav_msgs
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       offset += this->header.serialize(outbuffer + offset);
@@ -47,7 +46,7 @@ namespace nav_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       offset += this->header.deserialize(inbuffer + offset);
@@ -65,16 +64,8 @@ namespace nav_msgs
      return offset;
     }
 
-    #ifdef ESP8266
-        const char * getType() { return  ("nav_msgs/Odometry");};
-    #else
-        const char * getType() { return  PSTR("nav_msgs/Odometry");};
-    #endif
-    #ifdef ESP8266
-        const char * getMD5() { return  ("cd5e73d190d741a2f92e81eda573aca7");};
-    #else
-        const char * getMD5() { return  PSTR("cd5e73d190d741a2f92e81eda573aca7");};
-    #endif
+    virtual const char * getType() override { return "nav_msgs/Odometry"; };
+    virtual const char * getMD5() override { return "cd5e73d190d741a2f92e81eda573aca7"; };
 
   };
 

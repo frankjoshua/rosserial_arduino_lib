@@ -5,7 +5,6 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
-#include "ArduinoIncludes.h"
 
 namespace geometry_msgs
 {
@@ -27,7 +26,7 @@ namespace geometry_msgs
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       union {
@@ -63,7 +62,7 @@ namespace geometry_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       union {
@@ -102,16 +101,8 @@ namespace geometry_msgs
      return offset;
     }
 
-    #ifdef ESP8266
-        const char * getType() { return  ("geometry_msgs/Point32");};
-    #else
-        const char * getType() { return  PSTR("geometry_msgs/Point32");};
-    #endif
-    #ifdef ESP8266
-        const char * getMD5() { return  ("cc153912f1453b708d221682bc23d9ac");};
-    #else
-        const char * getMD5() { return  PSTR("cc153912f1453b708d221682bc23d9ac");};
-    #endif
+    virtual const char * getType() override { return "geometry_msgs/Point32"; };
+    virtual const char * getMD5() override { return "cc153912f1453b708d221682bc23d9ac"; };
 
   };
 

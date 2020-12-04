@@ -4,17 +4,12 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
-#include "ArduinoIncludes.h"
 #include "roscpp/Logger.h"
 
 namespace roscpp
 {
 
-#ifdef ESP8266
-    static const char GETLOGGERS[] = "roscpp/GetLoggers";
-#else
-    static const char GETLOGGERS[] PROGMEM = "roscpp/GetLoggers";
-#endif
+static const char GETLOGGERS[] = "roscpp/GetLoggers";
 
   class GetLoggersRequest : public ros::Msg
   {
@@ -24,24 +19,20 @@ namespace roscpp
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
      return offset;
     }
 
-    const char * getType(){ return GETLOGGERS; };
-    #ifdef ESP8266
-        const char * getMD5() { return  ("d41d8cd98f00b204e9800998ecf8427e");};
-    #else
-        const char * getMD5() { return  PSTR("d41d8cd98f00b204e9800998ecf8427e");};
-    #endif
+    virtual const char * getType() override { return GETLOGGERS; };
+    virtual const char * getMD5() override { return "d41d8cd98f00b204e9800998ecf8427e"; };
 
   };
 
@@ -54,11 +45,11 @@ namespace roscpp
       _loggers_type * loggers;
 
     GetLoggersResponse():
-      loggers_length(0), loggers(NULL)
+      loggers_length(0), st_loggers(), loggers(nullptr)
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       *(outbuffer + offset + 0) = (this->loggers_length >> (8 * 0)) & 0xFF;
@@ -72,7 +63,7 @@ namespace roscpp
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       uint32_t loggers_lengthT = ((uint32_t) (*(inbuffer + offset))); 
@@ -90,12 +81,8 @@ namespace roscpp
      return offset;
     }
 
-    const char * getType(){ return GETLOGGERS; };
-    #ifdef ESP8266
-        const char * getMD5() { return  ("32e97e85527d4678a8f9279894bb64b0");};
-    #else
-        const char * getMD5() { return  PSTR("32e97e85527d4678a8f9279894bb64b0");};
-    #endif
+    virtual const char * getType() override { return GETLOGGERS; };
+    virtual const char * getMD5() override { return "32e97e85527d4678a8f9279894bb64b0"; };
 
   };
 

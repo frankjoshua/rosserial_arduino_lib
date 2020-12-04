@@ -5,7 +5,6 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
-#include "ArduinoIncludes.h"
 #include "dynamic_reconfigure/BoolParameter.h"
 #include "dynamic_reconfigure/IntParameter.h"
 #include "dynamic_reconfigure/StrParameter.h"
@@ -40,15 +39,15 @@ namespace dynamic_reconfigure
       _groups_type * groups;
 
     Config():
-      bools_length(0), bools(NULL),
-      ints_length(0), ints(NULL),
-      strs_length(0), strs(NULL),
-      doubles_length(0), doubles(NULL),
-      groups_length(0), groups(NULL)
+      bools_length(0), st_bools(), bools(nullptr),
+      ints_length(0), st_ints(), ints(nullptr),
+      strs_length(0), st_strs(), strs(nullptr),
+      doubles_length(0), st_doubles(), doubles(nullptr),
+      groups_length(0), st_groups(), groups(nullptr)
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       *(outbuffer + offset + 0) = (this->bools_length >> (8 * 0)) & 0xFF;
@@ -94,7 +93,7 @@ namespace dynamic_reconfigure
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       uint32_t bools_lengthT = ((uint32_t) (*(inbuffer + offset))); 
@@ -160,16 +159,8 @@ namespace dynamic_reconfigure
      return offset;
     }
 
-    #ifdef ESP8266
-        const char * getType() { return  ("dynamic_reconfigure/Config");};
-    #else
-        const char * getType() { return  PSTR("dynamic_reconfigure/Config");};
-    #endif
-    #ifdef ESP8266
-        const char * getMD5() { return  ("958f16a05573709014982821e6822580");};
-    #else
-        const char * getMD5() { return  PSTR("958f16a05573709014982821e6822580");};
-    #endif
+    virtual const char * getType() override { return "dynamic_reconfigure/Config"; };
+    virtual const char * getMD5() override { return "958f16a05573709014982821e6822580"; };
 
   };
 

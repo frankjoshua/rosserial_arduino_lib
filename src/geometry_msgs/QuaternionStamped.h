@@ -5,7 +5,6 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
-#include "ArduinoIncludes.h"
 #include "std_msgs/Header.h"
 #include "geometry_msgs/Quaternion.h"
 
@@ -26,7 +25,7 @@ namespace geometry_msgs
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       offset += this->header.serialize(outbuffer + offset);
@@ -34,7 +33,7 @@ namespace geometry_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       offset += this->header.deserialize(inbuffer + offset);
@@ -42,16 +41,8 @@ namespace geometry_msgs
      return offset;
     }
 
-    #ifdef ESP8266
-        const char * getType() { return  ("geometry_msgs/QuaternionStamped");};
-    #else
-        const char * getType() { return  PSTR("geometry_msgs/QuaternionStamped");};
-    #endif
-    #ifdef ESP8266
-        const char * getMD5() { return  ("e57f1e547e0e1fd13504588ffc8334e2");};
-    #else
-        const char * getMD5() { return  PSTR("e57f1e547e0e1fd13504588ffc8334e2");};
-    #endif
+    virtual const char * getType() override { return "geometry_msgs/QuaternionStamped"; };
+    virtual const char * getMD5() override { return "e57f1e547e0e1fd13504588ffc8334e2"; };
 
   };
 

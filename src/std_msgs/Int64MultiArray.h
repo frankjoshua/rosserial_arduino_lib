@@ -5,7 +5,6 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
-#include "ArduinoIncludes.h"
 #include "std_msgs/MultiArrayLayout.h"
 
 namespace std_msgs
@@ -23,11 +22,11 @@ namespace std_msgs
 
     Int64MultiArray():
       layout(),
-      data_length(0), data(NULL)
+      data_length(0), st_data(), data(nullptr)
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       offset += this->layout.serialize(outbuffer + offset);
@@ -55,7 +54,7 @@ namespace std_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       offset += this->layout.deserialize(inbuffer + offset);
@@ -88,16 +87,8 @@ namespace std_msgs
      return offset;
     }
 
-    #ifdef ESP8266
-        const char * getType() { return  ("std_msgs/Int64MultiArray");};
-    #else
-        const char * getType() { return  PSTR("std_msgs/Int64MultiArray");};
-    #endif
-    #ifdef ESP8266
-        const char * getMD5() { return  ("54865aa6c65be0448113a2afc6a49270");};
-    #else
-        const char * getMD5() { return  PSTR("54865aa6c65be0448113a2afc6a49270");};
-    #endif
+    virtual const char * getType() override { return "std_msgs/Int64MultiArray"; };
+    virtual const char * getMD5() override { return "54865aa6c65be0448113a2afc6a49270"; };
 
   };
 

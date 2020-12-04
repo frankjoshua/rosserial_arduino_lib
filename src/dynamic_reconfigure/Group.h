@@ -5,7 +5,6 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
-#include "ArduinoIncludes.h"
 #include "dynamic_reconfigure/ParamDescription.h"
 
 namespace dynamic_reconfigure
@@ -30,13 +29,13 @@ namespace dynamic_reconfigure
     Group():
       name(""),
       type(""),
-      parameters_length(0), parameters(NULL),
+      parameters_length(0), st_parameters(), parameters(nullptr),
       parent(0),
       id(0)
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       uint32_t length_name = strlen(this->name);
@@ -80,7 +79,7 @@ namespace dynamic_reconfigure
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       uint32_t length_name;
@@ -138,16 +137,8 @@ namespace dynamic_reconfigure
      return offset;
     }
 
-    #ifdef ESP8266
-        const char * getType() { return  ("dynamic_reconfigure/Group");};
-    #else
-        const char * getType() { return  PSTR("dynamic_reconfigure/Group");};
-    #endif
-    #ifdef ESP8266
-        const char * getMD5() { return  ("9e8cd9e9423c94823db3614dd8b1cf7a");};
-    #else
-        const char * getMD5() { return  PSTR("9e8cd9e9423c94823db3614dd8b1cf7a");};
-    #endif
+    virtual const char * getType() override { return "dynamic_reconfigure/Group"; };
+    virtual const char * getMD5() override { return "9e8cd9e9423c94823db3614dd8b1cf7a"; };
 
   };
 

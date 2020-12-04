@@ -5,7 +5,6 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
-#include "ArduinoIncludes.h"
 #include "std_msgs/Header.h"
 #include "geometry_msgs/Pose.h"
 #include "geometry_msgs/Point.h"
@@ -54,7 +53,7 @@ namespace visualization_msgs
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       offset += this->header.serialize(outbuffer + offset);
@@ -92,7 +91,7 @@ namespace visualization_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       offset += this->header.deserialize(inbuffer + offset);
@@ -143,16 +142,8 @@ namespace visualization_msgs
      return offset;
     }
 
-    #ifdef ESP8266
-        const char * getType() { return  ("visualization_msgs/InteractiveMarkerFeedback");};
-    #else
-        const char * getType() { return  PSTR("visualization_msgs/InteractiveMarkerFeedback");};
-    #endif
-    #ifdef ESP8266
-        const char * getMD5() { return  ("ab0f1eee058667e28c19ff3ffc3f4b78");};
-    #else
-        const char * getMD5() { return  PSTR("ab0f1eee058667e28c19ff3ffc3f4b78");};
-    #endif
+    virtual const char * getType() override { return "visualization_msgs/InteractiveMarkerFeedback"; };
+    virtual const char * getMD5() override { return "ab0f1eee058667e28c19ff3ffc3f4b78"; };
 
   };
 

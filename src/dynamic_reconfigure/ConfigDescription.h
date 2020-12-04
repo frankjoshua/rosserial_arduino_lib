@@ -5,7 +5,6 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
-#include "ArduinoIncludes.h"
 #include "dynamic_reconfigure/Group.h"
 #include "dynamic_reconfigure/Config.h"
 
@@ -27,14 +26,14 @@ namespace dynamic_reconfigure
       _dflt_type dflt;
 
     ConfigDescription():
-      groups_length(0), groups(NULL),
+      groups_length(0), st_groups(), groups(nullptr),
       max(),
       min(),
       dflt()
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       *(outbuffer + offset + 0) = (this->groups_length >> (8 * 0)) & 0xFF;
@@ -51,7 +50,7 @@ namespace dynamic_reconfigure
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       uint32_t groups_lengthT = ((uint32_t) (*(inbuffer + offset))); 
@@ -72,16 +71,8 @@ namespace dynamic_reconfigure
      return offset;
     }
 
-    #ifdef ESP8266
-        const char * getType() { return  ("dynamic_reconfigure/ConfigDescription");};
-    #else
-        const char * getType() { return  PSTR("dynamic_reconfigure/ConfigDescription");};
-    #endif
-    #ifdef ESP8266
-        const char * getMD5() { return  ("757ce9d44ba8ddd801bb30bc456f946f");};
-    #else
-        const char * getMD5() { return  PSTR("757ce9d44ba8ddd801bb30bc456f946f");};
-    #endif
+    virtual const char * getType() override { return "dynamic_reconfigure/ConfigDescription"; };
+    virtual const char * getMD5() override { return "757ce9d44ba8ddd801bb30bc456f946f"; };
 
   };
 

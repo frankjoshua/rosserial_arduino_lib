@@ -4,16 +4,11 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
-#include "ArduinoIncludes.h"
 
 namespace nodelet
 {
 
-#ifdef ESP8266
-    static const char NODELETLOAD[] = "nodelet/NodeletLoad";
-#else
-    static const char NODELETLOAD[] PROGMEM = "nodelet/NodeletLoad";
-#endif
+static const char NODELETLOAD[] = "nodelet/NodeletLoad";
 
   class NodeletLoadRequest : public ros::Msg
   {
@@ -40,14 +35,14 @@ namespace nodelet
     NodeletLoadRequest():
       name(""),
       type(""),
-      remap_source_args_length(0), remap_source_args(NULL),
-      remap_target_args_length(0), remap_target_args(NULL),
-      my_argv_length(0), my_argv(NULL),
+      remap_source_args_length(0), st_remap_source_args(), remap_source_args(nullptr),
+      remap_target_args_length(0), st_remap_target_args(), remap_target_args(nullptr),
+      my_argv_length(0), st_my_argv(), my_argv(nullptr),
       bond_id("")
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       uint32_t length_name = strlen(this->name);
@@ -104,7 +99,7 @@ namespace nodelet
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       uint32_t length_name;
@@ -197,12 +192,8 @@ namespace nodelet
      return offset;
     }
 
-    const char * getType(){ return NODELETLOAD; };
-    #ifdef ESP8266
-        const char * getMD5() { return  ("c6e28cc4d2e259249d96cfb50658fbec");};
-    #else
-        const char * getMD5() { return  PSTR("c6e28cc4d2e259249d96cfb50658fbec");};
-    #endif
+    virtual const char * getType() override { return NODELETLOAD; };
+    virtual const char * getMD5() override { return "c6e28cc4d2e259249d96cfb50658fbec"; };
 
   };
 
@@ -217,7 +208,7 @@ namespace nodelet
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       union {
@@ -230,7 +221,7 @@ namespace nodelet
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       union {
@@ -244,12 +235,8 @@ namespace nodelet
      return offset;
     }
 
-    const char * getType(){ return NODELETLOAD; };
-    #ifdef ESP8266
-        const char * getMD5() { return  ("358e233cde0c8a8bcfea4ce193f8fc15");};
-    #else
-        const char * getMD5() { return  PSTR("358e233cde0c8a8bcfea4ce193f8fc15");};
-    #endif
+    virtual const char * getType() override { return NODELETLOAD; };
+    virtual const char * getMD5() override { return "358e233cde0c8a8bcfea4ce193f8fc15"; };
 
   };
 

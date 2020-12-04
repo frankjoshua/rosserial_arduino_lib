@@ -5,7 +5,6 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
-#include "ArduinoIncludes.h"
 #include "std_msgs/Header.h"
 #include "geometry_msgs/PoseStamped.h"
 
@@ -24,11 +23,11 @@ namespace nav_msgs
 
     Path():
       header(),
-      poses_length(0), poses(NULL)
+      poses_length(0), st_poses(), poses(nullptr)
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       offset += this->header.serialize(outbuffer + offset);
@@ -43,7 +42,7 @@ namespace nav_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       offset += this->header.deserialize(inbuffer + offset);
@@ -62,16 +61,8 @@ namespace nav_msgs
      return offset;
     }
 
-    #ifdef ESP8266
-        const char * getType() { return  ("nav_msgs/Path");};
-    #else
-        const char * getType() { return  PSTR("nav_msgs/Path");};
-    #endif
-    #ifdef ESP8266
-        const char * getMD5() { return  ("6227e2b7e9cce15051f669a5e197bbf7");};
-    #else
-        const char * getMD5() { return  PSTR("6227e2b7e9cce15051f669a5e197bbf7");};
-    #endif
+    virtual const char * getType() override { return "nav_msgs/Path"; };
+    virtual const char * getMD5() override { return "6227e2b7e9cce15051f669a5e197bbf7"; };
 
   };
 

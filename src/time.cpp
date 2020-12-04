@@ -36,33 +36,44 @@
 
 namespace ros
 {
-  void normalizeSecNSec(uint32_t& sec, uint32_t& nsec){
-    uint32_t nsec_part= nsec % 1000000000UL;
-    uint32_t sec_part = nsec / 1000000000UL;
-    sec += sec_part;
-    nsec = nsec_part;
-  }
+void normalizeSecNSec(uint32_t& sec, uint32_t& nsec)
+{
+  uint32_t nsec_part = nsec % 1000000000UL;
+  uint32_t sec_part = nsec / 1000000000UL;
+  sec += sec_part;
+  nsec = nsec_part;
+}
 
-  Time& Time::fromNSec(int32_t t)
-  {
-    sec = t / 1000000000;
-    nsec = t % 1000000000;
-    normalizeSecNSec(sec, nsec);
-    return *this;
-  }
+Time& Time::fromNSec(int32_t t)
+{
+  sec = t / 1000000000;
+  nsec = t % 1000000000;
+  normalizeSecNSec(sec, nsec);
+  return *this;
+}
 
-  Time& Time::operator +=(const Duration &rhs)
-  {
-    sec += rhs.sec;
-    nsec += rhs.nsec;
-    normalizeSecNSec(sec, nsec);
-    return *this;
-  }
+Time& Time::operator +=(const Duration &rhs)
+{
+  sec = sec - 1 + rhs.sec;
+  nsec = nsec + 1000000000UL + rhs.nsec;
+  normalizeSecNSec(sec, nsec);
+  return *this;
+}
 
-  Time& Time::operator -=(const Duration &rhs){
-    sec += -rhs.sec;
-    nsec += -rhs.nsec;
-    normalizeSecNSec(sec, nsec);
-    return *this;
-  }
+Time& Time::operator -=(const Duration &rhs){
+  sec = sec - 1 - rhs.sec;
+  nsec = nsec + 1000000000UL - rhs.nsec;
+  normalizeSecNSec(sec, nsec);
+  return *this;
+}
+
+Duration Time::operator-(const Time &rhs) const {
+  // Note: Considers wrap around as a continuation of time, e.g.,
+  // (0,0) - (0xFFFFFFFF, 0) = (1, 0)
+  Duration d;
+  d.sec = sec > rhs.sec ? sec - rhs.sec : -(rhs.sec - sec);
+  d.nsec = nsec > rhs.nsec ? nsec - rhs.nsec : -(rhs.nsec - nsec);
+  normalizeSecNSecSigned(d.sec, d.nsec);
+  return d;
+}
 }

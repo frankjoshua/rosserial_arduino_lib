@@ -5,7 +5,6 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
-#include "ArduinoIncludes.h"
 #include "std_msgs/Header.h"
 #include "ros/time.h"
 
@@ -29,7 +28,7 @@ namespace sensor_msgs
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       offset += this->header.serialize(outbuffer + offset);
@@ -51,7 +50,7 @@ namespace sensor_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       offset += this->header.deserialize(inbuffer + offset);
@@ -77,16 +76,8 @@ namespace sensor_msgs
      return offset;
     }
 
-    #ifdef ESP8266
-        const char * getType() { return  ("sensor_msgs/TimeReference");};
-    #else
-        const char * getType() { return  PSTR("sensor_msgs/TimeReference");};
-    #endif
-    #ifdef ESP8266
-        const char * getMD5() { return  ("fded64a0265108ba86c3d38fb11c0c16");};
-    #else
-        const char * getMD5() { return  PSTR("fded64a0265108ba86c3d38fb11c0c16");};
-    #endif
+    virtual const char * getType() override { return "sensor_msgs/TimeReference"; };
+    virtual const char * getMD5() override { return "fded64a0265108ba86c3d38fb11c0c16"; };
 
   };
 

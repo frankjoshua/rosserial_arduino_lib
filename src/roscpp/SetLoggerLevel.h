@@ -4,16 +4,11 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
-#include "ArduinoIncludes.h"
 
 namespace roscpp
 {
 
-#ifdef ESP8266
-    static const char SETLOGGERLEVEL[] = "roscpp/SetLoggerLevel";
-#else
-    static const char SETLOGGERLEVEL[] PROGMEM = "roscpp/SetLoggerLevel";
-#endif
+static const char SETLOGGERLEVEL[] = "roscpp/SetLoggerLevel";
 
   class SetLoggerLevelRequest : public ros::Msg
   {
@@ -29,7 +24,7 @@ namespace roscpp
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       uint32_t length_logger = strlen(this->logger);
@@ -45,7 +40,7 @@ namespace roscpp
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       uint32_t length_logger;
@@ -69,12 +64,8 @@ namespace roscpp
      return offset;
     }
 
-    const char * getType(){ return SETLOGGERLEVEL; };
-    #ifdef ESP8266
-        const char * getMD5() { return  ("51da076440d78ca1684d36c868df61ea");};
-    #else
-        const char * getMD5() { return  PSTR("51da076440d78ca1684d36c868df61ea");};
-    #endif
+    virtual const char * getType() override { return SETLOGGERLEVEL; };
+    virtual const char * getMD5() override { return "51da076440d78ca1684d36c868df61ea"; };
 
   };
 
@@ -86,24 +77,20 @@ namespace roscpp
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
      return offset;
     }
 
-    const char * getType(){ return SETLOGGERLEVEL; };
-    #ifdef ESP8266
-        const char * getMD5() { return  ("d41d8cd98f00b204e9800998ecf8427e");};
-    #else
-        const char * getMD5() { return  PSTR("d41d8cd98f00b204e9800998ecf8427e");};
-    #endif
+    virtual const char * getType() override { return SETLOGGERLEVEL; };
+    virtual const char * getMD5() override { return "d41d8cd98f00b204e9800998ecf8427e"; };
 
   };
 

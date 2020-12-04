@@ -5,7 +5,6 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
-#include "ArduinoIncludes.h"
 #include "geometry_msgs/Transform.h"
 #include "geometry_msgs/Twist.h"
 #include "ros/duration.h"
@@ -32,14 +31,14 @@ namespace trajectory_msgs
       _time_from_start_type time_from_start;
 
     MultiDOFJointTrajectoryPoint():
-      transforms_length(0), transforms(NULL),
-      velocities_length(0), velocities(NULL),
-      accelerations_length(0), accelerations(NULL),
+      transforms_length(0), st_transforms(), transforms(nullptr),
+      velocities_length(0), st_velocities(), velocities(nullptr),
+      accelerations_length(0), st_accelerations(), accelerations(nullptr),
       time_from_start()
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       *(outbuffer + offset + 0) = (this->transforms_length >> (8 * 0)) & 0xFF;
@@ -79,7 +78,7 @@ namespace trajectory_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       uint32_t transforms_lengthT = ((uint32_t) (*(inbuffer + offset))); 
@@ -131,16 +130,8 @@ namespace trajectory_msgs
      return offset;
     }
 
-    #ifdef ESP8266
-        const char * getType() { return  ("trajectory_msgs/MultiDOFJointTrajectoryPoint");};
-    #else
-        const char * getType() { return  PSTR("trajectory_msgs/MultiDOFJointTrajectoryPoint");};
-    #endif
-    #ifdef ESP8266
-        const char * getMD5() { return  ("3ebe08d1abd5b65862d50e09430db776");};
-    #else
-        const char * getMD5() { return  PSTR("3ebe08d1abd5b65862d50e09430db776");};
-    #endif
+    virtual const char * getType() override { return "trajectory_msgs/MultiDOFJointTrajectoryPoint"; };
+    virtual const char * getMD5() override { return "3ebe08d1abd5b65862d50e09430db776"; };
 
   };
 

@@ -4,16 +4,11 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
-#include "ArduinoIncludes.h"
 
 namespace std_srvs
 {
 
-#ifdef ESP8266
-    static const char SETBOOL[] = "std_srvs/SetBool";
-#else
-    static const char SETBOOL[] PROGMEM = "std_srvs/SetBool";
-#endif
+static const char SETBOOL[] = "std_srvs/SetBool";
 
   class SetBoolRequest : public ros::Msg
   {
@@ -26,7 +21,7 @@ namespace std_srvs
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       union {
@@ -39,7 +34,7 @@ namespace std_srvs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       union {
@@ -53,12 +48,8 @@ namespace std_srvs
      return offset;
     }
 
-    const char * getType(){ return SETBOOL; };
-    #ifdef ESP8266
-        const char * getMD5() { return  ("8b94c1b53db61fb6aed406028ad6332a");};
-    #else
-        const char * getMD5() { return  PSTR("8b94c1b53db61fb6aed406028ad6332a");};
-    #endif
+    virtual const char * getType() override { return SETBOOL; };
+    virtual const char * getMD5() override { return "8b94c1b53db61fb6aed406028ad6332a"; };
 
   };
 
@@ -76,7 +67,7 @@ namespace std_srvs
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       union {
@@ -94,7 +85,7 @@ namespace std_srvs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       union {
@@ -117,12 +108,8 @@ namespace std_srvs
      return offset;
     }
 
-    const char * getType(){ return SETBOOL; };
-    #ifdef ESP8266
-        const char * getMD5() { return  ("937c9679a518e3a18d831e57125ea522");};
-    #else
-        const char * getMD5() { return  PSTR("937c9679a518e3a18d831e57125ea522");};
-    #endif
+    virtual const char * getType() override { return SETBOOL; };
+    virtual const char * getMD5() override { return "937c9679a518e3a18d831e57125ea522"; };
 
   };
 

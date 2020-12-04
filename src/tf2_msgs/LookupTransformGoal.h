@@ -5,7 +5,6 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
-#include "ArduinoIncludes.h"
 #include "ros/time.h"
 #include "ros/duration.h"
 
@@ -41,7 +40,7 @@ namespace tf2_msgs
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       uint32_t length_target_frame = strlen(this->target_frame);
@@ -99,7 +98,7 @@ namespace tf2_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       uint32_t length_target_frame;
@@ -170,16 +169,8 @@ namespace tf2_msgs
      return offset;
     }
 
-    #ifdef ESP8266
-        const char * getType() { return  ("tf2_msgs/LookupTransformGoal");};
-    #else
-        const char * getType() { return  PSTR("tf2_msgs/LookupTransformGoal");};
-    #endif
-    #ifdef ESP8266
-        const char * getMD5() { return  ("35e3720468131d675a18bb6f3e5f22f8");};
-    #else
-        const char * getMD5() { return  PSTR("35e3720468131d675a18bb6f3e5f22f8");};
-    #endif
+    virtual const char * getType() override { return "tf2_msgs/LookupTransformGoal"; };
+    virtual const char * getMD5() override { return "35e3720468131d675a18bb6f3e5f22f8"; };
 
   };
 

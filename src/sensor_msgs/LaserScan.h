@@ -5,7 +5,6 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
-#include "ArduinoIncludes.h"
 #include "std_msgs/Header.h"
 
 namespace sensor_msgs
@@ -48,12 +47,12 @@ namespace sensor_msgs
       scan_time(0),
       range_min(0),
       range_max(0),
-      ranges_length(0), ranges(NULL),
-      intensities_length(0), intensities(NULL)
+      ranges_length(0), st_ranges(), ranges(nullptr),
+      intensities_length(0), st_intensities(), intensities(nullptr)
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       offset += this->header.serialize(outbuffer + offset);
@@ -164,7 +163,7 @@ namespace sensor_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       offset += this->header.deserialize(inbuffer + offset);
@@ -292,16 +291,8 @@ namespace sensor_msgs
      return offset;
     }
 
-    #ifdef ESP8266
-        const char * getType() { return  ("sensor_msgs/LaserScan");};
-    #else
-        const char * getType() { return  PSTR("sensor_msgs/LaserScan");};
-    #endif
-    #ifdef ESP8266
-        const char * getMD5() { return  ("90c7ef2dc6895d81024acba2ac42f369");};
-    #else
-        const char * getMD5() { return  PSTR("90c7ef2dc6895d81024acba2ac42f369");};
-    #endif
+    virtual const char * getType() override { return "sensor_msgs/LaserScan"; };
+    virtual const char * getMD5() override { return "90c7ef2dc6895d81024acba2ac42f369"; };
 
   };
 

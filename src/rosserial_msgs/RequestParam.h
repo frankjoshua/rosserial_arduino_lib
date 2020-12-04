@@ -4,16 +4,11 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
-#include "ArduinoIncludes.h"
 
 namespace rosserial_msgs
 {
 
-#ifdef ESP8266
-    static const char REQUESTPARAM[] = "rosserial_msgs/RequestParam";
-#else
-    static const char REQUESTPARAM[] PROGMEM = "rosserial_msgs/RequestParam";
-#endif
+static const char REQUESTPARAM[] = "rosserial_msgs/RequestParam";
 
   class RequestParamRequest : public ros::Msg
   {
@@ -26,7 +21,7 @@ namespace rosserial_msgs
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       uint32_t length_name = strlen(this->name);
@@ -37,7 +32,7 @@ namespace rosserial_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       uint32_t length_name;
@@ -52,12 +47,8 @@ namespace rosserial_msgs
      return offset;
     }
 
-    const char * getType(){ return REQUESTPARAM; };
-    #ifdef ESP8266
-        const char * getMD5() { return  ("c1f3d28f1b044c871e6eff2e9fc3c667");};
-    #else
-        const char * getMD5() { return  PSTR("c1f3d28f1b044c871e6eff2e9fc3c667");};
-    #endif
+    virtual const char * getType() override { return REQUESTPARAM; };
+    virtual const char * getMD5() override { return "c1f3d28f1b044c871e6eff2e9fc3c667"; };
 
   };
 
@@ -78,13 +69,13 @@ namespace rosserial_msgs
       _strings_type * strings;
 
     RequestParamResponse():
-      ints_length(0), ints(NULL),
-      floats_length(0), floats(NULL),
-      strings_length(0), strings(NULL)
+      ints_length(0), st_ints(), ints(nullptr),
+      floats_length(0), st_floats(), floats(nullptr),
+      strings_length(0), st_strings(), strings(nullptr)
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       *(outbuffer + offset + 0) = (this->ints_length >> (8 * 0)) & 0xFF;
@@ -136,7 +127,7 @@ namespace rosserial_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       uint32_t ints_lengthT = ((uint32_t) (*(inbuffer + offset))); 
@@ -206,12 +197,8 @@ namespace rosserial_msgs
      return offset;
     }
 
-    const char * getType(){ return REQUESTPARAM; };
-    #ifdef ESP8266
-        const char * getMD5() { return  ("9f0e98bda65981986ddf53afa7a40e49");};
-    #else
-        const char * getMD5() { return  PSTR("9f0e98bda65981986ddf53afa7a40e49");};
-    #endif
+    virtual const char * getType() override { return REQUESTPARAM; };
+    virtual const char * getMD5() override { return "9f0e98bda65981986ddf53afa7a40e49"; };
 
   };
 

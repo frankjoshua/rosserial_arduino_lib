@@ -5,7 +5,6 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
-#include "ArduinoIncludes.h"
 #include "std_msgs/Header.h"
 #include "geometry_msgs/Wrench.h"
 
@@ -26,7 +25,7 @@ namespace geometry_msgs
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       offset += this->header.serialize(outbuffer + offset);
@@ -34,7 +33,7 @@ namespace geometry_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       offset += this->header.deserialize(inbuffer + offset);
@@ -42,16 +41,8 @@ namespace geometry_msgs
      return offset;
     }
 
-    #ifdef ESP8266
-        const char * getType() { return  ("geometry_msgs/WrenchStamped");};
-    #else
-        const char * getType() { return  PSTR("geometry_msgs/WrenchStamped");};
-    #endif
-    #ifdef ESP8266
-        const char * getMD5() { return  ("d78d3cb249ce23087ade7e7d0c40cfa7");};
-    #else
-        const char * getMD5() { return  PSTR("d78d3cb249ce23087ade7e7d0c40cfa7");};
-    #endif
+    virtual const char * getType() override { return "geometry_msgs/WrenchStamped"; };
+    virtual const char * getMD5() override { return "d78d3cb249ce23087ade7e7d0c40cfa7"; };
 
   };
 

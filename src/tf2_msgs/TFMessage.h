@@ -5,7 +5,6 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
-#include "ArduinoIncludes.h"
 #include "geometry_msgs/TransformStamped.h"
 
 namespace tf2_msgs
@@ -20,11 +19,11 @@ namespace tf2_msgs
       _transforms_type * transforms;
 
     TFMessage():
-      transforms_length(0), transforms(NULL)
+      transforms_length(0), st_transforms(), transforms(nullptr)
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       *(outbuffer + offset + 0) = (this->transforms_length >> (8 * 0)) & 0xFF;
@@ -38,7 +37,7 @@ namespace tf2_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       uint32_t transforms_lengthT = ((uint32_t) (*(inbuffer + offset))); 
@@ -56,16 +55,8 @@ namespace tf2_msgs
      return offset;
     }
 
-    #ifdef ESP8266
-        const char * getType() { return  ("tf2_msgs/TFMessage");};
-    #else
-        const char * getType() { return  PSTR("tf2_msgs/TFMessage");};
-    #endif
-    #ifdef ESP8266
-        const char * getMD5() { return  ("94810edda583a504dfda3829e70d7eec");};
-    #else
-        const char * getMD5() { return  PSTR("94810edda583a504dfda3829e70d7eec");};
-    #endif
+    virtual const char * getType() override { return "tf2_msgs/TFMessage"; };
+    virtual const char * getMD5() override { return "94810edda583a504dfda3829e70d7eec"; };
 
   };
 

@@ -4,16 +4,11 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
-#include "ArduinoIncludes.h"
 
 namespace diagnostic_msgs
 {
 
-#ifdef ESP8266
-    static const char ADDDIAGNOSTICS[] = "diagnostic_msgs/AddDiagnostics";
-#else
-    static const char ADDDIAGNOSTICS[] PROGMEM = "diagnostic_msgs/AddDiagnostics";
-#endif
+static const char ADDDIAGNOSTICS[] = "diagnostic_msgs/AddDiagnostics";
 
   class AddDiagnosticsRequest : public ros::Msg
   {
@@ -26,7 +21,7 @@ namespace diagnostic_msgs
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       uint32_t length_load_namespace = strlen(this->load_namespace);
@@ -37,7 +32,7 @@ namespace diagnostic_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       uint32_t length_load_namespace;
@@ -52,12 +47,8 @@ namespace diagnostic_msgs
      return offset;
     }
 
-    const char * getType(){ return ADDDIAGNOSTICS; };
-    #ifdef ESP8266
-        const char * getMD5() { return  ("c26cf6e164288fbc6050d74f838bcdf0");};
-    #else
-        const char * getMD5() { return  PSTR("c26cf6e164288fbc6050d74f838bcdf0");};
-    #endif
+    virtual const char * getType() override { return ADDDIAGNOSTICS; };
+    virtual const char * getMD5() override { return "c26cf6e164288fbc6050d74f838bcdf0"; };
 
   };
 
@@ -75,7 +66,7 @@ namespace diagnostic_msgs
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       union {
@@ -93,7 +84,7 @@ namespace diagnostic_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       union {
@@ -116,12 +107,8 @@ namespace diagnostic_msgs
      return offset;
     }
 
-    const char * getType(){ return ADDDIAGNOSTICS; };
-    #ifdef ESP8266
-        const char * getMD5() { return  ("937c9679a518e3a18d831e57125ea522");};
-    #else
-        const char * getMD5() { return  PSTR("937c9679a518e3a18d831e57125ea522");};
-    #endif
+    virtual const char * getType() override { return ADDDIAGNOSTICS; };
+    virtual const char * getMD5() override { return "937c9679a518e3a18d831e57125ea522"; };
 
   };
 

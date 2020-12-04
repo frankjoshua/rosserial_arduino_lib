@@ -5,7 +5,6 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
-#include "ArduinoIncludes.h"
 #include "std_msgs/Header.h"
 #include "sensor_msgs/RegionOfInterest.h"
 
@@ -42,7 +41,7 @@ namespace sensor_msgs
       height(0),
       width(0),
       distortion_model(""),
-      D_length(0), D(NULL),
+      D_length(0), st_D(), D(nullptr),
       K(),
       R(),
       P(),
@@ -52,7 +51,7 @@ namespace sensor_msgs
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       offset += this->header.serialize(outbuffer + offset);
@@ -102,7 +101,7 @@ namespace sensor_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       offset += this->header.deserialize(inbuffer + offset);
@@ -160,16 +159,8 @@ namespace sensor_msgs
      return offset;
     }
 
-    #ifdef ESP8266
-        const char * getType() { return  ("sensor_msgs/CameraInfo");};
-    #else
-        const char * getType() { return  PSTR("sensor_msgs/CameraInfo");};
-    #endif
-    #ifdef ESP8266
-        const char * getMD5() { return  ("c9a58c1b0b154e0e6da7578cb991d214");};
-    #else
-        const char * getMD5() { return  PSTR("c9a58c1b0b154e0e6da7578cb991d214");};
-    #endif
+    virtual const char * getType() override { return "sensor_msgs/CameraInfo"; };
+    virtual const char * getMD5() override { return "c9a58c1b0b154e0e6da7578cb991d214"; };
 
   };
 

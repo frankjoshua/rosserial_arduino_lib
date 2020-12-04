@@ -4,16 +4,11 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
-#include "ArduinoIncludes.h"
 
 namespace nodelet
 {
 
-#ifdef ESP8266
-    static const char NODELETUNLOAD[] = "nodelet/NodeletUnload";
-#else
-    static const char NODELETUNLOAD[] PROGMEM = "nodelet/NodeletUnload";
-#endif
+static const char NODELETUNLOAD[] = "nodelet/NodeletUnload";
 
   class NodeletUnloadRequest : public ros::Msg
   {
@@ -26,7 +21,7 @@ namespace nodelet
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       uint32_t length_name = strlen(this->name);
@@ -37,7 +32,7 @@ namespace nodelet
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       uint32_t length_name;
@@ -52,12 +47,8 @@ namespace nodelet
      return offset;
     }
 
-    const char * getType(){ return NODELETUNLOAD; };
-    #ifdef ESP8266
-        const char * getMD5() { return  ("c1f3d28f1b044c871e6eff2e9fc3c667");};
-    #else
-        const char * getMD5() { return  PSTR("c1f3d28f1b044c871e6eff2e9fc3c667");};
-    #endif
+    virtual const char * getType() override { return NODELETUNLOAD; };
+    virtual const char * getMD5() override { return "c1f3d28f1b044c871e6eff2e9fc3c667"; };
 
   };
 
@@ -72,7 +63,7 @@ namespace nodelet
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       union {
@@ -85,7 +76,7 @@ namespace nodelet
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       union {
@@ -99,12 +90,8 @@ namespace nodelet
      return offset;
     }
 
-    const char * getType(){ return NODELETUNLOAD; };
-    #ifdef ESP8266
-        const char * getMD5() { return  ("358e233cde0c8a8bcfea4ce193f8fc15");};
-    #else
-        const char * getMD5() { return  PSTR("358e233cde0c8a8bcfea4ce193f8fc15");};
-    #endif
+    virtual const char * getType() override { return NODELETUNLOAD; };
+    virtual const char * getMD5() override { return "358e233cde0c8a8bcfea4ce193f8fc15"; };
 
   };
 

@@ -5,7 +5,6 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
-#include "ArduinoIncludes.h"
 #include "geometry_msgs/Twist.h"
 
 namespace geometry_msgs
@@ -24,7 +23,7 @@ namespace geometry_msgs
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       offset += this->twist.serialize(outbuffer + offset);
@@ -34,7 +33,7 @@ namespace geometry_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       offset += this->twist.deserialize(inbuffer + offset);
@@ -44,16 +43,8 @@ namespace geometry_msgs
      return offset;
     }
 
-    #ifdef ESP8266
-        const char * getType() { return  ("geometry_msgs/TwistWithCovariance");};
-    #else
-        const char * getType() { return  PSTR("geometry_msgs/TwistWithCovariance");};
-    #endif
-    #ifdef ESP8266
-        const char * getMD5() { return  ("1fe8a28e6890a4cc3ae4c3ca5c7d82e6");};
-    #else
-        const char * getMD5() { return  PSTR("1fe8a28e6890a4cc3ae4c3ca5c7d82e6");};
-    #endif
+    virtual const char * getType() override { return "geometry_msgs/TwistWithCovariance"; };
+    virtual const char * getMD5() override { return "1fe8a28e6890a4cc3ae4c3ca5c7d82e6"; };
 
   };
 

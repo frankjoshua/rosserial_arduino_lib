@@ -5,7 +5,6 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
-#include "ArduinoIncludes.h"
 #include "std_msgs/Header.h"
 #include "geometry_msgs/Point.h"
 
@@ -30,11 +29,11 @@ namespace nav_msgs
       header(),
       cell_width(0),
       cell_height(0),
-      cells_length(0), cells(NULL)
+      cells_length(0), st_cells(), cells(nullptr)
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       offset += this->header.serialize(outbuffer + offset);
@@ -69,7 +68,7 @@ namespace nav_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       offset += this->header.deserialize(inbuffer + offset);
@@ -110,16 +109,8 @@ namespace nav_msgs
      return offset;
     }
 
-    #ifdef ESP8266
-        const char * getType() { return  ("nav_msgs/GridCells");};
-    #else
-        const char * getType() { return  PSTR("nav_msgs/GridCells");};
-    #endif
-    #ifdef ESP8266
-        const char * getMD5() { return  ("b9e4f5df6d28e272ebde00a3994830f5");};
-    #else
-        const char * getMD5() { return  PSTR("b9e4f5df6d28e272ebde00a3994830f5");};
-    #endif
+    virtual const char * getType() override { return "nav_msgs/GridCells"; };
+    virtual const char * getMD5() override { return "b9e4f5df6d28e272ebde00a3994830f5"; };
 
   };
 

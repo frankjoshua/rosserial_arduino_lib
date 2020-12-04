@@ -5,7 +5,6 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
-#include "ArduinoIncludes.h"
 #include "std_msgs/Header.h"
 #include "geometry_msgs/Point.h"
 #include "std_msgs/ColorRGBA.h"
@@ -67,12 +66,12 @@ namespace visualization_msgs
       filled(0),
       fill_color(),
       lifetime(),
-      points_length(0), points(NULL),
-      outline_colors_length(0), outline_colors(NULL)
+      points_length(0), st_points(), points(nullptr),
+      outline_colors_length(0), st_outline_colors(), outline_colors(nullptr)
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       offset += this->header.serialize(outbuffer + offset);
@@ -155,7 +154,7 @@ namespace visualization_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
       offset += this->header.deserialize(inbuffer + offset);
@@ -254,16 +253,8 @@ namespace visualization_msgs
      return offset;
     }
 
-    #ifdef ESP8266
-        const char * getType() { return  ("visualization_msgs/ImageMarker");};
-    #else
-        const char * getType() { return  PSTR("visualization_msgs/ImageMarker");};
-    #endif
-    #ifdef ESP8266
-        const char * getMD5() { return  ("1de93c67ec8858b831025a08fbf1b35c");};
-    #else
-        const char * getMD5() { return  PSTR("1de93c67ec8858b831025a08fbf1b35c");};
-    #endif
+    virtual const char * getType() override { return "visualization_msgs/ImageMarker"; };
+    virtual const char * getMD5() override { return "1de93c67ec8858b831025a08fbf1b35c"; };
 
   };
 

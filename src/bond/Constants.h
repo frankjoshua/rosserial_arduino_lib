@@ -5,7 +5,6 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
-#include "ArduinoIncludes.h"
 
 namespace bond
 {
@@ -24,28 +23,20 @@ namespace bond
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const
+    virtual int serialize(unsigned char *outbuffer) const override
     {
       int offset = 0;
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer)
+    virtual int deserialize(unsigned char *inbuffer) override
     {
       int offset = 0;
      return offset;
     }
 
-    #ifdef ESP8266
-        const char * getType() { return  ("bond/Constants");};
-    #else
-        const char * getType() { return  PSTR("bond/Constants");};
-    #endif
-    #ifdef ESP8266
-        const char * getMD5() { return  ("6fc594dc1d7bd7919077042712f8c8b0");};
-    #else
-        const char * getMD5() { return  PSTR("6fc594dc1d7bd7919077042712f8c8b0");};
-    #endif
+    virtual const char * getType() override { return "bond/Constants"; };
+    virtual const char * getMD5() override { return "6fc594dc1d7bd7919077042712f8c8b0"; };
 
   };
 
