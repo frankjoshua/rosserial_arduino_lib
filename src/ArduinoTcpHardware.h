@@ -40,6 +40,8 @@
   #include <ESP8266WiFi.h>
 #elif defined(ESP32)
   #include <WiFi.h> // Using Espressif's WiFi.h
+#elif defined(NINA_GPIO0)
+  #include <WiFiNINA.h>
 #else
   #include <SPI.h>
   #include <Ethernet.h>
@@ -61,6 +63,8 @@ public:
   {
 #if defined(ESP8266) or defined(ESP32)
     return tcp_.localIP();
+#elif defined(NINA_GPIO0)
+    return WiFi.localIP();
 #else
     return Ethernet.localIP();
 #endif
@@ -104,7 +108,7 @@ public:
   }
 
 protected:
-#if defined(ESP8266) or defined(ESP32)
+#if defined(ESP8266) or defined(ESP32) or defined(NINA_GPIO0)
   WiFiClient tcp_;
 #else
   EthernetClient tcp_;
