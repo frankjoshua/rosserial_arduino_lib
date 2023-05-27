@@ -60,7 +60,7 @@ public:
   IPAddress getLocalIP()
   {
 #if defined(ESP8266) or defined(ESP32)
-    return tcp_.localIP();
+    return tcp_.remoteIP();
 #else
     return Ethernet.localIP();
 #endif
