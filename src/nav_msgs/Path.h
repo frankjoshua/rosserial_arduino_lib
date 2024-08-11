@@ -11,6 +11,8 @@
 namespace nav_msgs
 {
 
+    static const char nav_msgs_Path_type[] PROGMEM= "nav_msgs/Path";
+    static const char nav_msgs_Path_md5[] PROGMEM= "6227e2b7e9cce15051f669a5e197bbf7";
   class Path : public ros::Msg
   {
     public:
@@ -61,8 +63,8 @@ namespace nav_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "nav_msgs/Path"; };
-    virtual const char * getMD5() override { return "6227e2b7e9cce15051f669a5e197bbf7"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)nav_msgs_Path_type);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)nav_msgs_Path_md5);return md5_msg; };
 
   };
 

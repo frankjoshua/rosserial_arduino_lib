@@ -10,6 +10,8 @@
 namespace sensor_msgs
 {
 
+    static const char sensor_msgs_Image_type[] PROGMEM= "sensor_msgs/Image";
+    static const char sensor_msgs_Image_md5[] PROGMEM= "060021388200f6f0f447d0fcd9c64743";
   class Image : public ros::Msg
   {
     public:
@@ -125,8 +127,8 @@ namespace sensor_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "sensor_msgs/Image"; };
-    virtual const char * getMD5() override { return "060021388200f6f0f447d0fcd9c64743"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)sensor_msgs_Image_type);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)sensor_msgs_Image_md5);return md5_msg; };
 
   };
 

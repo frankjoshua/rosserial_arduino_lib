@@ -11,6 +11,8 @@
 namespace geometry_msgs
 {
 
+    static const char geometry_msgs_Pose_type[] PROGMEM= "geometry_msgs/Pose";
+    static const char geometry_msgs_Pose_md5[] PROGMEM= "e45d45a5a1ce597b249e23fb30fc871f";
   class Pose : public ros::Msg
   {
     public:
@@ -41,8 +43,8 @@ namespace geometry_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "geometry_msgs/Pose"; };
-    virtual const char * getMD5() override { return "e45d45a5a1ce597b249e23fb30fc871f"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)geometry_msgs_Pose_type);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)geometry_msgs_Pose_md5);return md5_msg; };
 
   };
 

@@ -50,8 +50,8 @@ public:
   // id_ is set by NodeHandle when we advertise
   int id_;
 
-  virtual const char * getMsgType() = 0;
-  virtual const char * getMsgMD5() = 0;
+  virtual const char * getMsgType(const char * type_msg) = 0;
+  virtual const char * getMsgMD5(const char * md5_msg) = 0;
   const char * topic_;
 };
 
@@ -77,13 +77,13 @@ public:
     (obj_->*cb_)(msg);
   }
 
-  virtual const char * getMsgType() override
+  virtual const char * getMsgType(const char * type_msg) override
   {
-    return this->msg.getType();
+    return this->msg.getType(type_msg);
   }
-  virtual const char * getMsgMD5() override
+  virtual const char * getMsgMD5(const char * md5_msg) override
   {
-    return this->msg.getMD5();
+    return this->msg.getMD5(md5_msg);
   }
   virtual int getEndpointType() override
   {
@@ -117,13 +117,13 @@ public:
     this->cb_(msg);
   }
 
-  virtual const char * getMsgType() override
+  virtual const char * getMsgType(const char * type_msg) override
   {
-    return this->msg.getType();
+    return this->msg.getType(type_msg);
   }
-  virtual const char * getMsgMD5() override
+  virtual const char * getMsgMD5(const char * md5_msg) override
   {
-    return this->msg.getMD5();
+    return this->msg.getMD5(md5_msg);
   }
   virtual int getEndpointType() override
   {

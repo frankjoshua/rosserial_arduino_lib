@@ -9,6 +9,8 @@
 namespace roscpp
 {
 
+    static const char roscpp_Logger_type[] PROGMEM= "roscpp/Logger";
+    static const char roscpp_Logger_md5[] PROGMEM= "a6069a2ff40db7bd32143dd66e1f408e";
   class Logger : public ros::Msg
   {
     public:
@@ -63,8 +65,8 @@ namespace roscpp
      return offset;
     }
 
-    virtual const char * getType() override { return "roscpp/Logger"; };
-    virtual const char * getMD5() override { return "a6069a2ff40db7bd32143dd66e1f408e"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)roscpp_Logger_type);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)roscpp_Logger_md5);return md5_msg; };
 
   };
 

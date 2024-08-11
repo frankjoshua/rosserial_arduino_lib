@@ -12,6 +12,8 @@
 namespace tf2_msgs
 {
 
+    static const char tf2_msgs_LookupTransformActionResult_type[] PROGMEM= "tf2_msgs/LookupTransformActionResult";
+    static const char tf2_msgs_LookupTransformActionResult_md5[] PROGMEM= "ac26ce75a41384fa8bb4dc10f491ab90";
   class LookupTransformActionResult : public ros::Msg
   {
     public:
@@ -47,8 +49,8 @@ namespace tf2_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "tf2_msgs/LookupTransformActionResult"; };
-    virtual const char * getMD5() override { return "ac26ce75a41384fa8bb4dc10f491ab90"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)tf2_msgs_LookupTransformActionResult_type);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)tf2_msgs_LookupTransformActionResult_md5);return md5_msg; };
 
   };
 

@@ -11,6 +11,8 @@
 namespace nav_msgs
 {
 
+    static const char nav_msgs_GridCells_type[] PROGMEM= "nav_msgs/GridCells";
+    static const char nav_msgs_GridCells_md5[] PROGMEM= "b9e4f5df6d28e272ebde00a3994830f5";
   class GridCells : public ros::Msg
   {
     public:
@@ -109,8 +111,8 @@ namespace nav_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "nav_msgs/GridCells"; };
-    virtual const char * getMD5() override { return "b9e4f5df6d28e272ebde00a3994830f5"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)nav_msgs_GridCells_type);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)nav_msgs_GridCells_md5);return md5_msg; };
 
   };
 

@@ -11,6 +11,8 @@
 namespace trajectory_msgs
 {
 
+    static const char trajectory_msgs_JointTrajectory_type[] PROGMEM= "trajectory_msgs/JointTrajectory";
+    static const char trajectory_msgs_JointTrajectory_md5[] PROGMEM= "65b4f94a94d1ed67169da35a02f33d3f";
   class JointTrajectory : public ros::Msg
   {
     public:
@@ -98,8 +100,8 @@ namespace trajectory_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "trajectory_msgs/JointTrajectory"; };
-    virtual const char * getMD5() override { return "65b4f94a94d1ed67169da35a02f33d3f"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)trajectory_msgs_JointTrajectory_type);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)trajectory_msgs_JointTrajectory_md5);return md5_msg; };
 
   };
 

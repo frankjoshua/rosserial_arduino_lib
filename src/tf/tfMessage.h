@@ -10,6 +10,8 @@
 namespace tf
 {
 
+    static const char tf_tfMessage_type[] PROGMEM= "tf/tfMessage";
+    static const char tf_tfMessage_md5[] PROGMEM= "94810edda583a504dfda3829e70d7eec";
   class tfMessage : public ros::Msg
   {
     public:
@@ -55,8 +57,8 @@ namespace tf
      return offset;
     }
 
-    virtual const char * getType() override { return "tf/tfMessage"; };
-    virtual const char * getMD5() override { return "94810edda583a504dfda3829e70d7eec"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)tf_tfMessage_type);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)tf_tfMessage_md5);return md5_msg; };
 
   };
 

@@ -10,6 +10,8 @@
 namespace rosgraph_msgs
 {
 
+    static const char rosgraph_msgs_Clock_type[] PROGMEM= "rosgraph_msgs/Clock";
+    static const char rosgraph_msgs_Clock_md5[] PROGMEM= "a9c97c1d230cfc112e270351a944ee47";
   class Clock : public ros::Msg
   {
     public:
@@ -53,8 +55,8 @@ namespace rosgraph_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "rosgraph_msgs/Clock"; };
-    virtual const char * getMD5() override { return "a9c97c1d230cfc112e270351a944ee47"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)rosgraph_msgs_Clock_type);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)rosgraph_msgs_Clock_md5);return md5_msg; };
 
   };
 

@@ -8,8 +8,10 @@
 namespace std_srvs
 {
 
-static const char EMPTY[] = "std_srvs/Empty";
+static const char EMPTY[] PROGMEM= "std_srvs/Empty";
 
+    static const char std_srvs_EmptyRequest_type[] PROGMEM= "std_srvs/EmptyRequest";
+    static const char std_srvs_EmptyRequest_md5[] PROGMEM= "d41d8cd98f00b204e9800998ecf8427e";
   class EmptyRequest : public ros::Msg
   {
     public:
@@ -30,11 +32,13 @@ static const char EMPTY[] = "std_srvs/Empty";
      return offset;
     }
 
-    virtual const char * getType() override { return EMPTY; };
-    virtual const char * getMD5() override { return "d41d8cd98f00b204e9800998ecf8427e"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)EMPTY);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)std_srvs_EmptyRequest_md5);return md5_msg; };
 
   };
 
+    static const char std_srvs_EmptyResponse_type[] PROGMEM= "std_srvs/EmptyResponse";
+    static const char std_srvs_EmptyResponse_md5[] PROGMEM= "d41d8cd98f00b204e9800998ecf8427e";
   class EmptyResponse : public ros::Msg
   {
     public:
@@ -55,8 +59,8 @@ static const char EMPTY[] = "std_srvs/Empty";
      return offset;
     }
 
-    virtual const char * getType() override { return EMPTY; };
-    virtual const char * getMD5() override { return "d41d8cd98f00b204e9800998ecf8427e"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)EMPTY);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)std_srvs_EmptyResponse_md5);return md5_msg; };
 
   };
 

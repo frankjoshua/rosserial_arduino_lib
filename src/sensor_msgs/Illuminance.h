@@ -10,6 +10,8 @@
 namespace sensor_msgs
 {
 
+    static const char sensor_msgs_Illuminance_type[] PROGMEM= "sensor_msgs/Illuminance";
+    static const char sensor_msgs_Illuminance_md5[] PROGMEM= "8cf5febb0952fca9d650c3d11a81a188";
   class Illuminance : public ros::Msg
   {
     public:
@@ -45,8 +47,8 @@ namespace sensor_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "sensor_msgs/Illuminance"; };
-    virtual const char * getMD5() override { return "8cf5febb0952fca9d650c3d11a81a188"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)sensor_msgs_Illuminance_type);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)sensor_msgs_Illuminance_md5);return md5_msg; };
 
   };
 

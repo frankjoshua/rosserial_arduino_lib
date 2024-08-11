@@ -10,6 +10,8 @@
 namespace actionlib
 {
 
+    static const char actionlib_TestRequestGoal_type[] PROGMEM= "actionlib/TestRequestGoal";
+    static const char actionlib_TestRequestGoal_md5[] PROGMEM= "db5d00ba98302d6c6dd3737e9a03ceea";
   class TestRequestGoal : public ros::Msg
   {
     public:
@@ -206,8 +208,8 @@ namespace actionlib
      return offset;
     }
 
-    virtual const char * getType() override { return "actionlib/TestRequestGoal"; };
-    virtual const char * getMD5() override { return "db5d00ba98302d6c6dd3737e9a03ceea"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)actionlib_TestRequestGoal_type);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)actionlib_TestRequestGoal_md5);return md5_msg; };
 
   };
 

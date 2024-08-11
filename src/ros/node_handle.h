@@ -445,8 +445,10 @@ public:
       {
         ti.topic_id = publishers[i]->id_;
         ti.topic_name = (char *) publishers[i]->topic_;
-        ti.message_type = (char *) publishers[i]->msg_->getType();
-        ti.md5sum = (char *) publishers[i]->msg_->getMD5();
+        char message_type_buffer[64];
+        ti.message_type = (char *) publishers[i]->msg_->getType(message_type_buffer);
+        char md5sum_buffer[64];
+        ti.md5sum = (char *) publishers[i]->msg_->getMD5(md5sum_buffer);
         ti.buffer_size = OUTPUT_SIZE;
         publish(publishers[i]->getEndpointType(), &ti);
       }
@@ -457,8 +459,10 @@ public:
       {
         ti.topic_id = subscribers[i]->id_;
         ti.topic_name = (char *) subscribers[i]->topic_;
-        ti.message_type = (char *) subscribers[i]->getMsgType();
-        ti.md5sum = (char *) subscribers[i]->getMsgMD5();
+        char message_type_buffer[64];
+        ti.message_type = (char *) subscribers[i]->getMsgType(message_type_buffer);
+        char md5sum_buffer[64];
+        ti.md5sum = (char *) subscribers[i]->getMsgMD5(md5sum_buffer);
         ti.buffer_size = INPUT_SIZE;
         publish(subscribers[i]->getEndpointType(), &ti);
       }
@@ -497,7 +501,8 @@ public:
     }
     else
     {
-      logerror("Message from device dropped: message larger than buffer.");
+      static const char MSG[] PROGMEM= "Message from device dropped: message larger than buffer.";
+      logerror(MSG);
       return -1;
     }
   }
@@ -557,7 +562,8 @@ protected:
       spinOnce();
       if (hardware_.time() > end_time)
       {
-        logwarn("Failed to get param: timeout expired");
+        static const char MSG[] PROGMEM= "Failed to get param: timeout expired";
+        logwarn(MSG);
         return false;
       }
     }
@@ -578,7 +584,8 @@ public:
       }
       else
       {
-        logwarn("Failed to get param: length mismatch");
+        static const char MSG[] PROGMEM= "Failed to get param: length mismatch";
+        logwarn(MSG);
       }
     }
     return false;
@@ -596,7 +603,8 @@ public:
       }
       else
       {
-        logwarn("Failed to get param: length mismatch");
+        static const char MSG[] PROGMEM= "Failed to get param: length mismatch";
+        logwarn(MSG);
       }
     }
     return false;
@@ -614,7 +622,8 @@ public:
       }
       else
       {
-        logwarn("Failed to get param: length mismatch");
+        static const char MSG[] PROGMEM= "Failed to get param: length mismatch";
+        logwarn(MSG);
       }
     }
     return false;
@@ -632,7 +641,8 @@ public:
       }
       else
       {
-        logwarn("Failed to get param: length mismatch");
+        static const char MSG[] PROGMEM= "Failed to get param: length mismatch";
+        logwarn(MSG);
       }
     }
     return false;

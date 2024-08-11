@@ -8,8 +8,10 @@
 namespace std_srvs
 {
 
-static const char SETBOOL[] = "std_srvs/SetBool";
+static const char SETBOOL[] PROGMEM= "std_srvs/SetBool";
 
+    static const char std_srvs_SetBoolRequest_type[] PROGMEM= "std_srvs/SetBoolRequest";
+    static const char std_srvs_SetBoolRequest_md5[] PROGMEM= "8b94c1b53db61fb6aed406028ad6332a";
   class SetBoolRequest : public ros::Msg
   {
     public:
@@ -48,11 +50,13 @@ static const char SETBOOL[] = "std_srvs/SetBool";
      return offset;
     }
 
-    virtual const char * getType() override { return SETBOOL; };
-    virtual const char * getMD5() override { return "8b94c1b53db61fb6aed406028ad6332a"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)SETBOOL);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)std_srvs_SetBoolRequest_md5);return md5_msg; };
 
   };
 
+    static const char std_srvs_SetBoolResponse_type[] PROGMEM= "std_srvs/SetBoolResponse";
+    static const char std_srvs_SetBoolResponse_md5[] PROGMEM= "937c9679a518e3a18d831e57125ea522";
   class SetBoolResponse : public ros::Msg
   {
     public:
@@ -108,8 +112,8 @@ static const char SETBOOL[] = "std_srvs/SetBool";
      return offset;
     }
 
-    virtual const char * getType() override { return SETBOOL; };
-    virtual const char * getMD5() override { return "937c9679a518e3a18d831e57125ea522"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)SETBOOL);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)std_srvs_SetBoolResponse_md5);return md5_msg; };
 
   };
 

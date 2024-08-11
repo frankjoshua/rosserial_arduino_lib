@@ -9,6 +9,8 @@
 namespace rosserial_msgs
 {
 
+    static const char rosserial_msgs_Log_type[] PROGMEM= "rosserial_msgs/Log";
+    static const char rosserial_msgs_Log_md5[] PROGMEM= "11abd731c25933261cd6183bd12d6295";
   class Log : public ros::Msg
   {
     public:
@@ -58,8 +60,8 @@ namespace rosserial_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "rosserial_msgs/Log"; };
-    virtual const char * getMD5() override { return "11abd731c25933261cd6183bd12d6295"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)rosserial_msgs_Log_type);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)rosserial_msgs_Log_md5);return md5_msg; };
 
   };
 

@@ -11,6 +11,8 @@
 namespace geometry_msgs
 {
 
+    static const char geometry_msgs_PoseWithCovarianceStamped_type[] PROGMEM= "geometry_msgs/PoseWithCovarianceStamped";
+    static const char geometry_msgs_PoseWithCovarianceStamped_md5[] PROGMEM= "953b798c0f514ff060a53a3498ce6246";
   class PoseWithCovarianceStamped : public ros::Msg
   {
     public:
@@ -41,8 +43,8 @@ namespace geometry_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "geometry_msgs/PoseWithCovarianceStamped"; };
-    virtual const char * getMD5() override { return "953b798c0f514ff060a53a3498ce6246"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)geometry_msgs_PoseWithCovarianceStamped_type);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)geometry_msgs_PoseWithCovarianceStamped_md5);return md5_msg; };
 
   };
 

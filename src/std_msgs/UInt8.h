@@ -9,6 +9,8 @@
 namespace std_msgs
 {
 
+    static const char std_msgs_UInt8_type[] PROGMEM= "std_msgs/UInt8";
+    static const char std_msgs_UInt8_md5[] PROGMEM= "7c8164229e7d2c17eb95e9231617fdee";
   class UInt8 : public ros::Msg
   {
     public:
@@ -36,8 +38,8 @@ namespace std_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "std_msgs/UInt8"; };
-    virtual const char * getMD5() override { return "7c8164229e7d2c17eb95e9231617fdee"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)std_msgs_UInt8_type);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)std_msgs_UInt8_md5);return md5_msg; };
 
   };
 

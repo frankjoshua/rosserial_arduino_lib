@@ -9,6 +9,8 @@
 namespace std_msgs
 {
 
+    static const char std_msgs_Int64_type[] PROGMEM= "std_msgs/Int64";
+    static const char std_msgs_Int64_md5[] PROGMEM= "34add168574510e6e17f5d23ecc077ef";
   class Int64 : public ros::Msg
   {
     public:
@@ -61,8 +63,8 @@ namespace std_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "std_msgs/Int64"; };
-    virtual const char * getMD5() override { return "34add168574510e6e17f5d23ecc077ef"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)std_msgs_Int64_type);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)std_msgs_Int64_md5);return md5_msg; };
 
   };
 

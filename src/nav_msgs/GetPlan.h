@@ -10,8 +10,10 @@
 namespace nav_msgs
 {
 
-static const char GETPLAN[] = "nav_msgs/GetPlan";
+static const char GETPLAN[] PROGMEM= "nav_msgs/GetPlan";
 
+    static const char nav_msgs_GetPlanRequest_type[] PROGMEM= "nav_msgs/GetPlanRequest";
+    static const char nav_msgs_GetPlanRequest_md5[] PROGMEM= "e25a43e0752bcca599a8c2eef8282df8";
   class GetPlanRequest : public ros::Msg
   {
     public:
@@ -66,11 +68,13 @@ static const char GETPLAN[] = "nav_msgs/GetPlan";
      return offset;
     }
 
-    virtual const char * getType() override { return GETPLAN; };
-    virtual const char * getMD5() override { return "e25a43e0752bcca599a8c2eef8282df8"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)GETPLAN);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)nav_msgs_GetPlanRequest_md5);return md5_msg; };
 
   };
 
+    static const char nav_msgs_GetPlanResponse_type[] PROGMEM= "nav_msgs/GetPlanResponse";
+    static const char nav_msgs_GetPlanResponse_md5[] PROGMEM= "0002bc113c0259d71f6cf8cbc9430e18";
   class GetPlanResponse : public ros::Msg
   {
     public:
@@ -96,8 +100,8 @@ static const char GETPLAN[] = "nav_msgs/GetPlan";
      return offset;
     }
 
-    virtual const char * getType() override { return GETPLAN; };
-    virtual const char * getMD5() override { return "0002bc113c0259d71f6cf8cbc9430e18"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)GETPLAN);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)nav_msgs_GetPlanResponse_md5);return md5_msg; };
 
   };
 

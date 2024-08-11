@@ -70,13 +70,13 @@ public:
     ret->deserialize(data);
     waiting = false;
   }
-  virtual const char * getMsgType() override
+  virtual const char * getMsgType(const char * type_msg) override
   {
-    return this->resp.getType();
+    return this->resp.getType(type_msg);
   }
-  virtual const char * getMsgMD5() override
+  virtual const char * getMsgMD5(const char * md5_msg) override
   {
-    return this->resp.getMD5();
+    return this->resp.getMD5(md5_msg);
   }
   virtual int getEndpointType() override
   {

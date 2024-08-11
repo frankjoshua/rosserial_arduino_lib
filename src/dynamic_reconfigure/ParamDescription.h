@@ -9,6 +9,8 @@
 namespace dynamic_reconfigure
 {
 
+    static const char dynamic_reconfigure_ParamDescription_type[] PROGMEM= "dynamic_reconfigure/ParamDescription";
+    static const char dynamic_reconfigure_ParamDescription_md5[] PROGMEM= "7434fcb9348c13054e0c3b267c8cb34d";
   class ParamDescription : public ros::Msg
   {
     public:
@@ -110,8 +112,8 @@ namespace dynamic_reconfigure
      return offset;
     }
 
-    virtual const char * getType() override { return "dynamic_reconfigure/ParamDescription"; };
-    virtual const char * getMD5() override { return "7434fcb9348c13054e0c3b267c8cb34d"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)dynamic_reconfigure_ParamDescription_type);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)dynamic_reconfigure_ParamDescription_md5);return md5_msg; };
 
   };
 

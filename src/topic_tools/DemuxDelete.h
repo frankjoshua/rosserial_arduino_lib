@@ -8,8 +8,10 @@
 namespace topic_tools
 {
 
-static const char DEMUXDELETE[] = "topic_tools/DemuxDelete";
+static const char DEMUXDELETE[] PROGMEM= "topic_tools/DemuxDelete";
 
+    static const char topic_tools_DemuxDeleteRequest_type[] PROGMEM= "topic_tools/DemuxDeleteRequest";
+    static const char topic_tools_DemuxDeleteRequest_md5[] PROGMEM= "d8f94bae31b356b24d0427f80426d0c3";
   class DemuxDeleteRequest : public ros::Msg
   {
     public:
@@ -47,11 +49,13 @@ static const char DEMUXDELETE[] = "topic_tools/DemuxDelete";
      return offset;
     }
 
-    virtual const char * getType() override { return DEMUXDELETE; };
-    virtual const char * getMD5() override { return "d8f94bae31b356b24d0427f80426d0c3"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)DEMUXDELETE);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)topic_tools_DemuxDeleteRequest_md5);return md5_msg; };
 
   };
 
+    static const char topic_tools_DemuxDeleteResponse_type[] PROGMEM= "topic_tools/DemuxDeleteResponse";
+    static const char topic_tools_DemuxDeleteResponse_md5[] PROGMEM= "d41d8cd98f00b204e9800998ecf8427e";
   class DemuxDeleteResponse : public ros::Msg
   {
     public:
@@ -72,8 +76,8 @@ static const char DEMUXDELETE[] = "topic_tools/DemuxDelete";
      return offset;
     }
 
-    virtual const char * getType() override { return DEMUXDELETE; };
-    virtual const char * getMD5() override { return "d41d8cd98f00b204e9800998ecf8427e"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)DEMUXDELETE);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)topic_tools_DemuxDeleteResponse_md5);return md5_msg; };
 
   };
 

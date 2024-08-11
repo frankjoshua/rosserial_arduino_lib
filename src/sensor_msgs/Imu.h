@@ -12,6 +12,8 @@
 namespace sensor_msgs
 {
 
+    static const char sensor_msgs_Imu_type[] PROGMEM= "sensor_msgs/Imu";
+    static const char sensor_msgs_Imu_md5[] PROGMEM= "6a62c6daae103f4ff57a132d6f95cec2";
   class Imu : public ros::Msg
   {
     public:
@@ -76,8 +78,8 @@ namespace sensor_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "sensor_msgs/Imu"; };
-    virtual const char * getMD5() override { return "6a62c6daae103f4ff57a132d6f95cec2"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)sensor_msgs_Imu_type);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)sensor_msgs_Imu_md5);return md5_msg; };
 
   };
 

@@ -11,6 +11,8 @@
 namespace geometry_msgs
 {
 
+    static const char geometry_msgs_TransformStamped_type[] PROGMEM= "geometry_msgs/TransformStamped";
+    static const char geometry_msgs_TransformStamped_md5[] PROGMEM= "b5764a33bfeb3588febc2682852579b0";
   class TransformStamped : public ros::Msg
   {
     public:
@@ -58,8 +60,8 @@ namespace geometry_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "geometry_msgs/TransformStamped"; };
-    virtual const char * getMD5() override { return "b5764a33bfeb3588febc2682852579b0"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)geometry_msgs_TransformStamped_type);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)geometry_msgs_TransformStamped_md5);return md5_msg; };
 
   };
 

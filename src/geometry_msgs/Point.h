@@ -9,6 +9,8 @@
 namespace geometry_msgs
 {
 
+    static const char geometry_msgs_Point_type[] PROGMEM= "geometry_msgs/Point";
+    static const char geometry_msgs_Point_md5[] PROGMEM= "4a842b65f413084dc2b10fb484ea7f17";
   class Point : public ros::Msg
   {
     public:
@@ -44,8 +46,8 @@ namespace geometry_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "geometry_msgs/Point"; };
-    virtual const char * getMD5() override { return "4a842b65f413084dc2b10fb484ea7f17"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)geometry_msgs_Point_type);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)geometry_msgs_Point_md5);return md5_msg; };
 
   };
 

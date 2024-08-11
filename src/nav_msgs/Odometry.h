@@ -12,6 +12,8 @@
 namespace nav_msgs
 {
 
+    static const char nav_msgs_Odometry_type[] PROGMEM= "nav_msgs/Odometry";
+    static const char nav_msgs_Odometry_md5[] PROGMEM= "cd5e73d190d741a2f92e81eda573aca7";
   class Odometry : public ros::Msg
   {
     public:
@@ -64,8 +66,8 @@ namespace nav_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "nav_msgs/Odometry"; };
-    virtual const char * getMD5() override { return "cd5e73d190d741a2f92e81eda573aca7"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)nav_msgs_Odometry_type);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)nav_msgs_Odometry_md5);return md5_msg; };
 
   };
 

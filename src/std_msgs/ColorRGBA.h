@@ -9,6 +9,8 @@
 namespace std_msgs
 {
 
+    static const char std_msgs_ColorRGBA_type[] PROGMEM= "std_msgs/ColorRGBA";
+    static const char std_msgs_ColorRGBA_md5[] PROGMEM= "a29a96539573343b1310c73607334b00";
   class ColorRGBA : public ros::Msg
   {
     public:
@@ -125,8 +127,8 @@ namespace std_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "std_msgs/ColorRGBA"; };
-    virtual const char * getMD5() override { return "a29a96539573343b1310c73607334b00"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)std_msgs_ColorRGBA_type);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)std_msgs_ColorRGBA_md5);return md5_msg; };
 
   };
 

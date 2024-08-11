@@ -14,6 +14,8 @@
 namespace dynamic_reconfigure
 {
 
+    static const char dynamic_reconfigure_Config_type[] PROGMEM= "dynamic_reconfigure/Config";
+    static const char dynamic_reconfigure_Config_md5[] PROGMEM= "958f16a05573709014982821e6822580";
   class Config : public ros::Msg
   {
     public:
@@ -159,8 +161,8 @@ namespace dynamic_reconfigure
      return offset;
     }
 
-    virtual const char * getType() override { return "dynamic_reconfigure/Config"; };
-    virtual const char * getMD5() override { return "958f16a05573709014982821e6822580"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)dynamic_reconfigure_Config_type);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)dynamic_reconfigure_Config_md5);return md5_msg; };
 
   };
 

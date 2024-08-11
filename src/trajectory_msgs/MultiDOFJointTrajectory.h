@@ -11,6 +11,8 @@
 namespace trajectory_msgs
 {
 
+    static const char trajectory_msgs_MultiDOFJointTrajectory_type[] PROGMEM= "trajectory_msgs/MultiDOFJointTrajectory";
+    static const char trajectory_msgs_MultiDOFJointTrajectory_md5[] PROGMEM= "ef145a45a5f47b77b7f5cdde4b16c942";
   class MultiDOFJointTrajectory : public ros::Msg
   {
     public:
@@ -98,8 +100,8 @@ namespace trajectory_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "trajectory_msgs/MultiDOFJointTrajectory"; };
-    virtual const char * getMD5() override { return "ef145a45a5f47b77b7f5cdde4b16c942"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)trajectory_msgs_MultiDOFJointTrajectory_type);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)trajectory_msgs_MultiDOFJointTrajectory_md5);return md5_msg; };
 
   };
 

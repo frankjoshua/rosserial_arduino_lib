@@ -12,9 +12,11 @@ namespace rosserial_arduino
 #ifdef ESP8266
     static const char TEST[] = "rosserial_arduino/Test";
 #else
-    static const char TEST[] PROGMEM = "rosserial_arduino/Test";
+    static const char TEST[] PROGMEM= "rosserial_arduino/Test";
 #endif
 
+    static const char rosserial_arduino_TestRequest_type[] PROGMEM= "rosserial_arduino/TestRequest";
+    static const char rosserial_arduino_TestRequest_md5[] PROGMEM= "39e92f1778057359c64c7b8a7d7b19de";
   class TestRequest : public ros::Msg
   {
     public:
@@ -52,15 +54,18 @@ namespace rosserial_arduino
      return offset;
     }
 
-    const char * getType(){ return TEST; };
     #ifdef ESP8266
+        const char * getType(){ return TEST; };
         const char * getMD5() { return  ("39e92f1778057359c64c7b8a7d7b19de");};
     #else
-        const char * getMD5() { return  PSTR("39e92f1778057359c64c7b8a7d7b19de");};
+        virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)TEST);return type_msg; };
+        virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)rosserial_arduino_TestRequest_md5);return md5_msg; };
     #endif
 
   };
 
+    static const char rosserial_arduino_TestResponse_type[] PROGMEM= "rosserial_arduino/TestResponse";
+    static const char rosserial_arduino_TestResponse_md5[] PROGMEM= "0825d95fdfa2c8f4bbb4e9c74bccd3fd";
   class TestResponse : public ros::Msg
   {
     public:
@@ -98,11 +103,12 @@ namespace rosserial_arduino
      return offset;
     }
 
-    const char * getType(){ return TEST; };
     #ifdef ESP8266
+        const char * getType(){ return TEST; };
         const char * getMD5() { return  ("0825d95fdfa2c8f4bbb4e9c74bccd3fd");};
     #else
-        const char * getMD5() { return  PSTR("0825d95fdfa2c8f4bbb4e9c74bccd3fd");};
+        virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)TEST);return type_msg; };
+        virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)rosserial_arduino_TestResponse_md5);return md5_msg; };
     #endif
 
   };

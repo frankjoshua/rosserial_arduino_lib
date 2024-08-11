@@ -8,8 +8,10 @@
 namespace topic_tools
 {
 
-static const char DEMUXSELECT[] = "topic_tools/DemuxSelect";
+static const char DEMUXSELECT[] PROGMEM= "topic_tools/DemuxSelect";
 
+    static const char topic_tools_DemuxSelectRequest_type[] PROGMEM= "topic_tools/DemuxSelectRequest";
+    static const char topic_tools_DemuxSelectRequest_md5[] PROGMEM= "d8f94bae31b356b24d0427f80426d0c3";
   class DemuxSelectRequest : public ros::Msg
   {
     public:
@@ -47,11 +49,13 @@ static const char DEMUXSELECT[] = "topic_tools/DemuxSelect";
      return offset;
     }
 
-    virtual const char * getType() override { return DEMUXSELECT; };
-    virtual const char * getMD5() override { return "d8f94bae31b356b24d0427f80426d0c3"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)DEMUXSELECT);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)topic_tools_DemuxSelectRequest_md5);return md5_msg; };
 
   };
 
+    static const char topic_tools_DemuxSelectResponse_type[] PROGMEM= "topic_tools/DemuxSelectResponse";
+    static const char topic_tools_DemuxSelectResponse_md5[] PROGMEM= "3db0a473debdbafea387c9e49358c320";
   class DemuxSelectResponse : public ros::Msg
   {
     public:
@@ -89,8 +93,8 @@ static const char DEMUXSELECT[] = "topic_tools/DemuxSelect";
      return offset;
     }
 
-    virtual const char * getType() override { return DEMUXSELECT; };
-    virtual const char * getMD5() override { return "3db0a473debdbafea387c9e49358c320"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)DEMUXSELECT);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)topic_tools_DemuxSelectResponse_md5);return md5_msg; };
 
   };
 

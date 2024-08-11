@@ -13,6 +13,8 @@
 namespace sensor_msgs
 {
 
+    static const char sensor_msgs_MultiDOFJointState_type[] PROGMEM= "sensor_msgs/MultiDOFJointState";
+    static const char sensor_msgs_MultiDOFJointState_md5[] PROGMEM= "690f272f0640d2631c305eeb8301e59d";
   class MultiDOFJointState : public ros::Msg
   {
     public:
@@ -150,8 +152,8 @@ namespace sensor_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "sensor_msgs/MultiDOFJointState"; };
-    virtual const char * getMD5() override { return "690f272f0640d2631c305eeb8301e59d"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)sensor_msgs_MultiDOFJointState_type);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)sensor_msgs_MultiDOFJointState_md5);return md5_msg; };
 
   };
 

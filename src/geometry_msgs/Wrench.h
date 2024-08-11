@@ -10,6 +10,8 @@
 namespace geometry_msgs
 {
 
+    static const char geometry_msgs_Wrench_type[] PROGMEM= "geometry_msgs/Wrench";
+    static const char geometry_msgs_Wrench_md5[] PROGMEM= "4f539cf138b23283b520fd271b567936";
   class Wrench : public ros::Msg
   {
     public:
@@ -40,8 +42,8 @@ namespace geometry_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "geometry_msgs/Wrench"; };
-    virtual const char * getMD5() override { return "4f539cf138b23283b520fd271b567936"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)geometry_msgs_Wrench_type);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)geometry_msgs_Wrench_md5);return md5_msg; };
 
   };
 

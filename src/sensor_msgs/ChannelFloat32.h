@@ -9,6 +9,8 @@
 namespace sensor_msgs
 {
 
+    static const char sensor_msgs_ChannelFloat32_type[] PROGMEM= "sensor_msgs/ChannelFloat32";
+    static const char sensor_msgs_ChannelFloat32_md5[] PROGMEM= "3d40139cdd33dfedcb71ffeeeb42ae7f";
   class ChannelFloat32 : public ros::Msg
   {
     public:
@@ -90,8 +92,8 @@ namespace sensor_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "sensor_msgs/ChannelFloat32"; };
-    virtual const char * getMD5() override { return "3d40139cdd33dfedcb71ffeeeb42ae7f"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)sensor_msgs_ChannelFloat32_type);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)sensor_msgs_ChannelFloat32_md5);return md5_msg; };
 
   };
 

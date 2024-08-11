@@ -10,6 +10,8 @@
 namespace sensor_msgs
 {
 
+    static const char sensor_msgs_BatteryState_type[] PROGMEM= "sensor_msgs/BatteryState";
+    static const char sensor_msgs_BatteryState_md5[] PROGMEM= "4ddae7f048e32fda22cac764685e3974";
   class BatteryState : public ros::Msg
   {
     public:
@@ -385,8 +387,8 @@ namespace sensor_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "sensor_msgs/BatteryState"; };
-    virtual const char * getMD5() override { return "4ddae7f048e32fda22cac764685e3974"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)sensor_msgs_BatteryState_type);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)sensor_msgs_BatteryState_md5);return md5_msg; };
 
   };
 

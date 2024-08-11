@@ -10,6 +10,8 @@
 namespace rosserial_arduino
 {
 
+    static const char rosserial_arduino_Adc_type[] PROGMEM= "rosserial_arduino/Adc";
+    static const char rosserial_arduino_Adc_md5[] PROGMEM= "6d7853a614e2e821319068311f2af25b";
   class Adc : public ros::Msg
   {
     public:
@@ -87,12 +89,12 @@ namespace rosserial_arduino
     #ifdef ESP8266
         const char * getType() { return  ("rosserial_arduino/Adc");};
     #else
-        const char * getType() { return  PSTR("rosserial_arduino/Adc");};
+        virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)rosserial_arduino_Adc_type);return type_msg; };
     #endif
     #ifdef ESP8266
         const char * getMD5() { return  ("6d7853a614e2e821319068311f2af25b");};
     #else
-        const char * getMD5() { return  PSTR("6d7853a614e2e821319068311f2af25b");};
+        virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)rosserial_arduino_Adc_md5);return md5_msg; };
     #endif
 
   };

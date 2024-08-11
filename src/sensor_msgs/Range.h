@@ -10,6 +10,8 @@
 namespace sensor_msgs
 {
 
+    static const char sensor_msgs_Range_type[] PROGMEM= "sensor_msgs/Range";
+    static const char sensor_msgs_Range_md5[] PROGMEM= "c005c34273dc426c67a020a87bc24148";
   class Range : public ros::Msg
   {
     public:
@@ -140,8 +142,8 @@ namespace sensor_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "sensor_msgs/Range"; };
-    virtual const char * getMD5() override { return "c005c34273dc426c67a020a87bc24148"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)sensor_msgs_Range_type);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)sensor_msgs_Range_md5);return md5_msg; };
 
   };
 

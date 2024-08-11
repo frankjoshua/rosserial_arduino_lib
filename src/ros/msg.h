@@ -48,8 +48,8 @@ class Msg
 public:
   virtual int serialize(unsigned char *outbuffer) const = 0;
   virtual int deserialize(unsigned char *data) = 0;
-  virtual const char * getType() = 0;
-  virtual const char * getMD5() = 0;
+  virtual const char * getType(const char * type_msg) = 0;
+  virtual const char * getMD5(const char * md5_msg) = 0;
 
   /**
    * @brief This tricky function handles promoting a 32bit float to a 64bit

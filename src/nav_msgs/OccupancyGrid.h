@@ -11,6 +11,8 @@
 namespace nav_msgs
 {
 
+    static const char nav_msgs_OccupancyGrid_type[] PROGMEM= "nav_msgs/OccupancyGrid";
+    static const char nav_msgs_OccupancyGrid_md5[] PROGMEM= "3381f2d731d4076ec5c71b0759edbe4e";
   class OccupancyGrid : public ros::Msg
   {
     public:
@@ -79,8 +81,8 @@ namespace nav_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "nav_msgs/OccupancyGrid"; };
-    virtual const char * getMD5() override { return "3381f2d731d4076ec5c71b0759edbe4e"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)nav_msgs_OccupancyGrid_type);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)nav_msgs_OccupancyGrid_md5);return md5_msg; };
 
   };
 

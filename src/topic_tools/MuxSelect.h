@@ -8,8 +8,10 @@
 namespace topic_tools
 {
 
-static const char MUXSELECT[] = "topic_tools/MuxSelect";
+static const char MUXSELECT[] PROGMEM= "topic_tools/MuxSelect";
 
+    static const char topic_tools_MuxSelectRequest_type[] PROGMEM= "topic_tools/MuxSelectRequest";
+    static const char topic_tools_MuxSelectRequest_md5[] PROGMEM= "d8f94bae31b356b24d0427f80426d0c3";
   class MuxSelectRequest : public ros::Msg
   {
     public:
@@ -47,11 +49,13 @@ static const char MUXSELECT[] = "topic_tools/MuxSelect";
      return offset;
     }
 
-    virtual const char * getType() override { return MUXSELECT; };
-    virtual const char * getMD5() override { return "d8f94bae31b356b24d0427f80426d0c3"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)MUXSELECT);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)topic_tools_MuxSelectRequest_md5);return md5_msg; };
 
   };
 
+    static const char topic_tools_MuxSelectResponse_type[] PROGMEM= "topic_tools/MuxSelectResponse";
+    static const char topic_tools_MuxSelectResponse_md5[] PROGMEM= "3db0a473debdbafea387c9e49358c320";
   class MuxSelectResponse : public ros::Msg
   {
     public:
@@ -89,8 +93,8 @@ static const char MUXSELECT[] = "topic_tools/MuxSelect";
      return offset;
     }
 
-    virtual const char * getType() override { return MUXSELECT; };
-    virtual const char * getMD5() override { return "3db0a473debdbafea387c9e49358c320"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)MUXSELECT);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)topic_tools_MuxSelectResponse_md5);return md5_msg; };
 
   };
 

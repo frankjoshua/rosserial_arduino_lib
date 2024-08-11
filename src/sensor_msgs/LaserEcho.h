@@ -9,6 +9,8 @@
 namespace sensor_msgs
 {
 
+    static const char sensor_msgs_LaserEcho_type[] PROGMEM= "sensor_msgs/LaserEcho";
+    static const char sensor_msgs_LaserEcho_md5[] PROGMEM= "8bc5ae449b200fba4d552b4225586696";
   class LaserEcho : public ros::Msg
   {
     public:
@@ -73,8 +75,8 @@ namespace sensor_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "sensor_msgs/LaserEcho"; };
-    virtual const char * getMD5() override { return "8bc5ae449b200fba4d552b4225586696"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)sensor_msgs_LaserEcho_type);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)sensor_msgs_LaserEcho_md5);return md5_msg; };
 
   };
 

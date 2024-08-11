@@ -9,6 +9,8 @@
 namespace diagnostic_msgs
 {
 
+    static const char diagnostic_msgs_KeyValue_type[] PROGMEM= "diagnostic_msgs/KeyValue";
+    static const char diagnostic_msgs_KeyValue_md5[] PROGMEM= "cf57fdc6617a881a88c16e768132149c";
   class KeyValue : public ros::Msg
   {
     public:
@@ -63,8 +65,8 @@ namespace diagnostic_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "diagnostic_msgs/KeyValue"; };
-    virtual const char * getMD5() override { return "cf57fdc6617a881a88c16e768132149c"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)diagnostic_msgs_KeyValue_type);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)diagnostic_msgs_KeyValue_md5);return md5_msg; };
 
   };
 

@@ -10,6 +10,8 @@
 namespace sensor_msgs
 {
 
+    static const char sensor_msgs_JointState_type[] PROGMEM= "sensor_msgs/JointState";
+    static const char sensor_msgs_JointState_md5[] PROGMEM= "3066dcd76a6cfaef579bd0f34173e9fd";
   class JointState : public ros::Msg
   {
     public:
@@ -147,8 +149,8 @@ namespace sensor_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "sensor_msgs/JointState"; };
-    virtual const char * getMD5() override { return "3066dcd76a6cfaef579bd0f34173e9fd"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)sensor_msgs_JointState_type);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)sensor_msgs_JointState_md5);return md5_msg; };
 
   };
 

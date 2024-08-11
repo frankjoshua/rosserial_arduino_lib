@@ -9,8 +9,10 @@
 namespace sensor_msgs
 {
 
-static const char SETCAMERAINFO[] = "sensor_msgs/SetCameraInfo";
+static const char SETCAMERAINFO[] PROGMEM= "sensor_msgs/SetCameraInfo";
 
+    static const char sensor_msgs_SetCameraInfoRequest_type[] PROGMEM= "sensor_msgs/SetCameraInfoRequest";
+    static const char sensor_msgs_SetCameraInfoRequest_md5[] PROGMEM= "ee34be01fdeee563d0d99cd594d5581d";
   class SetCameraInfoRequest : public ros::Msg
   {
     public:
@@ -36,11 +38,13 @@ static const char SETCAMERAINFO[] = "sensor_msgs/SetCameraInfo";
      return offset;
     }
 
-    virtual const char * getType() override { return SETCAMERAINFO; };
-    virtual const char * getMD5() override { return "ee34be01fdeee563d0d99cd594d5581d"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)SETCAMERAINFO);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)sensor_msgs_SetCameraInfoRequest_md5);return md5_msg; };
 
   };
 
+    static const char sensor_msgs_SetCameraInfoResponse_type[] PROGMEM= "sensor_msgs/SetCameraInfoResponse";
+    static const char sensor_msgs_SetCameraInfoResponse_md5[] PROGMEM= "2ec6f3eff0161f4257b808b12bc830c2";
   class SetCameraInfoResponse : public ros::Msg
   {
     public:
@@ -96,8 +100,8 @@ static const char SETCAMERAINFO[] = "sensor_msgs/SetCameraInfo";
      return offset;
     }
 
-    virtual const char * getType() override { return SETCAMERAINFO; };
-    virtual const char * getMD5() override { return "2ec6f3eff0161f4257b808b12bc830c2"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)SETCAMERAINFO);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)sensor_msgs_SetCameraInfoResponse_md5);return md5_msg; };
 
   };
 

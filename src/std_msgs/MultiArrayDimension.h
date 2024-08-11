@@ -9,6 +9,8 @@
 namespace std_msgs
 {
 
+    static const char std_msgs_MultiArrayDimension_type[] PROGMEM= "std_msgs/MultiArrayDimension";
+    static const char std_msgs_MultiArrayDimension_md5[] PROGMEM= "4cd0c83a8683deae40ecdac60e53bfa8";
   class MultiArrayDimension : public ros::Msg
   {
     public:
@@ -72,8 +74,8 @@ namespace std_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "std_msgs/MultiArrayDimension"; };
-    virtual const char * getMD5() override { return "4cd0c83a8683deae40ecdac60e53bfa8"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)std_msgs_MultiArrayDimension_type);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)std_msgs_MultiArrayDimension_md5);return md5_msg; };
 
   };
 

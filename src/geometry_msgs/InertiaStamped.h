@@ -11,6 +11,8 @@
 namespace geometry_msgs
 {
 
+    static const char geometry_msgs_InertiaStamped_type[] PROGMEM= "geometry_msgs/InertiaStamped";
+    static const char geometry_msgs_InertiaStamped_md5[] PROGMEM= "ddee48caeab5a966c5e8d166654a9ac7";
   class InertiaStamped : public ros::Msg
   {
     public:
@@ -41,8 +43,8 @@ namespace geometry_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "geometry_msgs/InertiaStamped"; };
-    virtual const char * getMD5() override { return "ddee48caeab5a966c5e8d166654a9ac7"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)geometry_msgs_InertiaStamped_type);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)geometry_msgs_InertiaStamped_md5);return md5_msg; };
 
   };
 

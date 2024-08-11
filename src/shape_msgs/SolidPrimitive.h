@@ -9,6 +9,8 @@
 namespace shape_msgs
 {
 
+    static const char shape_msgs_SolidPrimitive_type[] PROGMEM= "shape_msgs/SolidPrimitive";
+    static const char shape_msgs_SolidPrimitive_md5[] PROGMEM= "d8f8cbc74c5ff283fca29569ccefb45d";
   class SolidPrimitive : public ros::Msg
   {
     public:
@@ -73,8 +75,8 @@ namespace shape_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "shape_msgs/SolidPrimitive"; };
-    virtual const char * getMD5() override { return "d8f8cbc74c5ff283fca29569ccefb45d"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)shape_msgs_SolidPrimitive_type);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)shape_msgs_SolidPrimitive_md5);return md5_msg; };
 
   };
 

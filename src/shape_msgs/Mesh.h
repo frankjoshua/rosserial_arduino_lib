@@ -11,6 +11,8 @@
 namespace shape_msgs
 {
 
+    static const char shape_msgs_Mesh_type[] PROGMEM= "shape_msgs/Mesh";
+    static const char shape_msgs_Mesh_md5[] PROGMEM= "1ffdae9486cd3316a121c578b47a85cc";
   class Mesh : public ros::Msg
   {
     public:
@@ -81,8 +83,8 @@ namespace shape_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "shape_msgs/Mesh"; };
-    virtual const char * getMD5() override { return "1ffdae9486cd3316a121c578b47a85cc"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)shape_msgs_Mesh_type);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)shape_msgs_Mesh_md5);return md5_msg; };
 
   };
 

@@ -9,6 +9,8 @@
 namespace sensor_msgs
 {
 
+    static const char sensor_msgs_PointField_type[] PROGMEM= "sensor_msgs/PointField";
+    static const char sensor_msgs_PointField_md5[] PROGMEM= "268eacb2962780ceac86cbd17e328150";
   class PointField : public ros::Msg
   {
     public:
@@ -87,8 +89,8 @@ namespace sensor_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "sensor_msgs/PointField"; };
-    virtual const char * getMD5() override { return "268eacb2962780ceac86cbd17e328150"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)sensor_msgs_PointField_type);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)sensor_msgs_PointField_md5);return md5_msg; };
 
   };
 

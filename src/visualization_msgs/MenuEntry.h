@@ -9,6 +9,8 @@
 namespace visualization_msgs
 {
 
+    static const char visualization_msgs_MenuEntry_type[] PROGMEM= "visualization_msgs/MenuEntry";
+    static const char visualization_msgs_MenuEntry_md5[] PROGMEM= "b90ec63024573de83b57aa93eb39be2d";
   class MenuEntry : public ros::Msg
   {
     public:
@@ -99,8 +101,8 @@ namespace visualization_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "visualization_msgs/MenuEntry"; };
-    virtual const char * getMD5() override { return "b90ec63024573de83b57aa93eb39be2d"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)visualization_msgs_MenuEntry_type);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)visualization_msgs_MenuEntry_md5);return md5_msg; };
 
   };
 

@@ -8,8 +8,10 @@
 namespace std_srvs
 {
 
-static const char TRIGGER[] = "std_srvs/Trigger";
+static const char TRIGGER[] PROGMEM= "std_srvs/Trigger";
 
+    static const char std_srvs_TriggerRequest_type[] PROGMEM= "std_srvs/TriggerRequest";
+    static const char std_srvs_TriggerRequest_md5[] PROGMEM= "d41d8cd98f00b204e9800998ecf8427e";
   class TriggerRequest : public ros::Msg
   {
     public:
@@ -30,11 +32,13 @@ static const char TRIGGER[] = "std_srvs/Trigger";
      return offset;
     }
 
-    virtual const char * getType() override { return TRIGGER; };
-    virtual const char * getMD5() override { return "d41d8cd98f00b204e9800998ecf8427e"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)TRIGGER);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)std_srvs_TriggerRequest_md5);return md5_msg; };
 
   };
 
+    static const char std_srvs_TriggerResponse_type[] PROGMEM= "std_srvs/TriggerResponse";
+    static const char std_srvs_TriggerResponse_md5[] PROGMEM= "937c9679a518e3a18d831e57125ea522";
   class TriggerResponse : public ros::Msg
   {
     public:
@@ -90,8 +94,8 @@ static const char TRIGGER[] = "std_srvs/Trigger";
      return offset;
     }
 
-    virtual const char * getType() override { return TRIGGER; };
-    virtual const char * getMD5() override { return "937c9679a518e3a18d831e57125ea522"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)TRIGGER);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)std_srvs_TriggerResponse_md5);return md5_msg; };
 
   };
 

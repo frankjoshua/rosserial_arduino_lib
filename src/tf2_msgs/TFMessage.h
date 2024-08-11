@@ -10,6 +10,8 @@
 namespace tf2_msgs
 {
 
+    static const char tf2_msgs_TFMessage_type[] PROGMEM= "tf2_msgs/TFMessage";
+    static const char tf2_msgs_TFMessage_md5[] PROGMEM= "94810edda583a504dfda3829e70d7eec";
   class TFMessage : public ros::Msg
   {
     public:
@@ -55,8 +57,8 @@ namespace tf2_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "tf2_msgs/TFMessage"; };
-    virtual const char * getMD5() override { return "94810edda583a504dfda3829e70d7eec"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)tf2_msgs_TFMessage_type);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)tf2_msgs_TFMessage_md5);return md5_msg; };
 
   };
 
