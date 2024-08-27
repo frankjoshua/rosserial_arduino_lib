@@ -9,6 +9,8 @@
 namespace std_msgs
 {
 
+    static const char std_msgs_String_type[] PROGMEM= "std_msgs/String";
+    static const char std_msgs_String_md5[] PROGMEM= "992ce8a1687cec8c8bd883ec73ca41d1";
   class String : public ros::Msg
   {
     public:
@@ -46,8 +48,8 @@ namespace std_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "std_msgs/String"; };
-    virtual const char * getMD5() override { return "992ce8a1687cec8c8bd883ec73ca41d1"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)std_msgs_String_type);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)std_msgs_String_md5);return md5_msg; };
 
   };
 

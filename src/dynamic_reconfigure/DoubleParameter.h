@@ -9,6 +9,8 @@
 namespace dynamic_reconfigure
 {
 
+    static const char dynamic_reconfigure_DoubleParameter_type[] PROGMEM= "dynamic_reconfigure/DoubleParameter";
+    static const char dynamic_reconfigure_DoubleParameter_md5[] PROGMEM= "d8512f27253c0f65f928a67c329cd658";
   class DoubleParameter : public ros::Msg
   {
     public:
@@ -51,8 +53,8 @@ namespace dynamic_reconfigure
      return offset;
     }
 
-    virtual const char * getType() override { return "dynamic_reconfigure/DoubleParameter"; };
-    virtual const char * getMD5() override { return "d8512f27253c0f65f928a67c329cd658"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)dynamic_reconfigure_DoubleParameter_type);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)dynamic_reconfigure_DoubleParameter_md5);return md5_msg; };
 
   };
 

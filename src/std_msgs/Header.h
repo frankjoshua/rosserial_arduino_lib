@@ -10,6 +10,8 @@
 namespace std_msgs
 {
 
+    static const char std_msgs_Header_type[] PROGMEM= "std_msgs/Header";
+    static const char std_msgs_Header_md5[] PROGMEM= "2176decaecbce78abc3b96ef049fabed";
   class Header : public ros::Msg
   {
     public:
@@ -83,8 +85,8 @@ namespace std_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "std_msgs/Header"; };
-    virtual const char * getMD5() override { return "2176decaecbce78abc3b96ef049fabed"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)std_msgs_Header_type);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)std_msgs_Header_md5);return md5_msg; };
 
   };
 

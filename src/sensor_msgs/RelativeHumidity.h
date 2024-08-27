@@ -10,6 +10,8 @@
 namespace sensor_msgs
 {
 
+    static const char sensor_msgs_RelativeHumidity_type[] PROGMEM= "sensor_msgs/RelativeHumidity";
+    static const char sensor_msgs_RelativeHumidity_md5[] PROGMEM= "8730015b05955b7e992ce29a2678d90f";
   class RelativeHumidity : public ros::Msg
   {
     public:
@@ -45,8 +47,8 @@ namespace sensor_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "sensor_msgs/RelativeHumidity"; };
-    virtual const char * getMD5() override { return "8730015b05955b7e992ce29a2678d90f"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)sensor_msgs_RelativeHumidity_type);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)sensor_msgs_RelativeHumidity_md5);return md5_msg; };
 
   };
 

@@ -11,6 +11,8 @@
 namespace sensor_msgs
 {
 
+    static const char sensor_msgs_PointCloud2_type[] PROGMEM= "sensor_msgs/PointCloud2";
+    static const char sensor_msgs_PointCloud2_md5[] PROGMEM= "1158d486dd51d683ce2f1be655c3c181";
   class PointCloud2 : public ros::Msg
   {
     public:
@@ -176,8 +178,8 @@ namespace sensor_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "sensor_msgs/PointCloud2"; };
-    virtual const char * getMD5() override { return "1158d486dd51d683ce2f1be655c3c181"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)sensor_msgs_PointCloud2_type);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)sensor_msgs_PointCloud2_md5);return md5_msg; };
 
   };
 

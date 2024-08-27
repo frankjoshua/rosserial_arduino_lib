@@ -10,6 +10,8 @@
 namespace geometry_msgs
 {
 
+    static const char geometry_msgs_Accel_type[] PROGMEM= "geometry_msgs/Accel";
+    static const char geometry_msgs_Accel_md5[] PROGMEM= "9f195f881246fdfa2798d1d3eebca84a";
   class Accel : public ros::Msg
   {
     public:
@@ -40,8 +42,8 @@ namespace geometry_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "geometry_msgs/Accel"; };
-    virtual const char * getMD5() override { return "9f195f881246fdfa2798d1d3eebca84a"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)geometry_msgs_Accel_type);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)geometry_msgs_Accel_md5);return md5_msg; };
 
   };
 

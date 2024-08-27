@@ -10,6 +10,8 @@
 namespace actionlib_msgs
 {
 
+    static const char actionlib_msgs_GoalID_type[] PROGMEM= "actionlib_msgs/GoalID";
+    static const char actionlib_msgs_GoalID_md5[] PROGMEM= "302881f31927c1df708a2dbab0e80ee8";
   class GoalID : public ros::Msg
   {
     public:
@@ -70,8 +72,8 @@ namespace actionlib_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "actionlib_msgs/GoalID"; };
-    virtual const char * getMD5() override { return "302881f31927c1df708a2dbab0e80ee8"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)actionlib_msgs_GoalID_type);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)actionlib_msgs_GoalID_md5);return md5_msg; };
 
   };
 

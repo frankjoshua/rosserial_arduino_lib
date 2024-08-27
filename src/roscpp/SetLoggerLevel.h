@@ -8,8 +8,10 @@
 namespace roscpp
 {
 
-static const char SETLOGGERLEVEL[] = "roscpp/SetLoggerLevel";
+static const char SETLOGGERLEVEL[] PROGMEM= "roscpp/SetLoggerLevel";
 
+    static const char roscpp_SetLoggerLevelRequest_type[] PROGMEM= "roscpp/SetLoggerLevelRequest";
+    static const char roscpp_SetLoggerLevelRequest_md5[] PROGMEM= "51da076440d78ca1684d36c868df61ea";
   class SetLoggerLevelRequest : public ros::Msg
   {
     public:
@@ -64,11 +66,13 @@ static const char SETLOGGERLEVEL[] = "roscpp/SetLoggerLevel";
      return offset;
     }
 
-    virtual const char * getType() override { return SETLOGGERLEVEL; };
-    virtual const char * getMD5() override { return "51da076440d78ca1684d36c868df61ea"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)SETLOGGERLEVEL);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)roscpp_SetLoggerLevelRequest_md5);return md5_msg; };
 
   };
 
+    static const char roscpp_SetLoggerLevelResponse_type[] PROGMEM= "roscpp/SetLoggerLevelResponse";
+    static const char roscpp_SetLoggerLevelResponse_md5[] PROGMEM= "d41d8cd98f00b204e9800998ecf8427e";
   class SetLoggerLevelResponse : public ros::Msg
   {
     public:
@@ -89,8 +93,8 @@ static const char SETLOGGERLEVEL[] = "roscpp/SetLoggerLevel";
      return offset;
     }
 
-    virtual const char * getType() override { return SETLOGGERLEVEL; };
-    virtual const char * getMD5() override { return "d41d8cd98f00b204e9800998ecf8427e"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)SETLOGGERLEVEL);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)roscpp_SetLoggerLevelResponse_md5);return md5_msg; };
 
   };
 

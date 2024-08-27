@@ -8,8 +8,10 @@
 namespace nodelet
 {
 
-static const char NODELETLOAD[] = "nodelet/NodeletLoad";
+static const char NODELETLOAD[] PROGMEM= "nodelet/NodeletLoad";
 
+    static const char nodelet_NodeletLoadRequest_type[] PROGMEM= "nodelet/NodeletLoadRequest";
+    static const char nodelet_NodeletLoadRequest_md5[] PROGMEM= "c6e28cc4d2e259249d96cfb50658fbec";
   class NodeletLoadRequest : public ros::Msg
   {
     public:
@@ -192,11 +194,13 @@ static const char NODELETLOAD[] = "nodelet/NodeletLoad";
      return offset;
     }
 
-    virtual const char * getType() override { return NODELETLOAD; };
-    virtual const char * getMD5() override { return "c6e28cc4d2e259249d96cfb50658fbec"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)NODELETLOAD);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)nodelet_NodeletLoadRequest_md5);return md5_msg; };
 
   };
 
+    static const char nodelet_NodeletLoadResponse_type[] PROGMEM= "nodelet/NodeletLoadResponse";
+    static const char nodelet_NodeletLoadResponse_md5[] PROGMEM= "358e233cde0c8a8bcfea4ce193f8fc15";
   class NodeletLoadResponse : public ros::Msg
   {
     public:
@@ -235,8 +239,8 @@ static const char NODELETLOAD[] = "nodelet/NodeletLoad";
      return offset;
     }
 
-    virtual const char * getType() override { return NODELETLOAD; };
-    virtual const char * getMD5() override { return "358e233cde0c8a8bcfea4ce193f8fc15"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)NODELETLOAD);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)nodelet_NodeletLoadResponse_md5);return md5_msg; };
 
   };
 

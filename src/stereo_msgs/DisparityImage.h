@@ -12,6 +12,8 @@
 namespace stereo_msgs
 {
 
+    static const char stereo_msgs_DisparityImage_type[] PROGMEM= "stereo_msgs/DisparityImage";
+    static const char stereo_msgs_DisparityImage_md5[] PROGMEM= "04a177815f75271039fa21f16acad8c9";
   class DisparityImage : public ros::Msg
   {
     public:
@@ -167,8 +169,8 @@ namespace stereo_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "stereo_msgs/DisparityImage"; };
-    virtual const char * getMD5() override { return "04a177815f75271039fa21f16acad8c9"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)stereo_msgs_DisparityImage_type);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)stereo_msgs_DisparityImage_md5);return md5_msg; };
 
   };
 

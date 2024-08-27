@@ -11,6 +11,8 @@
 namespace geometry_msgs
 {
 
+    static const char geometry_msgs_TwistWithCovarianceStamped_type[] PROGMEM= "geometry_msgs/TwistWithCovarianceStamped";
+    static const char geometry_msgs_TwistWithCovarianceStamped_md5[] PROGMEM= "8927a1a12fb2607ceea095b2dc440a96";
   class TwistWithCovarianceStamped : public ros::Msg
   {
     public:
@@ -41,8 +43,8 @@ namespace geometry_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "geometry_msgs/TwistWithCovarianceStamped"; };
-    virtual const char * getMD5() override { return "8927a1a12fb2607ceea095b2dc440a96"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)geometry_msgs_TwistWithCovarianceStamped_type);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)geometry_msgs_TwistWithCovarianceStamped_md5);return md5_msg; };
 
   };
 

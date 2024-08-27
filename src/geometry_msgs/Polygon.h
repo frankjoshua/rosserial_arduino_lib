@@ -10,6 +10,8 @@
 namespace geometry_msgs
 {
 
+    static const char geometry_msgs_Polygon_type[] PROGMEM= "geometry_msgs/Polygon";
+    static const char geometry_msgs_Polygon_md5[] PROGMEM= "cd60a26494a087f577976f0329fa120e";
   class Polygon : public ros::Msg
   {
     public:
@@ -55,8 +57,8 @@ namespace geometry_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "geometry_msgs/Polygon"; };
-    virtual const char * getMD5() override { return "cd60a26494a087f577976f0329fa120e"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)geometry_msgs_Polygon_type);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)geometry_msgs_Polygon_md5);return md5_msg; };
 
   };
 

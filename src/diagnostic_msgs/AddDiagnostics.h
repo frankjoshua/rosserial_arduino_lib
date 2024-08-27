@@ -8,8 +8,10 @@
 namespace diagnostic_msgs
 {
 
-static const char ADDDIAGNOSTICS[] = "diagnostic_msgs/AddDiagnostics";
+static const char ADDDIAGNOSTICS[] PROGMEM= "diagnostic_msgs/AddDiagnostics";
 
+    static const char diagnostic_msgs_AddDiagnosticsRequest_type[] PROGMEM= "diagnostic_msgs/AddDiagnosticsRequest";
+    static const char diagnostic_msgs_AddDiagnosticsRequest_md5[] PROGMEM= "c26cf6e164288fbc6050d74f838bcdf0";
   class AddDiagnosticsRequest : public ros::Msg
   {
     public:
@@ -47,11 +49,13 @@ static const char ADDDIAGNOSTICS[] = "diagnostic_msgs/AddDiagnostics";
      return offset;
     }
 
-    virtual const char * getType() override { return ADDDIAGNOSTICS; };
-    virtual const char * getMD5() override { return "c26cf6e164288fbc6050d74f838bcdf0"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)ADDDIAGNOSTICS);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)diagnostic_msgs_AddDiagnosticsRequest_md5);return md5_msg; };
 
   };
 
+    static const char diagnostic_msgs_AddDiagnosticsResponse_type[] PROGMEM= "diagnostic_msgs/AddDiagnosticsResponse";
+    static const char diagnostic_msgs_AddDiagnosticsResponse_md5[] PROGMEM= "937c9679a518e3a18d831e57125ea522";
   class AddDiagnosticsResponse : public ros::Msg
   {
     public:
@@ -107,8 +111,8 @@ static const char ADDDIAGNOSTICS[] = "diagnostic_msgs/AddDiagnostics";
      return offset;
     }
 
-    virtual const char * getType() override { return ADDDIAGNOSTICS; };
-    virtual const char * getMD5() override { return "937c9679a518e3a18d831e57125ea522"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)ADDDIAGNOSTICS);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)diagnostic_msgs_AddDiagnosticsResponse_md5);return md5_msg; };
 
   };
 

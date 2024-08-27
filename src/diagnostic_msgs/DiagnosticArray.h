@@ -11,6 +11,8 @@
 namespace diagnostic_msgs
 {
 
+    static const char diagnostic_msgs_DiagnosticArray_type[] PROGMEM= "diagnostic_msgs/DiagnosticArray";
+    static const char diagnostic_msgs_DiagnosticArray_md5[] PROGMEM= "60810da900de1dd6ddd437c3503511da";
   class DiagnosticArray : public ros::Msg
   {
     public:
@@ -61,8 +63,8 @@ namespace diagnostic_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "diagnostic_msgs/DiagnosticArray"; };
-    virtual const char * getMD5() override { return "60810da900de1dd6ddd437c3503511da"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)diagnostic_msgs_DiagnosticArray_type);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)diagnostic_msgs_DiagnosticArray_md5);return md5_msg; };
 
   };
 

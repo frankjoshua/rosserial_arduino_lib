@@ -9,8 +9,10 @@
 namespace dynamic_reconfigure
 {
 
-static const char RECONFIGURE[] = "dynamic_reconfigure/Reconfigure";
+static const char RECONFIGURE[] PROGMEM= "dynamic_reconfigure/Reconfigure";
 
+    static const char dynamic_reconfigure_ReconfigureRequest_type[] PROGMEM= "dynamic_reconfigure/ReconfigureRequest";
+    static const char dynamic_reconfigure_ReconfigureRequest_md5[] PROGMEM= "ac41a77620a4a0348b7001641796a8a1";
   class ReconfigureRequest : public ros::Msg
   {
     public:
@@ -36,11 +38,13 @@ static const char RECONFIGURE[] = "dynamic_reconfigure/Reconfigure";
      return offset;
     }
 
-    virtual const char * getType() override { return RECONFIGURE; };
-    virtual const char * getMD5() override { return "ac41a77620a4a0348b7001641796a8a1"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)RECONFIGURE);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)dynamic_reconfigure_ReconfigureRequest_md5);return md5_msg; };
 
   };
 
+    static const char dynamic_reconfigure_ReconfigureResponse_type[] PROGMEM= "dynamic_reconfigure/ReconfigureResponse";
+    static const char dynamic_reconfigure_ReconfigureResponse_md5[] PROGMEM= "ac41a77620a4a0348b7001641796a8a1";
   class ReconfigureResponse : public ros::Msg
   {
     public:
@@ -66,8 +70,8 @@ static const char RECONFIGURE[] = "dynamic_reconfigure/Reconfigure";
      return offset;
     }
 
-    virtual const char * getType() override { return RECONFIGURE; };
-    virtual const char * getMD5() override { return "ac41a77620a4a0348b7001641796a8a1"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)RECONFIGURE);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)dynamic_reconfigure_ReconfigureResponse_md5);return md5_msg; };
 
   };
 

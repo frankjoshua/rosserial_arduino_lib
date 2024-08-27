@@ -11,6 +11,8 @@
 namespace nav_msgs
 {
 
+    static const char nav_msgs_MapMetaData_type[] PROGMEM= "nav_msgs/MapMetaData";
+    static const char nav_msgs_MapMetaData_md5[] PROGMEM= "10cfc8a2818024d3248802c00c95f11b";
   class MapMetaData : public ros::Msg
   {
     public:
@@ -109,8 +111,8 @@ namespace nav_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "nav_msgs/MapMetaData"; };
-    virtual const char * getMD5() override { return "10cfc8a2818024d3248802c00c95f11b"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)nav_msgs_MapMetaData_type);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)nav_msgs_MapMetaData_md5);return md5_msg; };
 
   };
 

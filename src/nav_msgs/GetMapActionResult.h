@@ -12,6 +12,8 @@
 namespace nav_msgs
 {
 
+    static const char nav_msgs_GetMapActionResult_type[] PROGMEM= "nav_msgs/GetMapActionResult";
+    static const char nav_msgs_GetMapActionResult_md5[] PROGMEM= "ac66e5b9a79bb4bbd33dab245236c892";
   class GetMapActionResult : public ros::Msg
   {
     public:
@@ -47,8 +49,8 @@ namespace nav_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "nav_msgs/GetMapActionResult"; };
-    virtual const char * getMD5() override { return "ac66e5b9a79bb4bbd33dab245236c892"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)nav_msgs_GetMapActionResult_type);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)nav_msgs_GetMapActionResult_md5);return md5_msg; };
 
   };
 

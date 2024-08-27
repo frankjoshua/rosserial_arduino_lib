@@ -10,6 +10,8 @@
 namespace sensor_msgs
 {
 
+    static const char sensor_msgs_CompressedImage_type[] PROGMEM= "sensor_msgs/CompressedImage";
+    static const char sensor_msgs_CompressedImage_md5[] PROGMEM= "8f7a12909da2c9d3332d540a0977563f";
   class CompressedImage : public ros::Msg
   {
     public:
@@ -79,8 +81,8 @@ namespace sensor_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "sensor_msgs/CompressedImage"; };
-    virtual const char * getMD5() override { return "8f7a12909da2c9d3332d540a0977563f"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)sensor_msgs_CompressedImage_type);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)sensor_msgs_CompressedImage_md5);return md5_msg; };
 
   };
 

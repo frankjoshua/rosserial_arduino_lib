@@ -9,6 +9,8 @@
 namespace sensor_msgs
 {
 
+    static const char sensor_msgs_NavSatStatus_type[] PROGMEM= "sensor_msgs/NavSatStatus";
+    static const char sensor_msgs_NavSatStatus_md5[] PROGMEM= "331cdbddfa4bc96ffc3b9ad98900a54c";
   class NavSatStatus : public ros::Msg
   {
     public:
@@ -64,8 +66,8 @@ namespace sensor_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "sensor_msgs/NavSatStatus"; };
-    virtual const char * getMD5() override { return "331cdbddfa4bc96ffc3b9ad98900a54c"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)sensor_msgs_NavSatStatus_type);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)sensor_msgs_NavSatStatus_md5);return md5_msg; };
 
   };
 

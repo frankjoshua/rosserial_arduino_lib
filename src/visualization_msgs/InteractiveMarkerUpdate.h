@@ -11,6 +11,8 @@
 namespace visualization_msgs
 {
 
+    static const char visualization_msgs_InteractiveMarkerUpdate_type[] PROGMEM= "visualization_msgs/InteractiveMarkerUpdate";
+    static const char visualization_msgs_InteractiveMarkerUpdate_md5[] PROGMEM= "710d308d0a9276d65945e92dd30b3946";
   class InteractiveMarkerUpdate : public ros::Msg
   {
     public:
@@ -165,8 +167,8 @@ namespace visualization_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "visualization_msgs/InteractiveMarkerUpdate"; };
-    virtual const char * getMD5() override { return "710d308d0a9276d65945e92dd30b3946"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)visualization_msgs_InteractiveMarkerUpdate_type);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)visualization_msgs_InteractiveMarkerUpdate_md5);return md5_msg; };
 
   };
 

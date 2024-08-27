@@ -9,6 +9,8 @@
 namespace actionlib
 {
 
+    static const char actionlib_TestFeedback_type[] PROGMEM= "actionlib/TestFeedback";
+    static const char actionlib_TestFeedback_md5[] PROGMEM= "49ceb5b32ea3af22073ede4a0328249e";
   class TestFeedback : public ros::Msg
   {
     public:
@@ -53,8 +55,8 @@ namespace actionlib
      return offset;
     }
 
-    virtual const char * getType() override { return "actionlib/TestFeedback"; };
-    virtual const char * getMD5() override { return "49ceb5b32ea3af22073ede4a0328249e"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)actionlib_TestFeedback_type);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)actionlib_TestFeedback_md5);return md5_msg; };
 
   };
 

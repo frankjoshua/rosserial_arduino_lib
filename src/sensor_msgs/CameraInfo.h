@@ -11,6 +11,8 @@
 namespace sensor_msgs
 {
 
+    static const char sensor_msgs_CameraInfo_type[] PROGMEM= "sensor_msgs/CameraInfo";
+    static const char sensor_msgs_CameraInfo_md5[] PROGMEM= "c9a58c1b0b154e0e6da7578cb991d214";
   class CameraInfo : public ros::Msg
   {
     public:
@@ -159,8 +161,8 @@ namespace sensor_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "sensor_msgs/CameraInfo"; };
-    virtual const char * getMD5() override { return "c9a58c1b0b154e0e6da7578cb991d214"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)sensor_msgs_CameraInfo_type);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)sensor_msgs_CameraInfo_md5);return md5_msg; };
 
   };
 

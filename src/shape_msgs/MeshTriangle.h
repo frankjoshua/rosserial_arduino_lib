@@ -9,6 +9,8 @@
 namespace shape_msgs
 {
 
+    static const char shape_msgs_MeshTriangle_type[] PROGMEM= "shape_msgs/MeshTriangle";
+    static const char shape_msgs_MeshTriangle_md5[] PROGMEM= "23688b2e6d2de3d32fe8af104a903253";
   class MeshTriangle : public ros::Msg
   {
     public:
@@ -45,8 +47,8 @@ namespace shape_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "shape_msgs/MeshTriangle"; };
-    virtual const char * getMD5() override { return "23688b2e6d2de3d32fe8af104a903253"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)shape_msgs_MeshTriangle_type);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)shape_msgs_MeshTriangle_md5);return md5_msg; };
 
   };
 

@@ -9,8 +9,10 @@
 namespace diagnostic_msgs
 {
 
-static const char SELFTEST[] = "diagnostic_msgs/SelfTest";
+static const char SELFTEST[] PROGMEM= "diagnostic_msgs/SelfTest";
 
+    static const char diagnostic_msgs_SelfTestRequest_type[] PROGMEM= "diagnostic_msgs/SelfTestRequest";
+    static const char diagnostic_msgs_SelfTestRequest_md5[] PROGMEM= "d41d8cd98f00b204e9800998ecf8427e";
   class SelfTestRequest : public ros::Msg
   {
     public:
@@ -31,11 +33,13 @@ static const char SELFTEST[] = "diagnostic_msgs/SelfTest";
      return offset;
     }
 
-    virtual const char * getType() override { return SELFTEST; };
-    virtual const char * getMD5() override { return "d41d8cd98f00b204e9800998ecf8427e"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)SELFTEST);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)diagnostic_msgs_SelfTestRequest_md5);return md5_msg; };
 
   };
 
+    static const char diagnostic_msgs_SelfTestResponse_type[] PROGMEM= "diagnostic_msgs/SelfTestResponse";
+    static const char diagnostic_msgs_SelfTestResponse_md5[] PROGMEM= "ac21b1bab7ab17546986536c22eb34e9";
   class SelfTestResponse : public ros::Msg
   {
     public:
@@ -116,8 +120,8 @@ static const char SELFTEST[] = "diagnostic_msgs/SelfTest";
      return offset;
     }
 
-    virtual const char * getType() override { return SELFTEST; };
-    virtual const char * getMD5() override { return "ac21b1bab7ab17546986536c22eb34e9"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)SELFTEST);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)diagnostic_msgs_SelfTestResponse_md5);return md5_msg; };
 
   };
 

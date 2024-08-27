@@ -9,6 +9,8 @@
 namespace shape_msgs
 {
 
+    static const char shape_msgs_Plane_type[] PROGMEM= "shape_msgs/Plane";
+    static const char shape_msgs_Plane_md5[] PROGMEM= "2c1b92ed8f31492f8e73f6a4a44ca796";
   class Plane : public ros::Msg
   {
     public:
@@ -37,8 +39,8 @@ namespace shape_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "shape_msgs/Plane"; };
-    virtual const char * getMD5() override { return "2c1b92ed8f31492f8e73f6a4a44ca796"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)shape_msgs_Plane_type);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)shape_msgs_Plane_md5);return md5_msg; };
 
   };
 

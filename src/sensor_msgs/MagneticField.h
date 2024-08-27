@@ -11,6 +11,8 @@
 namespace sensor_msgs
 {
 
+    static const char sensor_msgs_MagneticField_type[] PROGMEM= "sensor_msgs/MagneticField";
+    static const char sensor_msgs_MagneticField_md5[] PROGMEM= "2f3b0b43eed0c9501de0fa3ff89a45aa";
   class MagneticField : public ros::Msg
   {
     public:
@@ -49,8 +51,8 @@ namespace sensor_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "sensor_msgs/MagneticField"; };
-    virtual const char * getMD5() override { return "2f3b0b43eed0c9501de0fa3ff89a45aa"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)sensor_msgs_MagneticField_type);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)sensor_msgs_MagneticField_md5);return md5_msg; };
 
   };
 

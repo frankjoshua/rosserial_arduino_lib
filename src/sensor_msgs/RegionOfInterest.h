@@ -9,6 +9,8 @@
 namespace sensor_msgs
 {
 
+    static const char sensor_msgs_RegionOfInterest_type[] PROGMEM= "sensor_msgs/RegionOfInterest";
+    static const char sensor_msgs_RegionOfInterest_md5[] PROGMEM= "bdb633039d588fcccb441a4d43ccfe09";
   class RegionOfInterest : public ros::Msg
   {
     public:
@@ -99,8 +101,8 @@ namespace sensor_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "sensor_msgs/RegionOfInterest"; };
-    virtual const char * getMD5() override { return "bdb633039d588fcccb441a4d43ccfe09"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)sensor_msgs_RegionOfInterest_type);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)sensor_msgs_RegionOfInterest_md5);return md5_msg; };
 
   };
 

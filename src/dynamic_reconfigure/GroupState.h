@@ -9,6 +9,8 @@
 namespace dynamic_reconfigure
 {
 
+    static const char dynamic_reconfigure_GroupState_type[] PROGMEM= "dynamic_reconfigure/GroupState";
+    static const char dynamic_reconfigure_GroupState_md5[] PROGMEM= "a2d87f51dc22930325041a2f8b1571f8";
   class GroupState : public ros::Msg
   {
     public:
@@ -112,8 +114,8 @@ namespace dynamic_reconfigure
      return offset;
     }
 
-    virtual const char * getType() override { return "dynamic_reconfigure/GroupState"; };
-    virtual const char * getMD5() override { return "a2d87f51dc22930325041a2f8b1571f8"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)dynamic_reconfigure_GroupState_type);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)dynamic_reconfigure_GroupState_md5);return md5_msg; };
 
   };
 

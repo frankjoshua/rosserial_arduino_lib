@@ -8,8 +8,10 @@
 namespace rosserial_msgs
 {
 
-static const char REQUESTPARAM[] = "rosserial_msgs/RequestParam";
+static const char REQUESTPARAM[] PROGMEM= "rosserial_msgs/RequestParam";
 
+    static const char rosserial_msgs_RequestParamRequest_type[] PROGMEM= "rosserial_msgs/RequestParamRequest";
+    static const char rosserial_msgs_RequestParamRequest_md5[] PROGMEM= "c1f3d28f1b044c871e6eff2e9fc3c667";
   class RequestParamRequest : public ros::Msg
   {
     public:
@@ -47,11 +49,13 @@ static const char REQUESTPARAM[] = "rosserial_msgs/RequestParam";
      return offset;
     }
 
-    virtual const char * getType() override { return REQUESTPARAM; };
-    virtual const char * getMD5() override { return "c1f3d28f1b044c871e6eff2e9fc3c667"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)REQUESTPARAM);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)rosserial_msgs_RequestParamRequest_md5);return md5_msg; };
 
   };
 
+    static const char rosserial_msgs_RequestParamResponse_type[] PROGMEM= "rosserial_msgs/RequestParamResponse";
+    static const char rosserial_msgs_RequestParamResponse_md5[] PROGMEM= "9f0e98bda65981986ddf53afa7a40e49";
   class RequestParamResponse : public ros::Msg
   {
     public:
@@ -197,8 +201,8 @@ static const char REQUESTPARAM[] = "rosserial_msgs/RequestParam";
      return offset;
     }
 
-    virtual const char * getType() override { return REQUESTPARAM; };
-    virtual const char * getMD5() override { return "9f0e98bda65981986ddf53afa7a40e49"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)REQUESTPARAM);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)rosserial_msgs_RequestParamResponse_md5);return md5_msg; };
 
   };
 

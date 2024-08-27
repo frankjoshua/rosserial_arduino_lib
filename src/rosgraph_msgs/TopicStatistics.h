@@ -11,6 +11,8 @@
 namespace rosgraph_msgs
 {
 
+    static const char rosgraph_msgs_TopicStatistics_type[] PROGMEM= "rosgraph_msgs/TopicStatistics";
+    static const char rosgraph_msgs_TopicStatistics_md5[] PROGMEM= "10152ed868c5097a5e2e4a89d7daa710";
   class TopicStatistics : public ros::Msg
   {
     public:
@@ -338,8 +340,8 @@ namespace rosgraph_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "rosgraph_msgs/TopicStatistics"; };
-    virtual const char * getMD5() override { return "10152ed868c5097a5e2e4a89d7daa710"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)rosgraph_msgs_TopicStatistics_type);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)rosgraph_msgs_TopicStatistics_md5);return md5_msg; };
 
   };
 

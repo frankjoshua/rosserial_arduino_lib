@@ -10,6 +10,8 @@
 namespace std_msgs
 {
 
+    static const char std_msgs_UInt8MultiArray_type[] PROGMEM= "std_msgs/UInt8MultiArray";
+    static const char std_msgs_UInt8MultiArray_md5[] PROGMEM= "82373f1612381bb6ee473b5cd6f5d89c";
   class UInt8MultiArray : public ros::Msg
   {
     public:
@@ -62,8 +64,8 @@ namespace std_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "std_msgs/UInt8MultiArray"; };
-    virtual const char * getMD5() override { return "82373f1612381bb6ee473b5cd6f5d89c"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)std_msgs_UInt8MultiArray_type);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)std_msgs_UInt8MultiArray_md5);return md5_msg; };
 
   };
 

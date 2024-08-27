@@ -10,6 +10,8 @@
 namespace diagnostic_msgs
 {
 
+    static const char diagnostic_msgs_DiagnosticStatus_type[] PROGMEM= "diagnostic_msgs/DiagnosticStatus";
+    static const char diagnostic_msgs_DiagnosticStatus_md5[] PROGMEM= "d0ce08bc6e5ba34c7754f563a9cabaf1";
   class DiagnosticStatus : public ros::Msg
   {
     public:
@@ -128,8 +130,8 @@ namespace diagnostic_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "diagnostic_msgs/DiagnosticStatus"; };
-    virtual const char * getMD5() override { return "d0ce08bc6e5ba34c7754f563a9cabaf1"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)diagnostic_msgs_DiagnosticStatus_type);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)diagnostic_msgs_DiagnosticStatus_md5);return md5_msg; };
 
   };
 

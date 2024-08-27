@@ -11,6 +11,8 @@
 namespace sensor_msgs
 {
 
+    static const char sensor_msgs_TimeReference_type[] PROGMEM= "sensor_msgs/TimeReference";
+    static const char sensor_msgs_TimeReference_md5[] PROGMEM= "fded64a0265108ba86c3d38fb11c0c16";
   class TimeReference : public ros::Msg
   {
     public:
@@ -76,8 +78,8 @@ namespace sensor_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "sensor_msgs/TimeReference"; };
-    virtual const char * getMD5() override { return "fded64a0265108ba86c3d38fb11c0c16"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)sensor_msgs_TimeReference_type);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)sensor_msgs_TimeReference_md5);return md5_msg; };
 
   };
 

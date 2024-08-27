@@ -9,6 +9,8 @@
 namespace rosserial_msgs
 {
 
+    static const char rosserial_msgs_TopicInfo_type[] PROGMEM= "rosserial_msgs/TopicInfo";
+    static const char rosserial_msgs_TopicInfo_md5[] PROGMEM= "0ad51f88fc44892f8c10684077646005";
   class TopicInfo : public ros::Msg
   {
     public:
@@ -121,8 +123,8 @@ namespace rosserial_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "rosserial_msgs/TopicInfo"; };
-    virtual const char * getMD5() override { return "0ad51f88fc44892f8c10684077646005"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)rosserial_msgs_TopicInfo_type);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)rosserial_msgs_TopicInfo_md5);return md5_msg; };
 
   };
 

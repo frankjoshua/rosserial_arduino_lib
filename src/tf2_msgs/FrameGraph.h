@@ -8,8 +8,10 @@
 namespace tf2_msgs
 {
 
-static const char FRAMEGRAPH[] = "tf2_msgs/FrameGraph";
+static const char FRAMEGRAPH[] PROGMEM= "tf2_msgs/FrameGraph";
 
+    static const char tf2_msgs_FrameGraphRequest_type[] PROGMEM= "tf2_msgs/FrameGraphRequest";
+    static const char tf2_msgs_FrameGraphRequest_md5[] PROGMEM= "d41d8cd98f00b204e9800998ecf8427e";
   class FrameGraphRequest : public ros::Msg
   {
     public:
@@ -30,11 +32,13 @@ static const char FRAMEGRAPH[] = "tf2_msgs/FrameGraph";
      return offset;
     }
 
-    virtual const char * getType() override { return FRAMEGRAPH; };
-    virtual const char * getMD5() override { return "d41d8cd98f00b204e9800998ecf8427e"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)FRAMEGRAPH);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)tf2_msgs_FrameGraphRequest_md5);return md5_msg; };
 
   };
 
+    static const char tf2_msgs_FrameGraphResponse_type[] PROGMEM= "tf2_msgs/FrameGraphResponse";
+    static const char tf2_msgs_FrameGraphResponse_md5[] PROGMEM= "437ea58e9463815a0d511c7326b686b0";
   class FrameGraphResponse : public ros::Msg
   {
     public:
@@ -72,8 +76,8 @@ static const char FRAMEGRAPH[] = "tf2_msgs/FrameGraph";
      return offset;
     }
 
-    virtual const char * getType() override { return FRAMEGRAPH; };
-    virtual const char * getMD5() override { return "437ea58e9463815a0d511c7326b686b0"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)FRAMEGRAPH);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)tf2_msgs_FrameGraphResponse_md5);return md5_msg; };
 
   };
 

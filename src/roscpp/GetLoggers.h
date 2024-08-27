@@ -9,8 +9,10 @@
 namespace roscpp
 {
 
-static const char GETLOGGERS[] = "roscpp/GetLoggers";
+static const char GETLOGGERS[] PROGMEM= "roscpp/GetLoggers";
 
+    static const char roscpp_GetLoggersRequest_type[] PROGMEM= "roscpp/GetLoggersRequest";
+    static const char roscpp_GetLoggersRequest_md5[] PROGMEM= "d41d8cd98f00b204e9800998ecf8427e";
   class GetLoggersRequest : public ros::Msg
   {
     public:
@@ -31,11 +33,13 @@ static const char GETLOGGERS[] = "roscpp/GetLoggers";
      return offset;
     }
 
-    virtual const char * getType() override { return GETLOGGERS; };
-    virtual const char * getMD5() override { return "d41d8cd98f00b204e9800998ecf8427e"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)GETLOGGERS);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)roscpp_GetLoggersRequest_md5);return md5_msg; };
 
   };
 
+    static const char roscpp_GetLoggersResponse_type[] PROGMEM= "roscpp/GetLoggersResponse";
+    static const char roscpp_GetLoggersResponse_md5[] PROGMEM= "32e97e85527d4678a8f9279894bb64b0";
   class GetLoggersResponse : public ros::Msg
   {
     public:
@@ -81,8 +85,8 @@ static const char GETLOGGERS[] = "roscpp/GetLoggers";
      return offset;
     }
 
-    virtual const char * getType() override { return GETLOGGERS; };
-    virtual const char * getMD5() override { return "32e97e85527d4678a8f9279894bb64b0"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)GETLOGGERS);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)roscpp_GetLoggersResponse_md5);return md5_msg; };
 
   };
 

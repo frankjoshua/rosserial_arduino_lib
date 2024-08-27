@@ -10,6 +10,8 @@
 namespace bond
 {
 
+    static const char bond_Status_type[] PROGMEM= "bond/Status";
+    static const char bond_Status_md5[] PROGMEM= "eacc84bf5d65b6777d4c50f463dfb9c8";
   class Status : public ros::Msg
   {
     public:
@@ -135,8 +137,8 @@ namespace bond
      return offset;
     }
 
-    virtual const char * getType() override { return "bond/Status"; };
-    virtual const char * getMD5() override { return "eacc84bf5d65b6777d4c50f463dfb9c8"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)bond_Status_type);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)bond_Status_md5);return md5_msg; };
 
   };
 

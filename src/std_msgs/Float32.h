@@ -9,6 +9,8 @@
 namespace std_msgs
 {
 
+    static const char std_msgs_Float32_type[] PROGMEM= "std_msgs/Float32";
+    static const char std_msgs_Float32_md5[] PROGMEM= "73fcbf46b49191e672908e50842a83d4";
   class Float32 : public ros::Msg
   {
     public:
@@ -53,8 +55,8 @@ namespace std_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "std_msgs/Float32"; };
-    virtual const char * getMD5() override { return "73fcbf46b49191e672908e50842a83d4"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)std_msgs_Float32_type);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)std_msgs_Float32_md5);return md5_msg; };
 
   };
 

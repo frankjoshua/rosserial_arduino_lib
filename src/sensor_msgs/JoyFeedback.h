@@ -9,6 +9,8 @@
 namespace sensor_msgs
 {
 
+    static const char sensor_msgs_JoyFeedback_type[] PROGMEM= "sensor_msgs/JoyFeedback";
+    static const char sensor_msgs_JoyFeedback_md5[] PROGMEM= "f4dcd73460360d98f36e55ee7f2e46f1";
   class JoyFeedback : public ros::Msg
   {
     public:
@@ -70,8 +72,8 @@ namespace sensor_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "sensor_msgs/JoyFeedback"; };
-    virtual const char * getMD5() override { return "f4dcd73460360d98f36e55ee7f2e46f1"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)sensor_msgs_JoyFeedback_type);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)sensor_msgs_JoyFeedback_md5);return md5_msg; };
 
   };
 

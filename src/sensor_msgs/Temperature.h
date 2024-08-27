@@ -10,6 +10,8 @@
 namespace sensor_msgs
 {
 
+    static const char sensor_msgs_Temperature_type[] PROGMEM= "sensor_msgs/Temperature";
+    static const char sensor_msgs_Temperature_md5[] PROGMEM= "ff71b307acdbe7c871a5a6d7ed359100";
   class Temperature : public ros::Msg
   {
     public:
@@ -45,8 +47,8 @@ namespace sensor_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "sensor_msgs/Temperature"; };
-    virtual const char * getMD5() override { return "ff71b307acdbe7c871a5a6d7ed359100"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)sensor_msgs_Temperature_type);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)sensor_msgs_Temperature_md5);return md5_msg; };
 
   };
 

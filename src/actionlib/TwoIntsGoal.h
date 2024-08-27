@@ -9,6 +9,8 @@
 namespace actionlib
 {
 
+    static const char actionlib_TwoIntsGoal_type[] PROGMEM= "actionlib/TwoIntsGoal";
+    static const char actionlib_TwoIntsGoal_md5[] PROGMEM= "36d09b846be0b371c5f190354dd3153e";
   class TwoIntsGoal : public ros::Msg
   {
     public:
@@ -93,8 +95,8 @@ namespace actionlib
      return offset;
     }
 
-    virtual const char * getType() override { return "actionlib/TwoIntsGoal"; };
-    virtual const char * getMD5() override { return "36d09b846be0b371c5f190354dd3153e"; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)actionlib_TwoIntsGoal_type);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)actionlib_TwoIntsGoal_md5);return md5_msg; };
 
   };
 
