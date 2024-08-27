@@ -57,6 +57,9 @@
 #elif (defined(__STM32F1__) and !(defined(USE_STM32_HW_SERIAL))) or defined(SPARK) 
   // Stm32duino Maple mini USB Serial Port
   #define SERIAL_CLASS USBSerial
+#elif defined(STM32F4xx)
+  #include <HardwareSerial.h> 
+  #define SERIAL_CLASS USBSerial
 #else 
   #include <HardwareSerial.h>  // Arduino AVR
   #define SERIAL_CLASS HardwareSerial
@@ -70,7 +73,9 @@ class ArduinoHardware {
     }
     ArduinoHardware()
     {
-#if defined(USBCON) and !(defined(USE_USBCON))
+#if defined(STM32F4xx)
+      iostream = &SerialUSB;
+#elif defined(USBCON) and !(defined(USE_USBCON))
       /* Leonardo support */
       iostream = &Serial1;
 #elif defined(USE_TEENSY_HW_SERIAL) or defined(USE_STM32_HW_SERIAL)
