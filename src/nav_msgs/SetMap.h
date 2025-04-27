@@ -44,8 +44,8 @@ static const char SETMAP[] PROGMEM= "nav_msgs/SetMap";
      return offset;
     }
 
-    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)SETMAP);return type_msg; };
-    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)nav_msgs_SetMapRequest_md5);return md5_msg; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P((char *)type_msg, (char *)SETMAP);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P((char *)md5_msg, (char *)nav_msgs_SetMapRequest_md5);return md5_msg; };
 
   };
 
@@ -89,8 +89,8 @@ static const char SETMAP[] PROGMEM= "nav_msgs/SetMap";
      return offset;
     }
 
-    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)SETMAP);return type_msg; };
-    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)nav_msgs_SetMapResponse_md5);return md5_msg; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P((char *)type_msg, (char *)SETMAP);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P((char *)md5_msg, (char *)nav_msgs_SetMapResponse_md5);return md5_msg; };
 
   };
 

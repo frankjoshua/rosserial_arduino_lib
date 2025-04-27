@@ -114,8 +114,8 @@ namespace dynamic_reconfigure
      return offset;
     }
 
-    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)dynamic_reconfigure_GroupState_type);return type_msg; };
-    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)dynamic_reconfigure_GroupState_md5);return md5_msg; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P((char *)type_msg, (char *)dynamic_reconfigure_GroupState_type);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P((char *)md5_msg, (char *)dynamic_reconfigure_GroupState_md5);return md5_msg; };
 
   };
 

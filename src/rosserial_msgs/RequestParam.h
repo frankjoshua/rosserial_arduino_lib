@@ -49,8 +49,8 @@ static const char REQUESTPARAM[] PROGMEM= "rosserial_msgs/RequestParam";
      return offset;
     }
 
-    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)REQUESTPARAM);return type_msg; };
-    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)rosserial_msgs_RequestParamRequest_md5);return md5_msg; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P((char *)type_msg, (char *)REQUESTPARAM);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P((char *)md5_msg, (char *)rosserial_msgs_RequestParamRequest_md5);return md5_msg; };
 
   };
 
@@ -201,8 +201,8 @@ static const char REQUESTPARAM[] PROGMEM= "rosserial_msgs/RequestParam";
      return offset;
     }
 
-    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)REQUESTPARAM);return type_msg; };
-    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)rosserial_msgs_RequestParamResponse_md5);return md5_msg; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P((char *)type_msg, (char *)REQUESTPARAM);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P((char *)md5_msg, (char *)rosserial_msgs_RequestParamResponse_md5);return md5_msg; };
 
   };
 

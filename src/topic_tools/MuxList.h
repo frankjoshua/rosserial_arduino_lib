@@ -32,8 +32,8 @@ static const char MUXLIST[] PROGMEM= "topic_tools/MuxList";
      return offset;
     }
 
-    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)MUXLIST);return type_msg; };
-    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)topic_tools_MuxListRequest_md5);return md5_msg; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P((char *)type_msg, (char *)MUXLIST);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P((char *)md5_msg, (char *)topic_tools_MuxListRequest_md5);return md5_msg; };
 
   };
 
@@ -96,8 +96,8 @@ static const char MUXLIST[] PROGMEM= "topic_tools/MuxList";
      return offset;
     }
 
-    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)MUXLIST);return type_msg; };
-    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)topic_tools_MuxListResponse_md5);return md5_msg; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P((char *)type_msg, (char *)MUXLIST);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P((char *)md5_msg, (char *)topic_tools_MuxListResponse_md5);return md5_msg; };
 
   };
 

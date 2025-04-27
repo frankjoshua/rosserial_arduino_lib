@@ -89,12 +89,12 @@ namespace rosserial_arduino
     #ifdef ESP8266
         const char * getType() { return  ("rosserial_arduino/Adc");};
     #else
-        virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)rosserial_arduino_Adc_type);return type_msg; };
+        virtual const char * getType(const char * type_msg) override { strcpy_P((char *)type_msg, (char *)rosserial_arduino_Adc_type);return type_msg; };
     #endif
     #ifdef ESP8266
         const char * getMD5() { return  ("6d7853a614e2e821319068311f2af25b");};
     #else
-        virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)rosserial_arduino_Adc_md5);return md5_msg; };
+        virtual const char * getMD5(const char * md5_msg) override { strcpy_P((char *)md5_msg, (char *)rosserial_arduino_Adc_md5);return md5_msg; };
     #endif
 
   };

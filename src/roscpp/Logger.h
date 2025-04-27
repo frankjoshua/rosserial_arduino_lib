@@ -65,8 +65,8 @@ namespace roscpp
      return offset;
     }
 
-    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)roscpp_Logger_type);return type_msg; };
-    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)roscpp_Logger_md5);return md5_msg; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P((char *)type_msg, (char *)roscpp_Logger_type);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P((char *)md5_msg, (char *)roscpp_Logger_md5);return md5_msg; };
 
   };
 

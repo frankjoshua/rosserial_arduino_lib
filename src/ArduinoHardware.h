@@ -60,6 +60,10 @@
 #elif defined(STM32F4xx)
   #include <HardwareSerial.h> 
   #define SERIAL_CLASS USBSerial
+#elif defined(ESP32) and defined(ARDUINO_USB_CDC_ON_BOOT) and !(defined(ROSSERIAL_ARDUINO_TCP))
+  #include <HardwareSerial.h>
+  #include <HWCDC.h>
+  #define SERIAL_CLASS HWCDC
 #else 
   #include <HardwareSerial.h>  // Arduino AVR
   #define SERIAL_CLASS HardwareSerial

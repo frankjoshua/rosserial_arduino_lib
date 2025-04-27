@@ -49,8 +49,8 @@ static const char MUXDELETE[] PROGMEM= "topic_tools/MuxDelete";
      return offset;
     }
 
-    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)MUXDELETE);return type_msg; };
-    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)topic_tools_MuxDeleteRequest_md5);return md5_msg; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P((char *)type_msg, (char *)MUXDELETE);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P((char *)md5_msg, (char *)topic_tools_MuxDeleteRequest_md5);return md5_msg; };
 
   };
 
@@ -76,8 +76,8 @@ static const char MUXDELETE[] PROGMEM= "topic_tools/MuxDelete";
      return offset;
     }
 
-    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)MUXDELETE);return type_msg; };
-    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)topic_tools_MuxDeleteResponse_md5);return md5_msg; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P((char *)type_msg, (char *)MUXDELETE);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P((char *)md5_msg, (char *)topic_tools_MuxDeleteResponse_md5);return md5_msg; };
 
   };
 

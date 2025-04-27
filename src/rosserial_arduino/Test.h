@@ -58,8 +58,8 @@ namespace rosserial_arduino
         const char * getType(){ return TEST; };
         const char * getMD5() { return  ("39e92f1778057359c64c7b8a7d7b19de");};
     #else
-        virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)TEST);return type_msg; };
-        virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)rosserial_arduino_TestRequest_md5);return md5_msg; };
+        virtual const char * getType(const char * type_msg) override { strcpy_P((char *)type_msg, (char *)TEST);return type_msg; };
+        virtual const char * getMD5(const char * md5_msg) override { strcpy_P((char *)md5_msg, (char *)rosserial_arduino_TestRequest_md5);return md5_msg; };
     #endif
 
   };
@@ -107,8 +107,8 @@ namespace rosserial_arduino
         const char * getType(){ return TEST; };
         const char * getMD5() { return  ("0825d95fdfa2c8f4bbb4e9c74bccd3fd");};
     #else
-        virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)TEST);return type_msg; };
-        virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)rosserial_arduino_TestResponse_md5);return md5_msg; };
+        virtual const char * getType(const char * type_msg) override { strcpy_P((char *)type_msg, (char *)TEST);return type_msg; };
+        virtual const char * getMD5(const char * md5_msg) override { strcpy_P((char *)md5_msg, (char *)rosserial_arduino_TestResponse_md5);return md5_msg; };
     #endif
 
   };

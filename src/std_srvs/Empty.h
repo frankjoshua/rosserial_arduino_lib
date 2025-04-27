@@ -32,8 +32,8 @@ static const char EMPTY[] PROGMEM= "std_srvs/Empty";
      return offset;
     }
 
-    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)EMPTY);return type_msg; };
-    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)std_srvs_EmptyRequest_md5);return md5_msg; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P((char *)type_msg, (char *)EMPTY);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P((char *)md5_msg, (char *)std_srvs_EmptyRequest_md5);return md5_msg; };
 
   };
 
@@ -59,8 +59,8 @@ static const char EMPTY[] PROGMEM= "std_srvs/Empty";
      return offset;
     }
 
-    virtual const char * getType(const char * type_msg) override { strcpy_P(type_msg, (char *)EMPTY);return type_msg; };
-    virtual const char * getMD5(const char * md5_msg) override { strcpy_P(md5_msg, (char *)std_srvs_EmptyResponse_md5);return md5_msg; };
+    virtual const char * getType(const char * type_msg) override { strcpy_P((char *)type_msg, (char *)EMPTY);return type_msg; };
+    virtual const char * getMD5(const char * md5_msg) override { strcpy_P((char *)md5_msg, (char *)std_srvs_EmptyResponse_md5);return md5_msg; };
 
   };
 
